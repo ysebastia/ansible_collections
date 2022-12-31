@@ -1,7 +1,7 @@
 ---
 - name: Load vars
   ansible.builtin.include_vars: "{{ ansible_os_family | lower }}.yml"
-- name: Ensure Clamav is installed
+- name: Install packages by operating system
   ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
 - name: Configure clamd if clamav_enable_clamd is defined
   ansible.builtin.include_tasks: config_clamd.yml

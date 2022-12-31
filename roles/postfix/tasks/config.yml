@@ -1,5 +1,5 @@
 ---
-- name: Ensure postfix is installed
+- name: Install packages by operating system
   ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
 - name: Update myhostname configuration
   become: true

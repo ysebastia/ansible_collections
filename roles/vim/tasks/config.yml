@@ -1,7 +1,7 @@
 ---
 - name: Include vars
   ansible.builtin.include_vars: "{{ ansible_os_family | lower }}.yml"
-- name: Ensure VIM is installed
+- name: Install packages by operating system
   ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
 - name: Configuration
   become: true

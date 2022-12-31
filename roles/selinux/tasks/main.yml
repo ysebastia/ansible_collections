@@ -1,4 +1,4 @@
 ---
 - name: Configure SELINUX if enable_base_selinux is defined
-  ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
+  ansible.builtin.include_tasks: config.yml
   when: enable_base_selinux
