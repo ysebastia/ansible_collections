@@ -32,9 +32,9 @@ def yamllint(quality) {
 pipeline {
   agent any
   environment {
-    QUALITY_ANSIBLE = "100"
+    QUALITY_ANSIBLE = "1"
     QUALITY_SHELL = "4"
-    QUALITY_YAML = "100"
+    QUALITY_YAML = "1"
   }
   stages {
     stage('QA') {
