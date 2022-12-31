@@ -1,0 +1,25 @@
+---
+- name: Include vars
+  ansible.builtin.include_vars: "{{ ansible_os_family | lower }}.yml"
+- name: Ensure VIM is installed
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
+- name: Configuration
+  become: true
+  ansible.builtin.template:
+    src: templates/{{ item }}.j2
+    dest: '{{ item }}'
+    mode: '0644'
+  loop:
+    - /etc/profile.d/vim.sh
+- name: Disable mouse
+  become: true
+  ansible.builtin.lineinfile:
+    path: '{{ vimrc_path }}'
+    regex: '{{ item.regex }}'
+    line: '{{ item.value }}'
+    state: present
+  with_items:
+    - regex: '^set mouse='
+      value: 'set mouse='
+    - regex: '^set ttymouse='
+      value: 'set ttymouse='

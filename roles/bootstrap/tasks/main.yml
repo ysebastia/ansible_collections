@@ -1,0 +1,46 @@
+---
+- name: Configure SELINUX
+  ansible.builtin.include_role:
+    name: ysebastia.base.selinux
+- name: Configure FIREWALLD
+  ansible.builtin.include_role:
+    name: ysebastia.base.firewalld
+- name: Configure CHRONY
+  ansible.builtin.include_role:
+    name: ysebastia.base.chrony
+- name: Configure CLAMAV
+  ansible.builtin.include_role:
+    name: ysebastia.base.clamav
+- name: Configure VIM
+  ansible.builtin.include_role:
+    name: ysebastia.base.vim
+- name: Configure POTSFIX agent
+  ansible.builtin.include_role:
+    name: ysebastia.base.postfix
+- name: Configure QEMU-GUEST agent
+  ansible.builtin.include_role:
+    name: ysebastia.base.qemu_guest_agent
+- name: Configure PROFILE
+  ansible.builtin.include_role:
+    name: ysebastia.base.profile
+- name: Partition filesystems
+  ansible.builtin.include_role:
+    name: ysebastia.base.parted
+- name: Configure TUNED
+  ansible.builtin.include_role:
+    name: ysebastia.base.tuned
+- name: Configure OPENSSH
+  ansible.builtin.include_role:
+    name: ysebastia.base.openssh
+- name: Configure LOGWATCH
+  ansible.builtin.include_role:
+    name: ysebastia.base.logwatch
+- name: Configure CRON
+  ansible.builtin.include_role:
+    name: ysebastia.base.cron
+- name: Configure COMMANDS
+  ansible.builtin.include_role:
+    name: ysebastia.base.commands
+- name: Configure COCKPIT agent
+  ansible.builtin.include_role:
+    name: ysebastia.base.cockpit

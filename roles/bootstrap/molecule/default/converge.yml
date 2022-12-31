@@ -1,0 +1,11 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include bootstrap"
+      ansible.builtin.include_role:
+        name: "bootstrap"
+      vars:
+        enable_base_clamav: true
+        enable_base_cockpit: true
+        enable_repositories_epel: true

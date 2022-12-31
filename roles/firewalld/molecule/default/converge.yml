@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include firewalld"
+      ansible.builtin.include_role:
+        name: "firewalld"

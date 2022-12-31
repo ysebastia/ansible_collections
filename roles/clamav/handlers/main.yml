@@ -1,0 +1,17 @@
+---
+- name: SELinux on freshclam_logfile
+  become: true
+  ansible.builtin.command: restorecon -irv {{ freshclam_logfile }}
+  when: clamav_enable_selinux
+- name: Restart clamav-freshclam
+  become: true
+  ansible.builtin.service:
+    name: clamav-freshclam
+    state: restarted
+    enabled: true
+- name: Restart clamd
+  become: true
+  ansible.builtin.service:
+    name: '{{ clamav_service }}'
+    state: restarted
+    enabled: true

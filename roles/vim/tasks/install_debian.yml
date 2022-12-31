@@ -1,0 +1,6 @@
+---
+- name: Ensure VIM is installed
+  become: true
+  ansible.builtin.apt:
+    name: vim
+    update_cache: true

@@ -1,0 +1,4 @@
+---
+- name: Configure CHRONY if enable_base_chrony is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_base_chrony

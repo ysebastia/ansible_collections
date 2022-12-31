@@ -1,0 +1,11 @@
+---
+- name: Install SELinux
+  become: true
+  ansible.builtin.apt:
+    name:
+      - auditd
+      - selinux-basics
+      - selinux-policy-default
+    update_cache: true
+  notify:
+    - Enable SELinux

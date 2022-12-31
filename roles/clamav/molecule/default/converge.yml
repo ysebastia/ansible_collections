@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include clamav"
+      ansible.builtin.include_role:
+        name: "clamav"
+      vars:
+        enable_base_clamav: true
+        enable_repositories_epel: true

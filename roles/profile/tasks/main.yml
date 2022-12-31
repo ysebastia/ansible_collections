@@ -1,0 +1,4 @@
+---
+- name: Configure PROFILE if enable_base_profile is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_base_profile

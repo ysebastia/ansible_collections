@@ -1,0 +1,9 @@
+---
+freshclam_config: /etc/freshclam.conf
+freshclam_logfile: /var/log/freshclam.log
+freshclam_owner: clamupdate
+clamav_config: /etc/clamd.d/scan.conf
+clamav_enable_selinux: true
+clamav_localsocket: /run/clamd.scan/clamd.sock
+clamav_service: clamd@scan
+clamav_user: clamscan

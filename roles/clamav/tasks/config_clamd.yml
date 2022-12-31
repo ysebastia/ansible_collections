@@ -1,0 +1,14 @@
+---
+- name: Clamd
+  become: true
+  ansible.builtin.lineinfile:
+    path: '{{ clamav_config }}'
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  with_items:
+    - {regexp: '^LocalSocket', line: 'LocalSocket {{ clamav_localsocket }}'}
+    - {regexp: '^User', line: 'User {{ clamav_user }}'}
+    - {regexp: '^SelfCheck', line: 'SelfCheck 3600'}
+  notify:
+    - Restart clamd

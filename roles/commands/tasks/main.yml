@@ -1,0 +1,4 @@
+---
+- name: Configure COMMANDS if enable_base_commands is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_base_commands

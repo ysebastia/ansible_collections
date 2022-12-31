@@ -1,0 +1,18 @@
+##############################
+# Configuration de LOGWATCH
+##############################
+LogDir = /var/log
+TmpDir = /var/cache/logwatch
+Output = stdout
+Format = text
+Encode = none
+MailTo = root
+MailFrom = Logwatch
+Range = yesterday
+Detail = {{ logwatch_detail | default('Low') }}
+Service = All
+{% for service in logwatch_service_to_remove | default([]) %}
+Service = "-{{ service }}"
+{% endfor %}
+mailer = "/usr/sbin/sendmail -t"
+Hostformat = "none"

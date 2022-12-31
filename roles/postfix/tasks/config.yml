@@ -1,0 +1,48 @@
+---
+- name: Ensure postfix is installed
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
+- name: Update myhostname configuration
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/postfix/main.cf
+    line: "myhostname = {{ ansible_fqdn }}"
+    regex: ^myhostname
+    state: present
+  notify:
+    - Restart postfix
+- name: Update relayhost if postfix_update_relay_host is enable
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/postfix/main.cf
+    line: "relayhost = {{ postfix_relayhost | default('') }}"
+    regex: ^relayhost
+    state: present
+  notify:
+    - Restart postfix
+  when:
+    - postfix_update_relay_host is defined
+    - postfix_update_relay_host
+    - postfix_relayhost is defined
+- name: Update inet_interfaces if postfix_loopback_only is enable
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/postfix/main.cf
+    line: "inet_interfaces = loopback-only"
+    regex: ^inet_interfaces
+    state: present
+  notify:
+    - Restart postfix
+  when:
+    - postfix_loopback_only is defined
+    - postfix_loopback_only
+- name: Update root aliases if postfix_root_aliases is defined
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/aliases
+    line: "root: {{ postfix_root_aliases }}"
+    regex: ^root
+    state: present
+  notify:
+    - Newaliases
+  when:
+    postfix_root_aliases is defined

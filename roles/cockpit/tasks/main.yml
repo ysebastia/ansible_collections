@@ -1,0 +1,4 @@
+---
+- name: Configure COCKPIT agent if enable_base_cockpit is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_base_cockpit

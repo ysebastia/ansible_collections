@@ -1,0 +1,12 @@
+---
+- name: Configure Profile
+  become: true
+  ansible.builtin.copy:
+    src: '{{ item }}'
+    dest: '{{ item }}'
+    mode: '0644'
+    owner: root
+    group: root
+  loop:
+    - /etc/profile.d/colorshell.sh
+    - /etc/profile.d/ll.sh

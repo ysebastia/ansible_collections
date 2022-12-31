@@ -1,0 +1,4 @@
+---
+- name: Configure CLAMAV if enable_base_clamav is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_base_clamav

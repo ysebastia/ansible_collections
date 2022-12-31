@@ -1,0 +1,4 @@
+---
+enable_base_clamav: false
+clamav_enable_selinux: true
+clamav_enable_clamd: true

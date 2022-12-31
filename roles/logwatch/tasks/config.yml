@@ -1,0 +1,23 @@
+---
+- name: Ensure Logwatch is installed
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
+- name: Configure Logwatch
+  become: true
+  ansible.builtin.template:
+    src: templates/{{ item }}.j2
+    dest: '{{ item }}'
+    owner: root
+    group: root
+    mode: '0644'
+  loop:
+    - /etc/logwatch/conf/logwatch.conf
+    - /etc/logwatch/conf/services/secure.conf
+    - /etc/logwatch/conf/services/sshd.conf
+- name: Add logwatch cache directory
+  become: true
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: directory
+    mode: '0755'
+  loop:
+    - /var/cache/logwatch/

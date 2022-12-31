@@ -1,0 +1,4 @@
+---
+- name: Configure VIM if enable_base_vim is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_base_vim

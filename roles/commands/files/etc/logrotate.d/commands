@@ -1,0 +1,15 @@
+/var/log/commands.log
+{
+    compress
+    create
+    dateext
+    delaycompress
+    notifempty
+    rotate 53
+    sharedscripts
+    weekly
+    postrotate
+        /usr/bin/systemctl kill -s HUP rsyslog.service >/dev/null 2>&1 || true
+      /bin/touch /var/log/commands.log
+    endscript
+}

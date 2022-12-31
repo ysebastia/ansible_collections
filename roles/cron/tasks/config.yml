@@ -1,0 +1,3 @@
+---
+- name: Ensure cron package is installed
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"

@@ -1,0 +1,30 @@
+---
+- name: Stat freshclam.log
+  ansible.builtin.stat:
+    path: '{{ freshclam_logfile }}'
+  register: freshclam_log
+- name: Create freshclam.log
+  become: true
+  ansible.builtin.file:
+    path: '{{ freshclam_logfile }}'
+    state: touch
+    owner: '{{ freshclam_owner }}'
+    group: '{{ freshclam_owner }}'
+    mode: "0644"
+  when: not freshclam_log.stat.exists
+  notify:
+    - SELinux on freshclam_logfile
+- name: Configure SELINUX for FRESHCLAM if clamav_enable_selinux is defined
+  ansible.builtin.include_tasks: selinux_freshclam.yml
+  when: clamav_enable_selinux
+- name: Freshclam
+  become: true
+  ansible.builtin.template:
+    src: freshclam.conf.j2
+    dest: '{{ freshclam_config }}'
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - SELinux on freshclam_logfile
+    - Restart clamav-freshclam

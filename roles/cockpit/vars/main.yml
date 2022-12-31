@@ -1,0 +1,6 @@
+---
+cockpit_package:
+  - cockpit-storaged
+  - cockpit-pcp
+  - cockpit-packagekit
+  - cockpit-ws

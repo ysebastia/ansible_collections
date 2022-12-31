@@ -1,0 +1,6 @@
+---
+- name: Ensure firewalld is installed
+  become: true
+  ansible.builtin.apt:
+    name: firewalld
+    update_cache: true

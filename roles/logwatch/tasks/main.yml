@@ -1,0 +1,4 @@
+---
+- name: Configure LOGWATCH if enable_base_logwatch is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_base_logwatch

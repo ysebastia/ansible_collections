@@ -1,0 +1,6 @@
+---
+- name: Ensure qemu-guest-agent is installed
+  become: true
+  ansible.builtin.apt:
+    name: qemu-guest-agent
+    update_cache: true

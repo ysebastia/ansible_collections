@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include cockpit"
+      ansible.builtin.include_role:
+        name: "cockpit"
+      vars:
+        enable_base_cockpit: true

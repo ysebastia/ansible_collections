@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include logwatch"
+      ansible.builtin.include_role:
+        name: "logwatch"

@@ -1,0 +1,6 @@
+---
+- name: Ensure TUNED is installed
+  become: true
+  ansible.builtin.apt:
+    name: tuned
+    update_cache: true

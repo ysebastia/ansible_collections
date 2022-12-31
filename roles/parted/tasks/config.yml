@@ -1,0 +1,25 @@
+---
+- name: Part filesystems
+  become: true
+  community.general.parted:
+    device: '{{ item.device }}'
+    number: '1'
+    state: present
+  with_items: '{{ filesystem }}'
+  when:
+    - item.device | length > 0
+- name: Format filesystems
+  become: true
+  community.general.filesystem:
+    fstype: '{{ item.fstype }}'
+    dev: '{{ item.dev }}'
+    force: false
+  with_items: '{{ filesystem }}'
+- name: Mount filesystems
+  become: true
+  ansible.posix.mount:
+    path: '{{ item.path }}'
+    src: '{{ item.dev }}'
+    fstype: '{{ item.fstype }}'
+    state: mounted
+  with_items: '{{ filesystem }}'
