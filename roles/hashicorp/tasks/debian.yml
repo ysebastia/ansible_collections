@@ -1,0 +1,16 @@
+---
+- name: Ensure GPG is installed
+  become: true
+  ansible.builtin.apt:
+    name:
+      - gpg
+    update_cache: true
+- name: Add GPG
+  become: true
+  ansible.builtin.apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+- name: Configure Hashicorp repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: deb https://apt.releases.hashicorp.com {{ ansible_distribution_release }} stable
+    filename: hashicorp

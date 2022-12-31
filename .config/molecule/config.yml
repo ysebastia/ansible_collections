@@ -1,0 +1,16 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+platforms:
+  - name: centos9
+    box: generic/centos9s
+    box_version: 4.2.6
+  - name: debian11
+    box: debian/bullseye64
+    box_version: 11.20220912.1
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

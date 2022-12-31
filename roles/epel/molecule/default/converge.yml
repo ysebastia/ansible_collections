@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include epel"
+      ansible.builtin.include_role:
+        name: "epel"
+      vars:
+        enable_repositories_epel: true

@@ -1,0 +1,4 @@
+---
+- name: Configure CODEREADY repository if enable_repositories_codeready is enable
+  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
+  when: enable_repositories_codeready

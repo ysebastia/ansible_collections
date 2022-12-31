@@ -1,0 +1,16 @@
+---
+- name: Ensure GPG is installed
+  become: true
+  ansible.builtin.apt:
+    name:
+      - gpg
+    update_cache: true
+- name: Add GPG
+  become: true
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+- name: Configure Docker-CE repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: deb https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable
+    filename: docker-ce

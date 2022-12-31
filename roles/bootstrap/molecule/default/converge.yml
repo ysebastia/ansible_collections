@@ -1,0 +1,13 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include bootstrap"
+      ansible.builtin.include_role:
+        name: "bootstrap"
+      vars:
+        enable_repositories_docker_ce: true
+        enable_repositories_epel: true
+        enable_repositories_hashicorp: true
+        enable_repositories_proxy: true
+        enable_repositories_rpmfusion: true
