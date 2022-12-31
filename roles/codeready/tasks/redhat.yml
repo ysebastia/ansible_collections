@@ -1,3 +1,4 @@
+---
 - name: Configure CODEREADY repository
   become: true
   community.general.rhsm_repository:
