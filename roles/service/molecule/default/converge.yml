@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include service"
+      ansible.builtin.include_role:
+        name: "service"
+      vars:
+        enable_repositories_docker_ce: true
+        enable_docker_service: true

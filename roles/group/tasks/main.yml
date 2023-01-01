@@ -1,0 +1,4 @@
+---
+- name: Configure docker group if enable_docker_group is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_docker_group
