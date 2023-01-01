@@ -10,7 +10,7 @@ mois=$(date '+%m')
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:$PATH
 export PATH
 
-sleep $(( ( $RANDOM % ${pause} )  + 1 ))s
+sleep $(( ( RANDOM % pause )  + 1 ))s
 
 liste=$(ls -l "${rep_Src}" |grep -v schema | grep ^d | awk '{print $9}')
 for nomDB in ${liste}
