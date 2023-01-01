@@ -4,4 +4,3 @@ postfix_loopback_only: true
 postfix_conf_main:
   - name: inet_interfaces
     value: all
-postfix_conf_master: []

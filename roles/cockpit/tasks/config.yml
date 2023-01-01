@@ -8,6 +8,7 @@
     name: cockpit.socket
     state: started
     enabled: true
+
 - name: Remove cockpit issue file
   become: true
   ansible.builtin.file:

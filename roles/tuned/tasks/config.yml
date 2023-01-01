@@ -8,6 +8,7 @@
     name: tuned
     state: started
     enabled: true
+
 - name: Check current profile
   become: true
   ansible.builtin.command: tuned-adm active
