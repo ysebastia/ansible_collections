@@ -33,7 +33,7 @@ pipeline {
   agent any
   environment {
     QUALITY_ANSIBLE = "1"
-    QUALITY_SHELL = "4"
+    QUALITY_SHELL = "5"
     QUALITY_YAML = "1"
   }
   stages {
