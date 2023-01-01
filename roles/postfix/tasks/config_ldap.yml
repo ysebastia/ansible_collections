@@ -43,9 +43,9 @@
 - name: Show LDAP configuration
   ansible.builtin.debug:
     msg:
-    - "LDAP host : {{ postfix_ldap_host }}"
-    - "LDAP dn : {{ postfix_ldap_bind_dn }}"
-    - "LDAP base : {{ postfix_ldap_base }}"
+      - "LDAP host : {{ postfix_ldap_host }}"
+      - "LDAP dn : {{ postfix_ldap_bind_dn }}"
+      - "LDAP base : {{ postfix_ldap_base }}"
 
 - name: Configure LDAP accounts if enable_service_postfix_ldap_account is defined
   when: enable_service_postfix_ldap_account

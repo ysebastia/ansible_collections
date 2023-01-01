@@ -10,9 +10,9 @@
 - name: Show LDAP configuration
   ansible.builtin.debug:
     msg:
-    - "LDAP host : {{ dovecot_ldap_host }}"
-    - "LDAP dn : {{ dovecot_ldap_bind_dn }}"
-    - "LDAP base : {{ dovecot_ldap_base }}"
+      - "LDAP host : {{ dovecot_ldap_host }}"
+      - "LDAP dn : {{ dovecot_ldap_bind_dn }}"
+      - "LDAP base : {{ dovecot_ldap_base }}"
 
 - name: Configure LDAP virtual account
   become: true

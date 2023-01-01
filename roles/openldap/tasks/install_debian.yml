@@ -8,7 +8,7 @@
 - name: Show LDAP configuration
   ansible.builtin.debug:
     msg:
-    - "LDAP domain : {{ slapd_domain }}"
+      - "LDAP domain : {{ slapd_domain }}"
 
 - name: Set slapd/domain in DEBCONF before installing OPENLDAP if slapd_domain is not empty
   become: true
