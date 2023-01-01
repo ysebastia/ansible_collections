@@ -31,7 +31,7 @@
     - slapd/internal/adminpw
     - slapd/internal/generated_adminpw
     - slapd/password1
-  #no_log: true
+  no_log: true
   changed_when: false
   when: slapd_password != ''
 
