@@ -1,0 +1,21 @@
+---
+- name: Ensure DOVECOT is installed
+  become: true
+  ansible.builtin.apt:
+    name:
+      - dovecot-imapd
+      - dovecot-sieve
+      - dovecot-managesieved
+    update_cache: true
+- name: Ensure the DOVECOT module ldap is installed if enable_service_dovecot_ldap is defined
+  become: true
+  ansible.builtin.apt:
+    name: dovecot-ldap
+    update_cache: true
+  when: enable_service_dovecot_ldap
+- name: Ensure POSTFIX is installed if enable_service_dovecot_auth_for_postfix is defined
+  become: true
+  ansible.builtin.apt:
+    name: postfix
+    update_cache: true
+  when: enable_service_dovecot_auth_for_postfix

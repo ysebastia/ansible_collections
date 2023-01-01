@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include apache"
+      ansible.builtin.include_role:
+        name: "apache"
+      vars:
+        enable_service_apache: true
+        enable_service_apache_ldap: true

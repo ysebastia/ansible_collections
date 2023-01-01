@@ -1,0 +1,3 @@
+---
+http_proxy_port: 3128
+enable_service_squid: false

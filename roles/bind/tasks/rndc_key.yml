@@ -1,0 +1,16 @@
+---
+- name: Ensure the existence of rndc file
+  ansible.builtin.stat:
+    path: "{{ bind_rndc_file }}"
+  register: control
+- name: Call rndc-confgen
+  become: true
+  ansible.builtin.command: "/usr/sbin/rndc-confgen -a -k {{ bind_rndckey_name }} -c {{ bind_rndc_file }} -A hmac-sha512"
+  when: not control.stat.exists
+- name: Set owner of rndc file
+  become: true
+  ansible.builtin.file:
+    path: "{{ bind_rndc_file }}"
+    owner: '{{ bind_rndc_owner }}'
+    group: '{{ bind_group }}'
+    mode: "0640"

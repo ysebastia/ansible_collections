@@ -1,0 +1,4 @@
+---
+- name: Configure DOVECOT if enable_service_dovecot is defined
+  when: enable_service_dovecot
+  ansible.builtin.include_tasks: config.yml

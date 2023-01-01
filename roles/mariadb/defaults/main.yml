@@ -1,0 +1,6 @@
+---
+enable_service_mariadb: false
+enable_service_mariadb_cron: true
+mariadb_admin_account: []
+mariadb_db: []
+mariadb_user: []

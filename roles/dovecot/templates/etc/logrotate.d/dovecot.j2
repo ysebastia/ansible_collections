@@ -1,0 +1,14 @@
+/var/log/dovecot.log
+{
+    compress
+    create
+    dateext
+    delaycompress
+    notifempty
+    rotate 53
+    sharedscripts
+    weekly
+    postrotate
+        /bin/systemctl reload dovecot
+    endscript
+}

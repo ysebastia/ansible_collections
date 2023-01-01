@@ -1,0 +1,5 @@
+---
+- name: Ensure squid is installed
+  become: true
+  ansible.builtin.dnf:
+    name: squid

@@ -1,0 +1,4 @@
+---
+- name: Configure BIND if enable_service_bind is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_service_bind

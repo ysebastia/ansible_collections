@@ -1,0 +1,5 @@
+---
+bind_rndckey_name: rndc-key
+bind_master_zones: []
+network_dns_forwarders:
+enable_service_bind: false

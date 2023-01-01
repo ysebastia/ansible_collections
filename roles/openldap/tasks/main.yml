@@ -1,0 +1,4 @@
+---
+- name: Configure OpenLDAP if enable_service_openldap is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_service_openldap

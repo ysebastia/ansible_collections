@@ -1,0 +1,14 @@
+---
+- name: Ensure Postfix is installed
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - postfix
+      - postfix-pcre
+      - postfix-perl-scripts
+- name: Ensure the POSTFIX module ldap is installed if enable_service_postfix_ldap is defined
+  become: true
+  ansible.builtin.dnf:
+    name: postfix-ldap
+    update_cache: true
+  when: enable_service_postfix_ldap

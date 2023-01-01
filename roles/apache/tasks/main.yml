@@ -1,0 +1,4 @@
+---
+- name: Configure APACHE if enable_service_apache is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_service_apache

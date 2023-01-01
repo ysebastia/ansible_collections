@@ -1,0 +1,12 @@
+---
+- name: Ensure DOVECOT is installed
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - dovecot
+      - dovecot-pigeonhole
+- name: Ensure POSTFIX is installed if enable_service_dovecot_auth_for_postfix is defined
+  become: true
+  ansible.builtin.dnf:
+    name: postfix
+  when: enable_service_dovecot_auth_for_postfix

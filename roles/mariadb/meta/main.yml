@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  author: Yannick Sebastia
+  description: Configure MariaDB
+  license: GPL-3.0-only
+  min_ansible_version: '2.1'
+  namespace: sebastia
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+dependencies:
+  - role: ysebastia.base.firewalld
+    when: enable_service_mariadb
+  - role: ysebastia.base.cron
+    when:
+      - enable_service_mariadb
+      - enable_service_mariadb_cron

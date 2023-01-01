@@ -1,0 +1,69 @@
+---
+- name: Configure main.cf with postfix_conf_mainvirtual lists
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/postfix/main.cf
+    line: '{{ item.name }} = {{ item.value }}'
+    regex: ^{{ item.name }}
+    state: present
+  with_items: '{{ postfix_conf_mainvirtual }}'
+  notify:
+    - Restart postfix
+
+- name: Configure DOVECOT transport if enable_service_postfix_dovecot_transport is defined
+  when: enable_service_postfix_dovecot_transport
+  block:
+    - name: Configure DOVECOT transport in master.cf
+      become: true
+      ansible.builtin.lineinfile:
+        path: /etc/postfix/master.cf
+        line: '{{ postfix_virtual_transport }} unix - n n - - pipe flags=DRhu user={{ postfix_virtual_uid }}:{{ postfix_virtual_gid }} argv=/usr/libexec/dovecot/deliver -f ${sender} -d ${recipient} -d ${user}'
+        regex: ^{{ postfix_virtual_transport }}
+        state: present
+      notify:
+        - Restart postfix
+    - name: Configure DOVECOT transport in main.cf
+      become: true
+      ansible.builtin.lineinfile:
+        path: /etc/postfix/main.cf
+        line: 'virtual_transport = {{ postfix_virtual_transport }}'
+        regex: ^virtual_transport
+        state: present
+      notify:
+        - Restart postfix
+
+- name: Set Facts
+  ansible.builtin.set_fact:
+    postfix_ldap_host: "{{ ldap_host | default('ldap' ~ ansible_domain ) }}"
+    postfix_ldap_bind_dn: "{{ ldap_bind_dn | default('') }}"
+    postfix_ldap_bind_pw: "{{ ldap_bind_pw | default('') }}"
+    postfix_ldap_base: "{{ ldap_search_base | default('dc=' ~ ( ansible_domain | split('.') | join('dc='))) }}"
+  no_log: true
+
+- name: Show LDAP configuration
+  ansible.builtin.debug:
+    msg:
+    - "LDAP host : {{ postfix_ldap_host }}"
+    - "LDAP dn : {{ postfix_ldap_bind_dn }}"
+    - "LDAP base : {{ postfix_ldap_base }}"
+
+- name: Configure LDAP accounts if enable_service_postfix_ldap_account is defined
+  when: enable_service_postfix_ldap_account
+  block:
+    - name: Configure virtual_mailbox_maps in main.cf
+      become: true
+      ansible.builtin.lineinfile:
+        path: /etc/postfix/main.cf
+        line: 'virtual_mailbox_maps = ldap:{{ postfix_conf_ldap_account }}'
+        regex: ^virtual_mailbox_maps
+        state: present
+      notify:
+        - Restart postfix
+    - name: Configure /etc/postfix/LdapAccounts
+      become: true
+      ansible.builtin.template:
+        src: templates/etc/postfix/LdapAccounts.j2
+        dest: '{{ postfix_conf_ldap_account }}'
+        mode: '0644'
+      notify:
+        - Restart postfix

@@ -1,0 +1,13 @@
+module my-imap 1.6;
+
+require {
+  type dovecot_t;
+  type dovecot_var_log_t;
+  type var_t;
+  class file { append create getattr link lock map open read rename setattr unlink write };
+  class dir { add_name create read remove_name write };
+}
+
+allow dovecot_t dovecot_var_log_t:file map;
+allow dovecot_t var_t:dir  { add_name create read remove_name write };
+allow dovecot_t var_t:file { append create getattr link lock open read rename setattr unlink write };

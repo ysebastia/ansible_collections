@@ -1,0 +1,39 @@
+---
+- name: Load variables by operating system
+  ansible.builtin.include_vars: "{{ ansible_os_family | lower }}.yml"
+
+- name: Install packages by operating system
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
+
+- name: Configure FIREWALLD if enable_base_firewalld is defined
+  when: enable_base_firewalld
+  ansible.builtin.include_tasks: firewalld.yml
+
+- name: Generate RNDC-KEY
+  ansible.builtin.import_tasks: rndc_key.yml
+
+- name: Populate zones files with bind_master_zones
+  become: true
+  ansible.builtin.template:
+    src: templates/{{ item.file }}.j2
+    dest: '{{ bind_directory }}/{{ item.file }}'
+    owner: root
+    group: '{{ bind_group }}'
+    mode: '0640'
+    validate: named-checkzone -d {{ item.name }} %s
+  with_items:
+    - '{{ bind_master_zones }}'
+  when:
+    - bind_master_zones is defined
+  notify:
+    - Restart named
+
+- name: Configure named.conf
+  become: true
+  ansible.builtin.template:
+    src: named.conf.j2
+    dest: '{{ bind_config_file }}'
+    mode: '0644'
+    validate: named-checkconf %s
+  notify:
+    - Restart named

@@ -1,0 +1,9 @@
+---
+- name: Install MariaDB
+  become: true
+  ansible.builtin.package:
+    name:
+      - mariadb
+      - mariadb-server
+      - python3-PyMySQL
+    update_cache: true

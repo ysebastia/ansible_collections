@@ -1,0 +1,4 @@
+---
+- name: Configure POSTFIX if enable_service_postfix is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_service_postfix

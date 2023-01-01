@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include postfix"
+      ansible.builtin.include_role:
+        name: "postfix"
+      vars:
+        enable_service_postfix: true
+        enable_service_postfix_ldap: true

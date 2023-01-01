@@ -1,0 +1,10 @@
+---
+- name: Ensure apache is installed
+  become: true
+  ansible.builtin.dnf:
+    name: httpd
+- name: Ensure mod_ldap is installed if enable_service_apache_ldap is defined
+  become: true
+  ansible.builtin.dnf:
+    name: mod_ldap
+  when: enable_service_apache_ldap

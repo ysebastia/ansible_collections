@@ -1,0 +1,9 @@
+---
+dovecot_syslog_facility: local5
+dovecot_virtual_gid: vmail
+dovecot_virtual_mailbox_base: /var/vmail
+dovecot_virtual_uid: vmail
+enable_service_dovecot: false
+enable_service_dovecot_ldap: false
+enable_service_dovecot_syslog: false
+enable_service_dovecot_auth_for_postfix: false

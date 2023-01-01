@@ -1,0 +1,8 @@
+---
+- name: Allow bind traffic on DNS service
+  become: true
+  ansible.posix.firewalld:
+    service: dns
+    permanent: true
+    immediate: true
+    state: enabled

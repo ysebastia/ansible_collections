@@ -1,0 +1,42 @@
+---
+- name: Set Facts
+  ansible.builtin.set_fact:
+    slapd_domain: "{{ domain_name | default(ansible_domain) }}"
+    slapd_password: "{{ ldap_bind_pw | default('') }}"
+  no_log: true
+
+- name: Show LDAP configuration
+  ansible.builtin.debug:
+    msg:
+    - "LDAP domain : {{ slapd_domain }}"
+
+- name: Set slapd/domain in DEBCONF before installing OPENLDAP if slapd_domain is not empty
+  become: true
+  ansible.builtin.debconf:
+    name: slapd
+    question: 'slapd/domain'
+    value: '{{ slapd_domain }}'
+    vtype: string
+  when: slapd_domain != ''
+
+- name: Set slapd/password in DEBCONF before installing OPENLDAP if slapd_password is not empty
+  become: true
+  ansible.builtin.debconf:
+    name: slapd
+    question: '{{ item }}'
+    value: '{{ slapd_password }}'
+    vtype: password
+  loop:
+    - slapd/password2
+    - slapd/internal/adminpw
+    - slapd/internal/generated_adminpw
+    - slapd/password1
+  #no_log: true
+  changed_when: false
+  when: slapd_password != ''
+
+- name: Ensure OpenLdap is installed
+  become: true
+  ansible.builtin.apt:
+    name: '{{ openldap_package }}'
+    update_cache: true

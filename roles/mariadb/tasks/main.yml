@@ -1,0 +1,4 @@
+---
+- name: Configure MARIADB if enable_service_mariadb is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_service_mariadb

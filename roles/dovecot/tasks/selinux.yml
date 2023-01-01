@@ -1,0 +1,28 @@
+---
+- name: Configure SELINUX if enable_base_selinux is defined
+  when: enable_base_selinux
+  block:
+    - name: Configuration de cibles
+      become: true
+      community.general.sefcontext:
+        target: "{{ dovecot_virtual_mailbox_base }}(/.*)?"
+        setype: "mail_home_rw_t"
+        state: present
+    - name: Configuration SELinux
+      become: true
+      ansible.posix.seboolean:
+        name: '{{ item }}'
+        state: true
+        persistent: true
+      loop: '{{ dovecot_selinux_bool }}'
+    - name: Copie de la politique
+      become: true
+      ansible.builtin.copy:
+        src: my-imap.te
+        dest: /root/my-imap.te
+        mode: '0644'
+      notify:
+        - Checkmodule
+        - Semodule_package
+        - Semodule
+      tags: selinux
