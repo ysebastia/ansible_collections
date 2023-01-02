@@ -1,0 +1,4 @@
+---
+- name: Configure BACKUPPC if enable_backuppc_server is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_backuppc_server

@@ -1,0 +1,4 @@
+---
+- name: Configure BackupPC agent if enable_backuppc_plug is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_backuppc_agent

@@ -1,0 +1,25 @@
+Alias /backuppc {{ backuppc_directory_share }}/cgi-bin/
+<Directory {{ backuppc_directory_share }}/cgi-bin/>
+  AllowOverride None
+
+  Options ExecCGI FollowSymlinks
+  AddHandler cgi-script .cgi
+  DirectoryIndex index.cgi
+
+  AuthType basic
+  AuthBasicProvider ldap
+{% if backuppc_ldap_bind_dn != '' %}
+  AuthLDAPBindDN {{ backuppc_ldap_bind_dn }}
+{% endif %}
+{% if backuppc_ldap_bind_pw != '' %}
+  AuthLDAPBindPassword {{ backuppc_ldap_bind_pw }}
+{% endif %}
+  AuthLDAPURL "ldap://{{ backuppc_ldap_host }}/{{ backuppc_ldap_base }}?uid?one?(objectclass=*)"
+  Authname "BackupPC"
+  Require valid-user
+
+  <RequireAll>
+    Require all granted
+    Require valid-user
+  </RequireAll>
+</Directory>

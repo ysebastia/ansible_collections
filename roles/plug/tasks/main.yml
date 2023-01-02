@@ -1,0 +1,4 @@
+---
+- name: Plug host to BackupPC server if enable_backuppc_plug is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_backuppc_plug

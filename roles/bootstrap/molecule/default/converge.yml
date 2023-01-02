@@ -1,0 +1,14 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include bootstrap"
+      ansible.builtin.include_role:
+        name: "bootstrap"
+      vars:
+        enable_backuppc_agent: true
+        enable_backuppc_plug: true
+        enable_backuppc_server: true
+        enable_base_firewalld: true
+        enable_service_apache: true
+        enable_service_apache_ldap: true

@@ -1,0 +1,104 @@
+---
+- name: Install packages by operating system
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
+
+- name: Configure web access with LDAP authentification if enable_service_apache_ldap is defined
+  ansible.builtin.include_tasks: config_ldap.yml
+  when: enable_service_apache_ldap
+
+- name: Configure BACKUPPC service
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/backuppc/config.pl
+    regex: '{{ item.regex }}'
+    line: '{{ item.value }}'
+    state: present
+  with_items:
+    - regex: ^$Conf{ServerHost}
+      value: $Conf{ServerHost} = '{{ backuppc_serverhost_fqdn }}';
+    - regex: ^$Conf{FullKeepCnt}
+      value: $Conf{FullKeepCnt} = 8;
+    - regex: ^$Conf{IncrKeepCnt}
+      value: $Conf{IncrKeepCnt} = 48;
+    - regex: ^$Conf{EMailFromUserName}
+      value: $Conf{EMailFromUserName} = '{{ backuppc_mailadmin }}';
+    - regex: ^$Conf{EMailAdminUserName}
+      value: $Conf{EMailAdminUserName} = '{{ backuppc_mailadmin }}';
+    - regex: ^$Conf{EMailUserDestDomain}
+      value: $Conf{EMailUserDestDomain} = '@{{ backuppc_domain_name }}';
+    - regex: ^$Conf{CgiAdminUserGroup}
+      value: $Conf{CgiAdminUserGroup} = 'admin';
+    - regex: ^$Conf{CgiAdminUsers}
+      value: $Conf{CgiAdminUsers} = '{{ backuppc_admins }}';
+    - regex: ^$Conf{CgiURL}
+      value: $Conf{CgiURL} = '{{ backuppc_url }}';
+    - regex: ^$Conf{Language}
+      value: $Conf{Language} = 'fr';
+    - regex: ^$Conf{PingPath};
+      value: $Conf{PingPath} = '/bin/ping';
+    - regex: ^$Conf{SendmailPath};
+      value: $Conf{SendmailPath} = '/sbin/sendmail';
+    - regex: ^$Conf{MaxBackups};
+      value: $Conf{MaxBackups} = 1;
+    - regex: ^$Conf{MaxUserBackups};
+      value: $Conf{MaxUserBackups} = 1;
+    - regex: ^$Conf{XferMethod};
+      value: $Conf{XferMethod} = 'rsync';
+  notify:
+    - Restart backuppc
+- name: Create .ssh directory
+  become: true
+  ansible.builtin.file:
+    path: '{{ backuppc_directory_backup }}/.ssh'
+    state: directory
+    owner: backuppc
+    group: backuppc
+    mode: '0700'
+- name: Create main backup directory
+  become: true
+  ansible.builtin.file:
+    path: '{{ backuppc_directory_backup }}/pc'
+    state: directory
+    owner: backuppc
+    group: backuppc
+    mode: '0755'
+  notify:
+    - Restart backuppc
+- name: Remove of backup directory with backuppc_old_save list
+  become: true
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: absent
+  with_items: '{{ backuppc_old_save }}'
+  notify:
+    - Restart backuppc
+- name: Create SSH key
+  become: true
+  community.crypto.openssh_keypair:
+    owner: backuppc
+    group: backuppc
+    mode: '0600'
+    path: '{{ backuppc_directory_backup }}/.ssh/id_ecdsa'
+    type: 'ecdsa'
+- name: Get SSH key on control node
+  become: true
+  ansible.builtin.fetch:
+    src: '{{ backuppc_directory_backup }}/.ssh/id_ecdsa.pub'
+    dest: files/pubkeys/{{ inventory_hostname }}.id_ecdsa.pub
+    flat: true
+- name: Configure SSH client
+  become: true
+  ansible.builtin.copy:
+    src: files/config
+    dest: '{{ backuppc_directory_backup }}/.ssh/config'
+    owner: backuppc
+    group: backuppc
+    mode: '0644'
+- name: Remove old SSH keys with backuppc_ssh_key_to_revoke list
+  become: true
+  ansible.builtin.known_hosts:
+    name: '{{ item.name }}'
+    key: '{{ item.name }} {{ item.key }}'
+    state: absent
+    path: '{{ backuppc_directory_backup }}/.ssh/known_hosts'
+  with_items: '{{ backuppc_ssh_key_to_revoke }}'

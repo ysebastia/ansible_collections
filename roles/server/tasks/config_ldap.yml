@@ -1,0 +1,24 @@
+---
+- name: Set Facts
+  ansible.builtin.set_fact:
+    backuppc_ldap_host: "{{ ldap_host | default('ldap' ~ ansible_domain ) }}"
+    backuppc_ldap_bind_dn: "{{ ldap_bind_dn | default('') }}"
+    backuppc_ldap_bind_pw: "{{ ldap_bind_pw | default('') }}"
+    backuppc_ldap_base: "{{ ldap_search_base | default('dc=' ~ ( ansible_domain | split('.') | join('dc='))) }}"
+  no_log: true
+
+- name: Show LDAP configuration
+  ansible.builtin.debug:
+    msg:
+      - "LDAP host : {{ backuppc_ldap_host }}"
+      - "LDAP dn : {{ backuppc_ldap_bind_dn }}"
+      - "LDAP base : {{ backuppc_ldap_base }}"
+
+- name: Configure web access
+  become: true
+  ansible.builtin.template:
+    src: BackupPC.conf.j2
+    dest: '{{ backuppc_httpd_vhost_directory }}BackupPC.conf'
+    mode: '0644'
+  notify:
+    - Restart httpd

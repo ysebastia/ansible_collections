@@ -1,0 +1,37 @@
+---
+- name: Create backup directory for host
+  become: true
+  ansible.builtin.file:
+    state: directory
+    path: '{{ backuppc_directory_backup }}/pc/{{ inventory_hostname_short }}'
+    mode: '0750'
+    owner: backuppc
+    group: backuppc
+  delegate_to: '{{ backuppc_serverhost }}'
+- name: Create configuration for host
+  become: true
+  ansible.builtin.template:
+    src: linux.pl.j2
+    dest: '{{ backuppc_directory_backup }}/pc/{{ inventory_hostname_short }}/config.pl'
+    mode: '0644'
+  delegate_to: '{{ backuppc_serverhost }}'
+- name: Declare host in server configuration
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/backuppc/hosts
+    regexp: ^{{ inventory_hostname_short }}\s
+    line: '{{ inventory_hostname_short }} 0 {{ backuppc_owner }}'
+  delegate_to: '{{ backuppc_serverhost }}'
+- name: Check if SSH key of server exists
+  ansible.builtin.stat:
+    path: 'files/pubkeys/{{ backuppc_serverhost }}.id_ecdsa.pub'
+  register: result
+  delegate_to: localhost
+  become: false
+- name: Deploy SSH key if exists
+  become: true
+  ansible.posix.authorized_key:
+    user: backup
+    state: present
+    key: "{{ lookup('file', result.stat.path) }}"
+  when: result.stat.exists
