@@ -1,0 +1,14 @@
+---
+- name: Ensure that LIBVIRT packages are installed
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - bridge-utils
+      - guestfs-tools
+      - libguestfs
+      - libvirt
+      - libvirt-daemon-kvm
+      - python3-libvirt
+      - python3-lxml
+      - qemu-kvm
+      - virt-install

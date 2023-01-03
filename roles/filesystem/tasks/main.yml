@@ -1,0 +1,4 @@
+---
+- name: Create KVM filesystem if enable_kvm_filesystem is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_kvm_filesystem

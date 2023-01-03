@@ -1,0 +1,4 @@
+---
+- name: Install Virt-manager if enable_kvm_manager is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_kvm_manager

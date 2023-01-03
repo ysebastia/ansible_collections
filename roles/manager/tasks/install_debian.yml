@@ -1,0 +1,7 @@
+---
+- name: Ensure that Virt-manager is installed
+  become: true
+  ansible.builtin.apt:
+    name:
+      - virt-manager
+    update_cache: true

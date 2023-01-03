@@ -1,0 +1,71 @@
+---
+  - name: Create LVM partition if filesystem_host_device is defined
+    become: true
+    community.general.parted:
+      device: '{{ item.device }}'
+      number: '1'
+      flags:
+        - lvm
+      state: present
+    with_items: '{{ filesystem_host_device }}'
+    when:
+      - filesystem_host_device is defined
+      - item.device | length > 0
+  - name: Create LVM group if filesystem_host_device is defined
+    become: true
+    community.general.lvg:
+      vg: '{{ item.vg }}'
+      pvs: '{{ item.dev }}'
+    with_items: '{{ filesystem_host_device }}'
+    when:
+      - filesystem_host_device is defined
+      - item.vg | length > 0
+  - name: Create LV for libvirt if filesystem_host_lvm is defined
+    become: true
+    community.general.lvol:
+      vg: '{{ filesystem_host_lvm }}'
+      lv: '{{ item.lv }}'
+      size: '{{ item.size }}'
+    with_items:
+      - lv: backup
+        size: '{{ filesystem_qemu_backup_size }}'
+      - lv: images
+        size: 20g
+      - lv: qemu-save
+        size: '{{ filesystem_qemu_save_size }}'
+    when:
+      - filesystem_host_lvm is defined
+  - name: Make filesystem if filesystem_host_lvm is defined
+    become: true
+    community.general.filesystem:
+      fstype: '{{ item.fstype }}'
+      dev: '{{ item.dev }}'
+      force: false
+    with_items:
+      - dev: '/dev/{{ filesystem_host_lvm }}/backup'
+        fstype: xfs
+      - dev: '/dev/{{ filesystem_host_lvm }}/images'
+        fstype: xfs
+      - dev: '/dev/{{ filesystem_host_lvm }}/qemu-save'
+        fstype: xfs
+    when:
+      - filesystem_host_lvm is defined
+  - name: Mount filesystem if filesystem_host_lvm is defined
+    become: true
+    ansible.posix.mount:
+      path: '{{ item.path }}'
+      src: '{{ item.dev }}'
+      fstype: '{{ item.fstype }}'
+      state: mounted
+    with_items:
+      - dev: '/dev/mapper/{{ filesystem_host_lvm }}-backup'
+        path: /var/lib/libvirt/backup
+        fstype: xfs
+      - dev: '/dev/mapper/{{ filesystem_host_lvm }}-images'
+        path: /var/lib/libvirt/images
+        fstype: xfs
+      - dev: '/dev/mapper/{{ filesystem_host_lvm }}-qemu--save'
+        path: /var/lib/libvirt/qemu/save
+        fstype: xfs
+    when:
+      - filesystem_host_lvm is defined

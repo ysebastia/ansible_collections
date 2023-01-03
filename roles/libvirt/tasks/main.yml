@@ -1,0 +1,4 @@
+---
+- name: Configure LIBVIRT if enable_kvm_libvirt is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_kvm_libvirt

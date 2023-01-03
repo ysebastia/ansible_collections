@@ -1,0 +1,5 @@
+---
+enable_kvm_filesystem: true
+filesystem_host_device: []
+filesystem_qemu_backup_size: 50g
+filesystem_qemu_save_size: 32g
