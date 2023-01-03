@@ -1,9 +1,6 @@
 ---
 - name: Get images from kvm_images_url list
   become: true
-  environment:
-    http_proxy: http://{{ http_proxy_server }}:{{ http_proxy_port }}
-    https_proxy: http://{{ http_proxy_server }}:{{ http_proxy_port }}
   ansible.builtin.get_url:
     url: '{{ item.url }}/{{ item.file }}'
     dest: '{{ kvm_images_path }}/{{ item.file }}'
