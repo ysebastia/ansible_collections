@@ -6,7 +6,7 @@ After=docker.service network-online.target
 [Service]
 TimeoutStartSec=15min
 Restart=always
-WorkingDirectory=/etc/docker/compose/%i
+WorkingDirectory={{ docker_compose_working_directory }}%i
 
 ExecStartPre=/usr/local/bin/docker-compose down
 ExecStartPre=/usr/local/bin/docker-compose rm -f
