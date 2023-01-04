@@ -1,3 +1,9 @@
 ---
 - name: Install packages by operating system
   ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
+
+- name: Ensure DOCKER is enabled at boot
+  become: true
+  ansible.builtin.service:
+    name: docker
+    enabled: true
