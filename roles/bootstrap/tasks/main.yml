@@ -5,9 +5,6 @@
 - name: Proxy configuration of Docker
   ansible.builtin.include_role:
     name: ysebastia.docker.proxy
-- name: Configuration de docker-compose
-  ansible.builtin.include_role:
-    name: ysebastia.docker.compose
 - name: Group configuration of Docker
   ansible.builtin.include_role:
     name: ysebastia.docker.group

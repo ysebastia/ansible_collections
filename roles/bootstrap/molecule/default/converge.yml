@@ -6,7 +6,6 @@
       ansible.builtin.include_role:
         name: "bootstrap"
       vars:
-        enable_docker_compose: true
         enable_docker_proxy: true
         enable_docker_service: true
         enable_repositories_docker_ce: true
