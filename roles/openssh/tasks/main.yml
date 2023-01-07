@@ -1,4 +1,7 @@
 ---
+- name: Load variables by operating system
+  ansible.builtin.include_vars: "{{ ansible_distribution | lower }}.yml"
+
 - name: Configuration
   become: true
   ansible.builtin.lineinfile:
