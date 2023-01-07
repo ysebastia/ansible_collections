@@ -6,7 +6,7 @@ driver:
 platforms:
   - name: centos9
     box: generic/centos9s
-    box_version: 4.2.6
+    box_version: 4.2.8
   - name: debian11
     box: debian/bullseye64
     box_version: 11.20220912.1
