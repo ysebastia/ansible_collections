@@ -1,0 +1,7 @@
+---
+- name: Configure libvirtd zone
+  become: true
+  ansible.posix.firewalld:
+    zone: libvirt
+    permanent: true
+    state: present

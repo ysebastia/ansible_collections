@@ -17,3 +17,5 @@ dependencies:
     when: enable_kvm_libvirt
   - role: ysebastia.repositories.epel
     when: enable_kvm_libvirt
+  - role: ysebastia.base.firewalld
+    when: enable_kvm_libvirt
