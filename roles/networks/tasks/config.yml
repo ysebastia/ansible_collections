@@ -1,0 +1,12 @@
+---
+- name: Ensure thap DOCKER PYTHON library is installed
+  become: true
+  ansible.builtin.pip:
+    name:
+      - docker
+
+- name: Create DOCKER network
+  become: true
+  community.docker.docker_network:
+    name: '{{ item }}'
+  loop: "{{ docker_networks }}"

@@ -1,0 +1,3 @@
+- name: Configure DOCKER networks if docker_networks is defined
+  ansible.builtin.include_tasks: config.yml
+  when: docker_networks | length > 0
