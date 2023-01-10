@@ -1,0 +1,5 @@
+- name: Configure SELINUX on host if docker_seboolean is defined
+  ansible.builtin.include_tasks: selinux.yml
+  when:
+    - enable_base_selinux
+    - docker_seboolean | length > 0
