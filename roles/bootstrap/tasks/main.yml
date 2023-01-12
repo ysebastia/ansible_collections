@@ -2,9 +2,18 @@
 - name: Installation of Docker
   ansible.builtin.include_role:
     name: ysebastia.docker.service
-- name: Proxy configuration of Docker
+- name: Proxy configuration for Docker
   ansible.builtin.include_role:
     name: ysebastia.docker.proxy
-- name: Group configuration of Docker
+- name: Group configuration for Docker
   ansible.builtin.include_role:
     name: ysebastia.docker.group
+- name: Firewall configuration for Docker
+  ansible.builtin.include_role:
+    name: ysebastia.docker.firewall
+- name: SELINUX configuration for Docker
+  ansible.builtin.include_role:
+    name: ysebastia.docker.selinux
+- name: Network configuration for Docker
+  ansible.builtin.include_role:
+    name: ysebastia.docker.networks
