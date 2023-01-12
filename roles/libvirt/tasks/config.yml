@@ -26,7 +26,7 @@
     xml: '{{ lookup("template", "lvm.xml.j2") }}'
   when: libvirt_guest_lvm is defined
 
-- name: Start LVMpool if libvirt_guest_lvm is defined
+- name: Start LVM pool if libvirt_guest_lvm is defined
   become: true
   community.libvirt.virt_pool:
     command: start
