@@ -1,0 +1,4 @@
+---
+- name: Configure deployment if enable_docker_compose_deployment is defined
+  ansible.builtin.include_tasks: config.yml
+  when: enable_docker_compose_deployment

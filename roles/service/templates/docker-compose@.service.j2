@@ -1,0 +1,18 @@
+[Unit]
+Description=docker-compose %i service
+Requires=docker.service network-online.target
+After=docker.service network-online.target
+
+[Service]
+TimeoutStartSec=15min
+Restart=always
+WorkingDirectory={{ docker_compose_working_directory }}%i
+
+ExecStartPre=/usr/local/bin/docker-compose down
+ExecStartPre=/usr/local/bin/docker-compose rm -f
+
+ExecStart=/usr/local/bin/docker-compose up
+ExecStop=/usr/local/bin/docker-compose down
+
+[Install]
+WantedBy=multi-user.target

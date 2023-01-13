@@ -1,0 +1,7 @@
+---
+- name: Download and install docker-compose
+  become: true
+  ansible.builtin.get_url:
+    url: '{{ docker_compose_url }}'
+    dest: /usr/local/bin/docker-compose
+    mode: '0755'
