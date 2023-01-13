@@ -28,4 +28,4 @@
     mode: '{{ item.mode }}'
   loop: "{{ docker_compose_files }}"
   notify:
-    - Restart docker-compose@{{ docker_compose_project}}
+    - Restart docker-compose@{{ docker_compose_project }}
