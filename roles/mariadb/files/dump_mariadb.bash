@@ -1,33 +1,36 @@
 #!/bin/bash
 
 pause="${1}"
-rep_Src="/var/lib/mysql/"
+path_source="/var/lib/mysql/"
 path_backup="/var/lib/save/mariadb"
 prefix="${path_backup}/DUMP_sql_$(date +%d)_"
 suffix=".sql.bz2"
-mois=$(date '+%m')
+month=$(date '+%m')
 
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:$PATH
 export PATH
 
+if [ -z "${pause}" ] ; then
+  pause=1
+fi
+
 sleep $(( ( RANDOM % pause )  + 1 ))s
 
-liste=$(ls -l "${rep_Src}" |grep -v schema | grep ^d | awk '{print $9}')
-for nomDB in ${liste}
+find "${path_source}"* -type d ! -name '*schema' | awk -F '/' '{print $NF}'| while IFS= read -r database
 do
-  nomDB=$(basename "${nomDB}")
-  nomDB=${nomDB/\@002d@002d/--}
-  nomDB=${nomDB/\@002d/-}
-  nomDB=${nomDB/\@002b/+}
-  fichier=${prefix}${nomDB}${suffix}
-  mysqldump -u backup -h 127.0.0.1 --opt -BcQC "${nomDB}" | bzip2 -c -9 > "${fichier}"
-  ls -sh "${fichier}"
+  database=$(basename "${database}")
+  database=${database/\@002d@002d/--}
+  database=${database/\@002d/-}
+  database=${database/\@002b/+}
+  file=${prefix}${database}${suffix}
+  mysqldump -u backup -h 127.0.0.1 --opt -BcQC "${database}" | bzip2 -c -9 > "${file}"
+  ls -sh "${file}"
 done
 
-fichier=${prefix}"alldatabases"${suffix}
-mysqldump -u backup -h 127.0.0.1 --opt -AcQC | bzip2 -c -9 > "${fichier}"
-ls -sh "${fichier}"
-cp -f "${fichier}" "${prefix}alldatabases_m${mois}${suffix}"
+file=${prefix}"alldatabases"${suffix}
+mysqldump -u backup -h 127.0.0.1 --opt -AcQC | bzip2 -c -9 > "${file}"
+ls -sh "${file}"
+cp -f "${file}" "${prefix}alldatabases_m${month}${suffix}"
 
 find "${path_backup}" -type f -mtime +365 -delete
 
