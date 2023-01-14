@@ -2,10 +2,10 @@
 find ./ -name converge.yml -print0 | while IFS= read -r -d '' m;
 do
   # Check if tested roles exists
-  for r in $(grep -E "^\s+name: " "${m}" | awk -F '"' '{print $2}')
+  grep -E "^\s+name: " "${m}" | awk -F '"' '{print $2}' | while IFS= read -r r
   do
     if [ ! -d "roles/${r}" ]; then
-      echo "${r} don't exist"
+      echo "${r} don't exist for ${m}"
     fi
   done
 done;
