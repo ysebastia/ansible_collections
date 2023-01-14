@@ -1,5 +1,5 @@
 #!/bin/bash
-for m in $(find ./ -name converge.yml);
+find ./ -name converge.yml -print0 | while IFS= read -r -d '' m;
 do
   # Check if tested roles exists
   for r in $(grep -E "^\s+name: " "${m}" | awk -F '"' '{print $2}')
