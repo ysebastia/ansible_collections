@@ -1,3 +1,4 @@
+---
 - name: Configure host firewall if docker_firewall is defined
   ansible.builtin.include_tasks: firewalld.yml
   when:
