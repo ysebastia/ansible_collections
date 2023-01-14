@@ -97,8 +97,7 @@
 - name: Remove old SSH keys with backuppc_ssh_key_to_revoke list
   become: true
   ansible.builtin.known_hosts:
-    name: '{{ item.name }}'
-    key: '{{ item.name }} {{ item.key }}'
+    name: '{{ item }}'
     state: absent
     path: '{{ backuppc_directory_backup }}/.ssh/known_hosts'
   with_items: '{{ backuppc_ssh_key_to_revoke }}'
