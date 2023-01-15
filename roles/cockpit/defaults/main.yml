@@ -1,3 +1,0 @@
----
-enable_base_cockpit: false
-ansible_action: config

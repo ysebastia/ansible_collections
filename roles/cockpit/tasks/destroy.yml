@@ -1,8 +1,0 @@
----
-- name: Remove COCKPIT agent
-  become: true
-  ansible.builtin.package:
-    name: '{{ cockpit_package }}'
-    state: absent
-  tags:
-    - base.cockpit

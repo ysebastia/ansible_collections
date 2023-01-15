@@ -1,6 +1,0 @@
----
-- name: Configure COCKPIT agent if enable_base_cockpit is defined
-  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
-  when: enable_base_cockpit
-  tags:
-    - base.cockpit

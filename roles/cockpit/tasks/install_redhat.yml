@@ -1,5 +1,0 @@
----
-- name: Ensure cockpit packages are installed
-  become: true
-  ansible.builtin.dnf:
-    name: '{{ cockpit_package }}'

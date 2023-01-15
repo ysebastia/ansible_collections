@@ -1,6 +1,0 @@
----
-- name: Ensure cockpit packages are installed
-  become: true
-  ansible.builtin.apt:
-    name: '{{ cockpit_package }}'
-    update_cache: true

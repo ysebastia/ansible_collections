@@ -41,8 +41,3 @@
 - name: Configure COMMANDS
   ansible.builtin.include_role:
     name: ysebastia.base.commands
-- name: Configure COCKPIT agent
-  ansible.builtin.include_role:
-    name: ysebastia.base.cockpit
-  tags:
-    - base.cockpit
