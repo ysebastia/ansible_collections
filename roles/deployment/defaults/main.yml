@@ -1,6 +1,7 @@
 ---
-enable_docker_compose_deployment: false
+ansible_action: config
+docker_compose_files: []
 docker_compose_project: ''
 docker_compose_templates: []
-docker_compose_files: []
 docker_compose_working_directory: /etc/docker/compose/
+enable_docker_compose_deployment: false
