@@ -1,2 +1,3 @@
 ---
+ansible_action: config
 docker_networks: []

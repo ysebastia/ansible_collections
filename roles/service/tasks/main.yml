@@ -1,4 +1,4 @@
 ---
 - name: Configure DOCKER service if enable_docker_service is defined
-  ansible.builtin.include_tasks: config.yml
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when: enable_docker_service
