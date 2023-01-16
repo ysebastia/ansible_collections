@@ -5,4 +5,4 @@
     - filesystem is defined
   block:
     - name: Configure partition
-      ansible.builtin.include_tasks: config.yml
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
