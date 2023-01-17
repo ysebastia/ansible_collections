@@ -1,4 +1,5 @@
 ---
+ansible_action: config
 enable_kvm_filesystem: true
 filesystem_host_device: []
 filesystem_qemu_backup_size: 50g
