@@ -1,3 +1,8 @@
 ---
-ldap_bind_pw: admin
+ansible_action: config
 enable_service_openldap: false
+enable_service_openldap_cron: true
+enable_service_openldap_tls: false
+ldap_bind_pw: admin
+pki_server_host: '{{ inventory_hostname_short }}'
+pki_server_path: "/etc/ssl/"

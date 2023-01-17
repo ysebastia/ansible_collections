@@ -1,5 +1,6 @@
 ---
-bind_rndckey_name: rndc-key
+ansible_action: config
 bind_master_zones: []
-network_dns_forwarders:
+bind_rndckey_name: rndc-key
 enable_service_bind: false
+network_dns_forwarders:

@@ -1,4 +1,4 @@
 ---
 - name: Configure SQUID if enable_service_squid is defined
-  ansible.builtin.include_tasks: config.yml
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when: enable_service_squid
