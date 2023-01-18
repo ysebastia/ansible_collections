@@ -1,0 +1,16 @@
+---
+- name: Cleanup
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Waif for connection
+      ansible.builtin.wait_for_connection:
+        timeout: 10
+      register: wait_for_instances
+      failed_when: false
+    - name: "Destroy dovecot"
+      ansible.builtin.include_role:
+        name: "dovecot"
+      vars:
+        ansible_action: destroy
+      when: wait_for_instances.elapsed < 10
