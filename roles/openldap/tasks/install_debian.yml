@@ -40,3 +40,11 @@
   ansible.builtin.apt:
     name: '{{ openldap_package }}'
     update_cache: true
+
+- name: Install BZIP2
+  become: true
+  ansible.builtin.apt:
+    name:
+      - bzip2
+    update_cache: true
+  when: enable_service_openldap_cron

@@ -1,0 +1,21 @@
+---
+- name: Create backup directory
+  become: true
+  ansible.builtin.file:
+    path: /var/lib/save/ldap
+    state: directory
+    mode: '0755'
+- name: Create script backup
+  become: true
+  ansible.builtin.copy:
+    src: dump_openldap.bash
+    dest: /usr/local/sbin/dump_openldap
+    owner: root
+    group: root
+    mode: '0755'
+- name: Cron task to backup databases
+  become: true
+  ansible.builtin.cron:
+    name: OpenLDAP backup
+    job: bash /usr/local/sbin/dump_openldap | mail -s "OpenLDAP backup for $(hostname)" root
+    special_time: daily
