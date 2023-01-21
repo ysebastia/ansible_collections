@@ -12,3 +12,10 @@
     group: '{{ kvm_images_group }}'
   with_items:
     - '{{ kvm_images_url }}'
+
+- name: Delete old images from kvm_images_to_delete list
+  become: true
+  ansible.builtin.file:
+    path: '{{ kvm_images_path }}/{{ item }}'
+    state: absent
+  loop: '{{ kvm_images_to_delete }}'
