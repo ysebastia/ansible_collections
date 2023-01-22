@@ -10,3 +10,8 @@
   ansible.builtin.dnf:
     name: postfix
   when: enable_service_dovecot_auth_for_postfix
+- name: Ensure SELINUX utils are installed if enable_base_selinux is defined
+  become: true
+  ansible.builtin.dnf:
+    name: policycoreutils-python-utils
+  when: enable_base_selinux
