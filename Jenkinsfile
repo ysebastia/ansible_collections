@@ -11,12 +11,9 @@ def cloc() {
   archiveArtifacts artifacts: 'cloc.xml', followSymlinks: false
   sh 'rm cloc.xml'
 }
-def shellcheck(src, quality) {
-  script {
-      env.SRC_BASH = src
-  }
+def shellcheck(quality) {
   sh 'touch shellcheck.xml'
-  sh '/usr/local/bin/shellcheck.bash $SRC_BASH | tee -a shellcheck.xml'
+  sh '/usr/local/bin/shellcheck.bash | tee -a shellcheck.xml'
   recordIssues qualityGates: [[threshold: quality, type: 'TOTAL', unstable: false]], tools: [checkStyle(id: 'shellcheck', name: 'Shellcheck', pattern: 'shellcheck.xml')]
   archiveArtifacts artifacts: 'shellcheck.xml', followSymlinks: false
   sh 'rm shellcheck.xml'
@@ -63,11 +60,11 @@ pipeline {
         stage ('shellcheck') {
           agent {
             docker {
-              image 'ysebastia/shellcheck:0.9.0-1'
+              image 'ysebastia/shellcheck:0.9.0-2'
             }
           }
           steps {
-            shellcheck('./', QUALITY_SHELL)
+            shellcheck(QUALITY_SHELL)
           }
         }
         stage ('Yaml lint') {
