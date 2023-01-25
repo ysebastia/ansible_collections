@@ -16,11 +16,11 @@ options {
   bindkeys-file "{{ bind_keysfile }}";
   pid-file "/run/named/named.pid";
   session-keyfile "/run/named/session.key";
-  {% if network_dns_forwarders is defined and network_dns_forwarders is string %}
+{% if network_dns_forwarders is defined and network_dns_forwarders is string %}
   forwarders {
     {{ network_dns_forwarders | default([]) | split(' ') | join('; ') }};
   };
-  {% endif %}
+{% endif %}
 };
 
 include "{{ bind_keysfile }}";
@@ -38,12 +38,12 @@ view "lan" {
   allow-recursion { 127.0.0.1/32; any; };
   include "{{ bind_rfc2912 }}";
 
-  {% for zone in bind_master_zones %}
+{% for zone in bind_master_zones %}
   zone "{{ zone.name }}" IN {
       type {{ zone.type }};
       file "{{ bind_directory }}/{{ zone.file }}";
         notify no;
         allow-update { none; };
   };
-  {% endfor %}
+{% endfor %}
 };
