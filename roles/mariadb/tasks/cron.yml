@@ -16,7 +16,7 @@
 - name: Cron task to backup databases
   ansible.builtin.cron:
     name: MariaDb backup
-    job: bash /usr/local/sbin/dump_mariadb 10 | mail -E -s "MariaDb backup for $(hostname)" root
+    job: bash /usr/local/sbin/dump_mariadb 10 | mail -s "MariaDb backup for $(hostname)" root
     special_time: daily
 - name: User SQL to backup databases
   become: true
