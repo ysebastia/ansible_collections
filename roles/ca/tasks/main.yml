@@ -1,0 +1,4 @@
+---
+- name: Configure CA when enable_pki_ca if defined
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when: enable_pki_ca

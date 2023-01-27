@@ -1,0 +1,3 @@
+---
+ansible_action: config
+enable_pki_prepare: true
