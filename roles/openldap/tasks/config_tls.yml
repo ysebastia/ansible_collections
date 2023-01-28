@@ -1,0 +1,31 @@
+---
+- name: Set Facts
+  ansible.builtin.set_fact:
+    enable_pki_server: "{{ slapd_ssl_internal }}"
+    enable_pki_deploy_ca: "{{ slapd_ssl_internal }}"
+    pki_path: "{{ slapd_ssl_path }}"
+    pki_server_group: "{{ slapd_ssl_server_group }}"
+    pki_server_host: "{{ slapd_ssl_server_host }}"
+    pki_server_mode: "{{ slapd_ssl_server_mode }}"
+    pki_server_owner: "{{ slapd_ssl_server_owner }}"
+    pki_server_private: "{{ slapd_ssl_private }}"
+    pki_server_san: "{{ slapd_ssl_server_san }}"
+
+- name: Generate certificates server
+  ansible.builtin.include_role:
+    name: ysebastia.pki.server
+
+- name: Get internal CA
+  ansible.builtin.include_role:
+    name: ysebastia.pki.deploy_ca
+
+- name: Create TLS configuration
+  become: true
+  ansible.builtin.template:
+    src: tls.ldif.j2
+    dest: /root/tls.ldif
+    mode: '0644'
+    owner: root
+    group: root
+  notify:
+    - Enable TLS

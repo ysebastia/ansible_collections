@@ -12,3 +12,7 @@
 - name: Configure CRON if enable_service_openldap_cron is defined
   ansible.builtin.import_tasks: cron.yml
   when: enable_service_openldap_cron
+
+- name: Configure TLS if slapd_ssl_internal is defined
+  ansible.builtin.import_tasks: config_tls.yml
+  when: slapd_ssl_internal
