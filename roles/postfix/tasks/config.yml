@@ -1,4 +1,7 @@
 ---
+- name: Load variables by operating system
+  ansible.builtin.include_vars: "{{ ansible_os_family | lower }}.yml"
+
 - name: Install packages by operating system
   ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
 

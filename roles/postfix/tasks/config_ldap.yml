@@ -38,6 +38,8 @@
     postfix_ldap_bind_dn: "{{ ldap_bind_dn | default('') }}"
     postfix_ldap_bind_pw: "{{ ldap_bind_pw | default('') }}"
     postfix_ldap_base: "{{ ldap_base_people | default('dc=' ~ ( ansible_domain | split('.') | join('dc='))) }}"
+    postfix_ldap_tls_ca_cert_file: "{{ postfix_ssl_path }}certs/{{ pki_ca_file }}"
+    postfix_ldap_tls: "{{ enable_service_postfix_ldap_tls }}"
   no_log: true
 
 - name: Show LDAP configuration
@@ -46,6 +48,8 @@
       - "LDAP host : {{ postfix_ldap_host }}"
       - "LDAP dn : {{ postfix_ldap_bind_dn }}"
       - "LDAP base : {{ postfix_ldap_base }}"
+      - "LDAP TLS : {{ postfix_ldap_tls }}"
+      - "CA file : {{ postfix_ldap_tls_ca_cert_file }}"
 
 - name: Configure LDAP accounts if enable_service_postfix_ldap_account is defined
   when: enable_service_postfix_ldap_account
