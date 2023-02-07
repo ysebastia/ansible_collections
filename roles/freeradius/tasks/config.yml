@@ -10,7 +10,7 @@
 
 - name: Configure FIREWALLD if enable_base_firewalld is defined
   ansible.builtin.include_tasks: firewalld.yml
-  #when: enable_base_firewalld
+  when: enable_base_firewalld
 
 - name: Configure LDAP if enable_service_freeradius_ldap is defined
   ansible.builtin.include_tasks: config_ldap.yml
