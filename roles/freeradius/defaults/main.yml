@@ -1,0 +1,25 @@
+---
+ansible_action: config
+enable_service_freeradius: false
+enable_freeradius_ttls: true
+enable_service_freeradius_ldap: true
+enable_service_freeradius_ldap_tls: true
+freeradius_eap_cipher_list: ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-CAMELLIA256-SHA384:ECDHE-RSA-CAMELLIA256-SHA384:ECDHE-ECDSA-CAMELLIA128-SHA256:ECDHE-RSA-CAMELLIA128-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:CAMELLIA128-SHA256:SSLv3
+freeradius_eap_ecdh_curve: secp521r1
+freeradius_eap_tls_max_version: "1.2"
+freeradius_eap_tls_min_version: "1.2"
+freeradius_group: freerad
+freeradius_ldap_ttls_acl: []
+freeradius_ldap_ttls_group_base: ou=groups
+freeradius_ldap_ttls_group_filter: "(objectclass=groupOfUniqueNames)"
+freeradius_ldap_ttls_group_membership_attribute: uniqueMember
+freeradius_ldap_ttls_group_name_attribute: cn
+freeradius_ldap_ttls_name: ldap_for_ttls
+freeradius_ldap_ttls_user_base: ou=people
+freeradius_ldap_ttls_user_filter: "(uid=%{User-Name})"
+freeradius_owner: freerad
+freeradius_raddbdir: "/etc/freeradius/3.0"
+freeradius_site_inner_tunnel_ttls: inner-tunnel
+freeradius_ssl_ca_file: 'ca-certificates.crt'
+freeradius_ssl_internal: true
+freeradius_ssl_server_host: 'ssl-cert-snakeoil'

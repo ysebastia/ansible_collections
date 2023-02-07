@@ -1,0 +1,8 @@
+---
+- name: Ensure FREERADIUS is installed
+  become: true
+  ansible.builtin.apt:
+    name:
+      - freeradius
+      - freeradius-ldap
+    update_cache: true

@@ -1,0 +1,34 @@
+eap {
+  default_eap_type = ttls
+  timer_expire     = 60
+  ignore_unknown_eap_types = no
+  cisco_accounting_username_bug = no
+  max_sessions = ${max_requests}
+  tls-config tls-common {
+    private_key_file = {{ freeradius_ssl_path }}private/{{ freeradius_ssl_server_host }}.key
+    certificate_file = {{ freeradius_ssl_path }}certs/{{ freeradius_ssl_server_host }}.pem
+    ca_file = {{ freeradius_ssl_path }}certs/{{ freeradius_ssl_ca_file }}
+    dh_file = ${certdir}/dh
+    ca_path = ${cadir}
+    cipher_list = "{{ freeradius_eap_cipher_list }}"
+    ecdh_curve = "{{ freeradius_eap_ecdh_curve }}"
+    tls_min_version = "{{ freeradius_eap_tls_min_version }}"
+    tls_max_version = "{{ freeradius_eap_tls_max_version }}"
+    cache {
+      enable = no
+    }
+    verify {
+    }
+    ocsp {
+      enable = no
+    }
+  }
+{% if enable_freeradius_ttls %}
+  ttls {
+    copy_request_to_tunnel = yes
+    tls = tls-common
+    use_tunneled_reply = yes
+    virtual_server = "{{ freeradius_site_inner_tunnel_ttls }}"
+  }
+{% endif %}
+}

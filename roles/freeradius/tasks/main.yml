@@ -1,0 +1,4 @@
+---
+- name: Configure FREERADIUS
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when: enable_service_freeradius

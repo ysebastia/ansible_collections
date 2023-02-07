@@ -1,0 +1,19 @@
+---
+- name: Set Facts
+  ansible.builtin.set_fact:
+    freeradius_ldap_host: "{{ ldap_host | default('ldap' ~ ansible_domain ) }}"
+    freeradius_ldap_bind_dn: "{{ ldap_bind_dn | default('') }}"
+    freeradius_ldap_bind_pw: "{{ ldap_bind_pw | default('') }}"
+    freeradius_ldap_base: "{{ ldap_base | default('dc=' ~ ( ansible_domain | split('.') | join('dc='))) }}"
+    freeradius_ldap_tls_ca_cert_file: "{{ freeradius_ssl_path }}certs/{{ freeradius_ssl_ca_file }}"
+    freeradius_ldap_tls: "{{ enable_service_freeradius_ldap_tls }}"
+  no_log: true
+
+- name: Show LDAP configuration
+  ansible.builtin.debug:
+    msg:
+      - "LDAP host : {{ freeradius_ldap_host }}"
+      - "LDAP dn : {{ freeradius_ldap_bind_dn }}"
+      - "LDAP base : {{ freeradius_ldap_base }}"
+      - "LDAP TLS : {{ freeradius_ldap_tls }}"
+      - "CA file : {{ freeradius_ldap_tls_ca_cert_file }}"
