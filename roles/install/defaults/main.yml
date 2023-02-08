@@ -1,4 +1,4 @@
 ---
 ansible_action: config
-docker_compose_url: https://github.com/docker/compose/releases/download/v2.15.1/docker-compose-linux-x86_64
+docker_compose_url: https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64
 enable_docker_compose: false
