@@ -8,9 +8,9 @@
         timeout: 10
       register: wait_for_instances
       failed_when: false
-    - name: "Destroy command"
+    - name: "Destroy commands"
       ansible.builtin.include_role:
-        name: "command"
+        name: "commands"
       vars:
         ansible_action: destroy
       when: wait_for_instances.elapsed < 10
