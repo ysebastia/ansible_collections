@@ -1,5 +1,5 @@
 ---
 platforms:
   - name: debian11
-    box: debian/bullseye64
-    box_version: 11.20220912.1
+    box: debian11
+    box_version: 11.6.0-2
