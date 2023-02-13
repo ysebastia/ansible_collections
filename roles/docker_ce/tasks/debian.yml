@@ -5,12 +5,23 @@
     name:
       - gpg
     update_cache: true
-- name: Add GPG
-  become: true
-  ansible.builtin.apt_key:
-    url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
-- name: Configure Docker-CE repository
+- name: Set DPKG architecture
+  set_fact:
+    dpkg_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
+- name: Fix Docker-CE repository
   become: true
   ansible.builtin.apt_repository:
     repo: deb https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable
     filename: docker-ce
+    state: absent
+- name: Add GPG
+  become: true
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+    keyring: /etc/apt/trusted.gpg.d/docker-ce.gpg
+- name: Configure Docker-CE repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: deb [arch={{ dpkg_arch }}] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable
+    filename: docker-ce
+    state: present
