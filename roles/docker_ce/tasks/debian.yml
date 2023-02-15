@@ -6,7 +6,7 @@
       - gpg
     update_cache: true
 - name: Set DPKG architecture
-  set_fact:
+  ansible.builtin.set_fact:
     dpkg_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
 - name: Fix Docker-CE repository
   become: true
