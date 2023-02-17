@@ -6,7 +6,8 @@ driver:
 platforms:
   - name: centos9s
     box: centos9s
-    box_version: 20230207.0
+    box_version: 20230216.0
+    memory: 2048
   - name: debian11
     box: debian11
     box_version: 11.6.0-2
