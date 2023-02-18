@@ -6,7 +6,7 @@
 namespace: ysebastia
 
 # The name of the collection. Has the same character restrictions as 'namespace'
-name: services_ldan
+name: services_lan
 
 # The version of the collection. Must be compatible with semantic versioning
 version: 1.0.0
