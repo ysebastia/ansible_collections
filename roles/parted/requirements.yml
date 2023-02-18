@@ -1,4 +1,0 @@
----
-collections:
-  - ansible.posix:1.5.1
-  - community.general
