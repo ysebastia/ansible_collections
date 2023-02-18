@@ -38,7 +38,7 @@
     mode: '0644'
 
 - name: Secure installation
-  ansible.builtin.import_tasks: secure_installation.yml
+  ansible.builtin.include_tasks: secure_installation.yml
 
 - name: Set administrators accounts
   become: true
@@ -56,8 +56,8 @@
   no_log: true
 
 - name: ACL
-  ansible.builtin.import_tasks: acl.yml
+  ansible.builtin.include_tasks: acl.yml
 
 - name: Configure CRON if enable_service_mariadb_cron is defined
-  ansible.builtin.import_tasks: cron.yml
+  ansible.builtin.include_tasks: cron.yml
   when: enable_service_mariadb_cron

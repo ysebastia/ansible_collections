@@ -13,7 +13,7 @@
   ansible.builtin.include_tasks: firewalld.yml
 
 - name: Generate RNDC-KEY
-  ansible.builtin.import_tasks: rndc_key.yml
+  ansible.builtin.include_tasks: rndc_key.yml
 
 - name: Populate zones files with bind_master_zones
   become: true

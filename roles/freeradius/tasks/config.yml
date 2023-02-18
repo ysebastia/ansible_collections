@@ -17,7 +17,7 @@
   when: enable_service_freeradius_ldap
 
 - name: Configure TLS if freeradius_ssl_internal is defined
-  ansible.builtin.import_tasks: config_tls.yml
+  ansible.builtin.include_tasks: config_tls.yml
   when: freeradius_ssl_internal
 
 - name: Configure FREERADIUS
