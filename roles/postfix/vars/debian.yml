@@ -1,2 +1,3 @@
 ---
 postfix_ssl_path: /etc/ssl/
+postfix_dovecot_deliver: /usr/lib/dovecot/deliver
