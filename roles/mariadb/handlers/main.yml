@@ -2,7 +2,7 @@
 - name: Reload systemd
   become: true
   ansible.builtin.systemd:
-      daemon_reload: true
+    daemon_reload: true
 - name: Restart mariadb
   become: true
   ansible.builtin.service:
