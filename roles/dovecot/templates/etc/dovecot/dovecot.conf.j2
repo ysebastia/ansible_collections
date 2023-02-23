@@ -3,8 +3,8 @@ auth_cache_ttl = 1 days
 auth_master_user_separator = *
 auth_mechanisms = plain login
 disable_plaintext_auth = no
-first_valid_uid = 984
-last_valid_uid = 984
+first_valid_uid = 998
+last_valid_uid = 998
 mail_attribute_dict = file:%h/Maildir/dovecot-attributes
 mail_gid = {{ dovecot_virtual_gid }}
 mail_plugins = notify
@@ -103,9 +103,6 @@ service stats {
 {% if enable_service_dovecot_syslog %}
 syslog_facility = {{ dovecot_syslog_facility }}
 {% endif %}
-userdb {
-  driver = passwd
-}
 {% if enable_service_dovecot_ldap %}
 userdb {
   args = /etc/dovecot/ldap.conf
