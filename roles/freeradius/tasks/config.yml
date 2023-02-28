@@ -34,6 +34,5 @@
     - sites-available/inner-tunnel
     - sites-available/default
     - mods-available/eap
-    - mods-available/ldap
   notify:
     - Restart radiusd

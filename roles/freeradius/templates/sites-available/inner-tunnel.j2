@@ -8,16 +8,20 @@ server {{ freeradius_site_inner_tunnel_ttls }} {
     filter_username
     expiration
     logintime
+{% if enable_service_freeradius_ldap %}
     {{ freeradius_ldap_ttls_name }}
+{% endif %}
     pap
   }
   authenticate {
     Auth-Type PAP {
         pap
     }
+{% if enable_service_freeradius_ldap %}
     Auth-Type LDAP {
         {{ freeradius_ldap_ttls_name }}
     }
+{% endif %}
   }
   session {
     radutmp

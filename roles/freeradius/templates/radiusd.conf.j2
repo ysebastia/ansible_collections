@@ -53,7 +53,9 @@ thread pool {
 }
 modules {
   $INCLUDE mods-available/cache
+{% if enable_service_freeradius_ldap %}
   $INCLUDE mods-available/ldap
+{% endif %}
   $INCLUDE mods-available/realm
   $INCLUDE mods-available/radutmp
   $INCLUDE mods-available/attr_filter

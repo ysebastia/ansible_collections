@@ -17,3 +17,16 @@
       - "LDAP base : {{ freeradius_ldap_base }}"
       - "LDAP TLS : {{ freeradius_ldap_tls }}"
       - "CA file : {{ freeradius_ldap_tls_ca_cert_file }}"
+
+- name: Configure FREERADIUS
+  become: true
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "{{ freeradius_raddbdir }}/{{ item }}"
+    mode: "0640"
+    owner: "{{ freeradius_owner }}"
+    group: "{{ freeradius_group }}"
+  with_items:
+    - mods-available/ldap
+  notify:
+    - Restart radiusd
