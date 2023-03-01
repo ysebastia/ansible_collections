@@ -1,3 +1,0 @@
----
-dovecot_selinux_bool:
-  - domain_can_mmap_files

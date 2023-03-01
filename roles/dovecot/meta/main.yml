@@ -15,5 +15,3 @@ galaxy_info:
 dependencies:
   - role: ysebastia.base.firewalld
     when: enable_service_dovecot
-  - role: ysebastia.base.selinux
-    when: enable_base_selinux

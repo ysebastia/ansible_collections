@@ -68,7 +68,3 @@
   notify:
     - Restart rsyslog
   when: enable_service_dovecot_syslog
-
-- name: Configure SELINUX if enable_base_selinux is defined
-  ansible.builtin.include_tasks: selinux.yml
-  when: enable_base_selinux

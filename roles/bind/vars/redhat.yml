@@ -1,9 +1,0 @@
----
-bind_package: bind
-bind_group: named
-bind_directory: /var/named
-bind_config_file: /etc/named.conf
-bind_keysfile: /etc/named.root.key
-bind_rfc2912: /etc/named.rfc1912.zones
-bind_rndc_file: /etc/rndc.key
-bind_rndc_owner: root

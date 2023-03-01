@@ -1,3 +1,0 @@
----
-postfix_ssl_path: /etc/pki/tls/
-postfix_dovecot_deliver: /usr/libexec/dovecot/deliver
