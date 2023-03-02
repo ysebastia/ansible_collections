@@ -4,15 +4,18 @@ dependency:
 driver:
   name: vagrant
 platforms:
+  - name: alma9
+    box: alma9
+    box_version: 9.1-0
   - name: centos9s
     box: centos9s
-    box_version: 20230216.0
+    box_version: 20230227.0
   - name: debian11
     box: debian11
-    box_version: 11.6.0-2
+    box_version: 11.6.0-3
   - name: ubuntu2210
     box: generic/ubuntu2210
-    box_version: 4.2.8
+    box_version: 4.2.14
 provisioner:
   name: ansible
 verifier:
