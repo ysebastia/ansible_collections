@@ -1,5 +1,1 @@
 ---
-platforms:
-  - name: debian11
-    box: debian11
-    box_version: 11.6.0-2
