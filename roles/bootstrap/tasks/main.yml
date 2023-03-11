@@ -1,0 +1,13 @@
+---
+- name: Python
+  ansible.builtin.include_role:
+    name: ysebastia.develop.python
+- name: Ansible
+  ansible.builtin.include_role:
+    name: ysebastia.develop.ansible
+- name: Vagrant
+  ansible.builtin.include_role:
+    name: ysebastia.develop.vagrant
+- name: Molecule
+  ansible.builtin.include_role:
+    name: ysebastia.develop.molecule
