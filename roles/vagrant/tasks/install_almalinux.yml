@@ -1,0 +1,11 @@
+---
+- name: Ensure that VAGRANT is installed
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - gcc
+      - libvirt-devel
+      - python3-devel
+      - vagrant
+    update_cache: true
+    enablerepo: crb

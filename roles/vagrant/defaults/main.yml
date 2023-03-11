@@ -1,0 +1,4 @@
+---
+enable_develop_vagrant: false
+ansible_action: config
+python_venv_directory: ~/ansible/
