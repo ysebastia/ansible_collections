@@ -1,0 +1,6 @@
+---
+- name: Ensure that Ansible is installed
+  ansible.builtin.pip:
+    name:
+      - ansible-core
+    virtualenv: '{{ python_venv_directory }}'
