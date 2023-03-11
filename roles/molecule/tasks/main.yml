@@ -1,0 +1,10 @@
+---
+- name: Install Molecule
+  ansible.builtin.pip:
+    name:
+      - molecule
+      - molecule-vagrant
+      - python-vagrant
+      - rich
+    virtualenv: '{{ python_venv_directory }}'
+  when: enable_develop_molecule
