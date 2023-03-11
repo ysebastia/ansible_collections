@@ -1,0 +1,16 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+platforms:
+  - name: alma9
+    box: alma9
+    box_version: 9.1-0
+  - name: ubuntu2210
+    box: generic/ubuntu2210
+    box_version: 4.2.14
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
