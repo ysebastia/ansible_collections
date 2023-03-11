@@ -1,0 +1,8 @@
+---
+develop_python_packages:
+  - python3-pip
+  - python3-pip-whl
+  - python3-setuptools-whl
+  - python3.10-venv
+  - virtualenv
+python_bin: /usr/bin/python3

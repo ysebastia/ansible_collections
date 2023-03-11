@@ -1,0 +1,20 @@
+---
+- name: Gather facts
+  ansible.builtin.gather_facts:
+
+- name: Load variables by operating system
+  ansible.builtin.include_vars: "{{ ansible_distribution | lower }}.yml"
+
+- name: Install packages by operating system
+  ansible.builtin.include_tasks: "install_{{ ansible_distribution | lower }}.yml"
+
+- name: Create venv directory
+  ansible.builtin.file:
+    state: directory
+    path: "{{ python_venv_directory }}"
+    owner: '{{ ansible_user }}'
+    group: '{{ ansible_user }}'
+    mode: '0775'
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers

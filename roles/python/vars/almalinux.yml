@@ -1,0 +1,7 @@
+---
+develop_python_packages:
+  - python3-pip
+  - python3-pip-wheel
+  - python3-setuptools-wheel
+  - python3-virtualenv
+python_bin: /usr/bin/python

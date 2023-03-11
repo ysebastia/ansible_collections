@@ -1,0 +1,4 @@
+---
+- name: Install Python packages if enable_develop_python is defined
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when: enable_develop_python
