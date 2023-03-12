@@ -11,5 +11,4 @@
 
 ## Bugs
 
-- [ ] [centos9s]: FAILED! => {"changed": false, "msg": "Unable to start service clamd@scan: Job for clamd@scan.service failed.\nSee \"systemctl status clamd@scan.service\" and \"journalctl -xeu clamd@scan.service\" for details.\n"}
 - [ ] [alma9]: FAILED! => {"changed": false, "msg": "Unable to start service clamd@scan: Job for clamd@scan.service failed.\nSee \"systemctl status clamd@scan.service\" and \"journalctl -xeu clamd@scan.service\" for details.\n"}

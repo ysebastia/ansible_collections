@@ -7,10 +7,6 @@ platforms:
   - name: alma9
     box: alma9
     box_version: 9.1-0
-  - name: centos9s
-    box: centos9s
-    box_version: 20230227.0
-    memory: 2048
   - name: debian11
     box: debian11
     box_version: 11.6.0-3
