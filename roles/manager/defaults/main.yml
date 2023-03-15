@@ -1,3 +1,4 @@
 ---
 ansible_action: config
 enable_kvm_manager: false
+kvm_user_to_append:
