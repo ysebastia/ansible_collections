@@ -1,16 +1,3 @@
 ---
 - name: Install packages by operating system
   ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
-
-- name: Append user to kvm and libvirt groups if kvm_user_to_append is defined
-  become: true
-  ansible.builtin.user:
-    name: '{{ kvm_user_to_append }}'
-    groups: '{{ item }}'
-    append: true
-  loop:
-    - kvm
-    - libvirt
-  when:
-    - kvm_user_to_append is defined
-    - kvm_user_to_append != None

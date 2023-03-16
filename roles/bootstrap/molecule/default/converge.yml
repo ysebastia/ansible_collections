@@ -8,4 +8,5 @@
       vars:
         enable_kvm_libvirt: true
         enable_kvm_manager: true
+        enable_kvm_group: true
         enable_repositories_epel: true

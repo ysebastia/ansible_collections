@@ -11,3 +11,6 @@
 - name: Manager
   ansible.builtin.include_role:
     name: ysebastia.kvm.manager
+- name: Group
+  ansible.builtin.include_role:
+    name: ysebastia.kvm.group
