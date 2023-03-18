@@ -67,7 +67,7 @@
 - name: Remove of backup directory with backuppc_old_save list
   become: true
   ansible.builtin.file:
-    path: '{{ item }}'
+    path: '{{ backuppc_directory_backup }}/pc/{{ item }}'
     state: absent
   with_items: '{{ backuppc_old_save }}'
   notify:
