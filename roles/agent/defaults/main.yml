@@ -1,0 +1,4 @@
+---
+enable_jenkins_agent: false
+jenkins_server_ssh_key: files/pubkeys/jenkins.pub
+ansible_action: config

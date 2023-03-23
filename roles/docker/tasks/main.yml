@@ -1,0 +1,5 @@
+---
+- name: Bootstrap Docker when enable_jenkins_docker if defined
+  ansible.builtin.include_role:
+    name: ysebastia.docker.bootstrap
+  when: enable_jenkins_docker

@@ -1,0 +1,11 @@
+---
+- name: Ensure packages are installed
+  become: true
+  ansible.builtin.apt:
+    name:
+      - ant
+      - git
+      - make
+      - openjdk-11-jdk-headless
+      - wget
+    update_cache: true
