@@ -11,24 +11,3 @@
     name: rsyslog
     state: restarted
     enabled: true
-- name: Checkmodule
-  become: true
-  ansible.builtin.command: checkmodule -M -m -o /root/my-imap.mod /root/my-imap.te
-- name: Semodule_package
-  become: true
-  ansible.builtin.command: semodule_package -o /root/my-imap.pp -m /root/my-imap.mod
-  notify: Nettoyage /root/my-imap.mod
-- name: Semodule
-  become: true
-  ansible.builtin.command: semodule -i /root/my-imap.pp
-  notify: Nettoyage /root/my-imap.pp
-- name: Nettoyage /root/my-imap.pp
-  become: true
-  ansible.builtin.file:
-    path: /root/my-imap.pp
-    state: absent
-- name: Nettoyage /root/my-imap.mod
-  become: true
-  ansible.builtin.file:
-    path: /root/my-imap.mod
-    state: absent
