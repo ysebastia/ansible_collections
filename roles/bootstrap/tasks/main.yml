@@ -11,9 +11,6 @@
 - name: Firewall configuration for Docker
   ansible.builtin.include_role:
     name: ysebastia.docker.firewall
-- name: SELINUX configuration for Docker
-  ansible.builtin.include_role:
-    name: ysebastia.docker.selinux
 - name: Network configuration for Docker
   ansible.builtin.include_role:
     name: ysebastia.docker.networks

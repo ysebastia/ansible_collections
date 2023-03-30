@@ -1,8 +1,0 @@
----
-- name: Configure boolean for SELINUX
-  become: true
-  ansible.posix.seboolean:
-    name: '{{ item }}'
-    state: true
-    persistent: true
-  loop: "{{ docker_seboolean }}"
