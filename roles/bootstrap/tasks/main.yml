@@ -1,7 +1,4 @@
 ---
-- name: Configure SELINUX
-  ansible.builtin.include_role:
-    name: ysebastia.base.selinux
 - name: Configure FIREWALLD
   ansible.builtin.include_role:
     name: ysebastia.base.firewalld

@@ -1,7 +1,0 @@
----
-- name: Converge
-  hosts: all
-  tasks:
-    - name: "Include selinux"
-      ansible.builtin.include_role:
-        name: "selinux"

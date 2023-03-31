@@ -1,3 +1,0 @@
----
-ansible_action: config
-enable_base_selinux: false
