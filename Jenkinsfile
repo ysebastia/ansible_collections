@@ -51,7 +51,7 @@ pipeline {
         stage ('Ansible lint') {
           agent {
             docker {
-              image 'ysebastia/ansible-lint:6.14.3'
+              image 'ysebastia/ansible-lint:6.14.4'
             }
           }
           steps {
