@@ -8,12 +8,12 @@
   with_items: '{{ filesystem }}'
   when:
     - item.device | length > 0
-- name: Format filesystems
+- name: Format filesystems (use force_format_filesystem variable if needed)
   become: true
   community.general.filesystem:
     fstype: '{{ item.fstype }}'
     dev: '{{ item.dev }}'
-    force: false
+    force: '{{ force_format_filesystem | default(false) }}'
   with_items: '{{ filesystem }}'
 - name: Mount filesystems
   become: true
