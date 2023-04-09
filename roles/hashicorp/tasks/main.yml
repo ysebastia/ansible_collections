@@ -1,4 +1,9 @@
 ---
 - name: Configure HASHICORP repository if enable_repositories_hashicorp is enable
-  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
   when: enable_repositories_hashicorp
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "config_{{ ansible_os_family | lower }}.yml"

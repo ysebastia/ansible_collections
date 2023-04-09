@@ -1,4 +1,9 @@
 ---
 - name: Configure DOCKER-CE repository if enable_repositories_docker_ce is enable
-  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
   when: enable_repositories_docker_ce
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "config_{{ ansible_os_family | lower }}.yml"

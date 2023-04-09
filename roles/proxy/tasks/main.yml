@@ -1,4 +1,9 @@
 ---
 - name: Configure PROXY if enable_repositories_proxy is enable
-  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
   when: enable_repositories_proxy
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "config_{{ ansible_os_family | lower }}.yml"
