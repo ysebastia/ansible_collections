@@ -1,4 +1,6 @@
 ---
 - name: Install DOCKER-COMPOSE if enable_docker_compose is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
-  when: enable_docker_compose
+  when:
+    - enable_docker_compose
+    - ansible_action in ['config', 'destroy']
