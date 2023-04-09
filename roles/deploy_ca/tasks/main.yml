@@ -1,7 +1,11 @@
 ---
-- name: Facts
-  ansible.builtin.include_tasks: "facts.yml"
+- name: Configure CA certificate when enable_pki_deploy_ca if defined
+  when:
+    - enable_pki_deploy_ca
+    - ansible_action in ['config']
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
 
-- name: Deploy CA certificate when enable_pki_deploy_ca if defined
-  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
-  when: enable_pki_deploy_ca
+    - name: Include tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"

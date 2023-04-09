@@ -1,7 +1,11 @@
 ---
-- name: Facts
-  ansible.builtin.include_tasks: "facts.yml"
-
 - name: Prepare PKI when enable_pki_prepare if defined
-  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
-  when: enable_pki_prepare
+  when:
+    - enable_pki_prepare
+    - ansible_action in ['config']
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
