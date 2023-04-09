@@ -1,7 +1,11 @@
 ---
-- name: Facts
-  ansible.builtin.include_tasks: "facts.yml"
-
 - name: Configure BackupPC agent if enable_backuppc_plug is defined
-  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
-  when: enable_backuppc_agent
+  when:
+    - enable_backuppc_agent
+    - ansible_action in ['config', 'destroy']
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
