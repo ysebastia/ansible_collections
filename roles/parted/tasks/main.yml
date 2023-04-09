@@ -3,6 +3,7 @@
   when:
     - enable_base_parted
     - filesystem is defined
+    - ansible_action in ['config']
   block:
     - name: Configure partition
       ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
