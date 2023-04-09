@@ -1,4 +1,7 @@
 ---
+- name: Gather facts
+  ansible.builtin.gather_facts:
+
 - name: Deploy CA certificate when enable_pki_deploy_ca if defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when: enable_pki_deploy_ca
