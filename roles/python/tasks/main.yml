@@ -1,6 +1,6 @@
 ---
-- name: Gather facts
-  ansible.builtin.gather_facts:
+- name: Facts
+  ansible.builtin.include_tasks: "facts.yml"
 
 - name: Install Python packages if enable_develop_python is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
