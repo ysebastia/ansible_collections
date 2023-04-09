@@ -1,4 +1,6 @@
 ---
 - name: Install Ansible if enable_develop_ansible is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
-  when: enable_develop_ansible
+  when:
+    - enable_develop_ansible
+    - ansible_action in ['config']

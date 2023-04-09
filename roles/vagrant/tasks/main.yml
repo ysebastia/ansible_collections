@@ -1,4 +1,6 @@
 ---
 - name: Install Vagrant if enable_develop_vagrant is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
-  when: enable_develop_vagrant
+  when:
+    - enable_develop_vagrant
+    - ansible_action in ['config']

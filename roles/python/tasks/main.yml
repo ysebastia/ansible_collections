@@ -1,7 +1,11 @@
 ---
-- name: Facts
-  ansible.builtin.include_tasks: "facts.yml"
+- name: Configure Python packages if enable_develop_python is defined
+  when:
+    - enable_develop_python
+    - ansible_action in ['config']
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
 
-- name: Install Python packages if enable_develop_python is defined
-  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
-  when: enable_develop_python
+    - name: Include tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
