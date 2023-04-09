@@ -1,7 +1,4 @@
 ---
-- name: Load variables by operating system
-  ansible.builtin.include_vars: "{{ ansible_distribution | lower }}.yml"
-
 - name: Get images from kvm_images_url list
   become: true
   ansible.builtin.get_url:
