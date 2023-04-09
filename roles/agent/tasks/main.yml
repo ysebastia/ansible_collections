@@ -1,6 +1,11 @@
 ---
 - name: Configure Jenkins agent when enable_jenkins_agent if defined
-  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
     - enable_jenkins_agent
     - ansible_action in ['config']
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
