@@ -7,6 +7,7 @@ Alias /backuppc {{ backuppc_directory_share }}/cgi-bin/
   DirectoryIndex index.cgi
 
   AuthType basic
+{% if enable_service_apache_ldap %}
   AuthBasicProvider ldap
 {% if backuppc_ldap_bind_dn != '' %}
   AuthLDAPBindDN {{ backuppc_ldap_bind_dn }}
@@ -15,6 +16,7 @@ Alias /backuppc {{ backuppc_directory_share }}/cgi-bin/
   AuthLDAPBindPassword {{ backuppc_ldap_bind_pw }}
 {% endif %}
   AuthLDAPURL "ldap://{{ backuppc_ldap_host }}/{{ backuppc_ldap_base }}?uid?one?(objectclass=*)"
+{% endif %}
   Authname "BackupPC"
   Require valid-user
 
