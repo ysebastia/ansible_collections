@@ -1,4 +1,6 @@
 ---
 - name: Configure docker group if enable_docker_group is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
-  when: enable_docker_group
+  when:
+    - enable_docker_group
+    - ansible_action in ['config', 'destroy']

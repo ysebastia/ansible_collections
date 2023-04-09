@@ -1,4 +1,6 @@
 ---
 - name: Configure DOCKER networks if docker_networks is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
-  when: docker_networks | length > 0
+  when:
+    - docker_networks | length > 0
+    - ansible_action in ['config', 'destroy']
