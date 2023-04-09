@@ -1,6 +1,6 @@
 ---
-- name: Gather facts
-  ansible.builtin.gather_facts:
+- name: Facts
+  ansible.builtin.include_tasks: "facts.yml"
 
 - name: Prepare PKI when enable_pki_prepare if defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
