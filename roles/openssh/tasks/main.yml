@@ -1,9 +1,6 @@
 ---
-- name: Gather facts
-  ansible.builtin.gather_facts:
-
-- name: Load variables by operating system
-  ansible.builtin.include_vars: "{{ ansible_distribution | lower }}.yml"
+- name: Facts
+  ansible.builtin.include_tasks: "facts.yml"
 
 - name: Configuration
   become: true
