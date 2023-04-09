@@ -1,7 +1,11 @@
 ---
-- name: Facts
-  ansible.builtin.include_tasks: "facts.yml"
-
 - name: Configure DOVECOT if enable_service_dovecot is defined
-  when: enable_service_dovecot
-  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when:
+    - enable_service_dovecot
+    - ansible_action in ['config', 'destroy']
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"

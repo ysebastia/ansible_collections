@@ -1,7 +1,11 @@
 ---
-- name: Facts
-  ansible.builtin.include_tasks: "facts.yml"
-
 - name: Configure SQUID if enable_service_squid is defined
-  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
-  when: enable_service_squid
+  when:
+    - enable_service_squid
+    - ansible_action in ['config', 'destroy']
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
