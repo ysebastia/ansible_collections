@@ -3,10 +3,14 @@ dependency:
   name: galaxy
 driver:
   name: vagrant
+  provider:
+    name: libvirt
+    type: libvirt
 platforms:
   - name: debian11
     box: debian11
     box_version: 11.6.0-3
+    memory: 1024
 provisioner:
   name: ansible
 verifier:
