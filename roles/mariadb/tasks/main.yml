@@ -2,7 +2,7 @@
 - name: Configure MARIADB if enable_service_mariadb is defined
   when:
     - enable_service_mariadb
-    - ansible_action in ['config', 'destroy', 'dump']
+    - ansible_action in ['config', 'destroy', 'dump', 'import']
   block:
     - name: Facts
       ansible.builtin.include_tasks: "facts.yml"
