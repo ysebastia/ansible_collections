@@ -16,7 +16,7 @@ fi
 
 sleep $(( ( RANDOM % pause )  + 1 ))s
 
-find "${path_source}"* -type d ! -name '*schema' | awk -F '/' '{print $NF}'| while IFS= read -r database
+find "${path_source}"* -type d ! -name '*schema' | awk -F '/' '{print $NF}'| grep -v lost+found| while IFS= read -r database
 do
   database=$(basename "${database}")
   database=${database/\@002d@002d/--}
