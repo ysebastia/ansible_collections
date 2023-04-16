@@ -4,3 +4,6 @@ collections:
     version: 1.5.2
   - name: community.crypto
     version: 2.11.1
+  - name: https://github.com/ysebastia/ansible-services-lan.git
+    type: git
+    version: main
