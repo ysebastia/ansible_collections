@@ -4,3 +4,6 @@ collections:
     version: 1.5.2
   - name: community.general
     version: 6.5.0
+  - name: https://github.com/ysebastia/ansible-repositories.git
+    type: git
+    version: main
