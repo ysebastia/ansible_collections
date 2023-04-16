@@ -1,2 +1,8 @@
 ---
-collections: []
+collections:
+  - name: https://github.com/ysebastia/ansible-repositories.git
+    type: git
+    version: main
+  - name: https://github.com/ysebastia/ansible-kvm.git
+    type: git
+    version: main
