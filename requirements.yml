@@ -6,3 +6,9 @@ collections:
     version: 6.5.0
   - name: community.libvirt
     version: 1.2.0
+  - name: https://github.com/ysebastia/ansible-repositories.git
+    type: git
+    version: main
+  - name: https://github.com/ysebastia/ansible-base.git
+    type: git
+    version: main
