@@ -9,7 +9,7 @@ driver:
 platforms:
   - name: alma9
     box: alma9
-    box_version: 9.1-0
+    box_version: 9.1-20230419.0
     memory: 1024
   - name: ubuntu2210
     box: generic/ubuntu2210
