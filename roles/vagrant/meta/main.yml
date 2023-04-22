@@ -16,4 +16,3 @@ dependencies:
   - role: ysebastia.repositories.hashicorp
   - role: ysebastia.kvm.filesystem
   - role: ysebastia.kvm.libvirt
-  - role: ysebastia.develop.python
