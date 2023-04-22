@@ -11,6 +11,10 @@ platforms:
     box: debian11
     box_version: 11.6.0-20230419.0
     memory: 1024
+  - name: alma9
+    box: alma9
+    box_version: 9.1-20230419.0
+    memory: 1024
 provisioner:
   name: ansible
 verifier:

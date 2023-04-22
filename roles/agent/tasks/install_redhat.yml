@@ -1,0 +1,11 @@
+---
+- name: Ensure packages are installed
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - ant
+      - git
+      - make
+      - java-11-openjdk-headless
+      - wget
+    update_cache: true
