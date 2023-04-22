@@ -1,9 +1,12 @@
 ---
+- name: "Include Ansible"
+  ansible.builtin.include_role:
+    name: "ansible"
 - name: Install Molecule
   ansible.builtin.pip:
     name:
       - molecule
-      - molecule-vagrant
+      - molecule-plugins[vagrant]
       - python-vagrant
       - rich
     virtualenv: '{{ python_venv_directory }}'
