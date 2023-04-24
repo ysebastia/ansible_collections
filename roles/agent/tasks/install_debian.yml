@@ -6,6 +6,6 @@
       - ant
       - git
       - make
-      - openjdk-11-jdk-headless
+      - openjdk-11-jre-headless
       - wget
     update_cache: true
