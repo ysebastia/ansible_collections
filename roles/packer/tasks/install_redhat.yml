@@ -1,0 +1,7 @@
+---
+- name: Ensure that PACKER is installed
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - packer
+    update_cache: true

@@ -11,3 +11,6 @@
 - name: Molecule
   ansible.builtin.include_role:
     name: ysebastia.develop.molecule
+- name: Packer
+  ansible.builtin.include_role:
+    name: ysebastia.develop.packer
