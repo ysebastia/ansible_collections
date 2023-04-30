@@ -46,3 +46,13 @@
     path: "/tmp/jenkins"
     state: directory
     mode: 01777
+- name: Create SSH key if enable_jenkins_agent_ssh is defined
+  become: true
+  community.crypto.openssh_keypair:
+    owner: jenkins
+    group: jenkins
+    mode: '0600'
+    path: /home/jenkins/.ssh/id_ecdsa
+    type: 'ecdsa'
+  when:
+    - enable_jenkins_agent_ssh
