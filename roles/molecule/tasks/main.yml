@@ -5,7 +5,7 @@
 - name: Install Molecule
   ansible.builtin.pip:
     name:
-      - molecule
+      - molecule==5.0.0
       - molecule-plugins[vagrant]
       - python-vagrant
       - rich
