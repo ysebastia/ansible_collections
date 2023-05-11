@@ -5,7 +5,9 @@
   register: control
 - name: Call rndc-confgen
   become: true
-  ansible.builtin.command: "/usr/sbin/rndc-confgen -a -k {{ bind_rndckey_name }} -c {{ bind_rndc_file }} -A hmac-sha512"
+  ansible.builtin.command:
+    cmd: "/usr/sbin/rndc-confgen -a -k {{ bind_rndckey_name }} -c {{ bind_rndc_file }} -A hmac-sha512"
+    creates: "{{ bind_rndc_file }}"
   when: not control.stat.exists
 - name: Set owner of rndc file
   become: true
