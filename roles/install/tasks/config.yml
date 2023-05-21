@@ -1,7 +1,6 @@
 ---
-- name: Download and install docker-compose
+- name: Remove standalone binary
   become: true
-  ansible.builtin.get_url:
-    url: '{{ docker_compose_url }}'
-    dest: /usr/local/bin/docker-compose
-    mode: '0755'
+  ansible.builtin.file:
+    path: /usr/local/bin/docker-compose
+    state: absent
