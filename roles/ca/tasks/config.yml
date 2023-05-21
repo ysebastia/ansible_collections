@@ -1,9 +1,6 @@
 ---
 - name: Prepare PKI
-  ansible.builtin.include_role:
-    name: prepare
-  vars:
-    pki_path: "{{ pki_ca_path }}"
+  ansible.builtin.include_tasks: prepare.yml
 
 - name: Create private key with password protection
   become: true
