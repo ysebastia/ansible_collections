@@ -30,7 +30,7 @@
     - lv: backup
       size: '{{ filesystem_qemu_backup_size }}'
     - lv: images
-      size: 20g
+      size: '{{ filesystem_qemu_images_size }}'
     - lv: qemu-save
       size: '{{ filesystem_qemu_save_size }}'
   when:
