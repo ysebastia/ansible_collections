@@ -25,7 +25,7 @@
 - name: Check if SSH key of server exists
   ansible.builtin.stat:
     path: 'files/pubkeys/{{ backuppc_serverhost }}.id_ecdsa.pub'
-  register: result
+  register: plug_result
   delegate_to: localhost
   become: false
 - name: Deploy SSH key if exists
@@ -33,5 +33,5 @@
   ansible.posix.authorized_key:
     user: backup
     state: present
-    key: "{{ lookup('file', result.stat.path) }}"
-  when: result.stat.exists
+    key: "{{ lookup('file', plug_result.stat.path) }}"
+  when: plug_result.stat.exists
