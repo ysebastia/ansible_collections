@@ -2,7 +2,7 @@
 - name: Stat freshclam.log
   ansible.builtin.stat:
     path: '{{ freshclam_logfile }}'
-  register: freshclam_log
+  register: clamav_freshclamlog
 - name: Create freshclam.log
   become: true
   ansible.builtin.file:
@@ -11,7 +11,7 @@
     owner: '{{ freshclam_owner }}'
     group: '{{ freshclam_owner }}'
     mode: "0644"
-  when: not freshclam_log.stat.exists
+  when: not clamav_freshclamlog.stat.exists
   notify:
     - SELinux on freshclam_logfile
 - name: Configure SELINUX for FRESHCLAM if clamav_enable_selinux is defined
