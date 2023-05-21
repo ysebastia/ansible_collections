@@ -3,7 +3,7 @@
   become: true
   ansible.builtin.copy:
     dest: "{{ pki_ca_path }}certs/{{ pki_server_host }}.pem"
-    content: "{{ certificate.certificate }}"
+    content: "{{ server_certificate.certificate }}"
     owner: '{{ pki_ca_owner }}'
     group: '{{ pki_ca_group }}'
     mode: '0644'
