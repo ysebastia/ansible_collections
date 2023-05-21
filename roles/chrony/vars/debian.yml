@@ -1,0 +1,2 @@
+---
+chrony_configfile: "/etc/chrony/chrony.conf"
