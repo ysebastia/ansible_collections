@@ -24,7 +24,7 @@
 - name: Ensure the existence of Jenkins key
   ansible.builtin.stat:
     path: "{{ jenkins_server_ssh_key }}"
-  register: result
+  register: agent_result
   delegate_to: localhost
 - name: Deploy Jenkins SSH key
   become: true
@@ -32,7 +32,7 @@
     user: jenkins
     state: present
     key: '{{ lookup(''file'', ''{{ jenkins_server_ssh_key }}'') }}'
-  when: result.stat.exists
+  when: agent_result.stat.exists
 - name: Sudo configuration
   become: true
   ansible.builtin.template:
