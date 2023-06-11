@@ -7,8 +7,8 @@ driver:
     name: libvirt
     type: libvirt
 platforms:
-  - name: debian11
-    box: debian11
+  - name: debian12
+    box: debian12
     memory: 1024
 provisioner:
   name: ansible
