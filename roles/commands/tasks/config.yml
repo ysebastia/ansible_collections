@@ -1,4 +1,7 @@
 ---
+- name: Install packages by operating system
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
+
 - name: Stat commands.log
   ansible.builtin.stat:
     path: /var/log/commands.log
@@ -40,5 +43,7 @@
       dst: /etc/rsyslog.d/commands.conf
       owner: root
       mode: '0644'
+  notify:
+    - Restart rsyslog
 - name: Logwatch
   ansible.builtin.include_tasks: logwatch.yml
