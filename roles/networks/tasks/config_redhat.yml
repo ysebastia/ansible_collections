@@ -1,0 +1,12 @@
+---
+- name: Configure EPEL repository
+  ansible.builtin.include_role:
+    name: ysebastia.repositories.epel
+  vars:
+    enable_repositories_epel: true
+- name: Ensure PYTHON3-DOCKER is installed
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - python3-docker
+    update_cache: true

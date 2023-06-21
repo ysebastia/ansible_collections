@@ -1,9 +1,6 @@
 ---
-- name: Ensure thap DOCKER PYTHON library is installed
-  become: true
-  ansible.builtin.pip:
-    name:
-      - docker
+- name: Include tasks
+  ansible.builtin.include_tasks: "config_{{ ansible_os_family | lower }}.yml"
 
 - name: Create DOCKER network
   become: true

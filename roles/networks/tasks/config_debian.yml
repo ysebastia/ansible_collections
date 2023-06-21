@@ -1,0 +1,7 @@
+---
+- name: Ensure PYTHON3-DOCKER is installed
+  become: true
+  ansible.builtin.apt:
+    name:
+      - python3-docker
+    update_cache: true
