@@ -64,7 +64,7 @@ pipeline {
           agent {
             docker {
               label 'docker'
-              image 'ysebastia/shellcheck:0.9.0-r2'
+              image 'ysebastia/shellcheck:0.9.0-r3'
             }
           }
           steps {
