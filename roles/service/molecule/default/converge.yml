@@ -5,5 +5,3 @@
     - name: "Include service"
       ansible.builtin.include_role:
         name: "service"
-      vars:
-        enable_repositories_docker_ce: true
