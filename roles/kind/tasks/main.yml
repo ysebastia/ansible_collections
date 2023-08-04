@@ -1,0 +1,18 @@
+---
+- name: Install Kind
+  when: enable_develop_kind
+  block:
+    - name: Download kind
+      become: true
+      ansible.builtin.get_url:
+        url: "{{ kind_repo }}"
+        dest: /usr/local/bin/kind
+        owner: root
+        group: root
+        mode: "0755"
+        force: true
+    - name: Create cluster
+      become: "{{ become_for_kind }}"
+      ansible.builtin.command:
+        cmd: "kind create cluster --name {{ cluster_name }} --image {{ kind_image }} --wait 5m"
+        creates: "{{ kube_config }}"
