@@ -5,5 +5,3 @@
     - name: "Include docker_ce"
       ansible.builtin.include_role:
         name: "docker_ce"
-      vars:
-        enable_repositories_docker_ce: true
