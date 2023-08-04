@@ -6,7 +6,6 @@
       ansible.builtin.include_role:
         name: "bootstrap"
       vars:
-        enable_docker_service: true
         enable_repositories_docker_ce: true
     - name: "Include networks"
       ansible.builtin.include_role:

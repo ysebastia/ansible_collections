@@ -7,4 +7,3 @@
         name: "service"
       vars:
         enable_repositories_docker_ce: true
-        enable_docker_service: true
