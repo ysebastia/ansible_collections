@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include kustomize"
+      ansible.builtin.include_role:
+        name: "kustomize"
