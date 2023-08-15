@@ -1,2 +1,2 @@
 ---
-enable_repositories_docker_ce: false
+enable_repositories_docker_ce: true
