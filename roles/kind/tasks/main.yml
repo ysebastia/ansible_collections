@@ -11,8 +11,14 @@
         group: root
         mode: "0755"
         force: true
+    - name: Add configuration
+      become: "{{ become_for_kind }}"
+      ansible.builtin.copy:
+        src: files/config.yml
+        dest: /tmp/config.yml
+        mode: 0644        
     - name: Create cluster
       become: "{{ become_for_kind }}"
       ansible.builtin.command:
-        cmd: "kind create cluster --name {{ cluster_name }} --image {{ kind_image }} --wait 5m"
+        cmd: "kind create cluster --config /tmp/config.yml --name {{ cluster_name }} --image {{ kind_image }} --wait 5m"
         creates: "{{ kube_config }}"
