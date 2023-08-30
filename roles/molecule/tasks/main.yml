@@ -5,8 +5,8 @@
 - name: Install Molecule
   ansible.builtin.pip:
     name:
-      - molecule==5.0.0
-      - molecule-plugins[vagrant]
+      - molecule==6.0.2
+      - molecule-plugins[vagrant]==23.5.0
       - python-vagrant
       - rich
     virtualenv: '{{ python_venv_directory }}'
