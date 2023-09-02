@@ -16,7 +16,7 @@
       ansible.builtin.copy:
         src: files/config.yml
         dest: /tmp/config.yml
-        mode: 0644        
+        mode: 0644
     - name: Create cluster
       become: "{{ become_for_kind }}"
       ansible.builtin.command:
