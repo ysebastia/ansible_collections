@@ -3,5 +3,7 @@
   become: true
   ansible.builtin.dnf:
     name:
+      - jq
+      - libguestfs
       - packer
     update_cache: true
