@@ -5,3 +5,5 @@
     zone: libvirt
     permanent: true
     state: present
+  when:
+    - enable_kvm_libvirt_zone
