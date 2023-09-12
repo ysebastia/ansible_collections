@@ -6,6 +6,7 @@
       ansible.builtin.include_role:
         name: ysebastia.kvm.bootstrap
       vars:
+        enable_base_firewalld: false
         enable_kvm_libvirt: true
         enable_kvm_manager: true
         enable_kvm_group: true
