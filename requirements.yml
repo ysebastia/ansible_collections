@@ -3,7 +3,7 @@ collections:
   - name: ansible.posix
     version: 1.5.2
   - name: community.general
-    version: 7.3.0
+    version: 7.4.0
   - name: community.libvirt
     version: 1.2.0
   - name: https://github.com/ysebastia/ansible-repositories.git
