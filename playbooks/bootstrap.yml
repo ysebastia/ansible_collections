@@ -7,7 +7,8 @@
         name: ysebastia.kvm.bootstrap
       vars:
         enable_base_firewalld: false
+        enable_kvm_group: true
         enable_kvm_libvirt: true
         enable_kvm_manager: true
-        enable_kvm_group: true
-        enable_repositories_epel: true        
+        enable_repositories_epel: true
+        kvm_user_to_append: '{{ ansible_user }}'
