@@ -1,0 +1,12 @@
+---
+- name: Bootstrap KVM
+  hosts: "{{ ansible_limit |default('localhost') }}"
+  tasks:
+    - name: "Include bootstrap"
+      ansible.builtin.include_role:
+        name: ysebastia.kvm.bootstrap
+      vars:
+        enable_kvm_libvirt: true
+        enable_kvm_manager: true
+        enable_kvm_group: true
+        enable_repositories_epel: true        
