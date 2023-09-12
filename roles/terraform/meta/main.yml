@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: Yannick Sebastia
+  description: Configure Terraform for KVM
+  license: GPL-3.0-only
+  min_ansible_version: '2.1'
+  namespace: sebastia
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+dependencies:
+  - role: ysebastia.repositories.hashicorp
+  - role: ysebastia.kvm.filesystem
+  - role: ysebastia.kvm.libvirt

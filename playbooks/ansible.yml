@@ -10,6 +10,7 @@
         enable_develop_ansible: true
         enable_develop_molecule: true
         enable_develop_packer: true
+        enable_develop_terraform: true
         enable_develop_vagrant: true
         enable_kvm_libvirt: true
         enable_repositories_epel: true
