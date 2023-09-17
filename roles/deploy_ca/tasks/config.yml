@@ -11,7 +11,7 @@
 - name: Copy CA certificate
   become: true
   ansible.builtin.copy:
-    src: "files/certs/{{ pki_ca_host }}/{{ pki_ca_file }}"
+    src: "{{ inventory_dir }}/files/certs/{{ pki_ca_host }}/{{ pki_ca_file }}"
     dest: "{{ pki_path }}certs/{{ pki_ca_file }}"
     owner: root
     group: root

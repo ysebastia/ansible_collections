@@ -38,5 +38,5 @@
   become: true
   ansible.builtin.fetch:
     src: "{{ pki_ca_path }}certs/{{ pki_ca_file }}"
-    dest: "files/certs/{{ pki_ca_host }}/{{ pki_ca_file }}"
+    dest: "{{ inventory_dir }}/files/certs/{{ pki_ca_host }}/{{ pki_ca_file }}"
     flat: true
