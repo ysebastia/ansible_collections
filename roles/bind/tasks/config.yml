@@ -15,7 +15,7 @@
 - name: Populate zones files with bind_master_zones
   become: true
   ansible.builtin.template:
-    src: templates/zones/{{ item.file }}.j2
+    src: '{{ inventory_dir }}/templates/zones/{{ item.file }}.j2'
     dest: '{{ bind_directory }}/{{ item.file }}'
     owner: root
     group: '{{ bind_group }}'
