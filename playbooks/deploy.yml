@@ -1,0 +1,26 @@
+---
+- name: Deploy Service
+  hosts: "{{ ansible_limit |default('all') }}"
+  gather_facts: false
+  tasks:
+    - name: BIND
+      ansible.builtin.include_role:
+        name: ysebastia.services_lan.bind
+    - name: OPENLDAP
+      ansible.builtin.include_role:
+        name: ysebastia.services_lan.openldap
+    - name: FREERADIUS
+      ansible.builtin.include_role:
+        name: ysebastia.services_lan.freeradius
+    - name: SQUID
+      ansible.builtin.include_role:
+        name: ysebastia.services_lan.squid
+    - name: MARIADB
+      ansible.builtin.include_role:
+        name: ysebastia.services_lan.mariadb
+    - name: DOVECOT
+      ansible.builtin.include_role:
+        name: ysebastia.services_lan.dovecot
+    - name: POSTFIX
+      ansible.builtin.include_role:
+        name: ysebastia.services_lan.postfix
