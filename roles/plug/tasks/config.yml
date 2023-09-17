@@ -24,7 +24,7 @@
   delegate_to: '{{ backuppc_serverhost }}'
 - name: Check if SSH key of server exists
   ansible.builtin.stat:
-    path: 'files/pubkeys/{{ backuppc_serverhost }}.id_ecdsa.pub'
+    path: '{{ inventory_dir }}/files/pubkeys/{{ backuppc_serverhost }}.id_ecdsa.pub'
   register: plug_result
   delegate_to: localhost
   become: false

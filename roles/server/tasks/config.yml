@@ -84,7 +84,7 @@
   become: true
   ansible.builtin.fetch:
     src: '{{ backuppc_directory_backup }}/.ssh/id_ecdsa.pub'
-    dest: files/pubkeys/{{ inventory_hostname }}.id_ecdsa.pub
+    dest: '{{ inventory_dir }}/files/pubkeys/{{ inventory_hostname }}.id_ecdsa.pub'
     flat: true
 - name: Configure SSH client
   become: true
