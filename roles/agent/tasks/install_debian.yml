@@ -3,9 +3,15 @@
   become: true
   ansible.builtin.apt:
     name:
+      - ca-certificates-java
+    update_cache: true
+- name: Ensure packages are installed
+  become: true
+  ansible.builtin.apt:
+    name:
       - ant
       - git
       - make
-      - openjdk-11-jre-headless
+      - openjdk-17-jre-headless
       - wget
     update_cache: true

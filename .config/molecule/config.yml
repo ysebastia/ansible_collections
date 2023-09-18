@@ -10,6 +10,9 @@ platforms:
   - name: debian11
     box: debian11
     memory: 1024
+  - name: debian12
+    box: debian12
+    memory: 1024
   - name: alma9
     box: alma9
     memory: 1024
