@@ -1,0 +1,11 @@
+---
+- name: Deploy Jenkins agent
+  hosts: "{{ ansible_limit |default('all') }}"
+  gather_facts: false
+  tasks:
+    - name: Jenkins agent
+      ansible.builtin.include_role:
+        name: ysebastia.jenkins.agent
+    - name: Jenkins docker
+      ansible.builtin.include_role:
+        name: ysebastia.jenkins.docker
