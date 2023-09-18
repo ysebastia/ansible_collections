@@ -1,6 +1,7 @@
 ---
 - name: Develop for cloud environment
   hosts: "{{ ansible_limit |default('localhost') }}"
+  gather_facts: false
   tasks:
     - name: Configure Kind
       ansible.builtin.include_role:
