@@ -1,0 +1,8 @@
+---
+- name: Deploy Freeradius
+  hosts: "{{ ansible_limit |default('all') }}"
+  gather_facts: false
+  tasks:
+    - name: Freeradius
+      ansible.builtin.include_role:
+        name: ysebastia.services_lan.freeradius
