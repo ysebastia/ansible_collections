@@ -1,6 +1,7 @@
 ---
 - name: BACKUPPC
   hosts: "{{ ansible_limit |default('all') }}"
+  gather_facts: false
   tasks:
     - name: Bootstrap BACKUPPC
       ansible.builtin.include_role:
