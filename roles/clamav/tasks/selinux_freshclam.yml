@@ -11,5 +11,3 @@
     target: "{{ freshclam_logfile }}"
     setype: antivirus_log_t
     state: present
-  notify:
-    - SELinux on freshclam_logfile
