@@ -1,3 +1,4 @@
 ---
 skip-check:
+  - CKV2_ANSIBLE_1  # Allow uri http sheme
   - CKV2_ANSIBLE_3  # Allow block without rescue
