@@ -8,7 +8,7 @@ def ansiblelint(quality) {
 }
 def checkov() {
     sh 'checkov --soft-fail --directory . -o junitxml --output-file-path build/checkov --skip-download'
-    junit skipPublishingChecks: true, testResults: 'build/checkov/results_junitxml.xml'
+    junit allowEmptyResults: true, allowEmptyResults: true, skipPublishingChecks: true, testResults: 'build/checkov/results_junitxml.xml'
 }
 def cloc() {
   sh 'cloc --by-file --xml --fullpath --not-match-d="(build|vendor)" --out=cloc.xml ./'
