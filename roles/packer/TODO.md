@@ -1,1 +1,0 @@
-dnf install ansible-core
