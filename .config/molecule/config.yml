@@ -7,9 +7,6 @@ driver:
     name: libvirt
     type: libvirt
 platforms:
-  - name: debian11
-    box: debian11
-    memory: 1024
   - name: debian12
     box: debian12
     memory: 1024
