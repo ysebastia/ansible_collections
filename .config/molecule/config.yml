@@ -10,8 +10,8 @@ platforms:
   - name: alma9
     box: alma9
     memory: 1024
-  - name: ubuntu2210
-    box: generic/ubuntu2210
+  - name: ubuntu2304
+    box: generic/ubuntu2304
     memory: 2048
 provisioner:
   name: ansible
