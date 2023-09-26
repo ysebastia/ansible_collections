@@ -1,5 +1,7 @@
 # docker
 
+Configure docker agent
+
 ## Table of content
 
 - [Requirements](#requirements)
@@ -14,7 +16,7 @@
 
 ## Requirements
 
-None.
+- Minimum Ansible version: `2.1`
 
 ## Default Variables
 
@@ -38,4 +40,12 @@ enable_jenkins_docker: false
 
 ## Dependencies
 
-None.
+- ysebastia.repositories.docker_ce
+
+## License
+
+GPL-3.0-only
+
+## Author
+
+Yannick Sebastia
