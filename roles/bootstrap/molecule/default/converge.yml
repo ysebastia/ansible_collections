@@ -7,7 +7,6 @@
         name: "bootstrap"
       vars:
         enable_repositories_hashicorp: true
-        enable_repositories_epel: true
         enable_kvm_libvirt: true
         enable_develop_vagrant: true
         enable_develop_python: true
