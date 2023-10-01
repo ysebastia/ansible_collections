@@ -9,3 +9,6 @@ collections:
   - name: https://github.com/ysebastia/ansible-base.git
     type: git
     version: main
+  - name: https://github.com/ysebastia/ansible-docker.git
+    type: git
+    version: main
