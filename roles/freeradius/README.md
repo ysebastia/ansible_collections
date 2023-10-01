@@ -27,6 +27,7 @@ Configure FreeRadius
   - [freeradius_ldap_ttls_user_filter](#freeradius_ldap_ttls_user_filter)
   - [freeradius_owner](#freeradius_owner)
   - [freeradius_raddbdir](#freeradius_raddbdir)
+  - [freeradius_secret](#freeradius_secret)
   - [freeradius_site_inner_tunnel_ttls](#freeradius_site_inner_tunnel_ttls)
   - [freeradius_ssl_ca_file](#freeradius_ssl_ca_file)
   - [freeradius_ssl_internal](#freeradius_ssl_internal)
@@ -210,6 +211,14 @@ freeradius_owner: freerad
 
 ```YAML
 freeradius_raddbdir: /etc/freeradius/3.0
+```
+
+### freeradius_secret
+
+#### Default value
+
+```YAML
+freeradius_secret:
 ```
 
 ### freeradius_site_inner_tunnel_ttls
