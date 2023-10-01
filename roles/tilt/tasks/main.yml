@@ -6,7 +6,6 @@
       become: true
       ansible.builtin.package:
         name:
-        name:
           - tar
           - unzip
         state: present
