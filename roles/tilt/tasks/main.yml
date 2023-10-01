@@ -2,6 +2,11 @@
 - name: Install Tilt
   when: enable_tilt
   block:
+    - name: Ensure that Unzip package is present
+      ansible.builtin.package:
+        name:
+          - unzip
+        state: present
     - name: Download tilt
       become: true
       ansible.builtin.unarchive:

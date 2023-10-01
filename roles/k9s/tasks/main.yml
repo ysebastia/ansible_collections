@@ -1,4 +1,9 @@
 ---
+- name: Ensure that Unzip package is present
+  ansible.builtin.package:
+    name:
+      - unzip
+    state: present
 - name: Download k9s
   become: true
   ansible.builtin.unarchive:

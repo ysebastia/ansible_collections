@@ -2,6 +2,11 @@
 - name: Install Flux
   when: enable_flux
   block:
+    - name: Ensure that Unzip package is present
+      ansible.builtin.package:
+        name:
+          - unzip
+        state: present
     - name: Download flux
       become: true
       ansible.builtin.unarchive:

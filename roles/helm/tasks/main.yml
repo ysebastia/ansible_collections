@@ -2,6 +2,11 @@
 - name: Install Helm
   when: enable_helm
   block:
+    - name: Ensure that Unzip package is present
+      ansible.builtin.package:
+        name:
+          - unzip
+        state: present
     - name: Download helm
       become: true
       ansible.builtin.unarchive:

@@ -2,6 +2,11 @@
 - name: Install kustomize
   when: enable_kustomize
   block:
+    - name: Ensure that Unzip package is present
+      ansible.builtin.package:
+        name:
+          - unzip
+        state: present
     - name: Download kustomize
       become: true
       ansible.builtin.unarchive:
