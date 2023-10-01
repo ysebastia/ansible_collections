@@ -3,9 +3,8 @@
   become: true
   ansible.builtin.package:
     name:
-        name:
-          - tar
-          - unzip
+      - tar
+      - unzip
     state: present
 - name: Download k9s
   become: true
