@@ -13,6 +13,9 @@ platforms:
   - name: debian12
     box: debian12
     memory: 1024
+  - name: ubuntu2204
+    box: generic/ubuntu2204
+    memory: 2048
   - name: ubuntu2304
     box: generic/ubuntu2304
     memory: 2048
