@@ -6,6 +6,7 @@
       become: true
       ansible.builtin.package:
         name:
+          - tar
           - unzip
         state: present
     - name: Download helm
