@@ -20,5 +20,5 @@
     - name: Create cluster
       become: "{{ become_for_kind }}"
       ansible.builtin.command:
-        cmd: "kind create cluster --config /tmp/config.yml --name {{ cluster_name }} --image {{ kind_image }} --wait 5m"
+        cmd: "/usr/local/bin/kind create cluster --config /tmp/config.yml --name {{ cluster_name }} --image {{ kind_image }} --wait 5m"
         creates: "{{ kube_config }}"
