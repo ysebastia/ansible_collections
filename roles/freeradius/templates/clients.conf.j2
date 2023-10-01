@@ -1,7 +1,7 @@
 {% for client in freeradius_client %}
 client {{ client.name }} {
         ipaddr = {{ client.ipaddr }}
-        secret = {{ client.secret }}
+        secret = {{ freeradius_secret }}
         shortname = {{ client.name }}
         require_message_authenticator = {{ client.authenticator }}
 
