@@ -2,3 +2,9 @@
 collections:
   - name: community.crypto
     version: 2.15.1
+  - name: https://github.com/ysebastia/ansible-repositories.git
+    type: git
+    version: main
+  - name: https://github.com/ysebastia/ansible-docker.git
+    type: git
+    version: main
