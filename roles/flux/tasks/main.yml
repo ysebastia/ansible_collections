@@ -3,6 +3,7 @@
   when: enable_flux
   block:
     - name: Ensure that Unzip package is present
+      become: true
       ansible.builtin.package:
         name:
           - unzip
