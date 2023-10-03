@@ -6,6 +6,6 @@
   ansible.builtin.pip:
     name:
       - ansible-core==2.15.4
-      - ansible-lint==6.20.2
+      - ansible-lint==6.20.3
       - yamllint==1.32.0
     virtualenv: '{{ python_venv_directory }}'
