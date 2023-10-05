@@ -1,6 +1,4 @@
 ---
-dependency:
-  name: galaxy
 driver:
   name: vagrant
   provider:
@@ -10,7 +8,3 @@ platforms:
   - name: debian12
     box: debian12
     memory: 1024
-provisioner:
-  name: ansible
-verifier:
-  name: ansible
