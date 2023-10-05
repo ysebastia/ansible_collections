@@ -1,6 +1,4 @@
 ---
-dependency:
-  name: galaxy
 driver:
   name: vagrant
   provider:
@@ -13,7 +11,3 @@ platforms:
   - name: alma9
     box: alma9
     memory: 1024
-provisioner:
-  name: ansible
-verifier:
-  name: ansible
