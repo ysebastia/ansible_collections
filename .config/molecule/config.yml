@@ -1,6 +1,4 @@
 ---
-dependency:
-  name: galaxy
 driver:
   name: vagrant
   provider:
@@ -19,7 +17,3 @@ platforms:
   - name: ubuntu2304
     box: generic/ubuntu2304
     memory: 2048
-provisioner:
-  name: ansible
-verifier:
-  name: ansible
