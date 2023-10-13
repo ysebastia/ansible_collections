@@ -31,8 +31,8 @@ enable_flux: true
 #### Default value
 
 ```YAML
-flux_repo: 
-  https://github.com/fluxcd/flux2/releases/download/v2.1.1/flux_2.1.1_linux_amd64.tar.gz
+flux_repo:
+  https://github.com/fluxcd/flux2/releases/download/v2.1.2/flux_2.1.2_linux_amd64.tar.gz
 ```
 
 
