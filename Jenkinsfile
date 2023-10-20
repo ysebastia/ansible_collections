@@ -57,7 +57,7 @@ pipeline {
           agent {
             docker {
               label 'docker'
-              image 'ysebastia/ansible-lint:6.21.0'
+              image 'ysebastia/ansible-lint:6.21.1'
             }
           }
           steps {
