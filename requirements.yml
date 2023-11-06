@@ -3,7 +3,7 @@ collections:
   - name: ansible.posix
     version: 1.5.2
   - name: community.general
-    version: 7.5.0
+    version: 8.0.0
   - name: https://github.com/ysebastia/ansible-repositories.git
     type: git
     version: main
