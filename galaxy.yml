@@ -41,7 +41,10 @@ tags:
 # collection label 'namespace.name'. The value is a version range
 # L(specifiers,https://python-semanticversion.readthedocs.io/en/latest/#requirement-specification). Multiple version
 # range specifiers can be set and are separated by ','
-dependencies: {}
+dependencies:
+  "ansible.posix": ">=1.5.2"
+  "community.crypto": ">=2.16.2"
+  "git+https://github.com/ysebastia/ansible-services-lan.git": "main"
 
 # The URL of the originating SCM repository
 repository: https://github.com/ysebastia/ansible-backuppc
