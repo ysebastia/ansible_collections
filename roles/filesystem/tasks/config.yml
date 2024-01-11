@@ -35,6 +35,7 @@
       size: '{{ filesystem_qemu_save_size }}'
   when:
     - filesystem_host_lvm is defined
+    - item.size != "0"
 - name: Make filesystem if filesystem_host_lvm is defined
   become: true
   community.general.filesystem:
@@ -43,13 +44,17 @@
     force: false
   with_items:
     - dev: '/dev/{{ filesystem_host_lvm }}/backup'
+      size: '{{ filesystem_qemu_backup_size }}'
       fstype: xfs
     - dev: '/dev/{{ filesystem_host_lvm }}/images'
+      size: '{{ filesystem_qemu_images_size }}'
       fstype: xfs
     - dev: '/dev/{{ filesystem_host_lvm }}/qemu-save'
+      size: '{{ filesystem_qemu_save_size }}'
       fstype: xfs
   when:
     - filesystem_host_lvm is defined
+    - item.size != "0"
 - name: Mount filesystem if filesystem_host_lvm is defined
   become: true
   ansible.posix.mount:
@@ -59,13 +64,17 @@
     state: mounted
   with_items:
     - dev: '/dev/mapper/{{ filesystem_host_lvm }}-backup'
+      size: '{{ filesystem_qemu_backup_size }}'
       path: /var/lib/libvirt/backup
       fstype: xfs
     - dev: '/dev/mapper/{{ filesystem_host_lvm }}-images'
+      size: '{{ filesystem_qemu_images_size }}'
       path: /var/lib/libvirt/images
       fstype: xfs
     - dev: '/dev/mapper/{{ filesystem_host_lvm }}-qemu--save'
+      size: '{{ filesystem_qemu_save_size }}'
       path: /var/lib/libvirt/qemu/save
       fstype: xfs
   when:
     - filesystem_host_lvm is defined
+    - item.size != "0"
