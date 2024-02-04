@@ -1,0 +1,3 @@
+---
+enable_jenkins_docker: false
+ansible_action: config

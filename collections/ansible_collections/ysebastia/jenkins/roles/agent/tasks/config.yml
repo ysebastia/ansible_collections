@@ -1,0 +1,58 @@
+---
+- name: Install packages by operating system
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
+
+- name: Ensure jenkins group exists
+  become: true
+  ansible.builtin.group:
+    name: jenkins
+    state: present
+- name: Ensure jenkins user exists
+  become: true
+  ansible.builtin.user:
+    name: jenkins
+    group: jenkins
+    home: /home/jenkins
+- name: Permissions
+  become: true
+  ansible.builtin.file:
+    path: /home/jenkins
+    state: directory
+    mode: '0700'
+    owner: jenkins
+    group: jenkins
+- name: Ensure the existence of Jenkins key
+  ansible.builtin.stat:
+    path: "{{ jenkins_server_ssh_key }}"
+  register: agent_result
+  delegate_to: localhost
+- name: Deploy Jenkins SSH key
+  become: true
+  ansible.posix.authorized_key:
+    user: jenkins
+    state: present
+    key: '{{ lookup(''file'', ''{{ jenkins_server_ssh_key }}'') }}'
+  when: agent_result.stat.exists
+- name: Sudo configuration
+  become: true
+  ansible.builtin.template:
+    src: templates/etc/sudoers.d/jenkins.j2
+    dest: /etc/sudoers.d/jenkins
+    validate: visudo -cf %s
+    mode: 288
+- name: Create tempory directory
+  become: true
+  ansible.builtin.file:
+    path: "/tmp/jenkins"
+    state: directory
+    mode: 01777
+- name: Create SSH key if enable_jenkins_agent_ssh is defined
+  become: true
+  community.crypto.openssh_keypair:
+    owner: jenkins
+    group: jenkins
+    mode: '0600'
+    path: /home/jenkins/.ssh/id_ecdsa
+    type: 'ecdsa'
+  when:
+    - enable_jenkins_agent_ssh
