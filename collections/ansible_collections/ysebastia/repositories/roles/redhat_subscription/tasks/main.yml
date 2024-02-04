@@ -1,0 +1,13 @@
+---
+- name: Register subscription
+  become: true
+  community.general.redhat_subscription:
+    state: present
+    username: '{{ redhat_user }}'
+    password: '{{ redhat_pass }}'
+    auto_attach: true
+    force_register: '{{ redhat_force_register | default(false) }}'
+  when:
+    - enable_repositories_redhat_subscription
+    - redhat_user is defined
+    - redhat_user != None

@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include redhat_subscription"
+      ansible.builtin.include_role:
+        name: "redhat_subscription"

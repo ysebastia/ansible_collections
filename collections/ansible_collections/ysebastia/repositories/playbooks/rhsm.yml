@@ -1,0 +1,7 @@
+---
+- name: Redhat Subscription
+  hosts: "{{ ansible_limit |default('all') }}"
+  tasks:
+    - name: Configure Redhat subscription
+      ansible.builtin.include_role:
+        name: ysebastia.repositories.redhat_subscription

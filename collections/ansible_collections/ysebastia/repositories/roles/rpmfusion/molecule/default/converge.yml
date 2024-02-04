@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include rpmfusion"
+      ansible.builtin.include_role:
+        name: "rpmfusion"
+      vars:
+        enable_repositories_rpmfusion: true

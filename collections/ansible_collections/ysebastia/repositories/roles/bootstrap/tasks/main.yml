@@ -1,0 +1,22 @@
+---
+- name: Configure PROXY
+  ansible.builtin.include_role:
+    name: ysebastia.repositories.proxy
+- name: Configure Redhat Subscription
+  ansible.builtin.include_role:
+    name: ysebastia.repositories.redhat_subscription
+- name: Configure CODEREADY repository
+  ansible.builtin.include_role:
+    name: ysebastia.repositories.codeready
+- name: Configure EPEL repository
+  ansible.builtin.include_role:
+    name: ysebastia.repositories.epel
+- name: Configure DOCKER-CE repository
+  ansible.builtin.include_role:
+    name: ysebastia.repositories.docker_ce
+- name: Configure RPMFUSION repository
+  ansible.builtin.include_role:
+    name: ysebastia.repositories.rpmfusion
+- name: Configure HASHICORP repository
+  ansible.builtin.include_role:
+    name: ysebastia.repositories.hashicorp

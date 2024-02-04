@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include hashicorp"
+      ansible.builtin.include_role:
+        name: "hashicorp"
+      vars:
+        enable_repositories_hashicorp: true

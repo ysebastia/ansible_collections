@@ -1,0 +1,9 @@
+---
+- name: Configure RPMFUSION repository if enable_repositories_rpmfusion is enable
+  when: enable_repositories_rpmfusion
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "config_{{ ansible_os_family | lower }}.yml"

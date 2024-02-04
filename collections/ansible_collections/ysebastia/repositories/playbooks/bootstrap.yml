@@ -1,0 +1,8 @@
+---
+- name: Bootstrap repositories
+  hosts: "{{ ansible_limit |default('all') }}"
+  gather_facts: false
+  tasks:
+    - name: Configure repository
+      ansible.builtin.include_role:
+        name: ysebastia.repositories.bootstrap

@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include docker_ce"
+      ansible.builtin.include_role:
+        name: "docker_ce"
