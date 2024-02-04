@@ -1,0 +1,10 @@
+---
+driver:
+  name: vagrant
+  provider:
+    name: libvirt
+    type: libvirt
+platforms:
+  - name: debian12
+    box: debian12
+    memory: 1024

@@ -1,0 +1,6 @@
+---
+- name: Plug host to BackupPC server if enable_backuppc_plug is defined
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when:
+    - enable_backuppc_plug
+    - ansible_action in ['config', 'destroy']

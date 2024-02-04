@@ -1,0 +1,9 @@
+---
+ansible_action: config
+backuppc_directory_backup: /var/lib/backuppc
+backuppc_owner: '{{ ansible_user }}'
+backuppc_serverhost: '{{ inventory_hostname_short }}'
+enable_backuppc_plug: false
+backuppc_linux:
+  - /etc
+  - /root

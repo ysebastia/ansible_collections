@@ -1,0 +1,6 @@
+---
+- name: Configure BACKUPPC if enable_backuppc_server is defined
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when:
+    - enable_backuppc_server
+    - ansible_action in ['config', 'destroy']

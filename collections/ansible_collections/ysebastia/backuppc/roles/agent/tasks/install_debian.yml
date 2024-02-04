@@ -1,0 +1,6 @@
+---
+- name: Ensure rsync is installed
+  become: true
+  ansible.builtin.apt:
+    name: rsync
+    update_cache: true

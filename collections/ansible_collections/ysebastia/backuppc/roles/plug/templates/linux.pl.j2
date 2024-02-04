@@ -1,0 +1,34 @@
+$Conf{RsyncShareName} = [
+{% for path in backuppc_linux %}'{{ path }}'{{ "," if not loop.last else "" }}{% endfor %}
+{% if backuppc_path is defined %}
+{% for path in backuppc_path %},'{{ path }}'{% endfor %}
+{% endif %}
+
+];
+$Conf{ClientNameAlias} = [
+  '{{ inventory_hostname_short }}'
+];
+$Conf{BackupPCNightlyPeriod} = 1;
+$Conf{RsyncSshArgs} = [
+  '-e',
+  '$sshPath -l backup'
+];
+$Conf{RsyncClientPath} = '/usr/bin/sudo /usr/bin/rsync';
+$Conf{RsyncArgs} = [
+  '--super',
+  '--recursive',
+  '--protect-args',
+  '--numeric-ids',
+  '--perms',
+  '--owner',
+  '--group',
+  '-D',
+  '--times',
+  '--links',
+  '--hard-links',
+  '--delete',
+  '--delete-excluded',
+  '--partial',
+  '--log-format=log: %o %i %B %8U,%8G %9l %f%L',
+  '--stats'
+];
