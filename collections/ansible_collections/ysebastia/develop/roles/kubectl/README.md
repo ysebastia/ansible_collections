@@ -5,7 +5,7 @@
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
   - [enable_kubectl](#enable_kubectl)
-  - [kubectl_repo](#kubectl_repo)
+  - [kubectl_version](#kubectl_version)
 - [Dependencies](#dependencies)
 - [License](#license)
 - [Author](#author)
@@ -26,13 +26,12 @@ None.
 enable_kubectl: true
 ```
 
-### kubectl_repo
+### kubectl_version
 
 #### Default value
 
 ```YAML
-kubectl_repo: 
-  https://storage.googleapis.com/kubernetes-release/release/v1.27.1/bin/linux/amd64/kubectl
+kubectl_version: v1.27.1
 ```
 
 

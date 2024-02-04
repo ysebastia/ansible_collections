@@ -31,7 +31,7 @@ enable_tilt: true
 #### Default value
 
 ```YAML
-tilt_repo:
+tilt_repo: 
   https://github.com/tilt-dev/tilt/releases/download/v0.33.10/tilt.0.33.10.linux.x86_64.tar.gz
 ```
 
