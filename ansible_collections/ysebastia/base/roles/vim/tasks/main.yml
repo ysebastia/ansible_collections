@@ -1,0 +1,11 @@
+---
+- name: Configure VIM if enable_base_vim is defined
+  when:
+    - enable_base_vim
+    - ansible_action in ['config', 'destroy']
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"

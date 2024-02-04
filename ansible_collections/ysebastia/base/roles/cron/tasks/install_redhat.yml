@@ -1,0 +1,5 @@
+---
+- name: Ensure cron package is installed
+  become: true
+  ansible.builtin.dnf:
+    name: cronie

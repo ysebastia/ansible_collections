@@ -1,0 +1,13 @@
+---
+- name: Configuration SELinux
+  become: true
+  ansible.posix.seboolean:
+    name: antivirus_can_scan_system
+    state: true
+    persistent: true
+- name: Allow freshclam to update {{ freshclam_logfile }}
+  become: true
+  community.general.sefcontext:
+    target: "{{ freshclam_logfile }}"
+    setype: antivirus_log_t
+    state: present

@@ -1,0 +1,6 @@
+---
+- name: Ensure rsyslog is installed
+  become: true
+  ansible.builtin.apt:
+    name: rsyslog
+    update_cache: true

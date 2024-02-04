@@ -1,0 +1,10 @@
+---
+- name: Install packages by operating system
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
+
+- name: Ensure firewalld is running and enabled at boot
+  become: true
+  ansible.builtin.service:
+    name: firewalld
+    state: started
+    enabled: true

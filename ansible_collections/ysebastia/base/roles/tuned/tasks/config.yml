@@ -1,0 +1,25 @@
+---
+- name: Install packages by operating system
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
+
+- name: Ensure tuned is running and enabled at boot
+  become: true
+  ansible.builtin.service:
+    name: tuned
+    state: started
+    enabled: true
+
+- name: Check current profile
+  become: true
+  ansible.builtin.command: tuned-adm active
+  register: tuned_adm
+  changed_when: false
+
+- name: Set tuned fact
+  ansible.builtin.set_fact:
+    tuned_change_profile: "{{ tuned_profile not in tuned_adm.stdout }}"
+
+- name: Set tuned profile
+  become: true
+  ansible.builtin.command: tuned-adm profile {{ tuned_profile }}
+  when: tuned_change_profile

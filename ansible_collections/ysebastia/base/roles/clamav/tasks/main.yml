@@ -1,0 +1,11 @@
+---
+- name: Configure CLAMAV if enable_base_clamav is defined
+  when:
+    - enable_base_clamav
+    - ansible_action in ['config', 'destroy']
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"

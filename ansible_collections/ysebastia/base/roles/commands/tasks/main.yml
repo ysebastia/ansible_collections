@@ -1,0 +1,6 @@
+---
+- name: Configure COMMANDS if enable_base_commands is defined
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when:
+    - enable_base_commands
+    - ansible_action in ['config', 'destroy']

@@ -1,0 +1,37 @@
+---
+- name: Configure LOGWATCH COMMANDS if enable_base_commands_with_logwatch is defined
+  when: enable_base_commands_with_logwatch
+  block:
+    - name: Logwatch directory
+      become: true
+      ansible.builtin.file:
+        path: '{{ item }}'
+        state: directory
+        group: root
+        owner: root
+        mode: '0755'
+      loop:
+        - /etc/logwatch/conf/logfiles/
+        - /etc/logwatch/conf/services
+        - /etc/logwatch/scripts/services/
+    - name: Logwatch configuration for commands
+      become: true
+      ansible.builtin.copy:
+        src: 'files/{{ item.src }}'
+        dest: '{{ item.dst }}'
+        owner: '{{ item.owner }}'
+        group: '{{ item.owner }}'
+        mode: '{{ item.mode }}'
+      with_items:
+        - src: /etc/logwatch/conf/logfiles/commands.conf
+          dst: /etc/logwatch/conf/logfiles/commands.conf
+          owner: root
+          mode: '0644'
+        - src: /etc/logwatch/conf/services/commands.conf
+          dst: /etc/logwatch/conf/services/commands.conf
+          owner: root
+          mode: '0644'
+        - src: /etc/logwatch/scripts/services/commands.pl
+          dst: /etc/logwatch/scripts/services/commands
+          owner: root
+          mode: '0755'

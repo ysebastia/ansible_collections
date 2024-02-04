@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include qemu_guest_agent"
+      ansible.builtin.include_role:
+        name: "qemu_guest_agent"

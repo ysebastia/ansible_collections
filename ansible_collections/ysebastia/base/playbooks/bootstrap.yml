@@ -1,0 +1,8 @@
+---
+- name: Bootstrap base
+  hosts: "{{ ansible_limit |default('localhost') }}"
+  gather_facts: false
+  tasks:
+    - name: "Include bootstrap"
+      ansible.builtin.include_role:
+        name: ysebastia.base.bootstrap

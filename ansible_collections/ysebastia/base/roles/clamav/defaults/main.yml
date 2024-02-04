@@ -1,0 +1,6 @@
+---
+ansible_action: config
+clamav_enable_clamd: true
+clamav_enable_selinux: true
+clamav_syslog: false
+enable_base_clamav: false

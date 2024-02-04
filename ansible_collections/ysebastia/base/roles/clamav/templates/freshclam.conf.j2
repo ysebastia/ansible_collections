@@ -1,0 +1,22 @@
+DatabaseDirectory /var/lib/clamav
+UpdateLogFile {{ freshclam_logfile }}
+LogFileMaxSize 0
+LogTime true
+LogVerbose false
+LogSyslog false
+LogRotate true
+Foreground false
+Debug false
+MaxAttempts 5
+#PidFile /var/run/freshclam.pid
+DatabaseOwner {{ freshclam_owner }}
+DNSDatabaseInfo current.cvd.clamav.net
+DatabaseMirror database.clamav.net
+ConnectTimeout 30
+ReceiveTimeout 0
+TestDatabases false
+ScriptedUpdates true
+CompressLocalDatabase false
+Checks 24
+Bytecode true
+NotifyClamd {{ clamav_config }}

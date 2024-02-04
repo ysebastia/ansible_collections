@@ -1,0 +1,9 @@
+---
+freshclam_config: /etc/clamav/freshclam.conf
+freshclam_logfile: /var/log/clamav/freshclam.log
+freshclam_owner: clamav
+clamav_config: /etc/clamav/clamd.conf
+clamav_enable_selinux: false
+clamav_localsocket: /var/run/clamav/clamd.ctl
+clamav_service: clamav-daemon
+clamav_user: clamav

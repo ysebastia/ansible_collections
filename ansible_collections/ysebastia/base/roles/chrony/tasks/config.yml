@@ -1,0 +1,21 @@
+---
+- name: Install packages by operating system
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
+
+- name: Configuration of chrony.conf
+  become: true
+  ansible.builtin.template:
+    src: templates/etc/chrony.conf.j2
+    dest: '{{ chrony_configfile }}'
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - Restart chronyd
+
+- name: Ensure chronyd is running and enabled at boot
+  become: true
+  ansible.builtin.service:
+    name: chronyd
+    state: started
+    enabled: true

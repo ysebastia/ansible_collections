@@ -1,0 +1,49 @@
+---
+- name: Install packages by operating system
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
+
+- name: Stat commands.log
+  ansible.builtin.stat:
+    path: /var/log/commands.log
+  register: commands_log
+- name: Create commands.log
+  become: true
+  ansible.builtin.file:
+    path: /var/log/commands.log
+    state: touch
+    owner: root
+    group: root
+    mode: "0644"
+  when: not commands_log.stat.exists
+- name: Append to commands.log
+  become: true
+  ansible.builtin.file:
+    path: /var/log/commands.log
+    attr: -a
+  register: commands_attribute
+  changed_when: "'a' in commands_attribute.diff.before.attributes"
+- name: Commands configuration
+  become: true
+  ansible.builtin.copy:
+    src: 'files/{{ item.src }}'
+    dest: '{{ item.dst }}'
+    owner: '{{ item.owner }}'
+    group: '{{ item.owner }}'
+    mode: '{{ item.mode }}'
+  with_items:
+    - src: /etc/logrotate.d/commands
+      dst: /etc/logrotate.d/commands
+      owner: root
+      mode: '0644'
+    - src: /etc/profile.d/commands.sh
+      dst: /etc/profile.d/commands.sh
+      owner: root
+      mode: '0644'
+    - src: /etc/rsyslog.d/commands.conf
+      dst: /etc/rsyslog.d/commands.conf
+      owner: root
+      mode: '0644'
+  notify:
+    - Restart rsyslog
+- name: Logwatch
+  ansible.builtin.include_tasks: logwatch.yml

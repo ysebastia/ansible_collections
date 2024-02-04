@@ -1,0 +1,7 @@
+---
+- name: Restart chronyd
+  become: true
+  ansible.builtin.service:
+    name: chronyd
+    state: restarted
+    enabled: true

@@ -1,0 +1,4 @@
+---
+ansible_action: config
+enable_base_tuned: true
+tuned_profile: balanced

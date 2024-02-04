@@ -1,0 +1,6 @@
+---
+- name: Configure QEMU-GUEST-AGENT if enable_base_qemu_guest_agent is defined
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when:
+    - enable_base_qemu_guest_agent
+    - ansible_action in ['config', 'destroy']

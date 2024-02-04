@@ -1,0 +1,13 @@
+---
+- name: Remove other MUA
+  become: true
+  ansible.builtin.apt:
+    name: exim
+    state: absent
+- name: Ensure postfix is installed
+  become: true
+  ansible.builtin.apt:
+    name:
+      - postfix
+      - mailutils
+    update_cache: true
