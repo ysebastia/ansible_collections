@@ -1,7 +1,7 @@
 def ansiblelint(quality) {
   sh 'find . -name requirements.yml -exec ansible-galaxy collection install -r {} --ignore-certs --force --collections-path "~/.ansible/collections" \\;'
   sh 'touch ansible-lint.txt'
-  sh 'ansible-lint -p --exclude ansible_collections | tee -a ansible-lint.txt'
+  sh 'ansible-lint -p | tee -a ansible-lint.txt'
   recordIssues enabledForFailure: true, qualityGates: [[threshold: quality, type: 'TOTAL', unstable: false]],  tools: [ansibleLint(id: 'ansibleLint', name: 'Ansible Lint', pattern: 'ansible-lint.txt')]
   archiveArtifacts artifacts: 'ansible-lint.txt', followSymlinks: false
   sh 'rm ansible-lint.txt'
