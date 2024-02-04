@@ -53,7 +53,7 @@ enable_develop_kind: true
 #### Default value
 
 ```YAML
-kind_image: kindest/node:v1.27.3
+kind_image: kindest/node:v1.29.1
 ```
 
 ### kind_repo
