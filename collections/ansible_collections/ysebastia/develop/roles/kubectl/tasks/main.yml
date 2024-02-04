@@ -5,7 +5,7 @@
     - name: Download kubectl
       become: true
       ansible.builtin.get_url:
-        url: '{{ kubectl_repo }}'
+        url: 'https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl'
         dest: /usr/local/bin/kubectl
         owner: root
         group: root
