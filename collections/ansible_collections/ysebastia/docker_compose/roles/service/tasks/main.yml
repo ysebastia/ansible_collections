@@ -1,0 +1,6 @@
+---
+- name: Configure DOCKER-COMPOSE as service if enable_docker_compose_service is defined
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when:
+    - enable_docker_compose_service
+    - ansible_action in ['config', 'destroy']

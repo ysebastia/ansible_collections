@@ -1,0 +1,31 @@
+---
+- name: Create docker compose directory for {{ docker_compose_project }}
+  become: true
+  ansible.builtin.file:
+    path: '{{ docker_compose_working_directory }}{{ docker_compose_project }}'
+    state: directory
+    mode: '0755'
+
+- name: Configure docker composition from templates
+  become: true
+  ansible.builtin.template:
+    src: 'templates/docker-compose/{{ docker_compose_project }}/{{ item.path }}.j2'
+    dest: '{{ docker_compose_working_directory }}{{ docker_compose_project }}/{{ item.path }}'
+    owner: '{{ item.owner }}'
+    group: '{{ item.group }}'
+    mode: '{{ item.mode }}'
+  loop: "{{ docker_compose_templates }}"
+  notify:
+    - Restart docker-compose@{{ docker_compose_project }}
+
+- name: Configure docker composition from files
+  become: true
+  ansible.builtin.copy:
+    src: 'files/docker-compose/{{ docker_compose_project }}/{{ item.path }}'
+    dest: '{{ docker_compose_working_directory }}{{ docker_compose_project }}/{{ item.path }}'
+    owner: '{{ item.owner }}'
+    group: '{{ item.group }}'
+    mode: '{{ item.mode }}'
+  loop: "{{ docker_compose_files }}"
+  notify:
+    - Restart docker-compose@{{ docker_compose_project }}

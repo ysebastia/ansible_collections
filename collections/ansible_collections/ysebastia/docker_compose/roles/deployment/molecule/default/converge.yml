@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include deployment"
+      ansible.builtin.include_role:
+        name: "deployment"
+      vars:
+        enable_docker_compose_deployment: true
