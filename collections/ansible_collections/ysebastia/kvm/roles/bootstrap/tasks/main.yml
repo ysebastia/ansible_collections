@@ -1,0 +1,16 @@
+---
+- name: Filesystem
+  ansible.builtin.include_role:
+    name: ysebastia.kvm.filesystem
+- name: Libvirt
+  ansible.builtin.include_role:
+    name: ysebastia.kvm.libvirt
+- name: Images
+  ansible.builtin.include_role:
+    name: ysebastia.kvm.images
+- name: Manager
+  ansible.builtin.include_role:
+    name: ysebastia.kvm.manager
+- name: Group
+  ansible.builtin.include_role:
+    name: ysebastia.kvm.group

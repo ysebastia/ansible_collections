@@ -1,0 +1,6 @@
+---
+- name: Ensure that Virt-manager is installed
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - virt-manager

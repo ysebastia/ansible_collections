@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  author: Yannick Sebastia
+  description: Configure libvirt
+  license: GPL-3.0-only
+  min_ansible_version: '2.1'
+  namespace: ysebastia
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+dependencies:
+  - role: ysebastia.repositories.codeready
+    when: enable_kvm_libvirt
+  - role: ysebastia.repositories.epel
+    when: enable_kvm_libvirt
+  - role: ysebastia.base.firewalld
+    when: enable_kvm_libvirt

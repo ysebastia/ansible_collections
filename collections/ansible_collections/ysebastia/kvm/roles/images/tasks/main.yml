@@ -1,0 +1,11 @@
+---
+- name: Configure images if enable_kvm_images is defined
+  when:
+    - enable_kvm_images
+    - ansible_action in ['config', 'destroy']
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"

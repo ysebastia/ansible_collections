@@ -1,0 +1,8 @@
+---
+ansible_action: config
+enable_kvm_images: true
+kvm_images_group: qemu
+kvm_images_owner: qemu
+kvm_images_path: /var/lib/libvirt/images
+kvm_images_to_delete: []
+kvm_images_url: []

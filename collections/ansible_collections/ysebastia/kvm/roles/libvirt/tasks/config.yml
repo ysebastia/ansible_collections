@@ -1,0 +1,43 @@
+---
+- name: Install packages by operating system
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
+
+- name: Configure FIREWALLD if enable_base_firewalld is defined
+  when: enable_base_firewalld
+  ansible.builtin.include_tasks: firewalld.yml
+
+- name: Ensure libvirtd is enabled at boot
+  become: true
+  ansible.builtin.service:
+    name: libvirtd
+    enabled: true
+
+- name: Ensure libvirt-guests is enabled at boot
+  become: true
+  ansible.builtin.service:
+    name: libvirt-guests
+    enabled: true
+
+- name: Define LVM pool if libvirt_guest_lvm is defined
+  become: true
+  community.libvirt.virt_pool:
+    command: define
+    name: lvm
+    xml: '{{ lookup("template", "lvm.xml.j2") }}'
+  when: libvirt_guest_lvm is defined
+
+- name: Start LVM pool if libvirt_guest_lvm is defined
+  become: true
+  community.libvirt.virt_pool:
+    command: start
+    name: lvm
+    state: active
+    autostart: true
+  when: libvirt_guest_lvm is defined
+
+- name: Configure POLKIT policy
+  become: true
+  ansible.builtin.template:
+    src: 50-libvirt-remote-access.pkla.j2
+    dest: /etc/polkit-1/localauthority/50-local.d/50-libvirt-remote-access.pkla
+    mode: '0644'

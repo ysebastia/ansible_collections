@@ -1,0 +1,6 @@
+---
+- name: Configure KVM group if enable_kvm_group is defined
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when:
+    - enable_kvm_group
+    - ansible_action in ['config', 'destroy']

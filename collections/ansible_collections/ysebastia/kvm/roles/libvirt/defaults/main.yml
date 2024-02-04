@@ -1,0 +1,4 @@
+---
+ansible_action: config
+enable_kvm_libvirt: false
+enable_kvm_libvirt_zone: true
