@@ -1,0 +1,4 @@
+---
+pki_prepare_private_group: ssl-cert
+pki_prepare_private_mode: '0755'
+pki_path: /etc/ssl/

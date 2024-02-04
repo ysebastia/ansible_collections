@@ -1,0 +1,42 @@
+---
+- name: Prepare PKI
+  ansible.builtin.include_tasks: prepare.yml
+
+- name: Create private key with password protection
+  become: true
+  community.crypto.openssl_privatekey:
+    path: "{{ pki_ca_path }}private/ca-{{ pki_ca_name }}.key"
+    passphrase: "{{ pki_ca_secret_passphrase }}"
+    cipher: auto
+
+- name: Create certificate signing request (CSR) for CA certificate
+  become: true
+  community.crypto.openssl_csr_pipe:
+    privatekey_path: "{{ pki_ca_path }}private/ca-{{ pki_ca_name }}.key"
+    privatekey_passphrase: "{{ pki_ca_secret_passphrase }}"
+    common_name: "{{ pki_ca_cn }}"
+    use_common_name_for_san: false  # since we do not specify SANs, don't use CN as a SAN
+    basic_constraints:
+      - 'CA:TRUE'
+    basic_constraints_critical: true
+    key_usage:
+      - keyCertSign
+    key_usage_critical: true
+  register: ca_csr
+  changed_when: false
+
+- name: Create self-signed CA certificate from CSR
+  become: true
+  community.crypto.x509_certificate:
+    path: "{{ pki_ca_path }}certs/{{ pki_ca_file }}"
+    csr_content: "{{ ca_csr.csr }}"
+    privatekey_path: "{{ pki_ca_path }}private/ca-{{ pki_ca_name }}.key"
+    privatekey_passphrase: "{{ pki_ca_secret_passphrase }}"
+    provider: selfsigned
+
+- name: Get CA certificate
+  become: true
+  ansible.builtin.fetch:
+    src: "{{ pki_ca_path }}certs/{{ pki_ca_file }}"
+    dest: "{{ inventory_dir }}/files/certs/{{ pki_ca_host }}/{{ pki_ca_file }}"
+    flat: true

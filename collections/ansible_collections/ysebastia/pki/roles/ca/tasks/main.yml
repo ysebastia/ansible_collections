@@ -1,0 +1,11 @@
+---
+- name: Configure CA when enable_pki_ca if defined
+  when:
+    - enable_pki_ca
+    - ansible_action in ['config']
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"

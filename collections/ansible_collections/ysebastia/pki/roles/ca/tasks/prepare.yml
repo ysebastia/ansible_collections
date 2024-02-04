@@ -1,0 +1,27 @@
+---
+- name: Install packages by operating system
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
+
+- name: Install Cryptography
+  become: true
+  ansible.builtin.pip:
+    name:
+      - cryptography
+
+- name: Ensure that directory certs exist
+  become: true
+  ansible.builtin.file:
+    path: '{{ pki_ca_path }}certs'
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Ensure that directory private exist
+  become: true
+  ansible.builtin.file:
+    path: '{{ pki_ca_path }}private'
+    state: directory
+    owner: root
+    group: "{{ pki_prepare_private_group }}"
+    mode: "{{ pki_prepare_private_mode }}"

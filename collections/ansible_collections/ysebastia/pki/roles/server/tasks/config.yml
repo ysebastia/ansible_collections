@@ -1,0 +1,77 @@
+---
+- name: Generate certificate
+  delegate_to: "{{ pki_ca_host }}"
+  block:
+    - name: Create private key for new certificate
+      become: true
+      community.crypto.openssl_privatekey:
+        path: "{{ pki_ca_path }}private/{{ pki_server_host }}.key"
+
+    - name: Create certificate signing request (CSR) for new certificate
+      become: true
+      community.crypto.openssl_csr_pipe:
+        privatekey_path: "{{ pki_ca_path }}private/{{ pki_server_host }}.key"
+        subject_alt_name: "{{ pki_server_san }}"
+      register: server_csr
+      changed_when: false
+
+    - name: Check whether certificate exists
+      become: true
+      ansible.builtin.stat:
+        path: "{{ pki_ca_path }}certs/{{ pki_server_host }}.pem"
+      register: server_certificate_exists
+
+    - name: Read existing certificate if exists
+      become: true
+      ansible.builtin.slurp:
+        src: "{{ pki_ca_path }}certs/{{ pki_server_host }}.pem"
+      when: server_certificate_exists.stat.exists
+      register: server_certificate
+
+    - name: Sign certificate with our CA
+      become: true
+      community.crypto.x509_certificate_pipe:
+        content: "{{ (server_certificate.content | b64decode) if server_certificate_exists.stat.exists else omit }}"
+        csr_content: "{{ server_csr.csr }}"
+        provider: ownca
+        ownca_path: "{{ pki_ca_path }}certs/{{ pki_ca_file }}"
+        ownca_privatekey_path: "{{ pki_ca_path }}private/ca-{{ pki_ca_name }}.key"
+        ownca_privatekey_passphrase: "{{ pki_ca_secret_passphrase }}"
+        ownca_not_after: +365d  # valid for one year
+        ownca_not_before: "-1d"  # valid since yesterday
+      register: server_certificate
+      notify:
+        - Write certificate file
+
+    - name: Force write certificate
+      ansible.builtin.meta: flush_handlers
+
+    - name: Read the public certificate on CA
+      become: true
+      ansible.builtin.slurp:
+        src: "{{ pki_ca_path }}certs/{{ pki_server_host }}.pem"
+      register: server_public_certificate
+
+    - name: Read the private certificate on CA
+      become: true
+      ansible.builtin.slurp:
+        src: "{{ pki_ca_path }}private/{{ pki_server_host }}.key"
+      register: server_private_certificate
+
+- name: Write public certificate file on server
+  become: true
+  ansible.builtin.copy:
+    dest: "{{ pki_path }}certs/{{ pki_server_host }}.pem"
+    content: "{{ server_public_certificate.content | b64decode }}"
+    owner: '{{ pki_server_owner }}'
+    group: '{{ pki_server_owner }}'
+    mode: '{{ pki_server_mode }}'
+
+- name: Write private certificate file on server
+  become: true
+  ansible.builtin.copy:
+    dest: "{{ pki_server_private }}{{ pki_server_host }}.key"
+    content: "{{ server_private_certificate.content | b64decode }}"
+    owner: '{{ pki_server_owner }}'
+    group: '{{ pki_server_owner }}'
+    mode: '{{ pki_server_mode }}'
