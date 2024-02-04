@@ -1,0 +1,14 @@
+---
+collections:
+  - name: https://github.com/ysebastia/ansible-repositories.git
+    type: git
+    version: main
+  - name: https://github.com/ysebastia/ansible-kvm.git
+    type: git
+    version: main
+  - name: https://github.com/ysebastia/ansible-base.git
+    type: git
+    version: main
+  - name: https://github.com/ysebastia/ansible-docker.git
+    type: git
+    version: main

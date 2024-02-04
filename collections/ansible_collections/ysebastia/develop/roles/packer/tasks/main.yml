@@ -1,0 +1,6 @@
+---
+- name: Install Packer if enable_develop_packer is defined
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when:
+    - enable_develop_packer
+    - ansible_action in ['config']

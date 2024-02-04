@@ -1,0 +1,18 @@
+---
+- name: Develop for ansible environment
+  hosts: "{{ ansible_limit |default('localhost') }}"
+  gather_facts: false
+  tasks:
+    - name: "Include bootstrap"
+      ansible.builtin.include_role:
+        name: ysebastia.develop.bootstrap
+      vars:
+        enable_base_firewalld: false
+        enable_develop_ansible: true
+        enable_develop_molecule: true
+        enable_develop_packer: true
+        enable_develop_terraform: true
+        enable_develop_vagrant: true
+        enable_kvm_libvirt: true
+        enable_repositories_epel: true
+        enable_repositories_hashicorp: true

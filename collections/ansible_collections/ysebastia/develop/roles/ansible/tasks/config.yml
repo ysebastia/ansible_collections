@@ -1,0 +1,11 @@
+---
+- name: "Include Python"
+  ansible.builtin.include_role:
+    name: "python"
+- name: Ensure that Ansible is installed
+  ansible.builtin.pip:
+    name:
+      - ansible-core==2.16.3
+      - ansible-lint==6.22.2
+      - yamllint==1.33.0
+    virtualenv: '{{ python_venv_directory }}'

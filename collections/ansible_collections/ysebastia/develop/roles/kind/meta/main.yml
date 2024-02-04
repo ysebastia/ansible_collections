@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  author: Yannick Sebastia
+  description: Deploy Kind
+  license: GPL-3.0-only
+  min_ansible_version: '2.1'
+  namespace: ysebastia
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+dependencies:
+  - role: ysebastia.repositories.docker_ce
+    vars:
+      enable_repositories_docker_ce: true
+  - role: ysebastia.docker.service
+  - role: ysebastia.docker.group

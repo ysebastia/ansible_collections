@@ -1,0 +1,8 @@
+---
+- name: Ensure that Python packages are installed
+  become: true
+  ansible.builtin.apt:
+    name: '{{ develop_python_packages }}'
+    update_cache: true
+  notify:
+    - Update python virtual environment

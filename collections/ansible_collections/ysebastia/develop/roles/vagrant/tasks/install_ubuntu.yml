@@ -1,0 +1,10 @@
+---
+- name: Ensure that VAGRANT is installed
+  become: true
+  ansible.builtin.apt:
+    name:
+      - libvirt-dev
+      - vagrant
+      - python3-dev
+      - gcc
+    update_cache: true

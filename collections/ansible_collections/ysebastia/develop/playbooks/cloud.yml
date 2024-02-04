@@ -1,0 +1,26 @@
+---
+- name: Develop for cloud environment
+  hosts: "{{ ansible_limit |default('localhost') }}"
+  gather_facts: false
+  tasks:
+    - name: Configure Kind
+      ansible.builtin.include_role:
+        name: ysebastia.develop.kind
+    - name: Configure kubectl
+      ansible.builtin.include_role:
+        name: ysebastia.develop.kubectl
+    - name: Install k9s
+      ansible.builtin.include_role:
+        name: ysebastia.develop.k9s
+    - name: Install Flux
+      ansible.builtin.include_role:
+        name: ysebastia.develop.flux
+    - name: Install Tilt
+      ansible.builtin.include_role:
+        name: ysebastia.develop.tilt
+    - name: Install Helm
+      ansible.builtin.include_role:
+        name: ysebastia.develop.helm
+    - name: Install kustomize
+      ansible.builtin.include_role:
+        name: ysebastia.develop.kustomize

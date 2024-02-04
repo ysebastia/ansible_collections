@@ -1,0 +1,8 @@
+---
+- name: Ensure that TERRAFORM is installed
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - mkisofs
+      - terraform
+    update_cache: true
