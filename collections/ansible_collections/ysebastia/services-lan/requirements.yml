@@ -6,6 +6,7 @@ collections:
     version: 8.3.0
   - name: community.mysql
     version: 3.7.0
-  - name: https://github.com/ysebastia/ansible-base.git
+  - name: https://github.com/ysebastia/ansible_collections.git
     type: git
     version: main
+    path: collections/ansible_collections/ysebastia/base

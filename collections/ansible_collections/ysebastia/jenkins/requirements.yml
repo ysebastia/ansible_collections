@@ -4,9 +4,11 @@ collections:
     version: 1.5.2
   - name: community.crypto
     version: 2.17.1
-  - name: https://github.com/ysebastia/ansible-repositories.git
+  - name: https://github.com/ysebastia/ansible_collections.git
     type: git
     version: main
-  - name: https://github.com/ysebastia/ansible-docker.git
+    path: collections/ansible_collections/ysebastia/repositories
+  - name: https://github.com/ysebastia/ansible_collections.git
     type: git
     version: main
+    path: collections/ansible_collections/ysebastia/docker

@@ -6,9 +6,11 @@ collections:
     version: 8.3.0
   - name: community.libvirt
     version: 1.3.0
-  - name: https://github.com/ysebastia/ansible-repositories.git
+  - name: https://github.com/ysebastia/ansible_collections.git
     type: git
     version: main
-  - name: https://github.com/ysebastia/ansible-base.git
+    path: collections/ansible_collections/ysebastia/repositories
+  - name: https://github.com/ysebastia/ansible_collections.git
     type: git
     version: main
+    path: collections/ansible_collections/ysebastia/base

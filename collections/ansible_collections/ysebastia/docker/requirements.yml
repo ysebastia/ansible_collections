@@ -4,9 +4,11 @@ collections:
     version: 1.5.2
   - name: community.docker
     version: 3.7.0
-  - name: https://github.com/ysebastia/ansible-repositories.git
+  - name: https://github.com/ysebastia/ansible_collections.git
     type: git
     version: main
-  - name: https://github.com/ysebastia/ansible-base.git
+    path: collections/ansible_collections/ysebastia/repositories
+  - name: https://github.com/ysebastia/ansible_collections.git
     type: git
     version: main
+    path: collections/ansible_collections/ysebastia/base

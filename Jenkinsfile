@@ -1,5 +1,4 @@
 def ansiblelint(quality) {
-  sh 'test -f .config/ansible.cfg && cp -f .config/ansible.cfg ansible.cfg'
   sh 'find . -name requirements.yml -exec ansible-galaxy collection install -r {} --ignore-certs --force --collections-path "/usr/share/ansible/collections" \\;'
   sh 'touch ansible-lint.txt'
   sh 'ansible-lint -p --exclude ansible_collections | tee -a ansible-lint.txt'
