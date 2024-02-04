@@ -1,5 +1,6 @@
 def ansiblelint(quality) {
-  sh 'find . -name requirements.yml -exec ansible-galaxy install -r {} --ignore-certs --force \\;'
+  sh 'test -f .config/ansible.cfg && cp -f .config/ansible.cfg ansible.cfg'
+  sh 'find . -name requirements.yml -exec ansible-galaxy collection install -r {} --ignore-certs --force --collections-path "/usr/share/ansible/collections" \\;'
   sh 'touch ansible-lint.txt'
   sh 'ansible-lint -p --exclude ansible_collections | tee -a ansible-lint.txt'
   recordIssues enabledForFailure: true, qualityGates: [[threshold: quality, type: 'TOTAL', unstable: false]],  tools: [ansibleLint(id: 'ansibleLint', name: 'Ansible Lint', pattern: 'ansible-lint.txt')]
