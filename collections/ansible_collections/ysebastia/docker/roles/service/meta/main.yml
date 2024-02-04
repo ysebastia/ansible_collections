@@ -12,8 +12,4 @@ galaxy_info:
     - name: Debian
       versions:
         - all
-dependencies:
-  - name: ysebastia.repositories.docker_ce
-    vars:
-      enable_repositories_docker_ce: true
-    when: enable_docker_service
+dependencies: []
