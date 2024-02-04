@@ -1,0 +1,16 @@
+---
+- name: Ensure docker group exists
+  become: true
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: Append user to docker group if docker_user_to_append is defined
+  become: true
+  ansible.builtin.user:
+    name: '{{ docker_user_to_append }}'
+    groups: docker
+    append: true
+  when:
+    - docker_user_to_append is defined
+    - docker_user_to_append != None

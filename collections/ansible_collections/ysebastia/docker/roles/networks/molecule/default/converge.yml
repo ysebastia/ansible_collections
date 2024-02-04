@@ -1,0 +1,13 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Bootstrap DOCKER service"
+      ansible.builtin.include_role:
+        name: "bootstrap"
+    - name: "Include networks"
+      ansible.builtin.include_role:
+        name: "networks"
+      vars:
+        docker_networks:
+          - haproxy

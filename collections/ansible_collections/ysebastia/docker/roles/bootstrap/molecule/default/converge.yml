@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include bootstrap"
+      ansible.builtin.include_role:
+        name: "bootstrap"
+      vars:
+        enable_docker_proxy: true

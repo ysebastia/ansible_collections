@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include firewall"
+      ansible.builtin.include_role:
+        name: "firewall"
+      vars:
+        docker_firewall:
+          - 80/tcp

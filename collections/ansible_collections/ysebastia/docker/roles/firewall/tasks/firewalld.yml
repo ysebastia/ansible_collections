@@ -1,0 +1,9 @@
+---
+- name: Allow firewall traffic
+  become: true
+  ansible.posix.firewalld:
+    port: '{{ item }}'
+    permanent: true
+    immediate: true
+    state: enabled
+  loop: "{{ docker_firewall }}"

@@ -1,0 +1,12 @@
+---
+collections:
+  - name: ansible.posix
+    version: 1.5.2
+  - name: community.docker
+    version: 3.7.0
+  - name: https://github.com/ysebastia/ansible-repositories.git
+    type: git
+    version: main
+  - name: https://github.com/ysebastia/ansible-base.git
+    type: git
+    version: main
