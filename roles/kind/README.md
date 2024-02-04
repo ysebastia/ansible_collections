@@ -61,7 +61,7 @@ kind_image: kindest/node:v1.29.1
 #### Default value
 
 ```YAML
-kind_repo: https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-amd64
+kind_repo: https://kind.sigs.k8s.io/dl/v0.21.0/kind-linux-amd64
 ```
 
 ### kube_config
