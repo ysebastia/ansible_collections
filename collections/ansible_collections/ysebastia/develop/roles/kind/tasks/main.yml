@@ -5,7 +5,7 @@
     - name: Download kind
       become: true
       ansible.builtin.get_url:
-        url: "{{ kind_repo }}"
+        url: 'https://kind.sigs.k8s.io/dl/{{ kind_version}}/kind-linux-amd64'
         dest: /usr/local/bin/kind
         owner: root
         group: root

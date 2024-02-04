@@ -10,7 +10,7 @@ Deploy Kind
   - [cluster_name](#cluster_name)
   - [enable_develop_kind](#enable_develop_kind)
   - [kind_image](#kind_image)
-  - [kind_repo](#kind_repo)
+  - [kind_version](#kind_version)
   - [kube_config](#kube_config)
 - [Dependencies](#dependencies)
 - [License](#license)
@@ -56,12 +56,12 @@ enable_develop_kind: true
 kind_image: kindest/node:v1.29.1
 ```
 
-### kind_repo
+### kind_version
 
 #### Default value
 
 ```YAML
-kind_repo: https://kind.sigs.k8s.io/dl/v0.21.0/kind-linux-amd64
+kind_version: v0.21.0
 ```
 
 ### kube_config
