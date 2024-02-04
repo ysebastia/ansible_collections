@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include mariadb"
+      ansible.builtin.include_role:
+        name: "mariadb"
+      vars:
+        enable_service_mariadb: true

@@ -1,0 +1,8 @@
+---
+- name: Allow httpd traffic on HTTP service
+  become: true
+  ansible.posix.firewalld:
+    service: http
+    permanent: true
+    immediate: true
+    state: enabled

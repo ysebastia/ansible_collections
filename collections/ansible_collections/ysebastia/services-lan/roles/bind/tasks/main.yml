@@ -1,0 +1,11 @@
+---
+- name: Configure BIND if enable_service_bind is defined
+  when:
+    - enable_service_bind
+    - ansible_action in ['config', 'destroy']
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"

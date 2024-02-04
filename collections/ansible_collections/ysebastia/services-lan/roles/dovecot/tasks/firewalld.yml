@@ -1,0 +1,15 @@
+---
+- name: Allow dovecot traffic on IMAP service
+  become: true
+  ansible.posix.firewalld:
+    service: imap
+    permanent: true
+    immediate: true
+    state: enabled
+- name: Allow dovecot traffic on port 4190
+  become: true
+  ansible.posix.firewalld:
+    port: 4190/tcp
+    permanent: true
+    immediate: true
+    state: enabled

@@ -1,0 +1,11 @@
+---
+- name: Configure POSTFIX if enable_service_postfix is defined
+  when:
+    - enable_service_postfix
+    - ansible_action in ['config', 'destroy']
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"

@@ -1,0 +1,8 @@
+---
+- name: Allow postfix traffic on SMTP service
+  become: true
+  ansible.posix.firewalld:
+    service: smtp
+    permanent: true
+    immediate: true
+    state: enabled

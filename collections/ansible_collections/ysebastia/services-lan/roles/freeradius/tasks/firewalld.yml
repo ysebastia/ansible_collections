@@ -1,0 +1,8 @@
+---
+- name: Allow dovecot traffic on RADIUS service
+  become: true
+  ansible.posix.firewalld:
+    service: radius
+    permanent: true
+    immediate: true
+    state: enabled

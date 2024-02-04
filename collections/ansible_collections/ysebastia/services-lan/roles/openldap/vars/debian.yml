@@ -1,0 +1,4 @@
+---
+openldap_package: slapd
+slapd_ssl_path: /etc/ssl/
+slapd_ssl_private: /etc/ldap/

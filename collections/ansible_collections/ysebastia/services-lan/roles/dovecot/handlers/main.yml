@@ -1,0 +1,13 @@
+---
+- name: Restart dovecot
+  become: true
+  ansible.builtin.service:
+    name: dovecot
+    state: restarted
+    enabled: true
+- name: Restart rsyslog
+  become: true
+  ansible.builtin.service:
+    name: rsyslog
+    state: restarted
+    enabled: true

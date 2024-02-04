@@ -1,0 +1,52 @@
+http_port {{ http_proxy_port }}
+icp_port 0
+
+acl QUERY urlpath_regex cgi-bin \?
+no_cache deny QUERY
+cache_mem 32 MB
+cache_swap_low 90
+cache_swap_high 95
+maximum_object_size 4096 KB
+minimum_object_size 0 KB
+maximum_object_size_in_memory 8 KB
+ipcache_size 1024
+ipcache_low 90
+ipcache_high 95
+fqdncache_size 1024
+cache_replacement_policy lru
+memory_replacement_policy lru
+cache_dir ufs /var/spool/squid 1024 32 256
+access_log daemon:/var/log/squid/access.log combined
+cache_log /var/log/squid/cache.log
+cache_store_log none
+pid_filename /var/run/squid.pid
+debug_options ALL,1
+client_netmask 255.255.255.255
+refresh_pattern ^ftp:           1440    20%     10080
+refresh_pattern ^gopher:        1440    0%      1440
+refresh_pattern .               0       20%     4320
+half_closed_clients off
+visible_hostname {{ inventory_hostname_short }}
+
+# ACCESS CONTROLS
+acl browserAllow  browser yum/
+acl browserAllow  browser ansible-httpget
+acl browserAllow  browser curl
+acl srcLocalhost  src 127.0.0.1/32
+acl dstIpv6       dst ipv6
+acl urlManager    url_regex -i ^cache_object:// /squid-internal-mgr/
+acl portsSAFE     port 80          # http
+acl portsSAFE     port 443         # https
+acl portsSAFE     port 873         # rsync
+acl protoFTP      proto ftp
+acl mtdPURGE      method PURGE
+
+http_access allow dstIpv6 !all
+http_access allow urlManager srcLocalhost
+http_access deny  urlManager
+http_access allow mtdPURGE srcLocalhost
+http_access deny  mtdPURGE
+http_access deny  !portsSAFE
+http_access deny  protoFTP
+http_access allow browserAllow
+http_access allow  all

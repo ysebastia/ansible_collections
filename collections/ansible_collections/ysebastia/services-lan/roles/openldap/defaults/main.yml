@@ -1,0 +1,12 @@
+---
+ansible_action: config
+enable_service_openldap: false
+enable_service_openldap_cron: true
+ldap_bind_pw: admin
+slapd_ssl_internal: false
+slapd_ssl_server_group: openldap
+slapd_ssl_server_host: ssl-cert-snakeoil
+slapd_ssl_server_mode: '0640'
+slapd_ssl_server_owner: openldap
+slapd_ssl_server_san:
+  - "DNS:{{ inventory_hostname }}"

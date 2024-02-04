@@ -1,0 +1,60 @@
+---
+- name: Load variables by operating system
+  ansible.builtin.include_vars: "{{ ansible_os_family | lower }}.yml"
+
+- name: Install packages by operating system
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
+
+- name: Configure FIREWALLD if enable_base_firewalld is defined
+  when: enable_base_firewalld
+  ansible.builtin.include_tasks: firewalld.yml
+
+- name: Ensure mariadb is running and enabled at boot
+  become: true
+  ansible.builtin.service:
+    name: mariadb
+    state: started
+    enabled: true
+
+- name: Ensure owner on /var/log/mariadb
+  become: true
+  ansible.builtin.file:
+    path: /var/log/mariadb
+    state: directory
+    owner: mysql
+    group: mysql
+    mode: '0750'
+
+- name: LOGROTATE configuration
+  become: true
+  ansible.builtin.template:
+    src: "templates/etc/logrotate.d/mariadb.j2"
+    dest: "/etc/logrotate.d/mariadb"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Secure installation
+  ansible.builtin.include_tasks: secure_installation.yml
+
+- name: Set administrators accounts
+  become: true
+  community.mysql.mysql_user:
+    login_unix_socket: '{{ mariadb_socket_unix }}'
+    login_user: root
+    name: '{{ item.user }}'
+    password: '{{ item.pass }}'
+    encrypted: '{{ item.encrypted }}'
+    host: '{{ item.host }}'
+    priv: '{{ item.priv }}'
+    update_password: on_create
+    state: present
+  loop: '{{ mariadb_admin_account }}'
+  no_log: true
+
+- name: ACL
+  ansible.builtin.include_tasks: acl.yml
+
+- name: Configure CRON if enable_service_mariadb_cron is defined
+  ansible.builtin.include_tasks: cron.yml
+  when: enable_service_mariadb_cron

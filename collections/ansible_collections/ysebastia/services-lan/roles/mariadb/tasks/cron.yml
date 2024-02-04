@@ -1,0 +1,30 @@
+---
+- name: Create backup directory
+  become: true
+  ansible.builtin.file:
+    path: /var/lib/save/mariadb
+    state: directory
+    mode: '0755'
+- name: Create script backup
+  become: true
+  ansible.builtin.copy:
+    src: dump_mariadb.bash
+    dest: /usr/local/sbin/dump_mariadb
+    owner: root
+    group: root
+    mode: '0755'
+- name: Cron task to backup databases
+  become: true
+  ansible.builtin.cron:
+    name: MariaDb backup
+    job: bash /usr/local/sbin/dump_mariadb 10 | mail -s "MariaDb backup for $(hostname)" root
+    special_time: daily
+- name: User SQL to backup databases
+  become: true
+  community.mysql.mysql_user:
+    login_unix_socket: '{{ mariadb_socket_unix }}'
+    login_user: root
+    name: backup
+    host: 127.0.0.1
+    priv: '*.*:SELECT,LOCK TABLES,SHOW VIEW'
+    state: present

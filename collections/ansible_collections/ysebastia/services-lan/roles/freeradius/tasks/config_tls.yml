@@ -1,0 +1,21 @@
+---
+- name: Set Facts
+  ansible.builtin.set_fact:
+    enable_pki_server: "{{ freeradius_ssl_internal }}"
+    enable_pki_deploy_ca: "{{ freeradius_ssl_internal }}"
+    pki_ca_file: "{{ freeradius_ssl_ca_file }}"
+    pki_path: "{{ freeradius_ssl_path }}"
+    pki_server_group: "{{ freeradius_ssl_server_group }}"
+    pki_server_host: "{{ freeradius_ssl_server_host }}"
+    pki_server_mode: "{{ freeradius_ssl_server_mode }}"
+    pki_server_owner: "{{ freeradius_ssl_server_owner }}"
+    pki_server_private: "{{ freeradius_ssl_path }}private/"
+    pki_server_san: "{{ freeradius_ssl_server_san }}"
+
+- name: Generate certificates server
+  ansible.builtin.include_role:
+    name: ysebastia.pki.server
+
+- name: Get internal CA
+  ansible.builtin.include_role:
+    name: ysebastia.pki.deploy_ca

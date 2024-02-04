@@ -1,0 +1,24 @@
+---
+- name: Ensure that MYSQL users exists from mariadb_user list
+  become: true
+  community.mysql.mysql_user:
+    login_unix_socket: '{{ mariadb_socket_unix }}'
+    login_user: root
+    name: '{{ item.0.name }}'
+    password: '{{ item.0.pass }}'
+    encrypted: '{{ item.0.encrypted }}'
+    host: '{{ item.1 }}'
+    priv: '{{ item.0.priv }}'
+    state: present
+  with_subelements:
+    - '{{ mariadb_user }}'
+    - hosts
+  no_log: true
+- name: Ensure that MYSQL databases exists from mariadb_db list
+  become: true
+  community.mysql.mysql_db:
+    login_unix_socket: '{{ mariadb_socket_unix }}'
+    login_user: root
+    name: '{{ item }}'
+    state: present
+  with_items: '{{ mariadb_db }}'

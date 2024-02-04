@@ -1,0 +1,49 @@
+options {
+  listen-on port 53 { any; };
+  listen-on-v6 port 53 { ::1; };
+  directory       "{{ bind_directory }}";
+  dump-file       "{{ bind_directory }}/data/cache_dump.db";
+  statistics-file "{{ bind_directory }}/data/named_stats.txt";
+  memstatistics-file "{{ bind_directory }}/data/named_mem_stats.txt";
+  recursing-file  "{{ bind_directory }}/data/named.recursing";
+  secroots-file   "{{ bind_directory }}/data/named.secroots";
+  allow-query        	{ localhost; any; };
+  allow-query-cache  	{ localhost; any; };
+  allow-transfer 		{ localhost; none; };
+  allow-recursion     { any; };
+  recursion yes;
+  dnssec-validation yes;
+  bindkeys-file "{{ bind_keysfile }}";
+  pid-file "/run/named/named.pid";
+  session-keyfile "/run/named/session.key";
+{% if network_dns_forwarders is defined and network_dns_forwarders is string %}
+  forwarders {
+    {{ network_dns_forwarders | default([]) | split(' ') | join('; ') }};
+  };
+{% endif %}
+};
+
+include "{{ bind_keysfile }}";
+
+controls {
+  inet 127.0.0.1 port 953 allow { localhost; } keys { {{ bind_rndckey_name }}; };
+};
+include "{{ bind_rndc_file }}";
+
+view "lan" {
+  recursion       yes;
+  allow-query     { any; };
+  match-clients 	{ 127.0.0.1/32; any; };
+  allow-transfer 	{ 127.0.0.1/32; any; };
+  allow-recursion { 127.0.0.1/32; any; };
+  include "{{ bind_rfc2912 }}";
+
+{% for zone in bind_master_zones %}
+  zone "{{ zone.name }}" IN {
+      type {{ zone.type }};
+      file "{{ bind_directory }}/{{ zone.file }}";
+        notify no;
+        allow-update { none; };
+  };
+{% endfor %}
+};

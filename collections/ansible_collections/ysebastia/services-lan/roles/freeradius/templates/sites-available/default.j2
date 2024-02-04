@@ -1,0 +1,83 @@
+server default {
+  listen {
+    type = auth
+    ipaddr = *
+    port = 0
+    limit {
+      max_connections = 16
+      lifetime = 0
+      idle_timeout = 30
+    }
+  }
+  listen {
+    ipaddr = *
+    port = 0
+    type = acct
+    limit {
+    }
+  }
+  authorize {
+    rewrite_called_station_id
+    filter_username
+    preprocess
+    auth_log
+    split_username_nai
+    eap
+  }
+  authenticate {
+    eap
+  }
+  preacct {
+    rewrite_called_station_id
+    preprocess
+    acct_unique
+  }
+  accounting {
+    detail
+    radutmp
+    sradutmp
+    exec
+    attr_filter.accounting_response
+  }
+  session {
+    radutmp
+  }
+  post-auth {
+    reply_log
+    exec
+    remove_reply_message_if_eap
+{% if freeradius_ldap_ttls_acl | length > 0 %}
+    switch &Called-Station-SSID {
+{% for item in freeradius_ldap_ttls_acl %}
+      case "{{ item.ssid }}" {
+        switch &{{ freeradius_ldap_ttls_name }}-LDAP-Group {
+{% for acl in item.acl %}
+          case "{{ acl.group }}" {
+            {{ acl.policy }}
+          }
+{% endfor %}
+          case default {
+              {{ item.default }}
+          }
+        }
+      }
+{% endfor %}
+      case default {
+        reject
+      }
+    }
+{% endif %}
+    Post-Auth-Type REJECT {
+      attr_filter.access_reject
+      eap
+      remove_reply_message_if_eap
+    }
+  }
+  pre-proxy {
+    pre_proxy_log
+  }
+  post-proxy {
+    post_proxy_log
+    eap
+  }
+}

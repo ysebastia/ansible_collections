@@ -1,0 +1,6 @@
+---
+- name: Ensure squid is installed
+  become: true
+  ansible.builtin.apt:
+    name: squid
+    update_cache: true

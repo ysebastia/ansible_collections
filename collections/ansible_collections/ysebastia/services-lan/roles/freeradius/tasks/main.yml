@@ -1,0 +1,11 @@
+---
+- name: Configure FREERADIUS when enable_service_freeradius is defined
+  when:
+    - enable_service_freeradius
+    - ansible_action in ['config', 'destroy']
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"

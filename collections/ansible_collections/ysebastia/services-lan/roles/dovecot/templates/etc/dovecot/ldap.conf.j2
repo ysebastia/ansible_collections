@@ -1,0 +1,22 @@
+hosts			= {{ dovecot_ldap_host }}
+dn              = {{ dovecot_ldap_bind_dn }}
+dnpass          = {{ dovecot_ldap_bind_pw }}
+tls             = no
+ldap_version	= 3
+base			= {{ dovecot_ldap_base }}
+deref			= never
+scope			= onelevel
+blocking        = yes
+user_attrs		= \
+        uid=user,\
+        userPassword=password,\
+        mailQuotaSize=quota_rule=*:bytes=%$K,\
+        =home={{ dovecot_virtual_mailbox_base }}/%u,\
+        =gid={{ dovecot_virtual_gid }},\
+        =uid={{ dovecot_virtual_uid }},\
+        =mail=maildir:{{ dovecot_virtual_mailbox_base }}/%u/Maildir
+user_filter     = uid=%u
+pass_attrs      = uid=user,userPassword=password
+pass_filter     = uid=%u
+iterate_attrs   = uid=user
+iterate_filter	= objectclass=*

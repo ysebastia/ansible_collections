@@ -1,0 +1,6 @@
+---
+- name: Ensure Bind is installed
+  become: true
+  ansible.builtin.apt:
+    name: '{{ bind_package }}'
+    update_cache: true

@@ -1,0 +1,7 @@
+---
+- name: Restart radiusd
+  become: true
+  ansible.builtin.service:
+    name: freeradius
+    state: restarted
+    enabled: true

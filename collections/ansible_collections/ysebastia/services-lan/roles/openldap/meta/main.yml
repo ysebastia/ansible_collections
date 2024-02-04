@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  author: Yannick Sebastia
+  description: Configure OpenLdap
+  license: GPL-3.0-only
+  min_ansible_version: '2.1'
+  namespace: ysebastia
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+dependencies:
+  - role: ysebastia.base.firewalld
+    when: enable_service_openldap
+  - role: ysebastia.base.cron
+    when:
+      - enable_service_openldap
+      - enable_service_openldap_cron

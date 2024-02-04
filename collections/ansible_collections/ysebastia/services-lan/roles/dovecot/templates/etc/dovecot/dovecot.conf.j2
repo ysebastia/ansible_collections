@@ -1,0 +1,128 @@
+auth_cache_size = 500 k
+auth_cache_ttl = 1 days
+auth_master_user_separator = *
+auth_mechanisms = plain login
+disable_plaintext_auth = no
+first_valid_uid = 998
+last_valid_uid = 998
+mail_attribute_dict = file:%h/Maildir/dovecot-attributes
+mail_gid = {{ dovecot_virtual_gid }}
+mail_plugins = notify
+mail_uid = {{ dovecot_virtual_uid }}
+managesieve_notify_capability = mailto
+managesieve_sieve_capability = fileinto reject envelope encoded-character vacation subaddress comparator-i;ascii-numeric relational regex imap4flags copy include variables body enotify environment mailbox date imapflags
+mbox_write_locks = fcntl
+namespace inbox {
+  inbox = yes
+  location =
+  mailbox Drafts {
+    special_use = \Drafts
+  }
+  mailbox Junk {
+    special_use = \Junk
+  }
+  mailbox Sent {
+    special_use = \Sent
+  }
+  mailbox "Sent Messages" {
+    special_use = \Sent
+  }
+  mailbox Trash {
+    special_use = \Trash
+  }
+  prefix =
+}
+{% if enable_service_dovecot_ldap %}
+passdb {
+  args = /etc/dovecot/ldap.conf
+  driver = ldap
+}
+{% endif %}
+plugin {
+  quota = maildir:User quota
+  quota_rule = *:storage=5G
+  quota_rule2 = Corbeille:storage=+100M
+  sieve = ~/.dovecot.sieve
+  sieve_after = {{ dovecot_virtual_mailbox_base }}/globalsieverc
+  sieve_dir = ~/sieve
+  sieve_extensions = +imapflags
+  trash = /etc/dovecot/trash.conf
+}
+protocols = imap sieve
+service auth-worker {
+  unix_listener auth-worker {
+    group = {{ dovecot_virtual_gid }}
+    mode = 0600
+    user = {{ dovecot_virtual_uid }}
+  }
+}
+service auth {
+{% if enable_service_dovecot_auth_for_postfix %}
+  unix_listener auth-client {
+    group = postfix
+    mode = 0600
+    user = postfix
+  }
+{% endif %}
+  unix_listener auth-master {
+    group = {{ dovecot_virtual_gid }}
+    mode = 0600
+    user = {{ dovecot_virtual_uid }}
+  }
+  unix_listener auth-userdb {
+    group = {{ dovecot_virtual_gid }}
+    mode = 0600
+    user = {{ dovecot_virtual_uid }}
+  }
+  user = {{ dovecot_virtual_uid }}
+}
+service dict {
+  unix_listener dict {
+    group = {{ dovecot_virtual_gid }}
+    mode = 0600
+    user = {{ dovecot_virtual_uid }}
+  }
+}
+service imap-login {
+  process_min_avail = 4
+  service_count = 0
+  vsz_limit = 512 M
+}
+service stats {
+  unix_listener stats-reader {
+    group = {{ dovecot_virtual_gid }}
+    mode = 0660
+    user = {{ dovecot_virtual_uid }}
+  }
+  unix_listener stats-writer {
+    group = {{ dovecot_virtual_gid }}
+    mode = 0660
+    user = {{ dovecot_virtual_uid }}
+  }
+}
+{% if enable_service_dovecot_syslog %}
+syslog_facility = {{ dovecot_syslog_facility }}
+{% endif %}
+{% if enable_service_dovecot_ldap %}
+userdb {
+  args = /etc/dovecot/ldap.conf
+  driver = ldap
+}
+{% endif %}
+userdb {
+  driver = prefetch
+}
+protocol lda {
+  auth_socket_path = /var/run/dovecot/auth-master
+  hostname = {{ ansible_fqdn }}
+  mail_plugins = notify sieve trash quota
+  postmaster_address = postmaster@{{ ansible_domain }}
+}
+protocol imap {
+  imap_metadata = yes
+  mail_max_userip_connections = 50
+  mail_plugins = notify trash quota imap_quota
+}
+protocol sieve {
+  ssl_cipher_list = HIGH:+SSLv3:!SSLv2:!ADH:!RC4:!RC2:!MD5:!EXPORT:!ANON:!DES:!aNULL:!eNULL
+}

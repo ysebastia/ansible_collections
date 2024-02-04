@@ -1,0 +1,10 @@
+dn: cn=config
+changetype: modify
+replace: olcTLSCACertificateFile
+olcTLSCACertificateFile: {{ slapd_ssl_path }}certs/{{ slapd_ssl_ca_file }}
+-
+replace: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: {{ slapd_ssl_private }}{{ slapd_ssl_server_host }}.key
+-
+replace: olcTLSCertificateFile
+olcTLSCertificateFile: {{ slapd_ssl_path }}certs/{{ slapd_ssl_server_host }}.pem

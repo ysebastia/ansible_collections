@@ -1,0 +1,29 @@
+---
+- name: Remove anonymous users
+  become: true
+  ansible.builtin.command: 'mysql -ne "{{ item }}"'
+  loop:
+    - DELETE FROM mysql.user WHERE User=''
+  changed_when: false
+
+- name: Disallow root login remotely
+  become: true
+  ansible.builtin.command: 'mysql -ne "{{ item }}"'
+  loop:
+    - DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')
+  changed_when: false
+
+- name: Remove test database and access to it
+  become: true
+  ansible.builtin.command: 'mysql -ne "{{ item }}"'
+  loop:
+    - DROP DATABASE IF EXISTS test
+    - DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%'
+  changed_when: false
+
+- name: Reload privilege tables
+  become: true
+  ansible.builtin.command: 'mysql -ne "{{ item }}"'
+  loop:
+    - FLUSH PRIVILEGES
+  changed_when: false

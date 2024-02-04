@@ -1,0 +1,12 @@
+/var/log/mariadb/{{ inventory_hostname }}.err
+{
+   weekly
+   rotate 53
+   create
+   dateext
+   compress
+   delaycompress
+   copytruncate
+   missingok
+   notifempty
+}

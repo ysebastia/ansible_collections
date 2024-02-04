@@ -1,0 +1,4 @@
+---
+- name: Enable TLS
+  become: true
+  ansible.builtin.command: ldapmodify -H ldapi:/// -Y EXTERNAL -f /root/tls.ldif

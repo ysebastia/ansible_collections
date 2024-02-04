@@ -1,0 +1,11 @@
+---
+- name: "Wait for proxy"
+  ansible.builtin.wait_for:
+    host: '127.0.0.1'
+    port: '{{ http_proxy_port }}'
+    timeout: 10
+  register: squid_check_port_liveness_on_gateway
+- name: Assert Squid listening
+  ansible.builtin.assert:
+    that:
+      - squid_check_port_liveness_on_gateway is success

@@ -1,0 +1,8 @@
+---
+- name: Allow mariadb traffic on port 3306
+  become: true
+  ansible.posix.firewalld:
+    port: 3306/tcp
+    permanent: true
+    immediate: true
+    state: enabled

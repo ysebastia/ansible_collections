@@ -1,0 +1,11 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: "Check squid"
+      ansible.builtin.include_role:
+        name: "squid"
+      vars:
+        ansible_action: check
+        enable_service_squid: true

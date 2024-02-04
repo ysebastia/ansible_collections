@@ -1,0 +1,84 @@
+prefix = /usr
+exec_prefix = /usr
+sysconfdir = /etc
+localstatedir = /var
+sbindir = ${exec_prefix}/sbin
+logdir = /var/log/freeradius
+raddbdir = {{ freeradius_raddbdir }}
+radacctdir = ${logdir}/radacct
+name = freeradius
+confdir = ${raddbdir}
+modconfdir = ${confdir}/mods-config
+certdir = ${confdir}/certs
+cadir   = ${confdir}/certs
+run_dir = ${localstatedir}/run/${name}
+db_dir = ${raddbdir}
+libdir = /usr/lib/freeradius
+pidfile = ${run_dir}/${name}.pid
+correct_escapes = true
+max_request_time = 30
+cleanup_delay = 5
+max_requests = 16384
+hostname_lookups = no
+log {
+  destination = files
+  syslog_facility = daemon
+  colourise = yes
+  file = ${logdir}/radius.log
+  stripped_names = no
+  auth = no
+  auth_badpass = no
+  auth_goodpass = no
+  msg_denied = "You are already logged in - access denied"
+}
+checkrad = ${sbindir}/checkrad
+security {
+  user = {{ freeradius_owner }}
+  group = {{ freeradius_group }}
+  allow_core_dumps = no
+  max_attributes = 200
+  reject_delay = 1
+  status_server = yes
+}
+proxy_requests  = no
+#$INCLUDE proxy.conf
+$INCLUDE clients.conf
+thread pool {
+  start_servers = 5
+  max_servers = 32
+  min_spare_servers = 3
+  max_spare_servers = 10
+  max_requests_per_server = 0
+  auto_limit_acct = no
+}
+modules {
+  $INCLUDE mods-available/cache
+{% if enable_service_freeradius_ldap %}
+  $INCLUDE mods-available/ldap
+{% endif %}
+  $INCLUDE mods-available/realm
+  $INCLUDE mods-available/radutmp
+  $INCLUDE mods-available/attr_filter
+  $INCLUDE mods-available/always
+  $INCLUDE mods-available/preprocess
+  $INCLUDE mods-available/detail.log
+  $INCLUDE mods-available/detail
+  $INCLUDE mods-available/exec
+  $INCLUDE mods-available/expr
+  $INCLUDE mods-available/eap
+  $INCLUDE mods-available/sradutmp
+
+  $INCLUDE mods-available/pap
+  $INCLUDE mods-available/expiration
+  $INCLUDE mods-available/logintime
+}
+instantiate {
+}
+policy {
+  #$INCLUDE policy.d/
+  $INCLUDE policy.d/accounting
+  $INCLUDE policy.d/filter
+  $INCLUDE policy.d/eap
+  $INCLUDE policy.d/canonicalization
+}
+$INCLUDE sites-enabled/

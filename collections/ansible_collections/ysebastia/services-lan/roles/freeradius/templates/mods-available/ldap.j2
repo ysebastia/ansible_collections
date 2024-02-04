@@ -1,0 +1,72 @@
+ldap {{ freeradius_ldap_ttls_name }} {
+  server = "{{ freeradius_ldap_host }}"
+  identity = "{{ freeradius_ldap_bind_dn }}"
+  password = {{ freeradius_ldap_bind_pw }}
+  base_dn = "{{ freeradius_ldap_base }}"
+  tls {
+    start_tls = {{ freeradius_ldap_tls | ternary('yes', 'no') }}
+    ca_file = {{ freeradius_ldap_tls_ca_cert_file }}
+  }
+  update {
+    control:Password-With-Header += 'userPassword'
+  }
+  user_dn = "LDAP-UserDn"
+  user {
+    base_dn = "{{ freeradius_ldap_ttls_user_base }},${..base_dn}"
+    filter = "{{ freeradius_ldap_ttls_user_filter }}"
+  }
+  group {
+    base_dn = "{{ freeradius_ldap_ttls_group_base }},${..base_dn}"
+    filter = "{{ freeradius_ldap_ttls_group_filter }}"
+    name_attribute = "{{ freeradius_ldap_ttls_group_name_attribute }}"
+    membership_filter = "({{ freeradius_ldap_ttls_group_membership_attribute }}=%{control:${..user_dn}})"
+    cacheable_name = "no"
+    cacheable_dn = "yes"
+  }
+  accounting {
+    reference = "%{tolower:type.%{Acct-Status-Type}}"
+    type {
+      start {
+        update {
+          description := "Online at %S"
+        }
+      }
+      interim-update {
+        update {
+          description := "Last seen at %S"
+        }
+      }
+      stop {
+        update {
+          description := "Offline at %S"
+        }
+      }
+    }
+  }
+  post-auth {
+    update {
+      description := "Authenticated at %S"
+    }
+  }
+  options {
+    chase_referrals = yes
+    rebind = yes
+    res_timeout = 20
+    srv_timelimit = 20
+    net_timeout = 1
+    idle = 60
+    probes = 3
+    interval = 3
+    ldap_debug = 0x0028
+  }
+  pool {
+    start = ${thread[pool].start_servers}
+    min = ${thread[pool].min_spare_servers}
+    max = ${thread[pool].max_servers}
+    spare = ${thread[pool].max_spare_servers}
+    uses = 0
+    retry_delay = 30
+    lifetime = 0
+    idle_timeout = 60
+  }
+}
