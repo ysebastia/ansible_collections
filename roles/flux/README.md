@@ -32,7 +32,7 @@ enable_flux: true
 
 ```YAML
 flux_repo:
-  https://github.com/fluxcd/flux2/releases/download/v2.1.2/flux_2.1.2_linux_amd64.tar.gz
+  https://github.com/fluxcd/flux2/releases/download/v2.2.2/flux_2.2.2_linux_amd64.tar.gz
 ```
 
 
