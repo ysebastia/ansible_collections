@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-for roledir in roles/*/molecule; do
+for roledir in collections/ansible_collections/*/*/roles/*/molecule; do
     echo "Test ${roledir}"
     pushd "$(dirname "${roledir}")" || exit 2
     molecule test
