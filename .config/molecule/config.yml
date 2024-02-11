@@ -8,3 +8,15 @@ platforms:
   - name: debian12
     box: debian12
     memory: 1024
+scenario:
+  test_sequence:
+    - dependency
+    - cleanup
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - converge
+    - verify
+    - cleanup
+    - destroy
