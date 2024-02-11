@@ -35,6 +35,15 @@
     autostart: true
   when: libvirt_guest_lvm is defined
 
+- name: Create POLKIT directory
+  become: true
+  ansible.builtin.file:
+    state: directory
+    path: /etc/polkit-1/localauthority/50-local.d/
+    mode: '0755'
+    owner: root
+    group: root
+
 - name: Configure POLKIT policy
   become: true
   ansible.builtin.template:
