@@ -7,3 +7,4 @@
         name: "bootstrap"
       vars:
         enable_docker_proxy: true
+        enable_repositories_docker_ce: true
