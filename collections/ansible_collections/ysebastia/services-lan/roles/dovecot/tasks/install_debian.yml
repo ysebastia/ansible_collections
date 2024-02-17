@@ -6,6 +6,7 @@
       - dovecot-imapd
       - dovecot-sieve
       - dovecot-managesieved
+      - rsyslog
     update_cache: true
 - name: Ensure the DOVECOT module ldap is installed if enable_service_dovecot_ldap is defined
   become: true

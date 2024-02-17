@@ -4,9 +4,9 @@
 
 - name: Install Cryptography
   become: true
-  ansible.builtin.pip:
+  ansible.builtin.package:
     name:
-      - cryptography
+      - python3-cryptography
 
 - name: Ensure that directory certs exist
   become: true
