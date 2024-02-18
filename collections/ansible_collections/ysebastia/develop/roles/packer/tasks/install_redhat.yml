@@ -6,4 +6,3 @@
       - jq
       - libguestfs
       - packer
-    update_cache: true

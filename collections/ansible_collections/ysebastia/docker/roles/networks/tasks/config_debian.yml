@@ -4,4 +4,3 @@
   ansible.builtin.apt:
     name:
       - python3-docker
-    update_cache: true

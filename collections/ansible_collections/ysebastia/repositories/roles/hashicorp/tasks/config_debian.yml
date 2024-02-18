@@ -4,7 +4,6 @@
   ansible.builtin.apt:
     name:
       - gpg
-    update_cache: true
 - name: Fix Hashicorp repository
   become: true
   ansible.builtin.apt_repository:

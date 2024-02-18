@@ -3,4 +3,3 @@
   become: true
   ansible.builtin.apt:
     name: logwatch
-    update_cache: true

@@ -5,4 +5,3 @@
     name:
       - python3-pip
       - ssl-cert
-    update_cache: true

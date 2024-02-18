@@ -5,7 +5,6 @@
     name:
       - mkisofs
       - terraform
-    update_cache: true
 - name: Configure qemu.conf with security_driver
   become: true
   ansible.builtin.template:

@@ -5,13 +5,11 @@
     name:
       - mariadb-server
       - python3-pymysql
-    update_cache: true
 - name: Install BZIP2
   become: true
   ansible.builtin.apt:
     name:
       - bzip2
-    update_cache: true
   when: enable_service_mariadb_cron
 - name: Allow remote access if mariadb_remote_access is defined
   become: true

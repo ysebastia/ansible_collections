@@ -10,4 +10,3 @@
     name:
       - postfix
       - mailutils
-    update_cache: true

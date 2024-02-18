@@ -8,4 +8,3 @@
       - make
       - java-11-openjdk-headless
       - wget
-    update_cache: true

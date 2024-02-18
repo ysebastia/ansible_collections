@@ -3,4 +3,3 @@
   become: true
   ansible.builtin.apt:
     name: rsync
-    update_cache: true

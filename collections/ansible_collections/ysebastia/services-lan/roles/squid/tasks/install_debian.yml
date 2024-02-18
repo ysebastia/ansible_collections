@@ -3,4 +3,3 @@
   become: true
   ansible.builtin.apt:
     name: squid
-    update_cache: true

@@ -5,4 +5,3 @@
     name:
       - freeradius
       - freeradius-ldap
-    update_cache: true

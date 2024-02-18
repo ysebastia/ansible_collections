@@ -7,4 +7,3 @@
       - vagrant
       - python3-dev
       - gcc
-    update_cache: true

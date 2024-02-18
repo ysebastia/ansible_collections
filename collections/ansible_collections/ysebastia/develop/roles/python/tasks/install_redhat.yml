@@ -3,6 +3,5 @@
   become: true
   ansible.builtin.dnf:
     name: '{{ develop_python_packages }}'
-    update_cache: true
   notify:
     - Update python virtual environment

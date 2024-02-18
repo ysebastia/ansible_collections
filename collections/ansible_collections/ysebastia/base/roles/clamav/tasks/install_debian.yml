@@ -7,4 +7,3 @@
       - clamav-data
       - clamav-freshclam
       - clamav-daemon
-    update_cache: true

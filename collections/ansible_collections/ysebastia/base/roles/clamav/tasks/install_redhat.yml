@@ -7,12 +7,10 @@
       - clamav-data
       - clamav-update
       - clamd
-    update_cache: true
 - name: Ensure that SELINUX packages are installed if clamav_enable_selinux is defined
   become: true
   ansible.builtin.dnf:
     name:
       - python3-libsemanage
       - python3-policycoreutils
-    update_cache: true
   when: clamav_enable_selinux

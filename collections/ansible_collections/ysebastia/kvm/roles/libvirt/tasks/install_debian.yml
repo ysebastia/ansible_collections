@@ -9,4 +9,3 @@
       - python3-lxml
       - qemu-kvm
       - libvirt-daemon-system
-    update_cache: true

@@ -3,7 +3,6 @@
   become: true
   ansible.builtin.apt:
     name: apache2
-    update_cache: true
 - name: Enable the Apache2 module ldap if enable_service_apache_ldap is defined
   become: true
   community.general.apache2_module:
