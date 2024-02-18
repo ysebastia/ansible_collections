@@ -2,7 +2,7 @@
 - name: Configure Profile
   become: true
   ansible.builtin.copy:
-    src: '{{ item }}'
+    src: 'files{{ item }}'
     dest: '{{ item }}'
     mode: '0644'
     owner: root
