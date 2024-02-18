@@ -41,7 +41,11 @@ tags:
 # collection label 'namespace.name'. The value is a version range
 # L(specifiers,https://python-semanticversion.readthedocs.io/en/latest/#requirement-specification). Multiple version
 # range specifiers can be set and are separated by ','
-dependencies: {}
+dependencies:
+  "git+https://github.com/ysebastia/ansible_collections.git#/collections/ansible_collections/ysebastia/base": "main"
+  "git+https://github.com/ysebastia/ansible_collections.git#/collections/ansible_collections/ysebastia/docker": "main"
+  "git+https://github.com/ysebastia/ansible_collections.git#/collections/ansible_collections/ysebastia/kvm": "main"
+  "git+https://github.com/ysebastia/ansible_collections.git#/collections/ansible_collections/ysebastia/repositories": "main"
 
 # The URL of the originating SCM repository
 repository: https://github.com/ysebastia/ansible_collections
