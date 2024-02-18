@@ -36,7 +36,11 @@ def yamllint(quality) {
 
 pipeline {
   agent any
+  options {
+    ansiColor('xterm')
+  }
   environment {
+    DOCKER_HOST = 'tcp://172.17.0.1:2375'
     QUALITY_ANSIBLE = "3"
     QUALITY_SHELL = "2"
     QUALITY_YAML = "1"
@@ -102,6 +106,19 @@ pipeline {
         }
       }
     }
+    stage('Molecule') {
+      agent {
+        docker {
+          image 'docker.io/ysebastia/molecule:24.2.0'
+          args '-v /var/run/docker.sock:/var/run/docker.sock --privileged'
+        }
+      }
+      steps {
+          sh 'find . -name requirements.yml -not -path "*/tests/*" -exec ansible-galaxy collection install -r {} --ignore-certs --force --collections-path "~/.ansible/collections" \\;'
+          sh 'find . -name requirements.txt -exec pip install --no-cache -r {} \\;'
+          sh 'run_molecule.bash'
+      }
+    }    
   }
   post {
     always {
