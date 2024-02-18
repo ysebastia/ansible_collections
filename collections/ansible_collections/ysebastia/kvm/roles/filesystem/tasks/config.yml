@@ -1,4 +1,10 @@
 ---
+- name: Ensure that Parted package is present
+  become: true
+  ansible.builtin.package:
+    name:
+      - parted
+    state: present
 - name: Create LVM partition if filesystem_host_device is defined
   become: true
   community.general.parted:
