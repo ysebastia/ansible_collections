@@ -1,4 +1,7 @@
 ---
+provisioner:
+  playbooks:
+    prepare: ../../../../../../../../.config/molecule/prepare.yml
 driver:
   name: docker
 platforms:

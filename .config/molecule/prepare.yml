@@ -1,0 +1,13 @@
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: Update RedHat family
+      ansible.builtin.dnf:
+        update_cache: true
+      when:
+        - ansible_os_family == "RedHat"
+    - name: Update Debian family
+      ansible.builtin.apt:
+        update_cache: true
+      when:
+        - ansible_os_family == "Debian"
