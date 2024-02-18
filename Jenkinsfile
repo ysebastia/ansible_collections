@@ -116,6 +116,7 @@ pipeline {
       steps {
           sh 'find . -name requirements.yml -not -path "*/tests/*" -exec ansible-galaxy collection install -r {} --ignore-certs --force --collections-path "~/.ansible/collections" \\;'
           sh 'find . -name requirements.txt -exec pip install --no-cache -r {} \\;'
+          sh 'ansible-galaxy collection list'
           sh 'run_molecule.bash'
       }
     }    
