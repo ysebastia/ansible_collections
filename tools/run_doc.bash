@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+pip install ansible-doctor==4.0.1
 for collection in collections/ansible_collections/*/*/roles/; do
     echo "! ${collection}"
     pushd "$(dirname "${collection}")" || exit 2
