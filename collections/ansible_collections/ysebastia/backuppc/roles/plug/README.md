@@ -55,7 +55,7 @@ backuppc_linux:
 #### Default value
 
 ```YAML
-backuppc_owner: '{{ ansible_user }}'
+backuppc_owner: "{{ ansible_user | default('root') }}"
 ```
 
 ### backuppc_serverhost
