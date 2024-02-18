@@ -6,8 +6,8 @@
   ansible.builtin.file:
     state: directory
     path: "{{ python_venv_directory }}"
-    owner: '{{ ansible_user }}'
-    group: '{{ ansible_user }}'
+    owner: "{{ ansible_user | default('root') }}"
+    group: "{{ ansible_user | default('root') }}"
     mode: '0775'
 
 - name: Flush handlers

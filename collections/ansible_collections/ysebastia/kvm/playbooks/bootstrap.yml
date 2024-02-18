@@ -12,3 +12,5 @@
         enable_kvm_libvirt: true
         enable_repositories_epel: true
         kvm_user_to_append: '{{ ansible_user }}'
+      when:
+        - ansible_user is defined

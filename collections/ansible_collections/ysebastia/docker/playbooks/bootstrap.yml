@@ -9,3 +9,5 @@
       vars:
         docker_user_to_append: '{{ ansible_user }}'
         enable_docker_group: true
+      when:
+        - ansible_user is defined
