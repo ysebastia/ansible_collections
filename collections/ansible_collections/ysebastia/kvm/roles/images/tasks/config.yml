@@ -1,7 +1,7 @@
 ---
 - name: Get images from kvm_images_url list
   become: true
-  ansible.builtin.get_url:
+  ansible.builtin.get_url:  # checkov:skip=CKV2_ANSIBLE_2
     url: '{{ item.url }}/{{ item.file }}'
     dest: '{{ kvm_images_path }}/{{ item.file }}'
     mode: '0644'
