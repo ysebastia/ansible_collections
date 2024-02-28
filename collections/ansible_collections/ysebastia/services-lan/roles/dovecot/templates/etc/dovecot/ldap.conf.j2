@@ -11,12 +11,12 @@ user_attrs		= \
         uid=user,\
         userPassword=password,\
         mailQuotaSize=quota_rule=*:bytes=%$K,\
-        =home={{ dovecot_virtual_mailbox_base }}/%u,\
+        =home={{ dovecot_virtual_mailbox_base }}/%Lu,\
         =gid={{ dovecot_virtual_gid }},\
         =uid={{ dovecot_virtual_uid }},\
-        =mail=maildir:{{ dovecot_virtual_mailbox_base }}/%u/Maildir
-user_filter     = uid=%u
+        =mail=maildir:{{ dovecot_virtual_mailbox_base }}/%Lu/Maildir
+user_filter     = uid=%Lu
 pass_attrs      = uid=user,userPassword=password
-pass_filter     = uid=%u
+pass_filter     = uid=%Lu
 iterate_attrs   = uid=user
 iterate_filter	= objectclass=*
