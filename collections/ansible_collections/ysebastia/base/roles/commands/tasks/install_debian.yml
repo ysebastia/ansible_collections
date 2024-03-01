@@ -1,5 +1,7 @@
 ---
-- name: Ensure rsyslog is installed
+- name: Ensure needed packages are installed
   become: true
   ansible.builtin.apt:
-    name: rsyslog
+    name: 
+      - e2fsprogs
+      - rsyslog
