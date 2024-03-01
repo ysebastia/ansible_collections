@@ -6,5 +6,6 @@
       ansible.builtin.include_role:
         name: "clamav"
       vars:
+        clamav_enable_selinux: false
         enable_base_clamav: true
         enable_repositories_epel: true
