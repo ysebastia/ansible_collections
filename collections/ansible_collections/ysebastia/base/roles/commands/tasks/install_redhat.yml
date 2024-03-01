@@ -2,6 +2,6 @@
 - name: Ensure needed packages are installed
   become: true
   ansible.builtin.dnf:
-    name: 
+    name:
       - e2fsprogs
       - rsyslog
