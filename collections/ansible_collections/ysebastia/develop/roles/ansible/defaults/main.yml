@@ -1,4 +1,4 @@
 ---
 enable_develop_ansible: false
 ansible_action: config
-python_venv_directory: ~/ansible/
+python_venv_directory: ~/.venv/ansible/

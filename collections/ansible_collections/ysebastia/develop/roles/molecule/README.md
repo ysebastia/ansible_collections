@@ -33,7 +33,7 @@ enable_develop_molecule: false
 #### Default value
 
 ```YAML
-python_venv_directory: ~/ansible/
+python_venv_directory: ~/.venv/ansible/
 ```
 
 

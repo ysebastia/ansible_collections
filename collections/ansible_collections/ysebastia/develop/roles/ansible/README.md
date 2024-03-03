@@ -42,7 +42,7 @@ enable_develop_ansible: false
 #### Default value
 
 ```YAML
-python_venv_directory: ~/ansible/
+python_venv_directory: ~/.venv/ansible/
 ```
 
 
