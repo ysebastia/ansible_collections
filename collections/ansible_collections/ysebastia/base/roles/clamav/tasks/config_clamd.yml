@@ -1,4 +1,22 @@
 ---
+- name: Add clamd@scan.service.d directory
+  become: true
+  ansible.builtin.file:
+    state: directory
+    path: /etc/systemd/system/clamd@scan.service.d/
+    owner: root
+    group: root
+    mode: '0755'
+- name: Add override configuration
+  become: true
+  ansible.builtin.template:
+    src: override.conf.j2
+    dest: /etc/systemd/system/clamd@scan.service.d/override.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - Restart clamd
 - name: Clamd
   become: true
   ansible.builtin.lineinfile:
