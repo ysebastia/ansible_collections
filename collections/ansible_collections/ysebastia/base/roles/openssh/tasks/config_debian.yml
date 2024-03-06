@@ -2,7 +2,7 @@
 - name: Create /run/sshd directory
   ansible.builtin.file:
     state: directory
-    path: /var/sshd
+    path: /run/sshd
     owner: root
     group: root
     mode: '0755'
