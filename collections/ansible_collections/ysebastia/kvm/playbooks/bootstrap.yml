@@ -2,15 +2,29 @@
 - name: Bootstrap KVM
   hosts: "{{ ansible_limit |default('localhost') }}"
   gather_facts: false
+  vars:
+    enable_repositories_epel: true
   tasks:
-    - name: "Include bootstrap"
+    - name: Filesystem
       ansible.builtin.include_role:
-        name: ysebastia.kvm.bootstrap
+        name: ysebastia.kvm.filesystem
+    - name: Libvirt
+      ansible.builtin.include_role:
+        name: ysebastia.kvm.libvirt
       vars:
-        enable_base_firewalld: false
-        enable_kvm_group: true
         enable_kvm_libvirt: true
-        enable_repositories_epel: true
+        enable_base_firewalld: false
+    - name: Images
+      ansible.builtin.include_role:
+        name: ysebastia.kvm.images
+    - name: Manager
+      ansible.builtin.include_role:
+        name: ysebastia.kvm.manager
+    - name: Group
+      ansible.builtin.include_role:
+        name: ysebastia.kvm.group
+      vars:
+        enable_kvm_group: true
         kvm_user_to_append: '{{ ansible_user }}'
       when:
         - ansible_user is defined
