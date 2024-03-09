@@ -44,7 +44,7 @@ tags:
 dependencies:
   "ansible.posix": ">=1.5.2"
   "community.crypto": ">=2.17.1"
-  "git+https://github.com/ysebastia/ansible_collections.git#/collections/ansible_collections/ysebastia/services-lan": "main"
+  "git+https://github.com/ysebastia/ansible_collections.git#/collections/ansible_collections/ysebastia/services_lan": "main"
 
 # The URL of the originating SCM repository
 repository: https://github.com/ysebastia/ansible_collections
