@@ -1,0 +1,11 @@
+---
+dependency:
+  name: galaxy
+  options:
+    force: true
+    requirements-file: ../../../../requirements.yml
+provisioner:
+  playbooks:
+    prepare: ../../../../../../../../../.config/molecule/prepare.yml
+  ansible_args:
+    - "--limit=all"
