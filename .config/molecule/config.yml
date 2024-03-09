@@ -1,5 +1,10 @@
 ---
 provisioner:
+  name: ansible
+  inventory:
+    group_vars:
+      all:
+        ansible_user: ansible
   playbooks:
     prepare: ../../../../../../../../.config/molecule/prepare.yml
 driver:
