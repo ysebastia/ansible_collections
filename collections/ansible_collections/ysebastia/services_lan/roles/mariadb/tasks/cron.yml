@@ -26,5 +26,5 @@
     login_user: root
     name: backup
     host: 127.0.0.1
-    priv: '*.*:SELECT,LOCK TABLES,SHOW VIEW'
+    priv: '*.*:SELECT,LOCK TABLES,SHOW VIEW,EXECUTE'
     state: present
