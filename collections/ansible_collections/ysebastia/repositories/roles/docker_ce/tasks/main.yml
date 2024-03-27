@@ -1,6 +1,6 @@
 ---
 - name: Configure DOCKER-CE repository if enable_repositories_docker_ce is enable
-  when: enable_repositories_docker_ce
+  when: enable_repositories_docker_ce | bool
   block:
     - name: Facts
       ansible.builtin.include_tasks: "facts.yml"

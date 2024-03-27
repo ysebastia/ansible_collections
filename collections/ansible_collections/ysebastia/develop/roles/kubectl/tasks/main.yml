@@ -1,6 +1,6 @@
 ---
 - name: Install Kubectl
-  when: enable_kubectl
+  when: enable_kubectl | bool
   block:
     - name: Download kubectl
       become: true

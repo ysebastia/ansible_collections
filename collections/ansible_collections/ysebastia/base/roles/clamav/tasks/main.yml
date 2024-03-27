@@ -1,7 +1,7 @@
 ---
 - name: Configure CLAMAV if enable_base_clamav is defined
   when:
-    - enable_base_clamav
+    - enable_base_clamav | bool
     - ansible_action in ['config', 'destroy']
   block:
     - name: Facts

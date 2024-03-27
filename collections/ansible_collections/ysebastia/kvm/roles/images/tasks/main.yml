@@ -1,7 +1,7 @@
 ---
 - name: Configure images if enable_kvm_images is defined
   when:
-    - enable_kvm_images
+    - enable_kvm_images | bool
     - ansible_action in ['config', 'destroy']
   block:
     - name: Facts

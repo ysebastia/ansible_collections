@@ -1,7 +1,7 @@
 ---
 - name: Part and format
   when:
-    - enable_base_parted
+    - enable_base_parted | bool
     - filesystem is defined
     - ansible_action in ['config']
   block:

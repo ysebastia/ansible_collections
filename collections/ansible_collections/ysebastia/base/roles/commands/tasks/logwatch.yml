@@ -1,6 +1,6 @@
 ---
 - name: Configure LOGWATCH COMMANDS if enable_base_commands_with_logwatch is defined
-  when: enable_base_commands_with_logwatch
+  when: enable_base_commands_with_logwatch | bool
   block:
     - name: Logwatch directory
       become: true

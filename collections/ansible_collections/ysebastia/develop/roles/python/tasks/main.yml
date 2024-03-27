@@ -1,7 +1,7 @@
 ---
 - name: Configure Python packages if enable_develop_python is defined
   when:
-    - enable_develop_python
+    - enable_develop_python | bool
     - ansible_action in ['config']
   block:
     - name: Facts

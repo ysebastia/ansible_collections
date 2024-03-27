@@ -1,7 +1,7 @@
 ---
 - name: Configure CA certificate when enable_pki_deploy_ca if defined
   when:
-    - enable_pki_deploy_ca
+    - enable_pki_deploy_ca | bool
     - ansible_action in ['config']
   block:
     - name: Facts

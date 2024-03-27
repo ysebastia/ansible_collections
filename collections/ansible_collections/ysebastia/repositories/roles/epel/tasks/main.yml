@@ -1,6 +1,6 @@
 ---
 - name: Configure EPEL repository if enable_repositories_epel is enable
-  when: enable_repositories_epel
+  when: enable_repositories_epel | bool
   block:
     - name: Facts
       ansible.builtin.include_tasks: "facts.yml"

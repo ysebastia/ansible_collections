@@ -1,6 +1,6 @@
 ---
 - name: Install kustomize
-  when: enable_kustomize
+  when: enable_kustomize | bool
   block:
     - name: Ensure that Unzip package is present
       become: true

@@ -1,6 +1,6 @@
 ---
 - name: Configure HASHICORP repository if enable_repositories_hashicorp is enable
-  when: enable_repositories_hashicorp
+  when: enable_repositories_hashicorp | bool
   block:
     - name: Facts
       ansible.builtin.include_tasks: "facts.yml"

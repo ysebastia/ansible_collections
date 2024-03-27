@@ -1,6 +1,6 @@
 ---
 - name: Install Tilt
-  when: enable_tilt
+  when: enable_tilt | bool
   block:
     - name: Ensure that Unzip package is present
       become: true

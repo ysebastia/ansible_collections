@@ -1,7 +1,7 @@
 ---
 - name: Configure SQUID if enable_service_squid is defined
   when:
-    - enable_service_squid
+    - enable_service_squid | bool
     - ansible_action in ['config', 'destroy', 'check']
   block:
     - name: Facts

@@ -1,7 +1,7 @@
 ---
 - name: Configure Jenkins agent when enable_jenkins_agent if defined
   when:
-    - enable_jenkins_agent
+    - enable_jenkins_agent | bool
     - ansible_action in ['config']
   block:
     - name: Facts

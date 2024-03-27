@@ -1,6 +1,6 @@
 ---
 - name: Configure PROXY if enable_repositories_proxy is enable
-  when: enable_repositories_proxy
+  when: enable_repositories_proxy | bool
   block:
     - name: Facts
       ansible.builtin.include_tasks: "facts.yml"

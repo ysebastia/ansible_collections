@@ -11,7 +11,7 @@
     - Restart postfix
 
 - name: Configure DOVECOT transport if enable_service_postfix_dovecot_transport is defined
-  when: enable_service_postfix_dovecot_transport
+  when: enable_service_postfix_dovecot_transport | bool
   block:
     - name: Configure DOVECOT transport in master.cf
       become: true
@@ -52,7 +52,7 @@
       - "CA file : {{ postfix_ldap_tls_ca_cert_file }}"
 
 - name: Configure LDAP accounts if enable_service_postfix_ldap_account is defined
-  when: enable_service_postfix_ldap_account
+  when: enable_service_postfix_ldap_account | bool
   block:
     - name: Configure virtual_mailbox_maps in main.cf
       become: true

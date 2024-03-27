@@ -1,6 +1,6 @@
 ---
 - name: Install Kind
-  when: enable_develop_kind
+  when: enable_develop_kind | bool
   block:
     - name: Download kind
       become: true

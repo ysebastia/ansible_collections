@@ -1,7 +1,7 @@
 ---
 - name: Configure VIM if enable_base_vim is defined
   when:
-    - enable_base_vim
+    - enable_base_vim | bool
     - ansible_action in ['config', 'destroy']
   block:
     - name: Facts

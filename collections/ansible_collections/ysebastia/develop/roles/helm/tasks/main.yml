@@ -1,6 +1,6 @@
 ---
 - name: Install Helm
-  when: enable_helm
+  when: enable_helm | bool
   block:
     - name: Ensure that Unzip package is present
       become: true

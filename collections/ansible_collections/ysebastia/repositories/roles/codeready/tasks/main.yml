@@ -1,6 +1,6 @@
 ---
 - name: Configure CODEREADY repository if enable_repositories_codeready is enable
-  when: enable_repositories_codeready
+  when: enable_repositories_codeready | bool
   block:
     - name: Facts
       ansible.builtin.include_tasks: "facts.yml"

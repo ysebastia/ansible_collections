@@ -1,6 +1,6 @@
 ---
 - name: Install Flux
-  when: enable_flux
+  when: enable_flux | bool
   block:
     - name: Ensure that Unzip package is present
       become: true
