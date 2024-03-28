@@ -1,6 +1,13 @@
 ---
-- name: Gather facts
-  ansible.builtin.gather_facts:
+- name: Gather facts if ansible_facts.os_family is undefined
+  ansible.builtin.setup:
+    gather_subset:
+      - '!all'
+      - distribution
+      - distribution_major_version
+      - os_family
+  when:
+    - ansible_facts.os_family is undefined
 
 - name: Load distro-specific variables
   ansible.builtin.include_vars: "{{ item }}"
