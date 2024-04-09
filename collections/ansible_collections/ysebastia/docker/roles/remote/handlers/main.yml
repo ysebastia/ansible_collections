@@ -1,0 +1,11 @@
+---
+- name: Reload systemd for remote access
+  become: true
+  ansible.builtin.systemd:
+    daemon_reload: true
+- name: Restart docker for remote access
+  become: true
+  ansible.builtin.service:
+    name: docker
+    state: restarted
+    enabled: true
