@@ -1,5 +1,6 @@
 ---
 - name: Create /run/sshd directory
+  become: true
   ansible.builtin.file:
     state: directory
     path: /run/sshd
