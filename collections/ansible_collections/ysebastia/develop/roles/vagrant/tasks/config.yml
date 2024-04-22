@@ -9,7 +9,7 @@
 - name: Install Python
   ansible.builtin.pip:
     name:
-      - libvirt-python==10.1.0
+      - libvirt-python==10.2.0
     virtualenv: '{{ python_venv_directory }}'
   notify:
     - Install Vagrant plugins
