@@ -14,4 +14,6 @@ galaxy_info:
         - all
 dependencies:
   - role: ysebastia.base.firewalld
-    when: enable_service_bind
+    when:
+      - enable_service_bind
+      - bind_dependencies | default(false) | bool

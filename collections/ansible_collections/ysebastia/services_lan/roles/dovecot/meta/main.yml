@@ -14,4 +14,6 @@ galaxy_info:
         - all
 dependencies:
   - role: ysebastia.base.firewalld
-    when: enable_service_dovecot
+    when:
+      - enable_service_dovecot
+      - dovecot_dependencies | default(false) | bool

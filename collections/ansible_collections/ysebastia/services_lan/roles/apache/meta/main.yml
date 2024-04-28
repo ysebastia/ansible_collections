@@ -14,4 +14,6 @@ galaxy_info:
         - all
 dependencies:
   - role: ysebastia.base.firewalld
-    when: enable_service_apache
+    when:
+      - enable_service_apache
+      - apache_dependencies | default(false) | bool

@@ -14,4 +14,6 @@ galaxy_info:
         - all
 dependencies:
   - role: ysebastia.base.firewalld
-    when: enable_service_postfix
+    when:
+      - enable_service_postfix
+      - postfix_dependencies | default(false) | bool

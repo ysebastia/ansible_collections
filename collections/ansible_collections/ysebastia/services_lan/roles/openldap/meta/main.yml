@@ -14,7 +14,9 @@ galaxy_info:
         - all
 dependencies:
   - role: ysebastia.base.firewalld
-    when: enable_service_openldap
+    when:
+      - enable_service_openldap
+      - openldap_dependencies | default(false) | bool
   - role: ysebastia.base.cron
     when:
       - enable_service_openldap
