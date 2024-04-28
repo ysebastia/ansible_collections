@@ -5,7 +5,7 @@
   tasks:
     - name: Jenkins agent
       ansible.builtin.include_role:
-        name: ysebastia.jenkins.agent
+        name: ysebastia.cicd.jenkins_agent
     - name: Jenkins docker
       ansible.builtin.include_role:
-        name: ysebastia.jenkins.docker
+        name: ysebastia.cicd.jenkins_docker
