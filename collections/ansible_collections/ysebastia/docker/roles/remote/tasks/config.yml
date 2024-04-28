@@ -1,4 +1,10 @@
 ---
+- name: Create directory docker.service.d
+  become: true
+  ansible.builtin.file:
+    path: "/etc/systemd/system/docker.service.d"
+    state: directory
+    mode: '0755'
 - name: Create dockerd.conf if remote_access is enabled
   become: true
   ansible.builtin.template:
