@@ -1,4 +1,7 @@
 ---
+- name: Facts
+  ansible.builtin.include_tasks: "facts.yml"
+
 - name: Configure CRON if enable_base_cron is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
