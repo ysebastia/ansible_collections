@@ -3,6 +3,6 @@ develop_python_packages:
   - python3-pip
   - python3-pip-whl
   - python3-setuptools-whl
-  - python3.11-venv
+  - python3.12-venv
   - virtualenv
 python_bin: python3

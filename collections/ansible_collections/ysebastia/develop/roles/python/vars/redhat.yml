@@ -4,4 +4,5 @@ develop_python_packages:
   - python3-pip-wheel
   - python3-setuptools-wheel
   - python3-virtualenv
+  - python3.12
 python_bin: python
