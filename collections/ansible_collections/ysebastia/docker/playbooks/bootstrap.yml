@@ -3,6 +3,9 @@
   hosts: "{{ ansible_limit |default('localhost') }}"
   gather_facts: false
   tasks:
+    - name: Filesystem
+      ansible.builtin.include_role:
+        name: ysebastia.docker.filesystem
     - name: "Include bootstrap"
       ansible.builtin.include_role:
         name: ysebastia.docker.bootstrap

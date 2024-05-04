@@ -1,0 +1,5 @@
+---
+ansible_action: config
+enable_docker_filesystem: true
+filesystem_host_device: []
+filesystem_docker_size: 40g
