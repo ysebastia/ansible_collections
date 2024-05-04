@@ -37,8 +37,8 @@
         ownca_path: "{{ pki_ca_path }}certs/{{ pki_ca_file }}"
         ownca_privatekey_path: "{{ pki_ca_path }}private/ca-{{ pki_ca_name }}.key"
         ownca_privatekey_passphrase: "{{ pki_ca_secret_passphrase }}"
-        ownca_not_after: +365d  # valid for one year
-        ownca_not_before: "-1d"  # valid since yesterday
+        ownca_not_after: +3650d
+        ownca_not_before: "-1d"
       register: server_certificate
       notify:
         - Write certificate file
