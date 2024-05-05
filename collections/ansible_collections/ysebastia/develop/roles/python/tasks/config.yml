@@ -9,6 +9,8 @@
     owner: "{{ ansible_user | default('root') }}"
     group: "{{ ansible_user | default('root') }}"
     mode: '0775'
+  notify:
+    - Update python virtual environment
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
