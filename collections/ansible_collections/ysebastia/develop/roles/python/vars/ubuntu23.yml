@@ -5,4 +5,4 @@ develop_python_packages:
   - python3-setuptools-whl
   - python3.12-venv
   - virtualenv
-python_bin: python3
+python_bin: python3.12
