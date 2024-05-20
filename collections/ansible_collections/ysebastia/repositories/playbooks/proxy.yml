@@ -6,3 +6,5 @@
     - name: Configure Proxy repository
       ansible.builtin.include_role:
         name: ysebastia.repositories.proxy
+      vars:
+        enable_repositories_proxy: true
