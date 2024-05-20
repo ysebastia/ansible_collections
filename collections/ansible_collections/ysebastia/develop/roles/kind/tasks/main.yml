@@ -11,6 +11,8 @@
         group: root
         mode: "0755"
         force: true
+      environment:
+        https_proxy: "{{ kind_https_proxy | default('') }}"
     - name: Add configuration
       become: "{{ become_for_kind }}"
       ansible.builtin.copy:

@@ -18,6 +18,8 @@
         group: root
         mode: "0755"
         remote_src: true
+      environment:
+        https_proxy: "{{ flux_https_proxy | default('') }}"
     - name: Bash completion for flux
       become: true
       ansible.builtin.shell:

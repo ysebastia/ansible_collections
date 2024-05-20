@@ -9,6 +9,8 @@
     group: '{{ kvm_images_group }}'
   with_items:
     - '{{ kvm_images_url }}'
+  environment:
+    https_proxy: "{{ images_https_proxy | default('') }}"
 
 - name: Delete old images from kvm_images_to_delete list
   become: true

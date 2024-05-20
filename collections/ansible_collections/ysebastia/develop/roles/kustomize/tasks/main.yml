@@ -18,6 +18,8 @@
         group: root
         mode: "0755"
         remote_src: true
+      environment:
+        https_proxy: "{{ kustomize_https_proxy | default('') }}"
     - name: Bash completion for kustomize
       become: true
       ansible.builtin.shell:

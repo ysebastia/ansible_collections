@@ -10,6 +10,8 @@
         owner: root
         group: root
         mode: '0755'
+      environment:
+        https_proxy: "{{ kubectl_https_proxy | default('') }}"
     - name: Bash completion for kubectl
       become: true
       ansible.builtin.shell:

@@ -19,6 +19,8 @@
         mode: "0755"
         remote_src: true
         extra_opts: [--strip-components=1]
+      environment:
+        https_proxy: "{{ helm_https_proxy | default('') }}"
     - name: Bash completion for helm
       become: true
       ansible.builtin.shell:
