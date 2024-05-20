@@ -16,6 +16,9 @@ platforms:
   - name: "alma${CI_COMMIT_SHORT_SHA}"
     image: docker.io/ysebastia/molecule:alma-9.4
     pre_build_image: true
+    env:
+      HTTPS_PROXY: "${https_proxy}"
+      HTTP_PROXY: "${https_proxy}"
     privileged: true
     stop_signal: "SIGRTMIN+3"
     capabilities:
@@ -33,6 +36,9 @@ platforms:
   - name: "debian${CI_COMMIT_SHORT_SHA}"
     image: docker.io/ysebastia/molecule:debian-12.5
     pre_build_image: true
+    env:
+      HTTPS_PROXY: "${https_proxy}"
+      HTTP_PROXY: "${https_proxy}"
     privileged: true
     stop_signal: "SIGRTMIN+3"
     capabilities:
@@ -50,6 +56,9 @@ platforms:
   - name: "ubuntu${CI_COMMIT_SHORT_SHA}"
     image: docker.io/ysebastia/molecule:ubuntu-mantic
     pre_build_image: true
+    env:
+      HTTPS_PROXY: "${https_proxy}"
+      HTTP_PROXY: "${https_proxy}"
     privileged: true
     stop_signal: "SIGRTMIN+3"
     capabilities:
