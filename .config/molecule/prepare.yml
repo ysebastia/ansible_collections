@@ -1,4 +1,10 @@
 ---
+- name: Proxy
+  ansible.builtin.import_playbook: ysebastia.repositories.proxy
+  vars:
+    repository_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
+  tags:
+    - molecule
 - name: Prepare
   hosts: all
   tasks:
@@ -8,9 +14,13 @@
         update_cache: true
       when:
         - ansible_os_family == "RedHat"
+	  tags:
+    	- molecule
     - name: Update Debian family
       become: true
       ansible.builtin.apt:
         update_cache: true
       when:
         - ansible_os_family == "Debian"
+	  tags:
+    	- molecule
