@@ -1,15 +1,14 @@
 ---
-- name: Configure PROXY in APT if http_proxy_server and http_proxy_port are defined
+- name: Configure PROXY in APT if repository_https_proxy is defined
   become: true
   ansible.builtin.lineinfile:
     state: present
     path: /etc/apt/apt.conf
-    line: Acquire::http::Proxy "http://{{ http_proxy_server }}:{{ http_proxy_port }}";
+    line: Acquire::http::Proxy "{{ repository_https_proxy }}";
     regexp: ^Acquire::http::Proxy
     create: true
     mode: '0644'
     owner: root
     group: root
   when:
-    - http_proxy_server is defined
-    - http_proxy_port is defined
+    - repository_https_proxy is defined

@@ -1,11 +1,10 @@
 ---
-- name: Configure PROXY in DNF if http_proxy_server and http_proxy_port are defined
+- name: Configure PROXY in DNF if repository_https_proxy is defined
   become: true
   ansible.builtin.lineinfile:
     state: present
     path: /etc/dnf/dnf.conf
-    line: proxy=http://{{ http_proxy_server }}:{{ http_proxy_port }}
+    line: proxy={{ repository_https_proxy }}
     regexp: ^proxy=
   when:
-    - http_proxy_server is defined
-    - http_proxy_port is defined
+    - repository_https_proxy is defined
