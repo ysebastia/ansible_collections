@@ -9,3 +9,4 @@
         clamav_enable_selinux: false
         enable_base_clamav: true
         enable_repositories_epel: true
+        epel_https_proxy: "{{ ansible_env.HTTP_PROXY }}"

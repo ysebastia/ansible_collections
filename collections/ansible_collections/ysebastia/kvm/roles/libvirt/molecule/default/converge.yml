@@ -8,4 +8,5 @@
       vars:
         enable_kvm_libvirt: true
         enable_repositories_epel: true
+        epel_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
         libvirt_dependencies: true
