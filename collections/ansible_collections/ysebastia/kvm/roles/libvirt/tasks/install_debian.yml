@@ -5,7 +5,8 @@
     name:
       - bridge-utils
       - libvirt-daemon
+      - libvirt-daemon-system
+      - python3-firewall
       - python3-libvirt
       - python3-lxml
       - qemu-kvm
-      - libvirt-daemon-system

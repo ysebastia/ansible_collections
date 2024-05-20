@@ -8,6 +8,7 @@
       - libguestfs
       - libvirt
       - libvirt-daemon-kvm
+      - python3-firewall
       - python3-libvirt
       - python3-lxml
       - qemu-kvm
