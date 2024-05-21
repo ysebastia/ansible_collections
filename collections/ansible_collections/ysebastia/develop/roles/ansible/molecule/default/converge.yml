@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include ansible"
+      ansible.builtin.include_role:
+        name: "ansible"
+      vars:
+        ansible_dependencies: true
+        enable_develop_ansible: true

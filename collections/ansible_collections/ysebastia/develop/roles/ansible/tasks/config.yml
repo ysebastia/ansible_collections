@@ -5,7 +5,7 @@
 - name: Ensure that Ansible is installed
   ansible.builtin.pip:
     name:
-      - ansible-core=='{{ ansible_core_version }}'
-      - ansible-lint==24.5.0
+      - 'ansible-core=={{ ansible_core_version }}'
+      - 'ansible-lint=={{ ansible_lint_version }}'
       - yamllint==1.35.1
     virtualenv: '{{ python_venv_directory }}'
