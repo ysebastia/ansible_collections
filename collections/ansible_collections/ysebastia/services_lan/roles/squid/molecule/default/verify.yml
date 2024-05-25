@@ -3,9 +3,9 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: "Check squid"
+    - name: "Verify squid"
       ansible.builtin.include_role:
         name: "squid"
       vars:
-        ansible_action: check
+        ansible_action: verify
         enable_service_squid: true
