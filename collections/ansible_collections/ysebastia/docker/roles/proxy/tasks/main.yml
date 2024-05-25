@@ -2,5 +2,5 @@
 - name: Configure PROXY if enable_docker_proxy is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
-    - enable_docker_proxy
+    - enable_docker_proxy | bool
     - ansible_action in ['converge', 'cleanup']

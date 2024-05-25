@@ -2,5 +2,5 @@
 - name: Install Packer if enable_develop_packer is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
-    - enable_develop_packer
+    - enable_develop_packer | bool
     - ansible_action in ['converge']

@@ -2,5 +2,5 @@
 - name: Configure docker group if enable_docker_group is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
-    - enable_docker_group
+    - enable_docker_group | bool
     - ansible_action in ['converge', 'cleanup']

@@ -2,5 +2,5 @@
 - name: Install DOCKER-COMPOSE if enable_docker_compose is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
-    - enable_docker_compose
+    - enable_docker_compose | bool
     - ansible_action in ['converge', 'cleanup']

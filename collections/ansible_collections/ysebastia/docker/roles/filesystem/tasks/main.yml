@@ -2,5 +2,5 @@
 - name: Create KVM filesystem if enable_docker_filesystem is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
-    - enable_docker_filesystem
+    - enable_docker_filesystem | bool
     - ansible_action in ['converge', 'cleanup']

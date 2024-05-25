@@ -2,5 +2,5 @@
 - name: Configure POSTFIX agent if enable_base_logwatch is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
-    - enable_base_postfix
+    - enable_base_postfix | bool
     - ansible_action in ['converge', 'cleanup']

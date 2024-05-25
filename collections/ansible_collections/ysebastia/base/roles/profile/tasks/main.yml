@@ -2,5 +2,5 @@
 - name: Configure PROFILE if enable_base_profile is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
-    - enable_base_profile
+    - enable_base_profile | bool
     - ansible_action in ['converge', 'cleanup']
