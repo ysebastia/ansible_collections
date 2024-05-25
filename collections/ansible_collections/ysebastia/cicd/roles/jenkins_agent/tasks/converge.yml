@@ -55,4 +55,4 @@
     path: /home/jenkins/.ssh/id_ecdsa
     type: 'ecdsa'
   when:
-    - enable_jenkins_agent_ssh
+    - enable_jenkins_agent_ssh | bool

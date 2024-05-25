@@ -5,5 +5,5 @@
 - name: Configure CHRONY if enable_base_chrony is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
-    - enable_base_chrony
+    - enable_base_chrony | bool
     - ansible_action in ['converge', 'cleanup']

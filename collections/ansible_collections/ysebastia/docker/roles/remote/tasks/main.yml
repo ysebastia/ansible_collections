@@ -2,5 +2,5 @@
 - name: Configure DOCKER remote access if remote_access is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
-    - remote_access
+    - remote_access | bool
     - ansible_action in ['converge']

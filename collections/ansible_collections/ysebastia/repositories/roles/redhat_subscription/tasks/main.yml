@@ -8,6 +8,6 @@
     auto_attach: true
     force_register: '{{ redhat_force_register | default(false) }}'
   when:
-    - enable_repositories_redhat_subscription
+    - enable_repositories_redhat_subscription | bool
     - redhat_user is defined
     - redhat_user != None

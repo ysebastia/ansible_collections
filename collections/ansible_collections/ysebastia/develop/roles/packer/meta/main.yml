@@ -16,3 +16,5 @@ dependencies:
   - role: ysebastia.repositories.hashicorp
   - role: ysebastia.kvm.filesystem
   - role: ysebastia.kvm.libvirt
+    vars:
+      enable_base_firewalld: true

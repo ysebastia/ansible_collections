@@ -2,5 +2,5 @@
 - name: Install Virt-manager if enable_kvm_manager is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
-    - enable_kvm_manager
+    - enable_kvm_manager | bool
     - ansible_action in ['converge']

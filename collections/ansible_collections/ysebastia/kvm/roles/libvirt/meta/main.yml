@@ -19,5 +19,5 @@ dependencies:
     when: enable_kvm_libvirt
   - role: ysebastia.base.firewalld
     when:
-      - enable_kvm_libvirt
+      - enable_kvm_libvirt | bool
       - libvirt_dependencies | default(false) | bool

@@ -5,5 +5,5 @@
 - name: Configure CRON if enable_base_cron is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
-    - enable_base_cron
+    - enable_base_cron | bool
     - ansible_action in ['converge', 'cleanup']

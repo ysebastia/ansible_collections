@@ -2,5 +2,5 @@
 - name: Install Vagrant if enable_develop_vagrant is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
-    - enable_develop_vagrant
+    - enable_develop_vagrant | bool
     - ansible_action in ['converge']

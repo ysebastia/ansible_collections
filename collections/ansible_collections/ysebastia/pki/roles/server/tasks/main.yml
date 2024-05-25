@@ -2,5 +2,5 @@
 - name: Configure CA when enable_pki_server if defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
-    - enable_pki_server
+    - enable_pki_server | bool
     - ansible_action in ['converge']

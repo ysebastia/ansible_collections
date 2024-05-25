@@ -2,5 +2,5 @@
 - name: Configure DOCKER service if enable_docker_service is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
-    - enable_docker_service
+    - enable_docker_service | bool
     - ansible_action in ['converge', 'cleanup']

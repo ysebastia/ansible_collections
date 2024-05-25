@@ -2,5 +2,5 @@
 - name: Install Packer if enable_develop_terraform is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
-    - enable_develop_terraform
+    - enable_develop_terraform | bool
     - ansible_action in ['converge']
