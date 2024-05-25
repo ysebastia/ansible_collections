@@ -17,4 +17,4 @@ dependencies:
   - role: ysebastia.kvm.filesystem
   - role: ysebastia.kvm.libvirt
     vars:
-      enable_base_firewalld: true
+      libvirt_dependencies: true
