@@ -2,7 +2,7 @@
 - name: Configure VIM if enable_base_vim is defined
   when:
     - enable_base_vim | bool
-    - ansible_action in ['config', 'cleanup']
+    - ansible_action in ['converge', 'cleanup']
   block:
     - name: Facts
       ansible.builtin.include_tasks: "facts.yml"

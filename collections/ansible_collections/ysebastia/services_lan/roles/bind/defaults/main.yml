@@ -1,5 +1,5 @@
 ---
-ansible_action: config
+ansible_action: converge
 bind_master_zones: []
 bind_rndckey_name: rndc-key
 enable_service_bind: false

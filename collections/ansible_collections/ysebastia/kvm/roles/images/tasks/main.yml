@@ -2,7 +2,7 @@
 - name: Configure images if enable_kvm_images is defined
   when:
     - enable_kvm_images | bool
-    - ansible_action in ['config', 'cleanup']
+    - ansible_action in ['converge', 'cleanup']
   block:
     - name: Facts
       ansible.builtin.include_tasks: "facts.yml"

@@ -1,5 +1,5 @@
 ---
-ansible_action: config
+ansible_action: converge
 enable_pki_deploy_ca: false
 pki_ca_file: "ca-{{ pki_ca_name }}.pem"
 pki_ca_group: root

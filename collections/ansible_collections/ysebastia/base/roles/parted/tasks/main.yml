@@ -3,7 +3,7 @@
   when:
     - enable_base_parted | bool
     - filesystem is defined
-    - ansible_action in ['config']
+    - ansible_action in ['converge']
   block:
     - name: Configure partition
       ansible.builtin.include_tasks: "{{ ansible_action }}.yml"

@@ -1,4 +1,4 @@
 ---
-ansible_action: config
+ansible_action: converge
 enable_base_tuned: true
 tuned_profile: balanced

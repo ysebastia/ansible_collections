@@ -1,5 +1,5 @@
 ---
-ansible_action: config
+ansible_action: converge
 backuppc_admins: ''
 backuppc_directory_backup: /var/lib/backuppc
 backuppc_directory_share: /usr/share/backuppc

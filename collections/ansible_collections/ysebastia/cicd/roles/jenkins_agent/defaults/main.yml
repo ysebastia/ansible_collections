@@ -1,5 +1,5 @@
 ---
-ansible_action: config
+ansible_action: converge
 enable_jenkins_agent: false
 enable_jenkins_agent_ssh: false
 jenkins_server_ssh_key: '{{ inventory_dir }}/files/pubkeys/jenkins.pub'

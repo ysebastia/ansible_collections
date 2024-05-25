@@ -2,7 +2,7 @@
 - name: Install Ansible if enable_develop_ansible is defined
   when:
     - enable_develop_ansible
-    - ansible_action in ['config']
+    - ansible_action in ['converge']
   block:
     - name: Facts
       ansible.builtin.include_tasks: "facts.yml"

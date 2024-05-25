@@ -1,4 +1,4 @@
 ---
 enable_develop_ansible: false
-ansible_action: config
+ansible_action: converge
 python_venv_directory: ~/.venv/ansible/

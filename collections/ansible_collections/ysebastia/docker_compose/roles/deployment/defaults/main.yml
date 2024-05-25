@@ -1,5 +1,5 @@
 ---
-ansible_action: config
+ansible_action: converge
 docker_compose_files: []
 docker_compose_project: ''
 docker_compose_templates: []

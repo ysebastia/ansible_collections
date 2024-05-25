@@ -1,5 +1,5 @@
 ---
-ansible_action: config
+ansible_action: converge
 enable_kvm_images: true
 kvm_images_group: qemu
 kvm_images_owner: qemu

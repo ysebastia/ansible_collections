@@ -1,5 +1,5 @@
 ---
-ansible_action: config
+ansible_action: converge
 enable_kvm_filesystem: true
 filesystem_host_device: []
 filesystem_qemu_backup_size: 50g

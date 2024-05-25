@@ -3,4 +3,4 @@
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
     - enable_backuppc_server
-    - ansible_action in ['config', 'cleanup']
+    - ansible_action in ['converge', 'cleanup']

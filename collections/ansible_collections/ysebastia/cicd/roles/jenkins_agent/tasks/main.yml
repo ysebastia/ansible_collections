@@ -2,7 +2,7 @@
 - name: Configure Jenkins agent when enable_jenkins_agent if defined
   when:
     - enable_jenkins_agent | bool
-    - ansible_action in ['config']
+    - ansible_action in ['converge']
   block:
     - name: Facts
       ansible.builtin.include_tasks: "facts.yml"

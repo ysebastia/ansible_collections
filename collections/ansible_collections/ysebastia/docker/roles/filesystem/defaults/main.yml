@@ -1,5 +1,5 @@
 ---
-ansible_action: config
+ansible_action: converge
 enable_docker_filesystem: true
 filesystem_host_device: []
 filesystem_docker_size: 40g

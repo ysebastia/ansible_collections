@@ -1,4 +1,4 @@
 ---
-ansible_action: config
+ansible_action: converge
 enable_kvm_libvirt: false
 enable_kvm_libvirt_zone: true

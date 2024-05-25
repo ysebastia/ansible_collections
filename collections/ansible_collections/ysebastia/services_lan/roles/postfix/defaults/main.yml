@@ -1,5 +1,5 @@
 ---
-ansible_action: config
+ansible_action: converge
 enable_service_postfix: false
 enable_service_postfix_ldap: false
 enable_service_postfix_dovecot_transport: true

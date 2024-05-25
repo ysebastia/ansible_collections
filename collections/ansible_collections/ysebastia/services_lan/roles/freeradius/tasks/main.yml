@@ -2,7 +2,7 @@
 - name: Configure FREERADIUS when enable_service_freeradius is defined
   when:
     - enable_service_freeradius | bool
-    - ansible_action in ['config']
+    - ansible_action in ['converge']
   block:
     - name: Facts
       ansible.builtin.include_tasks: "facts.yml"

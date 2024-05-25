@@ -1,5 +1,5 @@
 ---
-ansible_action: config
+ansible_action: converge
 enable_pki_server: false
 pki_ca_group: root
 pki_ca_host: '{{ inventory_hostname_short }}'

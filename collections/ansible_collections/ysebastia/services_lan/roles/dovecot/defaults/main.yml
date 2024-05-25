@@ -1,5 +1,5 @@
 ---
-ansible_action: config
+ansible_action: converge
 dovecot_syslog_facility: local5
 dovecot_virtual_gid: vmail
 dovecot_virtual_mailbox_base: /var/vmail

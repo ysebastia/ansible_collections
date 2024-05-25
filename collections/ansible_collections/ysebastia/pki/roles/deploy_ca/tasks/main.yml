@@ -2,7 +2,7 @@
 - name: Configure CA certificate when enable_pki_deploy_ca if defined
   when:
     - enable_pki_deploy_ca | bool
-    - ansible_action in ['config']
+    - ansible_action in ['converge']
   block:
     - name: Facts
       ansible.builtin.include_tasks: "facts.yml"

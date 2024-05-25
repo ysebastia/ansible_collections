@@ -3,4 +3,4 @@
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
     - enable_pki_server
-    - ansible_action in ['config']
+    - ansible_action in ['converge']
