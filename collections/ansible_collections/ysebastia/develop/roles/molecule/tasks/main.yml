@@ -1,13 +1,10 @@
 ---
-- name: "Include Ansible"
-  ansible.builtin.include_role:
-    name: "ansible"
 - name: Install Molecule
-  ansible.builtin.pip:
-    name:
-      - molecule==24.2.1
-      - molecule-plugins[vagrant]==23.5.3
-      - python-vagrant==1.0.0
-      - rich
-    virtualenv: '{{ python_venv_directory }}'
-  when: enable_develop_molecule
+  when:
+    - ansible_action in ['converge']
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
