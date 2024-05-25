@@ -8,9 +8,9 @@
         timeout: 10
       register: wait_for_instances
       failed_when: false
-    - name: "Destroy postfix"
+    - name: "Cleanup postfix"
       ansible.builtin.include_role:
         name: "postfix"
       vars:
-        ansible_action: destroy
+        ansible_action: cleanup
       when: wait_for_instances.elapsed < 10

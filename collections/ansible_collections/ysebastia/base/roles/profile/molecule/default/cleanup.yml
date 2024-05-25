@@ -8,9 +8,9 @@
         timeout: 10
       register: wait_for_instances
       failed_when: false
-    - name: "Destroy profile"
+    - name: "Cleanup profile"
       ansible.builtin.include_role:
         name: "profile"
       vars:
-        ansible_action: destroy
+        ansible_action: Cleanup
       when: wait_for_instances.elapsed < 10

@@ -2,7 +2,7 @@
 - name: Configure HASHICORP repository if enable_repositories_hashicorp is enable
   when:
     - enable_repositories_hashicorp | bool
-    - ansible_action in ['config', 'destroy']
+    - ansible_action in ['config', 'cleanup']
   block:
     - name: Facts
       ansible.builtin.include_tasks: "facts.yml"

@@ -8,9 +8,9 @@
         timeout: 10
       register: wait_for_instances
       failed_when: false
-    - name: "Destroy qemu_guest_agent"
+    - name: "Cleanup qemu_guest_agent"
       ansible.builtin.include_role:
         name: "qemu_guest_agent"
       vars:
-        ansible_action: destroy
+        ansible_action: cleanup
       when: wait_for_instances.elapsed < 10

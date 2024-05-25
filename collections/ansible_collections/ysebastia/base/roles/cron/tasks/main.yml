@@ -6,4 +6,4 @@
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
     - enable_base_cron
-    - ansible_action in ['config', 'destroy']
+    - ansible_action in ['config', 'cleanup']

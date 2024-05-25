@@ -2,7 +2,7 @@
 - name: Configure EPEL repository if enable_repositories_epel is enable
   when:
     - enable_repositories_epel | bool
-    - ansible_action in ['config', 'destroy']
+    - ansible_action in ['config', 'cleanup']
   block:
     - name: Facts
       ansible.builtin.include_tasks: "facts.yml"

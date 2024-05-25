@@ -8,9 +8,9 @@
         timeout: 10
       register: wait_for_instances
       failed_when: false
-    - name: "Destroy service"
+    - name: "Cleanup service"
       ansible.builtin.include_role:
         name: "service"
       vars:
-        ansible_action: destroy
+        ansible_action: cleanup
       when: wait_for_instances.elapsed < 10
