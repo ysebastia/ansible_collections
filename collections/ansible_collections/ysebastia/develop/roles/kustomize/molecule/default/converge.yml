@@ -5,3 +5,5 @@
     - name: "Include kustomize"
       ansible.builtin.include_role:
         name: "kustomize"
+      vars:
+        kustomize_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
