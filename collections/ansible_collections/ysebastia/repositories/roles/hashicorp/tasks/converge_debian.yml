@@ -15,6 +15,8 @@
   ansible.builtin.apt_key:
     url: https://apt.releases.hashicorp.com/gpg
     keyring: /etc/apt/trusted.gpg.d/hashicorp.gpg
+  environment:
+    https_proxy: "{{ hashicorp_https_proxy | default('') }}"
 - name: Configure Hashicorp repository
   become: true
   ansible.builtin.apt_repository:

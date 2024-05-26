@@ -7,3 +7,4 @@
         name: "hashicorp"
       vars:
         enable_repositories_hashicorp: true
+        hashicorp_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
