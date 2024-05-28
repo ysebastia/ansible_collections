@@ -5,3 +5,5 @@
     - name: "Include helm"
       ansible.builtin.include_role:
         name: "helm"
+      vars:
+        helm_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
