@@ -10,4 +10,4 @@
       - python-vagrant==1.0.0
       - rich
     virtualenv: '{{ python_venv_directory }}'
-  when: enable_develop_molecule
+  when: enable_develop_molecule | bool

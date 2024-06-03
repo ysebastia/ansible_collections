@@ -10,7 +10,7 @@
   ansible.builtin.apt:
     name:
       - bzip2
-  when: enable_service_mariadb_cron
+  when: enable_service_mariadb_cron | bool
 - name: Allow remote access if mariadb_remote_access is defined
   become: true
   ansible.builtin.lineinfile:
@@ -19,4 +19,4 @@
     line: 'bind-address = 0.0.0.0'
   notify:
     - Restart mariadb
-  when: mariadb_remote_access
+  when: mariadb_remote_access | bool

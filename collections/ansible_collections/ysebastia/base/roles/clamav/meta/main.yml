@@ -14,4 +14,4 @@ galaxy_info:
         - all
 dependencies:
   - role: ysebastia.repositories.epel
-    when: enable_base_clamav
+    when: enable_base_clamav | bool

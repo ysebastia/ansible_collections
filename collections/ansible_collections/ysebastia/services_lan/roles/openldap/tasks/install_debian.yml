@@ -50,4 +50,4 @@
   ansible.builtin.apt:
     name:
       - bzip2
-  when: enable_service_openldap_cron
+  when: enable_service_openldap_cron | bool

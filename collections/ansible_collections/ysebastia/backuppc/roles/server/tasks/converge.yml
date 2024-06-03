@@ -4,7 +4,7 @@
 
 - name: Configure web access with LDAP authentification if enable_service_apache_ldap is defined
   ansible.builtin.include_tasks: config_ldap.yml
-  when: enable_service_apache_ldap
+  when: enable_service_apache_ldap | bool
 
 - name: Configure BACKUPPC service
   become: true

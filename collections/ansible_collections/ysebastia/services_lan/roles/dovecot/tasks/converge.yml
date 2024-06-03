@@ -6,7 +6,7 @@
   ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
 
 - name: Configure FIREWALLD if enable_base_firewalld is defined
-  when: enable_base_firewalld
+  when: enable_base_firewalld | bool
   ansible.builtin.include_tasks: firewalld.yml
 
 - name: Ensure virtual mail group exists
@@ -35,7 +35,7 @@
 
 - name: Configure LDAP virtual account if enable_service_dovecot_ldap is defined
   ansible.builtin.include_tasks: config_ldap.yml
-  when: enable_service_dovecot_ldap
+  when: enable_service_dovecot_ldap | bool
 
 - name: Configure DOVECOT
   become: true
@@ -64,4 +64,4 @@
     - /etc/logrotate.d/dovecot
   notify:
     - Restart rsyslog
-  when: enable_service_dovecot_syslog
+  when: enable_service_dovecot_syslog | bool

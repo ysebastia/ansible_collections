@@ -7,15 +7,15 @@
 
 - name: Configure FIREWALLD if enable_base_firewalld is defined
   ansible.builtin.include_tasks: firewalld.yml
-  when: enable_base_firewalld
+  when: enable_base_firewalld | bool
 
 - name: Configure LDAP if enable_service_freeradius_ldap is defined
   ansible.builtin.include_tasks: config_ldap.yml
-  when: enable_service_freeradius_ldap
+  when: enable_service_freeradius_ldap | bool
 
 - name: Configure TLS if freeradius_ssl_internal is defined
   ansible.builtin.include_tasks: config_tls.yml
-  when: freeradius_ssl_internal
+  when: freeradius_ssl_internal | bool
 
 - name: Configure FREERADIUS
   become: true

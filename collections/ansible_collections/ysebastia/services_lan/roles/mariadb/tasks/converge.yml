@@ -6,7 +6,7 @@
   ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
 
 - name: Configure FIREWALLD if enable_base_firewalld is defined
-  when: enable_base_firewalld
+  when: enable_base_firewalld | bool
   ansible.builtin.include_tasks: firewalld.yml
 
 - name: Ensure mariadb is running and enabled at boot
@@ -57,4 +57,4 @@
 
 - name: Configure CRON if enable_service_mariadb_cron is defined
   ansible.builtin.include_tasks: cron.yml
-  when: enable_service_mariadb_cron
+  when: enable_service_mariadb_cron | bool

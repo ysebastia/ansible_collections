@@ -8,10 +8,10 @@
   community.general.apache2_module:
     state: present
     name: ldap
-  when: enable_service_apache_ldap
+  when: enable_service_apache_ldap | bool
 - name: Enable the Apache2 module ldap if enable_service_apache_ldap is defined
   become: true
   community.general.apache2_module:
     state: present
     name: authnz_ldap
-  when: enable_service_apache_ldap
+  when: enable_service_apache_ldap | bool

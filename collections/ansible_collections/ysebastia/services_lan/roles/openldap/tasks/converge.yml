@@ -6,12 +6,12 @@
   ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
 
 - name: Configure FIREWALLD if enable_base_firewalld is defined
-  when: enable_base_firewalld
+  when: enable_base_firewalld | bool
   ansible.builtin.include_tasks: firewalld.yml
 
 - name: Configure CRON if enable_service_openldap_cron is defined
   ansible.builtin.include_tasks: cron.yml
-  when: enable_service_openldap_cron
+  when: enable_service_openldap_cron | bool
 
 - name: Configure TLS if slapd_ssl_internal is defined
   ansible.builtin.include_tasks: config_tls.yml

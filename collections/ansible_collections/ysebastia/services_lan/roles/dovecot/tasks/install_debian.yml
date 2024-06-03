@@ -11,9 +11,9 @@
   become: true
   ansible.builtin.apt:
     name: dovecot-ldap
-  when: enable_service_dovecot_ldap
+  when: enable_service_dovecot_ldap | bool
 - name: Ensure POSTFIX is installed if enable_service_dovecot_auth_for_postfix is defined
   become: true
   ansible.builtin.apt:
     name: postfix
-  when: enable_service_dovecot_auth_for_postfix
+  when: enable_service_dovecot_auth_for_postfix | bool

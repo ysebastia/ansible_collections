@@ -9,4 +9,4 @@
   become: true
   ansible.builtin.apt:
     name: postfix-ldap
-  when: enable_service_postfix_ldap
+  when: enable_service_postfix_ldap | bool

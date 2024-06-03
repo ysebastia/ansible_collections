@@ -8,3 +8,4 @@
       vars:
         enable_service_apache: true
         enable_service_apache_ldap: true
+        apache_dependencies: true

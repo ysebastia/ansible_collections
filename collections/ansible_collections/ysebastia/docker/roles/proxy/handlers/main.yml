@@ -9,4 +9,4 @@
     name: docker
     state: restarted
     enabled: true
-  when: enable_docker_service
+  when: enable_docker_service | bool

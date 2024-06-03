@@ -6,7 +6,7 @@
   ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
 
 - name: Configure FIREWALLD if enable_base_firewalld is defined
-  when: enable_base_firewalld
+  when: enable_base_firewalld | bool
   ansible.builtin.include_tasks: firewalld.yml
 
 - name: Configure main.cf with postfix_conf_main list
@@ -22,4 +22,4 @@
 
 - name: Configure LDAP virtual account if enable_service_postfix_ldap is defined
   ansible.builtin.include_tasks: config_ldap.yml
-  when: enable_service_postfix_ldap
+  when: enable_service_postfix_ldap | bool
