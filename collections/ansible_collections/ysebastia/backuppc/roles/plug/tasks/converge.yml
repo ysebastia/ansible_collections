@@ -6,8 +6,6 @@
     key: '{{ backuppc_user }}'
     fail_key: false
   delegate_to: '{{ backuppc_serverhost }}'
-- ansible.builtin.debug:
-    var: ansible_facts.getent_passwd    
 - name: Create backup directory for host
   become: true
   ansible.builtin.file:
