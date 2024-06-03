@@ -11,3 +11,5 @@
         enable_repositories_proxy: true
         enable_repositories_rpmfusion: true
         epel_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
+        hashicorp_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
+        rpmfusion_https_proxy: "{{ ansible_env.HTTP_PROXY }}"

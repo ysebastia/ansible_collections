@@ -7,3 +7,4 @@
         name: "rpmfusion"
       vars:
         enable_repositories_rpmfusion: true
+        rpmfusion_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
