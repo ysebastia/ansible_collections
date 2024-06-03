@@ -9,3 +9,4 @@
 
     - name: Include tasks
       ansible.builtin.include_tasks: "{{ ansible_action }}_{{ ansible_os_family | lower }}.yml"
+      when: ansible_os_family | lower in rpmfusion_supported_os

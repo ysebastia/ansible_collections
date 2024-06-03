@@ -1,3 +1,4 @@
 ---
 ansible_action: converge
 enable_repositories_rpmfusion: false
+rpmfusion_supported_os: ['redhat']
