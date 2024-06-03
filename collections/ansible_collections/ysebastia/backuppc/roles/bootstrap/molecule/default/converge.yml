@@ -6,6 +6,7 @@
       ansible.builtin.include_role:
         name: "bootstrap"
       vars:
+        apache_dependencies: true
         enable_backuppc_agent: true
         enable_backuppc_plug: true
         enable_backuppc_server: true

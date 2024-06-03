@@ -14,4 +14,6 @@ galaxy_info:
         - all
 dependencies:
   - role: ysebastia.services_lan.apache
-    when: enable_backuppc_server
+    when:
+      - enable_backuppc_server | bool
+      - apache_dependencies | default(false) | bool
