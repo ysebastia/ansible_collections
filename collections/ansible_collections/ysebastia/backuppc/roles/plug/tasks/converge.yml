@@ -1,13 +1,25 @@
 ---
+- name: Test if backuppc exist on {{ backuppc_serverhost }}
+  ansible.builtin.getent:
+    database: passwd
+    split: ':'
+    key: '{{ backuppc_user }}'
+    fail_key: false
+  delegate_to: '{{ backuppc_serverhost }}'
+- ansible.builtin.debug:
+    var: ansible_facts.getent_passwd    
 - name: Create backup directory for host
   become: true
   ansible.builtin.file:
     state: directory
     path: '{{ backuppc_directory_backup }}/pc/{{ inventory_hostname_short }}'
     mode: '0750'
-    owner: backuppc
-    group: backuppc
+    owner: '{{ backuppc_user }}'
+    group: '{{ backuppc_user }}'
   delegate_to: '{{ backuppc_serverhost }}'
+  when:
+    - backuppc_user in getent_passwd.keys()
+    - ansible_facts.getent_passwd[backuppc_user] != None
 - name: Create configuration for host
   become: true
   ansible.builtin.template:
@@ -15,6 +27,9 @@
     dest: '{{ backuppc_directory_backup }}/pc/{{ inventory_hostname_short }}/config.pl'
     mode: '0644'
   delegate_to: '{{ backuppc_serverhost }}'
+  when:
+    - backuppc_user in getent_passwd.keys()
+    - ansible_facts.getent_passwd[backuppc_user] != None
 - name: Declare host in server configuration
   become: true
   ansible.builtin.lineinfile:
@@ -22,6 +37,9 @@
     regexp: ^{{ inventory_hostname_short }}\s
     line: '{{ inventory_hostname_short }} 0 {{ backuppc_owner }}'
   delegate_to: '{{ backuppc_serverhost }}'
+  when:
+    - backuppc_user in getent_passwd.keys()
+    - ansible_facts.getent_passwd[backuppc_user] != None
 - name: Check if SSH key of server exists
   ansible.builtin.stat:
     path: '{{ inventory_dir }}/files/pubkeys/{{ backuppc_serverhost }}.id_ecdsa.pub'

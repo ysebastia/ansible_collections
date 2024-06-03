@@ -12,6 +12,7 @@ backuppc_serverhost: '{{ inventory_hostname_short }}'
 backuppc_serverhost_fqdn: '{{ backuppc_serverhost }}.{{ backuppc_domain_name }}'
 backuppc_service_httpd: apache2
 backuppc_ssh_key_to_revoke: []
+backuppc_supported_os: ['debian']
 backuppc_url: 'http://{{ backuppc_serverhost }}.{{ backuppc_domain_name }}/BackupPC'
 enable_backuppc_server: false
 enable_service_apache: true
