@@ -5,3 +5,5 @@
     - name: "Include flux"
       ansible.builtin.include_role:
         name: "flux"
+      vars:
+        flux_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
