@@ -3,3 +3,4 @@ ansible_action: converge
 apache_service: httpd
 enable_service_apache: false
 enable_service_apache_ldap: false
+apache_supported_os: ['debian']
