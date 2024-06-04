@@ -25,3 +25,4 @@ freeradius_site_inner_tunnel_ttls: inner-tunnel
 freeradius_ssl_ca_file: 'ca-certificates.crt'
 freeradius_ssl_internal: true
 freeradius_ssl_server_host: 'ssl-cert-snakeoil'
+freeradius_supported_os: ['debian']

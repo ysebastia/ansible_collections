@@ -5,6 +5,7 @@ enable_service_postfix_ldap: false
 enable_service_postfix_dovecot_transport: true
 enable_service_postfix_ldap_account: true
 enable_service_postfix_ldap_tls: false
+postfix_supported_os: ['debian']
 postfix_ldap_tls: 'no'
 postfix_virtual_mailbox_base: /var/vmail
 postfix_virtual_gid: vmail
