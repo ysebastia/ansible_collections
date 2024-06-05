@@ -6,10 +6,11 @@
     enable_pki_deploy_ca: true
     enable_pki_server: true
     enable_service_freeradius: true
-    pki_ca_name: 'ansible'
-    pki_ca_file: "ca-{{ pki_ca_name }}.pem"
-    freeradius_ssl_ca_file: "ca-{{ pki_ca_name }}.pem"
     enable_service_freeradius_ldap: false
+    freeradius_dependencies: true
+    freeradius_ssl_ca_file: "ca-{{ pki_ca_name }}.pem"
+    pki_ca_file: "ca-{{ pki_ca_name }}.pem"
+    pki_ca_name: 'ansible'
   tasks:
     - name: "Include bootstrap PKI"
       ansible.builtin.include_role:

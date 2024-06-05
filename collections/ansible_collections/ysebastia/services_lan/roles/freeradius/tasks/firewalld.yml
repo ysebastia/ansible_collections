@@ -1,5 +1,5 @@
 ---
-- name: Allow dovecot traffic on RADIUS service
+- name: Allow radius traffic on RADIUS service
   become: true
   ansible.posix.firewalld:
     service: radius
