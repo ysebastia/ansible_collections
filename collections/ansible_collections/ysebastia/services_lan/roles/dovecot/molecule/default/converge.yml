@@ -10,3 +10,4 @@
         enable_service_dovecot_auth_for_postfix: true
         enable_service_dovecot_ldap: true
         enable_service_dovecot_syslog: true
+        dovecot_dependencies: true
