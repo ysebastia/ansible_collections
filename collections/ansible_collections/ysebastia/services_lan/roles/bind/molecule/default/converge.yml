@@ -7,3 +7,4 @@
         name: "bind"
       vars:
         enable_service_bind: true
+        bind_dependencies: true
