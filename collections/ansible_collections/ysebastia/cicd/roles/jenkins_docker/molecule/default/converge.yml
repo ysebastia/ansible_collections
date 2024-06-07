@@ -4,11 +4,11 @@
   tasks:
     - name: "Include agent"
       ansible.builtin.include_role:
-        name: "agent"
+        name: "jenkins_agent"
       vars:
         enable_jenkins_agent: true
     - name: "Include docker"
       ansible.builtin.include_role:
-        name: "docker"
+        name: "jenkins_docker"
       vars:
         enable_jenkins_docker: true
