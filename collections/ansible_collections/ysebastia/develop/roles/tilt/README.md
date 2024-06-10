@@ -32,7 +32,7 @@ enable_tilt: true
 
 ```YAML
 tilt_repo: 
-  https://github.com/tilt-dev/tilt/releases/download/v0.33.15/tilt.0.33.15.linux.x86_64.tar.gz
+  https://github.com/tilt-dev/tilt/releases/download/v0.33.16/tilt.0.33.16.linux.x86_64.tar.gz
 ```
 
 
