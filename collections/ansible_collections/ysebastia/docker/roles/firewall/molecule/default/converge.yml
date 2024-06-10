@@ -6,5 +6,6 @@
       ansible.builtin.include_role:
         name: "firewall"
       vars:
+        firewall_dependencies: true
         docker_firewall:
           - 80/tcp
