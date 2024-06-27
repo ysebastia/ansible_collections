@@ -1,0 +1,45 @@
+---
+- name: Ensure GPG is installed
+  become: true
+  ansible.builtin.apt:
+    name:
+      - gpg
+- name: Add GPG
+  become: true
+  ansible.builtin.apt_key:
+    url: https://packages.gitlab.com/gpg.key
+    keyring: /usr/share/keyrings/runner_gitlab-runner-archive-keyring.gpg
+  environment:
+    https_proxy: "{{ gitlab_https_proxy | default('') }}"
+- name: Configure Gitlab-runner repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: deb [signed-by=/usr/share/keyrings/runner_gitlab-runner-archive-keyring.gpg] https://packages.gitlab.com/runner/gitlab-runner/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} main
+    filename: runner_gitlab-runner
+    state: present
+  environment:
+    https_proxy: "{{ gitlab_https_proxy | default('') }}"
+- name: Install GITLAB-RUNNER
+  become: true
+  ansible.builtin.apt:
+    name:
+      - gitlab-runner
+      - python3-gitlab
+    update_cache: true
+- name: Create directory gitlab-runner.service.d
+  become: true
+  ansible.builtin.file:
+    path: "/etc/systemd/system/gitlab-runner.service.d"
+    state: directory
+    mode: '0755'
+- name: Create http-proxy.conf
+  become: true
+  ansible.builtin.template:
+    src: http-proxy.conf.j2
+    dest: /etc/systemd/system/gitlab-runner.service.d/http-proxy.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - Reload systemd
+    - Restart gitlab-runner
