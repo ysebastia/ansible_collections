@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include ca"
+      ansible.builtin.include_role:
+        name: "ca"
+      vars:
+        enable_pki_ca: true
