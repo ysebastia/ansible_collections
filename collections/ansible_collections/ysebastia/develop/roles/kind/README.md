@@ -61,7 +61,7 @@ kind_image: kindest/node:v1.29.1
 #### Default value
 
 ```YAML
-kind_version: v0.22.0
+kind_version: v0.23.0
 ```
 
 ### kube_config
