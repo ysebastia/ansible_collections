@@ -109,7 +109,7 @@ pipeline {
     stage('Molecule') {
       agent {
         docker {
-          image 'docker.io/ysebastia/molecule:24.7.0'
+          image 'docker.io/ysebastia/molecule:24.8.0'
           args '-v /var/run/docker.sock:/var/run/docker.sock --privileged'
         }
       }
