@@ -17,6 +17,15 @@
   ansible.builtin.include_tasks: config_tls.yml
   when: freeradius_ssl_internal | bool
 
+- name: Configure TLS cache directory
+  become: true
+  ansible.builtin.file:
+    path: /var/log/freeradius/tlscache/
+    state: directory
+    owner: "{{ freeradius_owner }}"
+    group: "{{ freeradius_group }}"
+    mode: '0700'
+
 - name: Configure FREERADIUS
   become: true
   ansible.builtin.template:

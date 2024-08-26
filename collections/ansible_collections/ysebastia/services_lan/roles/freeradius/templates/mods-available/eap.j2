@@ -15,7 +15,11 @@ eap {
     tls_min_version = "{{ freeradius_eap_tls_min_version }}"
     tls_max_version = "{{ freeradius_eap_tls_max_version }}"
     cache {
-      enable = no
+      enable = yes
+      lifetime = 24 # hours
+      max_entries = 255
+      name = "TLS {{ inventory_hostname_short }}"
+      persist_dir = "${logdir}/tlscache"
     }
     verify {
     }
