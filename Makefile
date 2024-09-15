@@ -12,4 +12,4 @@ help: ## Afficher l'aide
 	@echo
 
 checkov: ## exécuter checkov dans une image docker
-	docker run --rm -t -v "${PWD}":/app -w /app docker.io/ysebastia/checkov:3.2.230 checkov --directory . --soft-fail --skip-download --quiet --compact -o gitlab_sast
+	docker run --rm -t -v "${PWD}":/app -w /app docker.io/ysebastia/checkov:3.2.253 checkov --directory . --soft-fail --skip-download --quiet --compact -o gitlab_sast
