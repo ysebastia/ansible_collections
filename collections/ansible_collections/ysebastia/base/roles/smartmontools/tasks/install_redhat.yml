@@ -1,0 +1,11 @@
+---
+- name: Ensure SMARTMONTOOLS is installed
+  become: true
+  ansible.builtin.dnf:
+    name: smartmontools
+- name: Start service
+  become: true
+  ansible.builtin.service:
+    name: smartd
+    state: started
+    enabled: true

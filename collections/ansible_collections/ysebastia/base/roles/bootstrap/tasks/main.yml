@@ -38,3 +38,6 @@
 - name: Configure COMMANDS
   ansible.builtin.include_role:
     name: ysebastia.base.commands
+- name: Configure SMARTMOONTOOLS
+  ansible.builtin.include_role:
+    name: ysebastia.base.smartmontools
