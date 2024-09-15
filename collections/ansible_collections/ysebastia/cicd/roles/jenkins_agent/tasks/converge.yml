@@ -45,7 +45,7 @@
   ansible.builtin.file:
     path: "/tmp/jenkins"
     state: directory
-    mode: 01777
+    mode: '01777'
 - name: Create SSH key if enable_jenkins_agent_ssh is defined
   become: true
   community.crypto.openssh_keypair:

@@ -30,4 +30,4 @@
     src: files/etc/sudoers.d/backup
     dest: /etc/sudoers.d/backup
     validate: 'visudo -cf %s'
-    mode: 0440
+    mode: '0440'
