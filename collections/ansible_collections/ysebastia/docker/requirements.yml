@@ -3,7 +3,7 @@ collections:
   - name: ansible.posix
     version: 1.6.0
   - name: community.docker
-    version: 3.11.0
+    version: 3.12.1
   - name: 'https://github.com/ysebastia/ansible_collections.git#/collections/ansible_collections/ysebastia/repositories'
     type: git
     version: main
