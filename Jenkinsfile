@@ -110,7 +110,7 @@ pipeline {
       agent {
         docker {
           image 'docker.io/ysebastia/molecule:24.9.0'
-          args '-v /var/run/docker.sock:/var/run/docker.sock --privileged'
+          args '-v /var/run/docker.sock:/var/run/docker.sock --privileged -e NO_PROXY=$NO_PROXY -e http_proxy=$HTTP_PROXY -e https_proxy=$HTTPS_PROXY'
         }
       }
       steps {
