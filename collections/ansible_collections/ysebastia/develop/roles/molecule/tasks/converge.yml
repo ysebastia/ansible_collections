@@ -10,4 +10,6 @@
       - python-vagrant==1.0.0
       - rich
     virtualenv: '{{ python_venv_directory }}'
+  environment:
+    https_proxy: '{{ https_proxy }}'
   when: enable_develop_molecule | bool

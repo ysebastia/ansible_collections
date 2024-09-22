@@ -9,3 +9,5 @@
       - 'ansible-lint=={{ ansible_lint_version }}'
       - yamllint==1.35.1
     virtualenv: '{{ python_venv_directory }}'
+  environment:
+    https_proxy: '{{ https_proxy }}'

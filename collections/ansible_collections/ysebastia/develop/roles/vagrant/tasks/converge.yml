@@ -11,5 +11,7 @@
     name:
       - libvirt-python==10.7.0
     virtualenv: '{{ python_venv_directory }}'
+  environment:
+    https_proxy: '{{ https_proxy }}'
   notify:
     - Install Vagrant plugins
