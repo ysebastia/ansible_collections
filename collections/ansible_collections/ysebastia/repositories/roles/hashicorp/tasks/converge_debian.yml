@@ -7,7 +7,7 @@
 - name: Fix Hashicorp repository
   become: true
   ansible.builtin.apt_repository:
-    repo: deb https://apt.releases.hashicorp.com {{ ansible_distribution_release }} stable
+    repo: deb https://apt.releases.hashicorp.com {{ hashicorp_release }} stable
     filename: hashicorp
     state: absent
 - name: Add GPG
@@ -20,6 +20,6 @@
 - name: Configure Hashicorp repository
   become: true
   ansible.builtin.apt_repository:
-    repo: deb https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
+    repo: deb https://apt.releases.hashicorp.com {{ hashicorp_release }} main
     filename: hashicorp
     state: present

@@ -1,1 +1,2 @@
 ---
+hashicorp_release: "{{ ansible_distribution_release }}"
