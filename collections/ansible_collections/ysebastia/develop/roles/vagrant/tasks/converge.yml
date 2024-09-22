@@ -12,6 +12,6 @@
       - libvirt-python==10.7.0
     virtualenv: '{{ python_venv_directory }}'
   environment:
-    https_proxy: '{{ https_proxy }}'
+    https_proxy: "{{ ansible_env.HTTPS_PROXY }}"
   notify:
     - Install Vagrant plugins
