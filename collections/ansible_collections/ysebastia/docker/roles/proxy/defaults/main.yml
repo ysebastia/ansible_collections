@@ -2,3 +2,4 @@
 ansible_action: converge
 enable_docker_proxy: false
 enable_docker_service: false
+docker_https_proxy:
