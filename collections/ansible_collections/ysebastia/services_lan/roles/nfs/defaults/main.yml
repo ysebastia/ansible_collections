@@ -1,0 +1,4 @@
+---
+ansible_action: converge
+enable_service_nfs: false
+nfs_supported_os: ['debian']

@@ -1,0 +1,5 @@
+{% for share in nfs_share %}
+{% for client in share.clients %}
+{{ client.path }} {{ client.host }}({{ client.option }})
+{% endfor %}
+{% endfor %}

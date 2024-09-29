@@ -1,0 +1,28 @@
+---
+- name: Install packages by operating system
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family | lower }}.yml"
+
+- name: Configure FIREWALLD if enable_base_firewalld is defined
+  when: enable_base_firewalld | bool
+  ansible.builtin.include_tasks: firewalld.yml
+
+- name: Create NFS directories
+  become: true
+  ansible.builtin.file:
+    path: '{{ item.path }}'
+    state: directory
+    owner: '{{ item.owner }}'
+    group: '{{ item.group }}'
+    mode: '{{ item.mode }}'
+  loop: '{{ nfs_share }}'
+
+- name: Configure exports
+  become: true
+  ansible.builtin.template:
+    src: nfs.exports.j2
+    dest: /etc/exports
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - Restart nfs

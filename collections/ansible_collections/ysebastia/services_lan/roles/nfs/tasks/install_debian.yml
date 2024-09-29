@@ -1,0 +1,5 @@
+---
+- name: Ensure NFS is installed
+  become: true
+  ansible.builtin.apt:
+    name: nfs-kernel-server

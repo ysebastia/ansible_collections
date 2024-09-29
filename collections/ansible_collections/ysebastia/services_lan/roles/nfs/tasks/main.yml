@@ -1,0 +1,12 @@
+---
+- name: Configure NFS if enable_service_nfs is defined
+  when:
+    - enable_service_nfs | bool
+    - ansible_action in ['converge']
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+      when: ansible_os_family | lower in nfs_supported_os
