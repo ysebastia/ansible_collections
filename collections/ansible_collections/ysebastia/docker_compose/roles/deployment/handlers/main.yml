@@ -1,0 +1,7 @@
+---
+- name: Restart docker-compose@{{ docker_compose_project }}
+  become: true
+  ansible.builtin.service:
+    name: docker-compose@{{ docker_compose_project }}
+    state: restarted
+    enabled: true
