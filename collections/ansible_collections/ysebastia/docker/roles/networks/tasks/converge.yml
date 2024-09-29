@@ -2,11 +2,11 @@
 - name: Include tasks
   ansible.builtin.include_tasks: "config_{{ ansible_os_family | lower }}.yml"
 
-- name: Ensure DOCKER is started
+- name: Ensure DOCKER is restarted
   become: true
   ansible.builtin.service:
     name: docker
-    state: started
+    state: restarted
 
 - name: Create DOCKER network
   become: true
