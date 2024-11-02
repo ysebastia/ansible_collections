@@ -31,7 +31,7 @@ enable_helm: true
 #### Default value
 
 ```YAML
-helm_repo: https://get.helm.sh/helm-v3.16.1-linux-amd64.tar.gz
+helm_repo: https://get.helm.sh/helm-v3.16.2-linux-amd64.tar.gz
 ```
 
 
