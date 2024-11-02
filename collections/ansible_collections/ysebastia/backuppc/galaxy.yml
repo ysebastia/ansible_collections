@@ -42,7 +42,7 @@ tags:
 # L(specifiers,https://python-semanticversion.readthedocs.io/en/latest/#requirement-specification). Multiple version
 # range specifiers can be set and are separated by ','
 dependencies:
-  "ansible.posix": ">=1.6.0"
+  "ansible.posix": ">=1.6.2"
   "community.crypto": ">=2.21.0"
   "git+https://github.com/ysebastia/ansible_collections.git#/collections/ansible_collections/ysebastia/services_lan": "main"
 
