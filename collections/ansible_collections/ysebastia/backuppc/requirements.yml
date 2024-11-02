@@ -3,7 +3,7 @@ collections:
   - name: ansible.posix
     version: 1.6.2
   - name: community.crypto
-    version: 2.21.0
+    version: 2.22.3
   - name: 'https://github.com/ysebastia/ansible_collections.git#/collections/ansible_collections/ysebastia/services_lan'
     type: git
     version: main
