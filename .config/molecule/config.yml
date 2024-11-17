@@ -34,7 +34,7 @@ platforms:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     cgroupns_mode: host
   - name: "debian${CI_COMMIT_SHORT_SHA}"
-    image: docker.io/ysebastia/molecule:debian-12.7
+    image: docker.io/ysebastia/molecule:debian-12.8
     pre_build_image: true
     env:
       HTTPS_PROXY: "${https_proxy}"
