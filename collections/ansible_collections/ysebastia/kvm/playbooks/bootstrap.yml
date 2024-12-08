@@ -17,7 +17,7 @@
         enable_base_firewalld: false
     - name: Images
       ansible.builtin.include_role:
-        name: ysebastia.kvm.images
+        name: ysebastia.base.kvm_images
     - name: Manager
       ansible.builtin.include_role:
         name: ysebastia.base.kvm_manager
