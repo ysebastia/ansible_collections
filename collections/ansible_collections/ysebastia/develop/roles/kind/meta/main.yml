@@ -13,7 +13,7 @@ galaxy_info:
       versions:
         - all
 dependencies:
-  - role: ysebastia.repositories.docker_ce
+  - role: ysebastia.base.repos_docker_ce
     vars:
       enable_repositories_docker_ce: true
   - role: ysebastia.docker.service

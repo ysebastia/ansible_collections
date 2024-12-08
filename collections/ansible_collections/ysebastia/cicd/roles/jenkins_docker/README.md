@@ -40,7 +40,7 @@ enable_jenkins_docker: false
 
 ## Dependencies
 
-- ysebastia.repositories.docker_ce
+- ysebastia.base.repos_docker_ce
 
 ## License
 

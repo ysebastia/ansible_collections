@@ -1,7 +1,7 @@
 ---
 - name: Docker-CE repository
   ansible.builtin.include_role:
-    name: ysebastia.repositories.docker_ce
+    name: ysebastia.base.repos_docker_ce
 - name: Installation of Docker
   ansible.builtin.include_role:
     name: ysebastia.docker.service
