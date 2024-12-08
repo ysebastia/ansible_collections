@@ -4,4 +4,4 @@
   tasks:
     - name: "Include install"
       ansible.builtin.include_role:
-        name: "install"
+        name: "docker_compose_install"

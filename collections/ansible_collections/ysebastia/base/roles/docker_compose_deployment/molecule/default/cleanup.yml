@@ -10,7 +10,7 @@
       failed_when: false
     - name: "Cleanup deployment"
       ansible.builtin.include_role:
-        name: "deployment"
+        name: "docker_compose_deployment"
       vars:
         ansible_action: cleanup
       when: wait_for_instances.elapsed < 10

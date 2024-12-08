@@ -4,6 +4,6 @@
   tasks:
     - name: "Include deployment"
       ansible.builtin.include_role:
-        name: "deployment"
+        name: "docker_compose_deployment"
       vars:
         enable_docker_compose_deployment: true

@@ -4,6 +4,6 @@
   tasks:
     - name: "Include service"
       ansible.builtin.include_role:
-        name: "service"
+        name: "docker_compose_service"
       vars:
         enable_docker_compose_service: true

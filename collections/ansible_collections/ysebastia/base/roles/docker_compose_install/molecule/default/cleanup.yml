@@ -10,7 +10,7 @@
       failed_when: false
     - name: "Cleanup install"
       ansible.builtin.include_role:
-        name: "install"
+        name: "docker_compose_install"
       vars:
         ansible_action: cleanup
       when: wait_for_instances.elapsed < 10
