@@ -8,7 +8,7 @@
         name: ysebastia.base.docker_filesystem
     - name: "Include bootstrap"
       ansible.builtin.include_role:
-        name: ysebastia.docker.bootstrap
+        name: ysebastia.base.docker
       vars:
         docker_user_to_append: '{{ ansible_user }}'
         enable_docker_group: true

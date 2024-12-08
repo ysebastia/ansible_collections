@@ -7,6 +7,3 @@ collections:
   - name: 'https://github.com/ysebastia/ansible_collections.git#/collections/ansible_collections/ysebastia/base'
     type: git
     version: main
-  - name: 'https://github.com/ysebastia/ansible_collections.git#/collections/ansible_collections/ysebastia/docker'
-    type: git
-    version: main
