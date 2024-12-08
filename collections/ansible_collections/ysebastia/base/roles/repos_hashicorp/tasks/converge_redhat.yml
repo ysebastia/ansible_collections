@@ -3,10 +3,10 @@
   become: true
   ansible.builtin.yum_repository:
     name: hashicorp
-    description: Hashicorp Stable - $basearch
+    description: "Hashicorp Stable - $basearch"
     file: hashicorp
-    baseurl: https://rpm.releases.hashicorp.com/RHEL/$releasever/$basearch/stable
+    baseurl: "https://rpm.releases.hashicorp.com/RHEL/$releasever/$basearch/stable"
     gpgkey: https://rpm.releases.hashicorp.com/gpg
-    gpgcheck: '1'
-    enabled: '1'
+    gpgcheck: true
+    enabled: true
     priority: '1'
