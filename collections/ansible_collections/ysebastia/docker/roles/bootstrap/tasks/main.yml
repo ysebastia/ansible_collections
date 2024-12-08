@@ -16,7 +16,7 @@
     name: ysebastia.docker.group
 - name: Firewall configuration for Docker
   ansible.builtin.include_role:
-    name: ysebastia.docker.firewall
+    name: ysebastia.base.docker_firewall
 - name: Network configuration for Docker
   ansible.builtin.include_role:
     name: ysebastia.base.docker_networks
