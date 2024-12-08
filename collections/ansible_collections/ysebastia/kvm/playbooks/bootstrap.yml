@@ -23,7 +23,7 @@
         name: ysebastia.kvm.manager
     - name: Group
       ansible.builtin.include_role:
-        name: ysebastia.kvm.group
+        name: ysebastia.base.kvm_group
       vars:
         enable_kvm_group: true
         kvm_user_to_append: '{{ ansible_user }}'
