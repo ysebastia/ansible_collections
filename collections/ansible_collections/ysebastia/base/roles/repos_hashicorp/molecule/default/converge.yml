@@ -4,7 +4,7 @@
   tasks:
     - name: "Include hashicorp"
       ansible.builtin.include_role:
-        name: "hashicorp"
+        name: "repos_hashicorp"
       vars:
         enable_repositories_hashicorp: true
         hashicorp_https_proxy: "{{ ansible_env.HTTP_PROXY }}"

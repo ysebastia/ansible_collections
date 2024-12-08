@@ -4,7 +4,7 @@
   tasks:
     - name: "Include firewall"
       ansible.builtin.include_role:
-        name: "firewall"
+        name: "docker_firewall"
       vars:
         firewall_dependencies: true
         docker_firewall:

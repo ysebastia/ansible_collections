@@ -10,7 +10,7 @@
       failed_when: false
     - name: "Cleanup rpmfusion"
       ansible.builtin.include_role:
-        name: "rpmfusion"
+        name: "repos_rpmfusion"
       vars:
         ansible_action: cleanup
       when: wait_for_instances.elapsed < 10

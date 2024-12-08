@@ -4,13 +4,13 @@
   tasks:
     - name: "Bootstrap DOCKER service"
       ansible.builtin.include_role:
-        name: "bootstrap"
+        name: "docker"
       vars:
         enable_repositories_docker_ce: true
         docker_ce_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
     - name: "Include service"
       ansible.builtin.include_role:
-        name: "service"
+        name: "docker_service"
       vars:
         enable_repositories_docker_ce: true
         docker_ce_https_proxy: "{{ ansible_env.HTTP_PROXY }}"

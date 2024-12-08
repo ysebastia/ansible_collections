@@ -4,7 +4,7 @@
   tasks:
     - name: "Include bootstrap"
       ansible.builtin.include_role:
-        name: "bootstrap"
+        name: "repos"
       vars:
         enable_repositories_epel: true
         enable_repositories_hashicorp: true

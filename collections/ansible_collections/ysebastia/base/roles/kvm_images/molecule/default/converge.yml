@@ -4,4 +4,4 @@
   tasks:
     - name: "Include images"
       ansible.builtin.include_role:
-        name: "images"
+        name: "kvm_images"

@@ -4,4 +4,4 @@
   tasks:
     - name: "Include group"
       ansible.builtin.include_role:
-        name: "group"
+        name: "docker_group"

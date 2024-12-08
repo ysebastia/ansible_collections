@@ -4,7 +4,7 @@
   tasks:
     - name: "Include libvirt"
       ansible.builtin.include_role:
-        name: "libvirt"
+        name: "kvm_libvirt"
       vars:
         enable_kvm_libvirt: true
         enable_repositories_epel: true
@@ -12,7 +12,7 @@
         libvirt_dependencies: true
     - name: "Include group"
       ansible.builtin.include_role:
-        name: "group"
+        name: "kvm_group"
       vars:
         enable_kvm_group: true
         kvm_user_to_append: '{{ ansible_user }}'

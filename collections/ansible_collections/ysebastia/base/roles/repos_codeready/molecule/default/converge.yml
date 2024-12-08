@@ -4,4 +4,4 @@
   tasks:
     - name: "Include codeready"
       ansible.builtin.include_role:
-        name: "codeready"
+        name: "repos_codeready"

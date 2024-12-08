@@ -10,7 +10,7 @@
       failed_when: false
     - name: "Cleanup codeready"
       ansible.builtin.include_role:
-        name: "codeready"
+        name: "repos_codeready"
       vars:
         ansible_action: cleanup
       when: wait_for_instances.elapsed < 10

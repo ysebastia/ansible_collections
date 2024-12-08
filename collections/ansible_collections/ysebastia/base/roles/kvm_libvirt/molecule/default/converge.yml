@@ -4,7 +4,7 @@
   tasks:
     - name: "Include libvirt"
       ansible.builtin.include_role:
-        name: "libvirt"
+        name: "kvm_libvirt"
       vars:
         enable_kvm_libvirt: true
         enable_repositories_epel: true

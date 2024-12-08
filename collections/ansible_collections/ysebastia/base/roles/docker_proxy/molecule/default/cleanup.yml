@@ -10,7 +10,7 @@
       failed_when: false
     - name: "Cleanup proxy"
       ansible.builtin.include_role:
-        name: "proxy"
+        name: "docker_proxy"
       vars:
         ansible_action: cleanup
       when: wait_for_instances.elapsed < 10
