@@ -5,7 +5,7 @@
   tasks:
     - name: "Include bootstrap"
       ansible.builtin.include_role:
-        name: ysebastia.develop.bootstrap
+        name: ysebastia.base.develop
       vars:
         enable_base_firewalld: false
         enable_develop_ansible: true
