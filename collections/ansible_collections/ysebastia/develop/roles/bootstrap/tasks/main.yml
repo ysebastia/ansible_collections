@@ -7,7 +7,7 @@
     name: ysebastia.base.develop_ansible
 - name: Vagrant
   ansible.builtin.include_role:
-    name: ysebastia.develop.vagrant
+    name: ysebastia.base.develop_vagrant
 - name: Molecule
   ansible.builtin.include_role:
     name: ysebastia.develop.molecule
