@@ -49,7 +49,7 @@ python_venv_directory: ~/.venv/ansible/
 
 ## Dependencies
 
-- ysebastia.repositories.hashicorp
+- ysebastia.base.repos_hashicorp
 - ysebastia.kvm.filesystem
 - ysebastia.kvm.libvirt
 

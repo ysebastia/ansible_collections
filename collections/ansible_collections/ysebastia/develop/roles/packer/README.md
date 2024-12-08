@@ -40,7 +40,7 @@ enable_develop_packer: false
 
 ## Dependencies
 
-- ysebastia.repositories.hashicorp
+- ysebastia.base.repos_hashicorp
 - ysebastia.kvm.filesystem
 - ysebastia.kvm.libvirt
 

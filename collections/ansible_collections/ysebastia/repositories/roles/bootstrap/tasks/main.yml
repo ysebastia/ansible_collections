@@ -19,4 +19,4 @@
     name: ysebastia.base.repos_rpmfusion
 - name: Configure HASHICORP repository
   ansible.builtin.include_role:
-    name: ysebastia.repositories.hashicorp
+    name: ysebastia.base.repos_hashicorp
