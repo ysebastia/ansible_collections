@@ -5,4 +5,4 @@
   tasks:
     - name: Bootstrap BACKUPPC
       ansible.builtin.include_role:
-        name: ysebastia.backuppc.bootstrap
+        name: ysebastia.base.backuppc
