@@ -16,4 +16,4 @@
     name: ysebastia.base.develop_packer
 - name: Terraform
   ansible.builtin.include_role:
-    name: ysebastia.develop.terraform
+    name: ysebastia.base.develop_terraform
