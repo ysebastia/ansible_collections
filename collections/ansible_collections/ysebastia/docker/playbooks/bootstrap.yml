@@ -5,7 +5,7 @@
   tasks:
     - name: Filesystem
       ansible.builtin.include_role:
-        name: ysebastia.docker.filesystem
+        name: ysebastia.base.docker_filesystem
     - name: "Include bootstrap"
       ansible.builtin.include_role:
         name: ysebastia.docker.bootstrap
