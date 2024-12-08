@@ -5,22 +5,22 @@
   tasks:
     - name: Configure Kind
       ansible.builtin.include_role:
-        name: ysebastia.develop.kind
+        name: ysebastia.base.cloud_kind
     - name: Configure kubectl
       ansible.builtin.include_role:
-        name: ysebastia.develop.kubectl
+        name: ysebastia.base.cloud_kubectl
     - name: Install k9s
       ansible.builtin.include_role:
-        name: ysebastia.develop.k9s
+        name: ysebastia.base.cloud_k9s
     - name: Install Flux
       ansible.builtin.include_role:
-        name: ysebastia.develop.flux
+        name: ysebastia.base.cloud_flux
     - name: Install Tilt
       ansible.builtin.include_role:
-        name: ysebastia.develop.tilt
+        name: ysebastia.base.cloud_tilt
     - name: Install Helm
       ansible.builtin.include_role:
-        name: ysebastia.develop.helm
+        name: ysebastia.base.cloud_helm
     - name: Install kustomize
       ansible.builtin.include_role:
-        name: ysebastia.develop.kustomize
+        name: ysebastia.base.cloud_kustomize

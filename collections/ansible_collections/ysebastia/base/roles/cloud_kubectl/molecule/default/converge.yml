@@ -4,6 +4,6 @@
   tasks:
     - name: "Include kubectl"
       ansible.builtin.include_role:
-        name: "kubectl"
+        name: "cloud_kubectl"
       vars:
         kubectl_https_proxy: "{{ ansible_env.HTTP_PROXY }}"

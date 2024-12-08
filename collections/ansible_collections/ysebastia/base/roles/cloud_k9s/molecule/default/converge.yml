@@ -4,6 +4,6 @@
   tasks:
     - name: "Include k9s"
       ansible.builtin.include_role:
-        name: "k9s"
+        name: "cloud_k9s"
       vars:
         k9s_https_proxy: "{{ ansible_env.HTTP_PROXY }}"

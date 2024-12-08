@@ -4,6 +4,6 @@
   tasks:
     - name: "Include tilt"
       ansible.builtin.include_role:
-        name: "tilt"
+        name: "cloud_tilt"
       vars:
         tilt_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
