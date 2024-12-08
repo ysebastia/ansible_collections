@@ -6,4 +6,4 @@ develop_python_packages:
   - python3-venv
   - python3.11-venv
   - virtualenv
-python_bin: python3
+python_bin: "{{ my_python_bin | default('python3') }}"

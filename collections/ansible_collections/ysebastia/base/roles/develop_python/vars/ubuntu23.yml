@@ -5,4 +5,4 @@ develop_python_packages:
   - python3-setuptools-whl
   - python3.12-venv
   - virtualenv
-python_bin: python3.12
+python_bin: "{{ my_python_bin | default('python3.12') }}"
