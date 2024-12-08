@@ -5,6 +5,6 @@
   tasks:
     - name: Configure Proxy repository
       ansible.builtin.include_role:
-        name: ysebastia.repositories.proxy
+        name: ysebastia.base.repos_proxy
       vars:
         enable_repositories_proxy: true

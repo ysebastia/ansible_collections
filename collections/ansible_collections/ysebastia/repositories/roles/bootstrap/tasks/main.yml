@@ -1,7 +1,7 @@
 ---
 - name: Configure PROXY
   ansible.builtin.include_role:
-    name: ysebastia.repositories.proxy
+    name: ysebastia.base.repos_proxy
 - name: Configure Redhat Subscription
   ansible.builtin.include_role:
     name: ysebastia.repositories.redhat_subscription
