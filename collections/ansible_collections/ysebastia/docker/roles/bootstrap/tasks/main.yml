@@ -7,7 +7,7 @@
     name: ysebastia.docker.service
 - name: Remote access of Docker
   ansible.builtin.include_role:
-    name: ysebastia.docker.remote
+    name: ysebastia.base.docker_remote
 - name: Proxy configuration for Docker
   ansible.builtin.include_role:
     name: ysebastia.base.docker_proxy
