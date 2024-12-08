@@ -11,7 +11,7 @@
         name: ysebastia.kvm.filesystem
     - name: Libvirt
       ansible.builtin.include_role:
-        name: ysebastia.kvm.libvirt
+        name: ysebastia.base.kvm_libvirt
       vars:
         enable_kvm_libvirt: true
         enable_base_firewalld: false

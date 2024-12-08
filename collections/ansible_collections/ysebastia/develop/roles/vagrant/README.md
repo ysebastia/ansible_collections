@@ -51,7 +51,7 @@ python_venv_directory: ~/.venv/ansible/
 
 - ysebastia.base.repos_hashicorp
 - ysebastia.kvm.filesystem
-- ysebastia.kvm.libvirt
+- ysebastia.base.kvm_libvirt
 
 ## License
 

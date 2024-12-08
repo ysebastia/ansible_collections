@@ -42,7 +42,7 @@ enable_develop_packer: false
 
 - ysebastia.base.repos_hashicorp
 - ysebastia.kvm.filesystem
-- ysebastia.kvm.libvirt
+- ysebastia.base.kvm_libvirt
 
 ## License
 
