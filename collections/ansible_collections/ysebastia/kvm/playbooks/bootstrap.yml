@@ -20,7 +20,7 @@
         name: ysebastia.kvm.images
     - name: Manager
       ansible.builtin.include_role:
-        name: ysebastia.kvm.manager
+        name: ysebastia.base.kvm_manager
     - name: Group
       ansible.builtin.include_role:
         name: ysebastia.base.kvm_group
