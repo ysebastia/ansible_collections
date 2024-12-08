@@ -16,4 +16,4 @@ dependencies:
   - role: ysebastia.base.firewalld
     when:
       - docker_firewall | length > 0
-      - docker_firewall_dependencies | default(false) | bool
+      - firewall_dependencies | default(false) | bool

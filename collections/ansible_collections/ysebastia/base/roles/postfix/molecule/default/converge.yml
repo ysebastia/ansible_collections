@@ -8,3 +8,4 @@
       vars:
         enable_service_postfix: true
         enable_service_postfix_ldap: true
+        postfix_dependencies: true
