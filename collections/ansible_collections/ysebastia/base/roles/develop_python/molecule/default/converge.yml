@@ -4,6 +4,6 @@
   tasks:
     - name: "Include python"
       ansible.builtin.include_role:
-        name: "python"
+        name: "develop_python"
       vars:
         enable_develop_python: true

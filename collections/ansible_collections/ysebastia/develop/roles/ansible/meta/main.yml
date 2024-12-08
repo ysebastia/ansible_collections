@@ -13,7 +13,7 @@ galaxy_info:
       versions:
         - all
 dependencies:
-  - role: ysebastia.develop.python
+  - role: ysebastia.base.develop_python
     vars:
       enable_develop_python: true
     when:
