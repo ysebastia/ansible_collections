@@ -78,7 +78,7 @@ kube_config: /root/.kube/config
 
 - ysebastia.base.repos_docker_ce
 - ysebastia.docker.service
-- ysebastia.docker.group
+- ysebastia.base.docker_group
 
 ## License
 

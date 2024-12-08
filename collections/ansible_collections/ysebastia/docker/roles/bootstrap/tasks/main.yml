@@ -13,7 +13,7 @@
     name: ysebastia.docker.proxy
 - name: Group configuration for Docker
   ansible.builtin.include_role:
-    name: ysebastia.docker.group
+    name: ysebastia.base.docker_group
 - name: Firewall configuration for Docker
   ansible.builtin.include_role:
     name: ysebastia.base.docker_firewall
