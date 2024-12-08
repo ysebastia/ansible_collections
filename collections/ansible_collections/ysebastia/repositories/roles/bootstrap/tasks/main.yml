@@ -4,7 +4,7 @@
     name: ysebastia.base.repos_proxy
 - name: Configure Redhat Subscription
   ansible.builtin.include_role:
-    name: ysebastia.repositories.redhat_subscription
+    name: ysebastia.base.redhat_subscription
 - name: Configure CODEREADY repository
   ansible.builtin.include_role:
     name: ysebastia.repositories.codeready
