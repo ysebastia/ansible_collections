@@ -7,7 +7,7 @@
     name: ysebastia.base.redhat_subscription
 - name: Configure CODEREADY repository
   ansible.builtin.include_role:
-    name: ysebastia.repositories.codeready
+    name: ysebastia.base.repos_codeready
 - name: Configure EPEL repository
   ansible.builtin.include_role:
     name: ysebastia.base.repos_epel
