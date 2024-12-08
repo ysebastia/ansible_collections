@@ -4,4 +4,4 @@
   tasks:
     - name: "Include postfix"
       ansible.builtin.include_role:
-        name: "postfix"
+        name: "postfix_agent"

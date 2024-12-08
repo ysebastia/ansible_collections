@@ -13,7 +13,7 @@
     name: ysebastia.base.vim
 - name: Configure POTSFIX agent
   ansible.builtin.include_role:
-    name: ysebastia.base.postfix
+    name: ysebastia.base.postfix_agent
 - name: Configure QEMU-GUEST agent
   ansible.builtin.include_role:
     name: ysebastia.base.qemu_guest_agent
