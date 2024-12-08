@@ -1,5 +1,0 @@
----
-- name: Converge
-  ansible.builtin.import_playbook: ysebastia.kvm.bootstrap
-  vars:
-    enable_kvm_manager: true
