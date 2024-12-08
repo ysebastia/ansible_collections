@@ -13,7 +13,7 @@
     name: ysebastia.base.develop_molecule
 - name: Packer
   ansible.builtin.include_role:
-    name: ysebastia.develop.packer
+    name: ysebastia.base.develop_packer
 - name: Terraform
   ansible.builtin.include_role:
     name: ysebastia.develop.terraform
