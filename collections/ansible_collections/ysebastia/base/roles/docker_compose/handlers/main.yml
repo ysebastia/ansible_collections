@@ -1,4 +1,8 @@
 ---
+- name: Reload systemd
+  become: true
+  ansible.builtin.systemd:
+    daemon_reload: true
 - name: Restart docker-compose@{{ docker_compose_project }}
   become: true
   ansible.builtin.service:

@@ -1,4 +1,0 @@
----
-ansible_action: converge
-docker_compose_working_directory: /etc/docker/compose/
-enable_docker_compose_service: false

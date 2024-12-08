@@ -1,9 +1,0 @@
----
-- name: Converge
-  hosts: all
-  tasks:
-    - name: "Include service"
-      ansible.builtin.include_role:
-        name: "docker_compose_service"
-      vars:
-        enable_docker_compose_service: true

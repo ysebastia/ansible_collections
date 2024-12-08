@@ -1,6 +1,0 @@
----
-- name: Remove standalone binary
-  become: true
-  ansible.builtin.file:
-    path: /usr/local/bin/docker-compose
-    state: absent

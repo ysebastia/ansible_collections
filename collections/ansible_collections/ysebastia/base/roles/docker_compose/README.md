@@ -7,7 +7,7 @@ Install docker-compose
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
   - [ansible_action](#ansible_action)
-  - [enable_docker_compose](#enable_docker_compose)
+  - [docker_compose_enable](#docker_compose_enable)
 - [Dependencies](#dependencies)
 - [License](#license)
 - [Author](#author)
@@ -28,12 +28,12 @@ Install docker-compose
 ansible_action: config
 ```
 
-### enable_docker_compose
+### docker_compose_enable
 
 #### Default value
 
 ```YAML
-enable_docker_compose: false
+docker_compose_enable: false
 ```
 
 

@@ -1,6 +1,0 @@
----
-- name: Configure deployment if enable_docker_compose_deployment is defined
-  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
-  when:
-    - enable_docker_compose_deployment | bool
-    - ansible_action in ['converge', 'cleanup']
