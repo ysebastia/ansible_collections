@@ -4,7 +4,7 @@
     name: ysebastia.base.repos_docker_ce
 - name: Installation of Docker
   ansible.builtin.include_role:
-    name: ysebastia.docker.service
+    name: ysebastia.base.docker_service
 - name: Remote access of Docker
   ansible.builtin.include_role:
     name: ysebastia.base.docker_remote

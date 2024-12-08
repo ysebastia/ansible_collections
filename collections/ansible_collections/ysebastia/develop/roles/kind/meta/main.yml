@@ -16,5 +16,5 @@ dependencies:
   - role: ysebastia.base.repos_docker_ce
     vars:
       enable_repositories_docker_ce: true
-  - role: ysebastia.docker.service
+  - role: ysebastia.base.docker_service
   - role: ysebastia.base.docker_group
