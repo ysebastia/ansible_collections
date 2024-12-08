@@ -14,7 +14,7 @@ driver:
   name: docker
 platforms:
   - name: "alma${CI_COMMIT_SHORT_SHA}"
-    image: docker.io/ysebastia/molecule:alma-9.4
+    image: docker.io/ysebastia/molecule:alma-9.5
     pre_build_image: true
     env:
       HTTPS_PROXY: "${https_proxy}"
