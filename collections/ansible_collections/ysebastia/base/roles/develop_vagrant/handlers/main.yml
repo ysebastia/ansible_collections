@@ -2,4 +2,4 @@
 - name: Install Vagrant plugins  # noqa no-changed-when
   ansible.builtin.command: vagrant plugin install vagrant-libvirt
   environment:
-    https_proxy: "{{ ansible_env.HTTPS_PROXY }}"
+    https_proxy: "{{ ansible_env.HTTPS_PROXY | default(none) }}"
