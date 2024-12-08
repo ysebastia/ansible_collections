@@ -175,7 +175,7 @@ enable_service_apache_ldap: true
 
 ## Dependencies
 
-- ysebastia.services_lan.apache
+- ysebastia.base.apache
 
 ## License
 

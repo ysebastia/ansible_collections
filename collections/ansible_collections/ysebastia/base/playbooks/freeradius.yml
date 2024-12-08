@@ -5,4 +5,4 @@
   tasks:
     - name: Freeradius
       ansible.builtin.include_role:
-        name: ysebastia.services_lan.freeradius
+        name: ysebastia.base.freeradius

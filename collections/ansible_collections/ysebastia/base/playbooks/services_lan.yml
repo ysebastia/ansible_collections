@@ -5,22 +5,22 @@
   tasks:
     - name: BIND
       ansible.builtin.include_role:
-        name: ysebastia.services_lan.bind
+        name: ysebastia.base.bind
     - name: OPENLDAP
       ansible.builtin.include_role:
-        name: ysebastia.services_lan.openldap
+        name: ysebastia.base.openldap
     - name: FREERADIUS
       ansible.builtin.include_role:
-        name: ysebastia.services_lan.freeradius
+        name: ysebastia.base.freeradius
     - name: SQUID
       ansible.builtin.include_role:
-        name: ysebastia.services_lan.squid
+        name: ysebastia.base.squid
     - name: MARIADB
       ansible.builtin.include_role:
-        name: ysebastia.services_lan.mariadb
+        name: ysebastia.base.mariadb
     - name: DOVECOT
       ansible.builtin.include_role:
-        name: ysebastia.services_lan.dovecot
+        name: ysebastia.base.dovecot
     - name: POSTFIX
       ansible.builtin.include_role:
-        name: ysebastia.services_lan.postfix
+        name: ysebastia.base.postfix
