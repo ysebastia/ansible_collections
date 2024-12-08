@@ -10,7 +10,7 @@
     name: ysebastia.docker.remote
 - name: Proxy configuration for Docker
   ansible.builtin.include_role:
-    name: ysebastia.docker.proxy
+    name: ysebastia.base.docker_proxy
 - name: Group configuration for Docker
   ansible.builtin.include_role:
     name: ysebastia.base.docker_group
