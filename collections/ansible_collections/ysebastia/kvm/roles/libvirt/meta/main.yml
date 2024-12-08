@@ -15,7 +15,7 @@ galaxy_info:
 dependencies:
   - role: ysebastia.repositories.codeready
     when: enable_kvm_libvirt | bool
-  - role: ysebastia.repositories.epel
+  - role: ysebastia.base.repos_epel
     when: enable_kvm_libvirt | bool
   - role: ysebastia.base.firewalld
     when:

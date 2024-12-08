@@ -67,7 +67,7 @@ enable_base_clamav: false
 
 ## Dependencies
 
-- ysebastia.repositories.epel
+- ysebastia.base.repos_epel
 
 ## License
 

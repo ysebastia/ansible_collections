@@ -50,7 +50,7 @@ enable_kvm_libvirt_zone: true
 ## Dependencies
 
 - ysebastia.repositories.codeready
-- ysebastia.repositories.epel
+- ysebastia.base.repos_epel
 - ysebastia.base.firewalld
 
 ## License

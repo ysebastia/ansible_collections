@@ -1,7 +1,7 @@
 ---
 - name: Configure EPEL repository
   ansible.builtin.include_role:
-    name: ysebastia.repositories.epel
+    name: ysebastia.base.repos_epel
   vars:
     enable_repositories_epel: true
     epel_https_proxy: "{{ ansible_env.HTTP_PROXY }}"

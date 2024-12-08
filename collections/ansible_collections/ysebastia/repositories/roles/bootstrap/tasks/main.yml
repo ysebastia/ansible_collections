@@ -10,7 +10,7 @@
     name: ysebastia.repositories.codeready
 - name: Configure EPEL repository
   ansible.builtin.include_role:
-    name: ysebastia.repositories.epel
+    name: ysebastia.base.repos_epel
 - name: Configure DOCKER-CE repository
   ansible.builtin.include_role:
     name: ysebastia.repositories.docker_ce

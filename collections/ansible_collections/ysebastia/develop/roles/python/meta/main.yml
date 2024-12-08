@@ -13,7 +13,7 @@ galaxy_info:
       versions:
         - all
 dependencies:
-  - role: ysebastia.repositories.epel
+  - role: ysebastia.base.repos_epel
     vars:
       enable_repositories_epel: true
       epel_https_proxy: "{{ ansible_env.HTTP_PROXY }}"

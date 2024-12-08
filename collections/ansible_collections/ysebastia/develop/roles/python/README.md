@@ -49,7 +49,7 @@ python_venv_directory: ~/.venv/ansible/
 
 ## Dependencies
 
-- ysebastia.repositories.epel
+- ysebastia.base.repos_epel
 
 ## License
 
