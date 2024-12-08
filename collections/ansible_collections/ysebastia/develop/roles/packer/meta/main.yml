@@ -14,7 +14,7 @@ galaxy_info:
         - all
 dependencies:
   - role: ysebastia.base.repos_hashicorp
-  - role: ysebastia.kvm.filesystem
+  - role: ysebastia.base.kvm_filesystem
   - role: ysebastia.base.kvm_libvirt
     vars:
       libvirt_dependencies: true

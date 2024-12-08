@@ -41,7 +41,7 @@ enable_develop_terraform: false
 ## Dependencies
 
 - ysebastia.base.repos_hashicorp
-- ysebastia.kvm.filesystem
+- ysebastia.base.kvm_filesystem
 - ysebastia.base.kvm_libvirt
 
 ## License
