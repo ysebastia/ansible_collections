@@ -5,4 +5,4 @@
   tasks:
     - name: Configure repository
       ansible.builtin.include_role:
-        name: ysebastia.repositories.bootstrap
+        name: ysebastia.base.repos
