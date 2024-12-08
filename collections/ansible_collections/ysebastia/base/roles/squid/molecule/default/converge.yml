@@ -7,4 +7,3 @@
         name: "squid"
       vars:
         enable_service_squid: true
-        squid_dependencies: true

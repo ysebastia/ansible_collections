@@ -7,4 +7,3 @@
         name: "openldap"
       vars:
         enable_service_openldap: true
-        openldap_dependencies: true
