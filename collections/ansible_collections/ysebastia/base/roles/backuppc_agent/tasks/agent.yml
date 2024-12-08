@@ -1,0 +1,30 @@
+---
+- name: Ensure backup group exists
+  become: true
+  ansible.builtin.group:
+    name: backup
+    state: present
+    system: true
+- name: Ensure backup user exists
+  become: true
+  ansible.builtin.user:
+    name: backup
+    group: backup
+    home: '{{ backuppc_home_directory }}'
+    system: true
+    shell: /bin/bash
+- name: Fix perms
+  become: true
+  ansible.builtin.file:
+    path: '{{ backuppc_home_directory }}'
+    state: directory
+    owner: backup
+    group: backup
+    mode: '0755'
+- name: Configure SUDO
+  become: true
+  ansible.builtin.copy:
+    src: files/etc/sudoers.d/backup
+    dest: /etc/sudoers.d/backup
+    validate: 'visudo -cf %s'
+    mode: '0440'

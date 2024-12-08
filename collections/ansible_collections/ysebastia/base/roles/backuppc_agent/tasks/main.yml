@@ -1,5 +1,5 @@
 ---
-- name: Configure BackupPC agent if enable_backuppc_plug is defined
+- name: Configure BackupPC agent if enable_backuppc_agent is defined
   when:
     - enable_backuppc_agent | bool
     - ansible_action in ['converge', 'cleanup']

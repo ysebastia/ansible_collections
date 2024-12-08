@@ -8,7 +8,6 @@
       vars:
         apache_dependencies: true
         enable_backuppc_agent: true
-        enable_backuppc_plug: true
         enable_backuppc_server: true
         enable_base_firewalld: true
         enable_service_apache: true

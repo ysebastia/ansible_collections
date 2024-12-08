@@ -1,3 +1,11 @@
 ---
 ansible_action: converge
 enable_backuppc_agent: false
+backuppc_directory_backup: /var/lib/backuppc
+backuppc_owner: "{{ ansible_user | default('root') }}"
+backuppc_serverhost: '{{ inventory_hostname_short }}'
+backuppc_supported_os: ['debian']
+backuppc_user: backuppc
+backuppc_linux:
+  - /etc
+  - /root

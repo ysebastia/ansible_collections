@@ -5,6 +5,3 @@
 - name: BACKUPPC agent
   ansible.builtin.include_role:
     name: ysebastia.base.backuppc_agent
-- name: Plug agents to server
-  ansible.builtin.include_role:
-    name: ysebastia.base.backuppc_plug
