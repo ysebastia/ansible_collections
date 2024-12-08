@@ -1,6 +1,6 @@
 ---
 - name: Proxy
-  ansible.builtin.import_playbook: ysebastia.repositories.proxy
+  ansible.builtin.import_playbook: ysebastia.base.repos_proxy
   vars:
     repository_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
 - name: Prepare
