@@ -75,7 +75,7 @@ pipeline {
           agent {
             docker {
               label 'docker'
-              image 'ysebastia/checkov:3.2.332'
+              image 'ysebastia/checkov:3.2.344'
             }
           }
           steps {
