@@ -1,4 +1,4 @@
-# manager
+# kvm_manager
 
 Configure virt-manager
 
@@ -25,7 +25,7 @@ Configure virt-manager
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_kvm_manager

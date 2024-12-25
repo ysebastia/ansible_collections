@@ -1,4 +1,4 @@
-# epel
+# repos_epel
 
 Configure EPEL repository
 
@@ -6,7 +6,9 @@ Configure EPEL repository
 
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
+  - [ansible_action](#ansible_action)
   - [enable_repositories_epel](#enable_repositories_epel)
+  - [epel_supported_os](#epel_supported_os)
 - [Dependencies](#dependencies)
 - [License](#license)
 - [Author](#author)
@@ -19,12 +21,28 @@ Configure EPEL repository
 
 ## Default Variables
 
+### ansible_action
+
+#### Default value
+
+```YAML
+ansible_action: converge
+```
+
 ### enable_repositories_epel
 
 #### Default value
 
 ```YAML
 enable_repositories_epel: false
+```
+
+### epel_supported_os
+
+#### Default value
+
+```YAML
+epel_supported_os: [redhat]
 ```
 
 

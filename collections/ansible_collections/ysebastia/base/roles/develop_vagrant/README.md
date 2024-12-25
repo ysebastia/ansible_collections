@@ -1,4 +1,4 @@
-# vagrant
+# develop_vagrant
 
 Configure Vagrant for KVM
 
@@ -26,7 +26,7 @@ Configure Vagrant for KVM
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_develop_vagrant

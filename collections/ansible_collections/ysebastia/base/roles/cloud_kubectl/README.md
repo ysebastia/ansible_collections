@@ -1,4 +1,4 @@
-# kubectl
+# cloud_kubectl
 
 ## Table of content
 

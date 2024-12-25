@@ -1,4 +1,4 @@
-# proxy
+# docker_proxy
 
 Configure proxy for docker
 
@@ -7,6 +7,7 @@ Configure proxy for docker
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
   - [ansible_action](#ansible_action)
+  - [docker_https_proxy](#docker_https_proxy)
   - [enable_docker_proxy](#enable_docker_proxy)
   - [enable_docker_service](#enable_docker_service)
 - [Dependencies](#dependencies)
@@ -26,7 +27,15 @@ Configure proxy for docker
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
+```
+
+### docker_https_proxy
+
+#### Default value
+
+```YAML
+docker_https_proxy:
 ```
 
 ### enable_docker_proxy

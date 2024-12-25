@@ -1,4 +1,4 @@
-# agent
+# jenkins_agent
 
 Configure jenkins agent
 
@@ -27,7 +27,7 @@ Configure jenkins agent
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_jenkins_agent

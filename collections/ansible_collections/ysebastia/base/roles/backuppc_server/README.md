@@ -1,4 +1,4 @@
-# server
+# backuppc_server
 
 Configure BackupPC server
 
@@ -19,6 +19,7 @@ Configure BackupPC server
   - [backuppc_serverhost_fqdn](#backuppc_serverhost_fqdn)
   - [backuppc_service_httpd](#backuppc_service_httpd)
   - [backuppc_ssh_key_to_revoke](#backuppc_ssh_key_to_revoke)
+  - [backuppc_supported_os](#backuppc_supported_os)
   - [backuppc_url](#backuppc_url)
   - [enable_backuppc_server](#enable_backuppc_server)
   - [enable_service_apache](#enable_service_apache)
@@ -40,7 +41,7 @@ Configure BackupPC server
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### backuppc_admins
@@ -137,6 +138,14 @@ backuppc_service_httpd: apache2
 
 ```YAML
 backuppc_ssh_key_to_revoke: []
+```
+
+### backuppc_supported_os
+
+#### Default value
+
+```YAML
+backuppc_supported_os: [debian]
 ```
 
 ### backuppc_url

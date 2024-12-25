@@ -1,4 +1,4 @@
-# hashicorp
+# repos_hashicorp
 
 Configure Hashicorp repository
 
@@ -6,6 +6,7 @@ Configure Hashicorp repository
 
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
+  - [ansible_action](#ansible_action)
   - [enable_repositories_hashicorp](#enable_repositories_hashicorp)
 - [Dependencies](#dependencies)
 - [License](#license)
@@ -18,6 +19,14 @@ Configure Hashicorp repository
 - Minimum Ansible version: `2.1`
 
 ## Default Variables
+
+### ansible_action
+
+#### Default value
+
+```YAML
+ansible_action: converge
+```
 
 ### enable_repositories_hashicorp
 

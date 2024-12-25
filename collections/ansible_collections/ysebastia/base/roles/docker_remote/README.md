@@ -1,13 +1,13 @@
-# vim
+# docker_remote
 
-Configure VIM
+Remote Docker service
 
 ## Table of content
 
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
   - [ansible_action](#ansible_action)
-  - [enable_base_vim](#enable_base_vim)
+  - [remote_access](#remote_access)
 - [Dependencies](#dependencies)
 - [License](#license)
 - [Author](#author)
@@ -28,12 +28,12 @@ Configure VIM
 ansible_action: converge
 ```
 
-### enable_base_vim
+### remote_access
 
 #### Default value
 
 ```YAML
-enable_base_vim: true
+remote_access: false
 ```
 
 

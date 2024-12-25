@@ -7,8 +7,10 @@ Configure Bind
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
   - [ansible_action](#ansible_action)
+  - [bind_inventory_dir](#bind_inventory_dir)
   - [bind_master_zones](#bind_master_zones)
   - [bind_rndckey_name](#bind_rndckey_name)
+  - [bind_supported_os](#bind_supported_os)
   - [enable_service_bind](#enable_service_bind)
   - [network_dns_forwarders](#network_dns_forwarders)
 - [Dependencies](#dependencies)
@@ -28,7 +30,15 @@ Configure Bind
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
+```
+
+### bind_inventory_dir
+
+#### Default value
+
+```YAML
+bind_inventory_dir: '{{ inventory_dir }}'
 ```
 
 ### bind_master_zones
@@ -45,6 +55,14 @@ bind_master_zones: []
 
 ```YAML
 bind_rndckey_name: rndc-key
+```
+
+### bind_supported_os
+
+#### Default value
+
+```YAML
+bind_supported_os: [debian]
 ```
 
 ### enable_service_bind

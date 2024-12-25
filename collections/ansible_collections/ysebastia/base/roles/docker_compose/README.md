@@ -1,4 +1,4 @@
-# install
+# docker_compose
 
 Install docker-compose
 
@@ -8,6 +8,10 @@ Install docker-compose
 - [Default Variables](#default-variables)
   - [ansible_action](#ansible_action)
   - [docker_compose_enable](#docker_compose_enable)
+  - [docker_compose_files](#docker_compose_files)
+  - [docker_compose_project](#docker_compose_project)
+  - [docker_compose_templates](#docker_compose_templates)
+  - [docker_compose_working_directory](#docker_compose_working_directory)
 - [Dependencies](#dependencies)
 - [License](#license)
 - [Author](#author)
@@ -25,7 +29,7 @@ Install docker-compose
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### docker_compose_enable
@@ -34,6 +38,38 @@ ansible_action: config
 
 ```YAML
 docker_compose_enable: false
+```
+
+### docker_compose_files
+
+#### Default value
+
+```YAML
+docker_compose_files: []
+```
+
+### docker_compose_project
+
+#### Default value
+
+```YAML
+docker_compose_project: ''
+```
+
+### docker_compose_templates
+
+#### Default value
+
+```YAML
+docker_compose_templates: []
+```
+
+### docker_compose_working_directory
+
+#### Default value
+
+```YAML
+docker_compose_working_directory: /etc/docker/compose/
 ```
 
 

@@ -1,4 +1,4 @@
-# firewall
+# docker_firewall
 
 Configure host firewall for docker
 

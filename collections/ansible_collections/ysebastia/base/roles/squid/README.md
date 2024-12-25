@@ -9,6 +9,7 @@ Configure Squid
   - [ansible_action](#ansible_action)
   - [enable_service_squid](#enable_service_squid)
   - [http_proxy_port](#http_proxy_port)
+  - [squid_supported_os](#squid_supported_os)
 - [Dependencies](#dependencies)
 - [License](#license)
 - [Author](#author)
@@ -26,7 +27,7 @@ Configure Squid
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_service_squid
@@ -43,6 +44,14 @@ enable_service_squid: false
 
 ```YAML
 http_proxy_port: 3128
+```
+
+### squid_supported_os
+
+#### Default value
+
+```YAML
+squid_supported_os: [debian]
 ```
 
 

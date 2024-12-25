@@ -32,6 +32,7 @@ Configure FreeRadius
   - [freeradius_ssl_ca_file](#freeradius_ssl_ca_file)
   - [freeradius_ssl_internal](#freeradius_ssl_internal)
   - [freeradius_ssl_server_host](#freeradius_ssl_server_host)
+  - [freeradius_supported_os](#freeradius_supported_os)
 - [Dependencies](#dependencies)
 - [License](#license)
 - [Author](#author)
@@ -49,7 +50,7 @@ Configure FreeRadius
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_freeradius_ttls
@@ -251,6 +252,14 @@ freeradius_ssl_internal: true
 
 ```YAML
 freeradius_ssl_server_host: ssl-cert-snakeoil
+```
+
+### freeradius_supported_os
+
+#### Default value
+
+```YAML
+freeradius_supported_os: [debian]
 ```
 
 

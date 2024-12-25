@@ -1,4 +1,4 @@
-# group
+# kvm_group
 
 Append a user to KVM group
 
@@ -26,7 +26,7 @@ Append a user to KVM group
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_kvm_group

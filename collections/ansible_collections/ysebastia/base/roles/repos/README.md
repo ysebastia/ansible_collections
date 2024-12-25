@@ -1,4 +1,4 @@
-# bootstrap
+# repos
 
 Bootstrap repositories
 

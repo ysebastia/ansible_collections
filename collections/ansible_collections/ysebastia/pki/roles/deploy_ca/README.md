@@ -30,7 +30,7 @@ Deploy CA certificate
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_pki_deploy_ca

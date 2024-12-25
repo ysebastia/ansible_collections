@@ -1,4 +1,4 @@
-# python
+# develop_python
 
 Configure Python
 
@@ -26,7 +26,7 @@ Configure Python
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_develop_python

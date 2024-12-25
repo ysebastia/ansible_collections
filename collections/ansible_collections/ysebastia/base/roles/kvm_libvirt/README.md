@@ -1,4 +1,4 @@
-# libvirt
+# kvm_libvirt
 
 Configure libvirt
 
@@ -26,7 +26,7 @@ Configure libvirt
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_kvm_libvirt

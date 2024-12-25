@@ -1,4 +1,4 @@
-# service
+# docker_service
 
 Install Docker service
 
@@ -25,7 +25,7 @@ Install Docker service
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_docker_service

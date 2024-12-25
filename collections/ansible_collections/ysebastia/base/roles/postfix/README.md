@@ -16,6 +16,7 @@ Configure Postfix
   - [postfix_conf_main](#postfix_conf_main)
   - [postfix_conf_mainvirtual](#postfix_conf_mainvirtual)
   - [postfix_ldap_tls](#postfix_ldap_tls)
+  - [postfix_supported_os](#postfix_supported_os)
   - [postfix_virtual_gid](#postfix_virtual_gid)
   - [postfix_virtual_mailbox_base](#postfix_virtual_mailbox_base)
   - [postfix_virtual_transport](#postfix_virtual_transport)
@@ -37,7 +38,7 @@ Configure Postfix
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_service_postfix
@@ -136,6 +137,14 @@ postfix_conf_mainvirtual:
 
 ```YAML
 postfix_ldap_tls: no
+```
+
+### postfix_supported_os
+
+#### Default value
+
+```YAML
+postfix_supported_os: [debian]
 ```
 
 ### postfix_virtual_gid

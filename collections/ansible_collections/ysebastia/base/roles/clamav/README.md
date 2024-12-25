@@ -28,7 +28,7 @@ Configure ClamAV
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### clamav_enable_clamd

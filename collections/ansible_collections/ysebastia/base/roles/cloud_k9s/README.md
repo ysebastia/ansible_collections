@@ -1,4 +1,4 @@
-# k9s
+# cloud_k9s
 
 ## Table of content
 

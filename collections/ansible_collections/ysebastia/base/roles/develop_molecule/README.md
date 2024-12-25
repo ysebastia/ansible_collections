@@ -1,4 +1,4 @@
-# molecule
+# develop_molecule
 
 Configure Molecule with Vagrant for KVM
 
@@ -6,6 +6,7 @@ Configure Molecule with Vagrant for KVM
 
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
+  - [ansible_action](#ansible_action)
   - [enable_develop_molecule](#enable_develop_molecule)
   - [python_venv_directory](#python_venv_directory)
 - [Dependencies](#dependencies)
@@ -19,6 +20,14 @@ Configure Molecule with Vagrant for KVM
 - Minimum Ansible version: `2.1`
 
 ## Default Variables
+
+### ansible_action
+
+#### Default value
+
+```YAML
+ansible_action: converge
+```
 
 ### enable_develop_molecule
 

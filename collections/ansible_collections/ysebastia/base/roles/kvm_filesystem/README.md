@@ -1,4 +1,4 @@
-# filesystem
+# kvm_filesystem
 
 Configure filesystem for libvirt
 
@@ -29,7 +29,7 @@ Configure filesystem for libvirt
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_kvm_filesystem

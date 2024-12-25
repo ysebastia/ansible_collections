@@ -10,6 +10,7 @@ Configure OpenLdap
   - [enable_service_openldap](#enable_service_openldap)
   - [enable_service_openldap_cron](#enable_service_openldap_cron)
   - [ldap_bind_pw](#ldap_bind_pw)
+  - [openldap_supported_os](#openldap_supported_os)
   - [slapd_ssl_internal](#slapd_ssl_internal)
   - [slapd_ssl_server_group](#slapd_ssl_server_group)
   - [slapd_ssl_server_host](#slapd_ssl_server_host)
@@ -33,7 +34,7 @@ Configure OpenLdap
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_service_openldap
@@ -58,6 +59,14 @@ enable_service_openldap_cron: true
 
 ```YAML
 ldap_bind_pw: admin
+```
+
+### openldap_supported_os
+
+#### Default value
+
+```YAML
+openldap_supported_os: [debian]
 ```
 
 ### slapd_ssl_internal

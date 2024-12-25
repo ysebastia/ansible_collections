@@ -38,7 +38,7 @@ Sign server certificate
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_pki_server

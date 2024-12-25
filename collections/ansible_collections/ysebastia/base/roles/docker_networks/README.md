@@ -1,4 +1,4 @@
-# networks
+# docker_networks
 
 Configurer network docker on host
 
@@ -25,7 +25,7 @@ Configurer network docker on host
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### docker_networks

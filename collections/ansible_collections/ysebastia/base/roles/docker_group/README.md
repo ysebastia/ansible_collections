@@ -1,4 +1,4 @@
-# group
+# docker_group
 
 Append a user to Docker group
 
@@ -26,7 +26,7 @@ Append a user to Docker group
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### docker_user_to_append

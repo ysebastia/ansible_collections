@@ -1,4 +1,4 @@
-# proxy
+# repos_proxy
 
 Configure Proxy repository
 
@@ -6,6 +6,7 @@ Configure Proxy repository
 
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
+  - [ansible_action](#ansible_action)
   - [enable_repositories_proxy](#enable_repositories_proxy)
 - [Dependencies](#dependencies)
 - [License](#license)
@@ -18,6 +19,14 @@ Configure Proxy repository
 - Minimum Ansible version: `2.1`
 
 ## Default Variables
+
+### ansible_action
+
+#### Default value
+
+```YAML
+ansible_action: converge
+```
 
 ### enable_repositories_proxy
 

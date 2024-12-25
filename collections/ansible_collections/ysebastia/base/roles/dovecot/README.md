@@ -7,6 +7,7 @@ Configure Dovecot
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
   - [ansible_action](#ansible_action)
+  - [dovecot_supported_os](#dovecot_supported_os)
   - [dovecot_syslog_facility](#dovecot_syslog_facility)
   - [dovecot_virtual_gid](#dovecot_virtual_gid)
   - [dovecot_virtual_mailbox_base](#dovecot_virtual_mailbox_base)
@@ -32,7 +33,15 @@ Configure Dovecot
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
+```
+
+### dovecot_supported_os
+
+#### Default value
+
+```YAML
+dovecot_supported_os: [debian]
 ```
 
 ### dovecot_syslog_facility

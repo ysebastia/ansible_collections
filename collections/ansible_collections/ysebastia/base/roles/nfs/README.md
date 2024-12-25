@@ -1,13 +1,14 @@
-# vim
+# nfs
 
-Configure VIM
+Configure NFS
 
 ## Table of content
 
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
   - [ansible_action](#ansible_action)
-  - [enable_base_vim](#enable_base_vim)
+  - [enable_service_nfs](#enable_service_nfs)
+  - [nfs_supported_os](#nfs_supported_os)
 - [Dependencies](#dependencies)
 - [License](#license)
 - [Author](#author)
@@ -28,19 +29,27 @@ Configure VIM
 ansible_action: converge
 ```
 
-### enable_base_vim
+### enable_service_nfs
 
 #### Default value
 
 ```YAML
-enable_base_vim: true
+enable_service_nfs: false
+```
+
+### nfs_supported_os
+
+#### Default value
+
+```YAML
+nfs_supported_os: [debian]
 ```
 
 
 
 ## Dependencies
 
-None.
+- ysebastia.base.firewalld
 
 ## License
 

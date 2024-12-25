@@ -25,7 +25,7 @@ Configure Qemu guest agent
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_base_qemu_guest_agent

@@ -1,13 +1,13 @@
-# vim
+# smartmontools
 
-Configure VIM
+Configure Smartmontools
 
 ## Table of content
 
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
   - [ansible_action](#ansible_action)
-  - [enable_base_vim](#enable_base_vim)
+  - [enable_base_smartmontools](#enable_base_smartmontools)
 - [Dependencies](#dependencies)
 - [License](#license)
 - [Author](#author)
@@ -28,12 +28,12 @@ Configure VIM
 ansible_action: converge
 ```
 
-### enable_base_vim
+### enable_base_smartmontools
 
 #### Default value
 
 ```YAML
-enable_base_vim: true
+enable_base_smartmontools: false
 ```
 
 

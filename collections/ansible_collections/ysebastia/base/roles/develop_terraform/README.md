@@ -1,4 +1,4 @@
-# terraform
+# develop_terraform
 
 Configure Terraform for KVM
 
@@ -25,7 +25,7 @@ Configure Terraform for KVM
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_develop_terraform

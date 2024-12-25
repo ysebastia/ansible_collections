@@ -12,6 +12,7 @@ Configure MariaDB
   - [mariadb_admin_account](#mariadb_admin_account)
   - [mariadb_db](#mariadb_db)
   - [mariadb_remote_access](#mariadb_remote_access)
+  - [mariadb_supported_os](#mariadb_supported_os)
   - [mariadb_user](#mariadb_user)
 - [Dependencies](#dependencies)
 - [License](#license)
@@ -30,7 +31,7 @@ Configure MariaDB
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_service_mariadb
@@ -71,6 +72,14 @@ mariadb_db: []
 
 ```YAML
 mariadb_remote_access: true
+```
+
+### mariadb_supported_os
+
+#### Default value
+
+```YAML
+mariadb_supported_os: [debian]
 ```
 
 ### mariadb_user

@@ -1,4 +1,4 @@
-# docker
+# jenkins_docker
 
 Configure docker agent
 
@@ -25,7 +25,7 @@ Configure docker agent
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_jenkins_docker

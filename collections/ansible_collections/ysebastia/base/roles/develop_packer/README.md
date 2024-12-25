@@ -1,4 +1,4 @@
-# packer
+# develop_packer
 
 Configure Packer for KVM
 
@@ -25,7 +25,7 @@ Configure Packer for KVM
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_develop_packer

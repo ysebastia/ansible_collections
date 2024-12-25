@@ -1,13 +1,15 @@
-# vim
+# gitlab_runner
 
-Configure VIM
+Configure Gitlab runner
 
 ## Table of content
 
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
   - [ansible_action](#ansible_action)
-  - [enable_base_vim](#enable_base_vim)
+  - [enable_gitlab_runner](#enable_gitlab_runner)
+  - [gitlab_https_proxy](#gitlab_https_proxy)
+  - [gitlab_supported_os](#gitlab_supported_os)
 - [Dependencies](#dependencies)
 - [License](#license)
 - [Author](#author)
@@ -28,12 +30,28 @@ Configure VIM
 ansible_action: converge
 ```
 
-### enable_base_vim
+### enable_gitlab_runner
 
 #### Default value
 
 ```YAML
-enable_base_vim: true
+enable_gitlab_runner: false
+```
+
+### gitlab_https_proxy
+
+#### Default value
+
+```YAML
+gitlab_https_proxy:
+```
+
+### gitlab_supported_os
+
+#### Default value
+
+```YAML
+gitlab_supported_os: [debian]
 ```
 
 

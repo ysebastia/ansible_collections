@@ -8,6 +8,7 @@ Configure Apache
 - [Default Variables](#default-variables)
   - [ansible_action](#ansible_action)
   - [apache_service](#apache_service)
+  - [apache_supported_os](#apache_supported_os)
   - [enable_service_apache](#enable_service_apache)
   - [enable_service_apache_ldap](#enable_service_apache_ldap)
 - [Dependencies](#dependencies)
@@ -27,7 +28,7 @@ Configure Apache
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### apache_service
@@ -36,6 +37,14 @@ ansible_action: config
 
 ```YAML
 apache_service: httpd
+```
+
+### apache_supported_os
+
+#### Default value
+
+```YAML
+apache_supported_os: [debian]
 ```
 
 ### enable_service_apache

@@ -1,4 +1,4 @@
-# bootstrap
+# backuppc
 
 Bootstrap BackupPC
 

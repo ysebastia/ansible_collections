@@ -1,13 +1,15 @@
-# vim
+# docker_filesystem
 
-Configure VIM
+Configure filesystem for Docker
 
 ## Table of content
 
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
   - [ansible_action](#ansible_action)
-  - [enable_base_vim](#enable_base_vim)
+  - [enable_docker_filesystem](#enable_docker_filesystem)
+  - [filesystem_docker_size](#filesystem_docker_size)
+  - [filesystem_host_device](#filesystem_host_device)
 - [Dependencies](#dependencies)
 - [License](#license)
 - [Author](#author)
@@ -28,12 +30,28 @@ Configure VIM
 ansible_action: converge
 ```
 
-### enable_base_vim
+### enable_docker_filesystem
 
 #### Default value
 
 ```YAML
-enable_base_vim: true
+enable_docker_filesystem: false
+```
+
+### filesystem_docker_size
+
+#### Default value
+
+```YAML
+filesystem_docker_size: 40g
+```
+
+### filesystem_host_device
+
+#### Default value
+
+```YAML
+filesystem_host_device: []
 ```
 
 

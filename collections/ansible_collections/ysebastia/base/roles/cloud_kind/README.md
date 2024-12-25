@@ -1,4 +1,4 @@
-# kind
+# cloud_kind
 
 Deploy Kind
 

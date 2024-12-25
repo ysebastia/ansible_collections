@@ -1,4 +1,4 @@
-# ansible
+# develop_ansible
 
 Configure Ansible
 
@@ -26,7 +26,7 @@ Configure Ansible
 #### Default value
 
 ```YAML
-ansible_action: config
+ansible_action: converge
 ```
 
 ### enable_develop_ansible
@@ -49,7 +49,7 @@ python_venv_directory: ~/.venv/ansible/
 
 ## Dependencies
 
-None.
+- ysebastia.base.develop_python
 
 ## License
 
