@@ -31,7 +31,7 @@ enable_kubectl: true
 #### Default value
 
 ```YAML
-kubectl_version: v1.30.0
+kubectl_version: v1.32.0
 ```
 
 
