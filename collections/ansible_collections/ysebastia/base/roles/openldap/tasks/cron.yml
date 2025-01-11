@@ -4,7 +4,7 @@
   ansible.builtin.file:
     path: /var/lib/save/ldap
     state: directory
-    mode: '0755'
+    mode: "0755"
 - name: Create script backup
   become: true
   ansible.builtin.copy:
@@ -12,7 +12,7 @@
     dest: /usr/local/sbin/dump_openldap
     owner: root
     group: root
-    mode: '0755'
+    mode: "0755"
 - name: Cron task to backup databases
   become: true
   ansible.builtin.cron:

@@ -45,5 +45,4 @@
     state: present
   notify:
     - Newaliases
-  when:
-    postfix_root_aliases is defined
+  when: postfix_root_aliases is defined

@@ -2,4 +2,4 @@
 - name: Ensure Bind is installed
   become: true
   ansible.builtin.apt:
-    name: '{{ bind_package }}'
+    name: "{{ bind_package }}"

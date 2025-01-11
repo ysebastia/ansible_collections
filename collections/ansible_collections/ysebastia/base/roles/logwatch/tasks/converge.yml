@@ -6,10 +6,10 @@
   become: true
   ansible.builtin.template:
     src: templates/{{ item }}.j2
-    dest: '{{ item }}'
+    dest: "{{ item }}"
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   loop:
     - /etc/logwatch/conf/logwatch.conf
     - /etc/logwatch/conf/services/secure.conf
@@ -17,8 +17,8 @@
 - name: Add logwatch cache directory
   become: true
   ansible.builtin.file:
-    path: '{{ item }}'
+    path: "{{ item }}"
     state: directory
-    mode: '0755'
+    mode: "0755"
   loop:
     - /var/cache/logwatch/

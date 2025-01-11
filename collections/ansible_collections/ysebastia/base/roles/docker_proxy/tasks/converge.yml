@@ -4,7 +4,7 @@
   ansible.builtin.file:
     path: "/etc/systemd/system/docker.service.d"
     state: directory
-    mode: '0755'
+    mode: "0755"
 - name: Create http-proxy.conf if http_proxy_server and http_proxy_port are defined
   become: true
   ansible.builtin.template:
@@ -12,7 +12,7 @@
     dest: /etc/systemd/system/docker.service.d/http-proxy.conf
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   notify:
     - Restart docker
     - Reload systemd

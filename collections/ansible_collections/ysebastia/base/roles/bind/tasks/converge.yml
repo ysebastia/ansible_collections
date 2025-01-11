@@ -15,14 +15,14 @@
 - name: Populate zones files with bind_master_zones
   become: true
   ansible.builtin.template:
-    src: '{{ bind_inventory_dir }}/templates/zones/{{ item.file }}.j2'
-    dest: '{{ bind_directory }}/{{ item.file }}'
+    src: "{{ bind_inventory_dir }}/templates/zones/{{ item.file }}.j2"
+    dest: "{{ bind_directory }}/{{ item.file }}"
     owner: root
-    group: '{{ bind_group }}'
-    mode: '0640'
+    group: "{{ bind_group }}"
+    mode: "0640"
     validate: named-checkzone -d {{ item.name }} %s
   with_items:
-    - '{{ bind_master_zones }}'
+    - "{{ bind_master_zones }}"
   when:
     - bind_master_zones is defined
   notify:
@@ -32,8 +32,8 @@
   become: true
   ansible.builtin.template:
     src: named.conf.j2
-    dest: '{{ bind_config_file }}'
-    mode: '0644'
+    dest: "{{ bind_config_file }}"
+    mode: "0644"
     validate: named-checkconf %s
   notify:
     - Restart named

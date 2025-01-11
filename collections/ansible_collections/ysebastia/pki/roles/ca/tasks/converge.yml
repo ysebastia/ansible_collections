@@ -15,9 +15,9 @@
     privatekey_path: "{{ pki_ca_path }}private/ca-{{ pki_ca_name }}.key"
     privatekey_passphrase: "{{ pki_ca_secret_passphrase }}"
     common_name: "{{ pki_ca_cn }}"
-    use_common_name_for_san: false  # since we do not specify SANs, don't use CN as a SAN
+    use_common_name_for_san: false # since we do not specify SANs, don't use CN as a SAN
     basic_constraints:
-      - 'CA:TRUE'
+      - "CA:TRUE"
     basic_constraints_critical: true
     key_usage:
       - keyCertSign

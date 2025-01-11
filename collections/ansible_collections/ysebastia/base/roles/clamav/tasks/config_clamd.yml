@@ -6,7 +6,7 @@
     path: "/etc/systemd/system/{{ clamav_service }}.service.d/"
     owner: root
     group: root
-    mode: '0755'
+    mode: "0755"
 - name: Add override configuration
   become: true
   ansible.builtin.template:
@@ -14,20 +14,20 @@
     dest: "/etc/systemd/system/{{ clamav_service }}.service.d/override.conf"
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   notify:
     - Restart clamd
 - name: Clamd
   become: true
   ansible.builtin.lineinfile:
-    path: '{{ clamav_config }}'
+    path: "{{ clamav_config }}"
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     state: present
   with_items:
-    - {regexp: '^LocalSocket', line: 'LocalSocket {{ clamav_localsocket }}'}
-    - {regexp: '^User', line: 'User {{ clamav_user }}'}
-    - {regexp: '^SelfCheck', line: 'SelfCheck 3600'}
-    - {regexp: '^LogSyslog', line: 'LogSyslog {{ clamav_syslog }}'}
+    - { regexp: "^LocalSocket", line: "LocalSocket {{ clamav_localsocket }}" }
+    - { regexp: "^User", line: "User {{ clamav_user }}" }
+    - { regexp: "^SelfCheck", line: "SelfCheck 3600" }
+    - { regexp: "^LogSyslog", line: "LogSyslog {{ clamav_syslog }}" }
   notify:
     - Restart clamd

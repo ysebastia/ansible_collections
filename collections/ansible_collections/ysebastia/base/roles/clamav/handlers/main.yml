@@ -8,6 +8,6 @@
 - name: Restart clamd
   become: true
   ansible.builtin.service:
-    name: '{{ clamav_service }}'
+    name: "{{ clamav_service }}"
     state: restarted
     enabled: true

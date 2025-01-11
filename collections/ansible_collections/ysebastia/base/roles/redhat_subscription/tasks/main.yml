@@ -3,10 +3,10 @@
   become: true
   community.general.redhat_subscription:
     state: present
-    username: '{{ redhat_user }}'
-    password: '{{ redhat_pass }}'
+    username: "{{ redhat_user }}"
+    password: "{{ redhat_pass }}"
     auto_attach: true
-    force_register: '{{ redhat_force_register | default(false) }}'
+    force_register: "{{ redhat_force_register | default(false) }}"
   when:
     - enable_repositories_redhat_subscription | bool
     - redhat_user is defined

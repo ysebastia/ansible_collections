@@ -9,4 +9,4 @@
     gpgkey: https://rpm.releases.hashicorp.com/gpg
     gpgcheck: true
     enabled: true
-    priority: '1'
+    priority: "1"

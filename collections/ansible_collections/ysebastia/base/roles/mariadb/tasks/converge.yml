@@ -23,7 +23,7 @@
     state: directory
     owner: mysql
     group: mysql
-    mode: '0750'
+    mode: "0750"
 
 - name: LOGROTATE configuration
   become: true
@@ -32,7 +32,7 @@
     dest: "/etc/logrotate.d/mariadb"
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
 
 - name: Secure installation
   ansible.builtin.include_tasks: secure_installation.yml
@@ -40,16 +40,16 @@
 - name: Set administrators accounts
   become: true
   community.mysql.mysql_user:
-    login_unix_socket: '{{ mariadb_socket_unix }}'
+    login_unix_socket: "{{ mariadb_socket_unix }}"
     login_user: root
-    name: '{{ item.user }}'
-    password: '{{ item.pass }}'
-    encrypted: '{{ item.encrypted }}'
-    host: '{{ item.host }}'
-    priv: '{{ item.priv }}'
+    name: "{{ item.user }}"
+    password: "{{ item.pass }}"
+    encrypted: "{{ item.encrypted }}"
+    host: "{{ item.host }}"
+    priv: "{{ item.priv }}"
     update_password: on_create
     state: present
-  loop: '{{ mariadb_admin_account }}'
+  loop: "{{ mariadb_admin_account }}"
   no_log: true
 
 - name: ACL

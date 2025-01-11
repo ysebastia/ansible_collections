@@ -2,6 +2,6 @@
 freeradius_ssl_path: /etc/ssl/
 freeradius_ssl_server_owner: freerad
 freeradius_ssl_server_group: freerad
-freeradius_ssl_server_mode: '0640'
+freeradius_ssl_server_mode: "0640"
 freeradius_ssl_server_san:
   - "DNS:{{ inventory_hostname }}"

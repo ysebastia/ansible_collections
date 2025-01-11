@@ -3,6 +3,6 @@ ansible_action: converge
 bind_inventory_dir: "{{ inventory_dir }}"
 bind_master_zones: []
 bind_rndckey_name: rndc-key
-bind_supported_os: ['debian']
+bind_supported_os: ["debian"]
 enable_service_bind: false
 network_dns_forwarders:

@@ -6,6 +6,6 @@
     dest: /etc/systemd/system/docker-compose@.service
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   notify:
     - Reload systemd

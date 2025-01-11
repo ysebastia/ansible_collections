@@ -1,24 +1,24 @@
 ---
 - name: Upload backup to remote server
   ansible.builtin.copy:
-    src: 'files/dump/{{ item }}.sql.bz2'
-    dest: '/tmp/{{ item }}.sql.bz2'
-    mode: '0644'
-  loop: '{{ mariadb_db }}'
+    src: "files/dump/{{ item }}.sql.bz2"
+    dest: "/tmp/{{ item }}.sql.bz2"
+    mode: "0644"
+  loop: "{{ mariadb_db }}"
 
 - name: Import databases
   become: true
   community.mysql.mysql_db:
-    login_unix_socket: '{{ mariadb_socket_unix }}'
+    login_unix_socket: "{{ mariadb_socket_unix }}"
     login_user: root
     state: import
-    name: '{{ item }}'
-    target: '/tmp/{{ item }}.sql.bz2'
-  loop: '{{ mariadb_db }}'
+    name: "{{ item }}"
+    target: "/tmp/{{ item }}.sql.bz2"
+  loop: "{{ mariadb_db }}"
 
 - name: Remove remote dump
   become: true
   ansible.builtin.file:
     state: absent
-    path: '/tmp/{{ item }}.sql.bz2'
-  loop: '{{ mariadb_db }}'
+    path: "/tmp/{{ item }}.sql.bz2"
+  loop: "{{ mariadb_db }}"

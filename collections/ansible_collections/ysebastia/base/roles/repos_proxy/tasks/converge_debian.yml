@@ -7,7 +7,7 @@
     line: Acquire::http::Proxy "{{ repository_https_proxy }}";
     regexp: ^Acquire::http::Proxy
     create: true
-    mode: '0644'
+    mode: "0644"
     owner: root
     group: root
   when:

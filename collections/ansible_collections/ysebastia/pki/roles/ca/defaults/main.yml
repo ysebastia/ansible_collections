@@ -1,11 +1,11 @@
 ---
 ansible_action: converge
 enable_pki_ca: false
-pki_ca_secret_passphrase: 'ansible'
-pki_ca_name: 'ansible'
-pki_ca_cn: 'Ansible CA'
+pki_ca_secret_passphrase: "ansible"
+pki_ca_name: "ansible"
+pki_ca_cn: "Ansible CA"
 pki_ca_owner: root
 pki_ca_group: root
 pki_ca_path: "~/pki/{{ pki_ca_name }}/"
 pki_ca_file: "ca-{{ pki_ca_name }}.pem"
-pki_ca_host: '{{ inventory_hostname_short }}'
+pki_ca_host: "{{ inventory_hostname_short }}"

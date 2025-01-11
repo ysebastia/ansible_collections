@@ -2,7 +2,7 @@
 - name: Ensure that Python packages are installed
   become: true
   ansible.builtin.dnf:
-    name: '{{ develop_python_packages }}'
+    name: "{{ develop_python_packages }}"
     update_cache: true
     enablerepo: crb
   notify:

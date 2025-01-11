@@ -2,8 +2,8 @@
 - name: Append user to kvm and libvirt groups if kvm_user_to_append is defined
   become: true
   ansible.builtin.user:
-    name: '{{ kvm_user_to_append }}'
-    groups: '{{ item }}'
+    name: "{{ kvm_user_to_append }}"
+    groups: "{{ item }}"
     append: true
   loop:
     - kvm

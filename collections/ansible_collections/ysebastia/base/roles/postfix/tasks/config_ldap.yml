@@ -3,10 +3,10 @@
   become: true
   ansible.builtin.lineinfile:
     path: /etc/postfix/main.cf
-    line: '{{ item.name }} = {{ item.value }}'
+    line: "{{ item.name }} = {{ item.value }}"
     regex: ^{{ item.name }}
     state: present
-  with_items: '{{ postfix_conf_mainvirtual }}'
+  with_items: "{{ postfix_conf_mainvirtual }}"
   notify:
     - Restart postfix
 
@@ -17,7 +17,8 @@
       become: true
       ansible.builtin.lineinfile:
         path: /etc/postfix/master.cf
-        line: '{{ postfix_virtual_transport }} unix - n n - - pipe flags=DRhu user={{ postfix_virtual_uid }}:{{ postfix_virtual_gid }} argv={{ postfix_dovecot_deliver }} -f ${sender} -d ${recipient} -d ${user}'
+        line: "{{ postfix_virtual_transport }} unix - n n - - pipe flags=DRhu user={{ postfix_virtual_uid }}:{{ postfix_virtual_gid }} argv={{ postfix_dovecot_deliver
+          }} -f ${sender} -d ${recipient} -d ${user}"
         regex: ^{{ postfix_virtual_transport }}
         state: present
       notify:
@@ -26,7 +27,7 @@
       become: true
       ansible.builtin.lineinfile:
         path: /etc/postfix/main.cf
-        line: 'virtual_transport = {{ postfix_virtual_transport }}'
+        line: "virtual_transport = {{ postfix_virtual_transport }}"
         regex: ^virtual_transport
         state: present
       notify:
@@ -58,7 +59,7 @@
       become: true
       ansible.builtin.lineinfile:
         path: /etc/postfix/main.cf
-        line: 'virtual_mailbox_maps = ldap:{{ postfix_conf_ldap_account }}'
+        line: "virtual_mailbox_maps = ldap:{{ postfix_conf_ldap_account }}"
         regex: ^virtual_mailbox_maps
         state: present
       notify:
@@ -67,7 +68,7 @@
       become: true
       ansible.builtin.template:
         src: templates/etc/postfix/LdapAccounts.j2
-        dest: '{{ postfix_conf_ldap_account }}'
-        mode: '0644'
+        dest: "{{ postfix_conf_ldap_account }}"
+        mode: "0644"
       notify:
         - Restart postfix

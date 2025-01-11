@@ -8,7 +8,7 @@
     path: "{{ python_venv_directory }}"
     owner: "{{ ansible_user | default('root') }}"
     group: "{{ ansible_user | default('root') }}"
-    mode: '0775'
+    mode: "0775"
   notify:
     - Update python virtual environment
 

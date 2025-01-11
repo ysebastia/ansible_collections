@@ -40,7 +40,7 @@
   ansible.builtin.file:
     state: directory
     path: /etc/polkit-1/localauthority/50-local.d/
-    mode: '0755'
+    mode: "0755"
     owner: root
     group: root
 
@@ -49,4 +49,4 @@
   ansible.builtin.template:
     src: 50-libvirt-remote-access.pkla.j2
     dest: /etc/polkit-1/localauthority/50-local.d/50-libvirt-remote-access.pkla
-    mode: '0644'
+    mode: "0644"

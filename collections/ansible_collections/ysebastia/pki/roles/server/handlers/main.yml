@@ -4,7 +4,7 @@
   ansible.builtin.copy:
     dest: "{{ pki_ca_path }}certs/{{ pki_server_host }}.pem"
     content: "{{ server_certificate.certificate }}"
-    owner: '{{ pki_ca_owner }}'
-    group: '{{ pki_ca_group }}'
-    mode: '0644'
+    owner: "{{ pki_ca_owner }}"
+    group: "{{ pki_ca_group }}"
+    mode: "0644"
   delegate_to: "{{ pki_ca_host }}"

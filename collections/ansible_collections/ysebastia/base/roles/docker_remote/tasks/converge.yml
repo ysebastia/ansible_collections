@@ -4,7 +4,7 @@
   ansible.builtin.file:
     path: "/etc/systemd/system/docker.service.d"
     state: directory
-    mode: '0755'
+    mode: "0755"
 - name: Create dockerd.conf if remote_access is enabled
   become: true
   ansible.builtin.template:
@@ -12,7 +12,7 @@
     dest: /etc/systemd/system/docker.service.d/dockerd.conf
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   notify:
     - Restart docker for remote access
     - Reload systemd for remote access

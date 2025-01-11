@@ -2,11 +2,11 @@
 - name: Ensure that CA directory exist
   become: true
   ansible.builtin.file:
-    path: '{{ pki_path }}certs'
+    path: "{{ pki_path }}certs"
     state: directory
-    owner: '{{ pki_ca_owner }}'
-    group: '{{ pki_ca_group }}'
-    mode: '0755'
+    owner: "{{ pki_ca_owner }}"
+    group: "{{ pki_ca_group }}"
+    mode: "0755"
 
 - name: Copy CA certificate
   become: true
@@ -15,4 +15,4 @@
     dest: "{{ pki_path }}certs/{{ pki_ca_file }}"
     owner: root
     group: root
-    mode: '0755'
+    mode: "0755"

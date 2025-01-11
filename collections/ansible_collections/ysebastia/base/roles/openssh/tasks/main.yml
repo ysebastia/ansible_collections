@@ -14,17 +14,17 @@
     state: present
     validate: "sshd -t -f %s"
   with_items:
-    - {regexp: '^AllowTcpForwarding', line: 'AllowTcpForwarding no'}
-    - {regexp: '^ChallengeResponseAuthentication', line: 'ChallengeResponseAuthentication no'}
-    - {regexp: '^Ciphers', line: 'Ciphers aes256-ctr,aes192-ctr,aes128-ctr'}
-    - {regexp: '^GSSAPIAuthentication', line: 'GSSAPIAuthentication no'}
-    - {regexp: '^ListenAddress', line: 'ListenAddress 0.0.0.0'}
-    - {regexp: '^PasswordAuthentication', line: 'PasswordAuthentication {{ openssh_password_authentification }}'}
-    - {regexp: '^PermitUserEnvironment', line: 'PermitUserEnvironment no'}
-    - {regexp: '^PrintLastLog', line: 'PrintLastLog yes'}
-    - {regexp: '^StrictModes', line: 'StrictModes yes'}
-    - {regexp: '^UseDNS', line: 'UseDNS no'}
-    - {regexp: '^X11Forwarding', line: 'X11Forwarding no'}
+    - { regexp: "^AllowTcpForwarding", line: "AllowTcpForwarding no" }
+    - { regexp: "^ChallengeResponseAuthentication", line: "ChallengeResponseAuthentication no" }
+    - { regexp: "^Ciphers", line: "Ciphers aes256-ctr,aes192-ctr,aes128-ctr" }
+    - { regexp: "^GSSAPIAuthentication", line: "GSSAPIAuthentication no" }
+    - { regexp: "^ListenAddress", line: "ListenAddress 0.0.0.0" }
+    - { regexp: "^PasswordAuthentication", line: "PasswordAuthentication {{ openssh_password_authentification }}" }
+    - { regexp: "^PermitUserEnvironment", line: "PermitUserEnvironment no" }
+    - { regexp: "^PrintLastLog", line: "PrintLastLog yes" }
+    - { regexp: "^StrictModes", line: "StrictModes yes" }
+    - { regexp: "^UseDNS", line: "UseDNS no" }
+    - { regexp: "^X11Forwarding", line: "X11Forwarding no" }
   notify:
     - Restart sshd
   tags: security

@@ -5,6 +5,6 @@
     name: postfix
     state: restarted
     enabled: true
-- name: Newaliases  # noqa no-changed-when
+- name: Newaliases # noqa no-changed-when
   become: true
   ansible.builtin.command: newaliases

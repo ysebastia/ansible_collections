@@ -3,7 +3,7 @@ galaxy_info:
   author: Yannick Sebastia
   description: Configure Vagrant for KVM
   license: GPL-3.0-only
-  min_ansible_version: '2.1'
+  min_ansible_version: "2.1"
   namespace: sebastia
   platforms:
     - name: EL

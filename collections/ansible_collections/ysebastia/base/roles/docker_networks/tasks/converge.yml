@@ -11,5 +11,5 @@
 - name: Create DOCKER network
   become: true
   community.docker.docker_network:
-    name: '{{ item }}'
+    name: "{{ item }}"
   loop: "{{ docker_networks }}"

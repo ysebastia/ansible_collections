@@ -8,6 +8,6 @@
 - name: Restart httpd
   become: true
   ansible.builtin.service:
-    name: '{{ backuppc_service_httpd }}'
+    name: "{{ backuppc_service_httpd }}"
     state: restarted
     enabled: true

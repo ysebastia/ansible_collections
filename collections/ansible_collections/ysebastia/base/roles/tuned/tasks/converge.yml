@@ -19,7 +19,7 @@
   ansible.builtin.set_fact:
     tuned_change_profile: "{{ tuned_profile not in tuned_adm.stdout }}"
 
-- name: Set tuned profile  # noqa no-changed-when
+- name: Set tuned profile # noqa no-changed-when
   become: true
   ansible.builtin.command: tuned-adm profile {{ tuned_profile }}
   when: tuned_change_profile

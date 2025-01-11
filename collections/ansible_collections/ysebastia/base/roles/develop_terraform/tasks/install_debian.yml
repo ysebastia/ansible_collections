@@ -8,8 +8,8 @@
 - name: Configure qemu.conf with security_driver
   become: true
   ansible.builtin.template:
-    src: 'qemu.conf.j2'
-    dest: '/etc/libvirt/qemu.conf'
-    owner: 'root'
-    group: 'root'
-    mode: '0600'
+    src: "qemu.conf.j2"
+    dest: "/etc/libvirt/qemu.conf"
+    owner: "root"
+    group: "root"
+    mode: "0600"

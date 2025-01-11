@@ -2,9 +2,9 @@
 - name: Configure Profile
   become: true
   ansible.builtin.copy:
-    src: 'files{{ item }}'
-    dest: '{{ item }}'
-    mode: '0644'
+    src: "files{{ item }}"
+    dest: "{{ item }}"
+    mode: "0644"
     owner: root
     group: root
   loop:

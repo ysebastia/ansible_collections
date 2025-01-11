@@ -12,26 +12,26 @@
 - name: Ensure virtual mail group exists
   become: true
   ansible.builtin.group:
-    name: '{{ dovecot_virtual_gid }}'
+    name: "{{ dovecot_virtual_gid }}"
     state: present
     system: true
 - name: Ensure virual mail user exists
   become: true
   ansible.builtin.user:
-    name: '{{ dovecot_virtual_uid }}'
-    comment: 'Comptes virtuels'
-    group: '{{ dovecot_virtual_gid }}'
-    home: '{{ dovecot_virtual_mailbox_base }}'
+    name: "{{ dovecot_virtual_uid }}"
+    comment: "Comptes virtuels"
+    group: "{{ dovecot_virtual_gid }}"
+    home: "{{ dovecot_virtual_mailbox_base }}"
     shell: /sbin/nologin
     system: true
 - name: Permissions
   become: true
   ansible.builtin.file:
-    path: '{{ dovecot_virtual_mailbox_base }}'
+    path: "{{ dovecot_virtual_mailbox_base }}"
     state: directory
-    owner: '{{ dovecot_virtual_uid }}'
-    group: '{{ dovecot_virtual_gid }}'
-    mode: '0755'
+    owner: "{{ dovecot_virtual_uid }}"
+    group: "{{ dovecot_virtual_gid }}"
+    mode: "0755"
 
 - name: Configure LDAP virtual account if enable_service_dovecot_ldap is defined
   ansible.builtin.include_tasks: config_ldap.yml
@@ -41,10 +41,10 @@
   become: true
   ansible.builtin.template:
     src: templates/{{ item }}.j2
-    dest: '{{ item }}'
+    dest: "{{ item }}"
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   with_items:
     - /etc/dovecot/dovecot.conf
     - /etc/dovecot/trash.conf
@@ -55,10 +55,10 @@
   become: true
   ansible.builtin.template:
     src: templates/{{ item }}.j2
-    dest: '{{ item }}'
+    dest: "{{ item }}"
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   with_items:
     - /etc/rsyslog.d/dovecot.conf
     - /etc/logrotate.d/dovecot

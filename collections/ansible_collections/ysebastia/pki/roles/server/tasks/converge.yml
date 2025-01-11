@@ -63,15 +63,15 @@
   ansible.builtin.copy:
     dest: "{{ pki_path }}certs/{{ pki_server_host }}.pem"
     content: "{{ server_public_certificate.content | b64decode }}"
-    owner: '{{ pki_server_owner }}'
-    group: '{{ pki_server_owner }}'
-    mode: '{{ pki_server_mode }}'
+    owner: "{{ pki_server_owner }}"
+    group: "{{ pki_server_owner }}"
+    mode: "{{ pki_server_mode }}"
 
 - name: Write private certificate file on server
   become: true
   ansible.builtin.copy:
     dest: "{{ pki_server_private }}{{ pki_server_host }}.key"
     content: "{{ server_private_certificate.content | b64decode }}"
-    owner: '{{ pki_server_owner }}'
-    group: '{{ pki_server_owner }}'
-    mode: '{{ pki_server_mode }}'
+    owner: "{{ pki_server_owner }}"
+    group: "{{ pki_server_owner }}"
+    mode: "{{ pki_server_mode }}"

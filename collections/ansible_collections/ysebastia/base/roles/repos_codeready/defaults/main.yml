@@ -1,4 +1,4 @@
 ---
 ansible_action: converge
 enable_repositories_codeready: false
-codeready_supported_os: ['redhat']
+codeready_supported_os: ["redhat"]

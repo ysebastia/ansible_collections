@@ -6,4 +6,4 @@ mariadb_admin_account: []
 mariadb_db: []
 mariadb_user: []
 mariadb_remote_access: true
-mariadb_supported_os: ['debian']
+mariadb_supported_os: ["debian"]

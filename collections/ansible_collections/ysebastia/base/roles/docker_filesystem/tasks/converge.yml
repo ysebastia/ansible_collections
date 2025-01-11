@@ -8,45 +8,45 @@
 - name: Create LVM partition if filesystem_host_device is defined
   become: true
   community.general.parted:
-    device: '{{ item.device }}'
-    number: '1'
+    device: "{{ item.device }}"
+    number: "1"
     flags:
       - lvm
     state: present
-  with_items: '{{ filesystem_host_device }}'
+  with_items: "{{ filesystem_host_device }}"
   when:
     - filesystem_host_device is defined
     - item.device | length > 0
 - name: Create LVM group if filesystem_host_device is defined
   become: true
   community.general.lvg:
-    vg: '{{ item.vg }}'
-    pvs: '{{ item.dev }}'
-  with_items: '{{ filesystem_host_device }}'
+    vg: "{{ item.vg }}"
+    pvs: "{{ item.dev }}"
+  with_items: "{{ filesystem_host_device }}"
   when:
     - filesystem_host_device is defined
     - item.vg | length > 0
 - name: Create LV for docker if filesystem_docker_lvm is defined
   become: true
   community.general.lvol:
-    vg: '{{ filesystem_docker_lvm }}'
-    lv: '{{ item.lv }}'
-    size: '{{ item.size }}'
+    vg: "{{ filesystem_docker_lvm }}"
+    lv: "{{ item.lv }}"
+    size: "{{ item.size }}"
   with_items:
     - lv: docker
-      size: '{{ filesystem_docker_size }}'
+      size: "{{ filesystem_docker_size }}"
   when:
     - filesystem_docker_lvm is defined
     - item.size != "0"
 - name: Make filesystem if filesystem_docker_lvm is defined
   become: true
   community.general.filesystem:
-    fstype: '{{ item.fstype }}'
-    dev: '{{ item.dev }}'
+    fstype: "{{ item.fstype }}"
+    dev: "{{ item.dev }}"
     force: false
   with_items:
-    - dev: '/dev/{{ filesystem_docker_lvm }}/docker'
-      size: '{{ filesystem_docker_size }}'
+    - dev: "/dev/{{ filesystem_docker_lvm }}/docker"
+      size: "{{ filesystem_docker_size }}"
       fstype: xfs
   when:
     - filesystem_docker_lvm is defined
@@ -54,13 +54,13 @@
 - name: Mount filesystem if filesystem_docker_lvm is defined
   become: true
   ansible.posix.mount:
-    path: '{{ item.path }}'
-    src: '{{ item.dev }}'
-    fstype: '{{ item.fstype }}'
+    path: "{{ item.path }}"
+    src: "{{ item.dev }}"
+    fstype: "{{ item.fstype }}"
     state: mounted
   with_items:
-    - dev: '/dev/mapper/{{ filesystem_docker_lvm }}-docker'
-      size: '{{ filesystem_docker_size }}'
+    - dev: "/dev/mapper/{{ filesystem_docker_lvm }}-docker"
+      size: "{{ filesystem_docker_size }}"
       path: /var/lib/docker
       fstype: xfs
   when:

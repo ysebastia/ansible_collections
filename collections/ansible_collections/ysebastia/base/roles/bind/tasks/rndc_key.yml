@@ -13,6 +13,6 @@
   become: true
   ansible.builtin.file:
     path: "{{ bind_rndc_file }}"
-    owner: '{{ bind_rndc_owner }}'
-    group: '{{ bind_group }}'
+    owner: "{{ bind_rndc_owner }}"
+    group: "{{ bind_group }}"
     mode: "0640"

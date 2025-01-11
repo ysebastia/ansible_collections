@@ -24,7 +24,7 @@
   ansible.builtin.template:
     src: tls.ldif.j2
     dest: /root/tls.ldif
-    mode: '0644'
+    mode: "0644"
     owner: root
     group: root
   notify:

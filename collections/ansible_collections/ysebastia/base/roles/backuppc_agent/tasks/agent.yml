@@ -10,21 +10,21 @@
   ansible.builtin.user:
     name: backup
     group: backup
-    home: '{{ backuppc_home_directory }}'
+    home: "{{ backuppc_home_directory }}"
     system: true
     shell: /bin/bash
 - name: Fix perms
   become: true
   ansible.builtin.file:
-    path: '{{ backuppc_home_directory }}'
+    path: "{{ backuppc_home_directory }}"
     state: directory
     owner: backup
     group: backup
-    mode: '0755'
+    mode: "0755"
 - name: Configure SUDO
   become: true
   ansible.builtin.copy:
     src: files/etc/sudoers.d/backup
     dest: /etc/sudoers.d/backup
-    validate: 'visudo -cf %s'
-    mode: '0440'
+    validate: "visudo -cf %s"
+    mode: "0440"

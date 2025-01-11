@@ -10,8 +10,8 @@
   become: true
   ansible.builtin.lineinfile:
     path: /etc/backuppc/config.pl
-    regex: '{{ item.regex }}'
-    line: '{{ item.value }}'
+    regex: "{{ item.regex }}"
+    line: "{{ item.value }}"
     state: present
   with_items:
     - regex: ^$Conf{ServerHost}
@@ -49,27 +49,27 @@
 - name: Create .ssh directory
   become: true
   ansible.builtin.file:
-    path: '{{ backuppc_directory_backup }}/.ssh'
+    path: "{{ backuppc_directory_backup }}/.ssh"
     state: directory
     owner: backuppc
     group: backuppc
-    mode: '0700'
+    mode: "0700"
 - name: Create main backup directory
   become: true
   ansible.builtin.file:
-    path: '{{ backuppc_directory_backup }}/pc'
+    path: "{{ backuppc_directory_backup }}/pc"
     state: directory
     owner: backuppc
     group: backuppc
-    mode: '0755'
+    mode: "0755"
   notify:
     - Restart backuppc
 - name: Remove of backup directory with backuppc_old_save list
   become: true
   ansible.builtin.file:
-    path: '{{ backuppc_directory_backup }}/pc/{{ item }}'
+    path: "{{ backuppc_directory_backup }}/pc/{{ item }}"
     state: absent
-  with_items: '{{ backuppc_old_save }}'
+  with_items: "{{ backuppc_old_save }}"
   notify:
     - Restart backuppc
 - name: Create SSH key
@@ -77,27 +77,27 @@
   community.crypto.openssh_keypair:
     owner: backuppc
     group: backuppc
-    mode: '0600'
-    path: '{{ backuppc_directory_backup }}/.ssh/id_ecdsa'
-    type: 'ecdsa'
+    mode: "0600"
+    path: "{{ backuppc_directory_backup }}/.ssh/id_ecdsa"
+    type: "ecdsa"
 - name: Get SSH key on control node
   become: true
   ansible.builtin.fetch:
-    src: '{{ backuppc_directory_backup }}/.ssh/id_ecdsa.pub'
-    dest: '{{ inventory_dir }}/files/pubkeys/{{ inventory_hostname }}.id_ecdsa.pub'
+    src: "{{ backuppc_directory_backup }}/.ssh/id_ecdsa.pub"
+    dest: "{{ inventory_dir }}/files/pubkeys/{{ inventory_hostname }}.id_ecdsa.pub"
     flat: true
 - name: Configure SSH client
   become: true
   ansible.builtin.copy:
     src: files/config
-    dest: '{{ backuppc_directory_backup }}/.ssh/config'
+    dest: "{{ backuppc_directory_backup }}/.ssh/config"
     owner: backuppc
     group: backuppc
-    mode: '0644'
+    mode: "0644"
 - name: Remove old SSH keys with backuppc_ssh_key_to_revoke list
   become: true
   ansible.builtin.known_hosts:
-    name: '{{ item }}'
+    name: "{{ item }}"
     state: absent
-    path: '{{ backuppc_directory_backup }}/.ssh/known_hosts'
-  with_items: '{{ backuppc_ssh_key_to_revoke }}'
+    path: "{{ backuppc_directory_backup }}/.ssh/known_hosts"
+  with_items: "{{ backuppc_ssh_key_to_revoke }}"

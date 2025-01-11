@@ -5,11 +5,11 @@
 - name: Install Molecule
   ansible.builtin.pip:
     name:
-      - 'molecule=={{ molecule_version }}'
+      - "molecule=={{ molecule_version }}"
       - molecule-plugins[vagrant]==23.6.0
       - python-vagrant==1.0.0
       - rich
-    virtualenv: '{{ python_venv_directory }}'
+    virtualenv: "{{ python_venv_directory }}"
   environment:
     https_proxy: "{{ ansible_env.HTTPS_PROXY | default(none) }}"
   when: enable_develop_molecule | bool

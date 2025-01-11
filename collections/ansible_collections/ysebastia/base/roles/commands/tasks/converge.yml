@@ -25,24 +25,24 @@
 - name: Commands configuration
   become: true
   ansible.builtin.copy:
-    src: 'files/{{ item.src }}'
-    dest: '{{ item.dst }}'
-    owner: '{{ item.owner }}'
-    group: '{{ item.owner }}'
-    mode: '{{ item.mode }}'
+    src: "files/{{ item.src }}"
+    dest: "{{ item.dst }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.owner }}"
+    mode: "{{ item.mode }}"
   with_items:
     - src: /etc/logrotate.d/commands
       dst: /etc/logrotate.d/commands
       owner: root
-      mode: '0644'
+      mode: "0644"
     - src: /etc/profile.d/commands.sh
       dst: /etc/profile.d/commands.sh
       owner: root
-      mode: '0644'
+      mode: "0644"
     - src: /etc/rsyslog.d/commands.conf
       dst: /etc/rsyslog.d/commands.conf
       owner: root
-      mode: '0644'
+      mode: "0644"
   notify:
     - Restart rsyslog
 - name: Logwatch

@@ -10,7 +10,7 @@
     freeradius_dependencies: true
     freeradius_ssl_ca_file: "ca-{{ pki_ca_name }}.pem"
     pki_ca_file: "ca-{{ pki_ca_name }}.pem"
-    pki_ca_name: 'ansible'
+    pki_ca_name: "ansible"
   tasks:
     - name: "Include bootstrap PKI"
       ansible.builtin.include_role:

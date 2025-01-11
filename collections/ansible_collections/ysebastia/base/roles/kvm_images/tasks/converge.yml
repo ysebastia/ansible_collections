@@ -1,20 +1,20 @@
 ---
 - name: Get images from kvm_images_url list
   become: true
-  ansible.builtin.get_url:  # checkov:skip=CKV2_ANSIBLE_2
-    url: '{{ item.url }}/{{ item.file }}'
-    dest: '{{ kvm_images_path }}/{{ item.file }}'
-    mode: '0644'
-    owner: '{{ kvm_images_owner }}'
-    group: '{{ kvm_images_group }}'
+  ansible.builtin.get_url: # checkov:skip=CKV2_ANSIBLE_2
+    url: "{{ item.url }}/{{ item.file }}"
+    dest: "{{ kvm_images_path }}/{{ item.file }}"
+    mode: "0644"
+    owner: "{{ kvm_images_owner }}"
+    group: "{{ kvm_images_group }}"
   with_items:
-    - '{{ kvm_images_url }}'
+    - "{{ kvm_images_url }}"
   environment:
     https_proxy: "{{ images_https_proxy | default('') }}"
 
 - name: Delete old images from kvm_images_to_delete list
   become: true
   ansible.builtin.file:
-    path: '{{ kvm_images_path }}/{{ item }}'
+    path: "{{ kvm_images_path }}/{{ item }}"
     state: absent
-  loop: '{{ kvm_images_to_delete }}'
+  loop: "{{ kvm_images_to_delete }}"

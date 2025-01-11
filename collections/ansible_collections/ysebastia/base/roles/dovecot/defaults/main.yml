@@ -8,4 +8,4 @@ enable_service_dovecot: false
 enable_service_dovecot_auth_for_postfix: false
 enable_service_dovecot_ldap: false
 enable_service_dovecot_syslog: false
-dovecot_supported_os: ['debian']
+dovecot_supported_os: ["debian"]

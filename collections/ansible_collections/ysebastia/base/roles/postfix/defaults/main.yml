@@ -5,8 +5,8 @@ enable_service_postfix_ldap: false
 enable_service_postfix_dovecot_transport: true
 enable_service_postfix_ldap_account: true
 enable_service_postfix_ldap_tls: false
-postfix_supported_os: ['debian']
-postfix_ldap_tls: 'no'
+postfix_supported_os: ["debian"]
+postfix_ldap_tls: "no"
 postfix_virtual_mailbox_base: /var/vmail
 postfix_virtual_gid: vmail
 postfix_virtual_uid: vmail
@@ -16,15 +16,15 @@ postfix_conf_main:
   - name: relayhost
     value:
   - name: myhostname
-    value: '{{ ansible_fqdn }}'
+    value: "{{ ansible_fqdn }}"
   - name: append_dot_mydomain
-    value: 'no'
+    value: "no"
   - name: biff
-    value: 'no'
+    value: "no"
   - name: mailbox_size_limit
     value: 0
   - name: myorigin
-    value: '{{ ansible_fqdn }}'
+    value: "{{ ansible_fqdn }}"
   - name: inet_interfaces
     value: all
 postfix_conf_mainvirtual:
@@ -33,10 +33,10 @@ postfix_conf_mainvirtual:
   - name: virtual_alias_expansion_limit
     value: 3000
   - name: virtual_gid_maps
-    value: 'static:{{ postfix_virtual_gid }}'
+    value: "static:{{ postfix_virtual_gid }}"
   - name: virtual_mailbox_base
-    value: '{{ postfix_virtual_mailbox_base }}'
+    value: "{{ postfix_virtual_mailbox_base }}"
   - name: virtual_mailbox_domains
-    value: '{{ ansible_domain }}'
+    value: "{{ ansible_domain }}"
   - name: virtual_uid_maps
-    value: 'static:{{ postfix_virtual_uid }}'
+    value: "static:{{ postfix_virtual_uid }}"

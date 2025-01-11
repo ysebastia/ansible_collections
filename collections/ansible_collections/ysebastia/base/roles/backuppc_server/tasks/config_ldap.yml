@@ -18,7 +18,7 @@
   become: true
   ansible.builtin.template:
     src: BackupPC.conf.j2
-    dest: '{{ backuppc_httpd_vhost_directory }}BackupPC.conf'
-    mode: '0644'
+    dest: "{{ backuppc_httpd_vhost_directory }}BackupPC.conf"
+    mode: "0644"
   notify:
     - Restart httpd

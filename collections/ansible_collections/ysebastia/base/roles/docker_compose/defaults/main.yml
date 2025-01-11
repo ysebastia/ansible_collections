@@ -2,6 +2,6 @@
 ansible_action: converge
 docker_compose_enable: false
 docker_compose_files: []
-docker_compose_project: ''
+docker_compose_project: ""
 docker_compose_templates: []
 docker_compose_working_directory: /etc/docker/compose/

@@ -20,8 +20,8 @@
   become: true
   ansible.builtin.debconf:
     name: slapd
-    question: 'slapd/domain'
-    value: '{{ openldap_domain }}'
+    question: "slapd/domain"
+    value: "{{ openldap_domain }}"
     vtype: string
   when: openldap_domain != ''
 
@@ -29,8 +29,8 @@
   become: true
   ansible.builtin.debconf:
     name: slapd
-    question: '{{ item }}'
-    value: '{{ openldap_password }}'
+    question: "{{ item }}"
+    value: "{{ openldap_password }}"
     vtype: password
   loop:
     - slapd/password2
@@ -43,7 +43,7 @@
 - name: Ensure OpenLdap is installed
   become: true
   ansible.builtin.apt:
-    name: '{{ openldap_package }}'
+    name: "{{ openldap_package }}"
 
 - name: Install BZIP2
   become: true

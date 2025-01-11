@@ -8,7 +8,7 @@
 - name: Ensure apache is started and enabled at boot
   become: true
   ansible.builtin.service:
-    name: '{{ apache_service }}'
+    name: "{{ apache_service }}"
     enabled: true
     state: started
 

@@ -6,10 +6,10 @@
   become: true
   ansible.builtin.template:
     src: templates/etc/chrony.conf.j2
-    dest: '{{ chrony_configfile }}'
+    dest: "{{ chrony_configfile }}"
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   notify:
     - Restart chronyd
 

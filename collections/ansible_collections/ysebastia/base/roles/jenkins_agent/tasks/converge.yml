@@ -18,7 +18,7 @@
   ansible.builtin.file:
     path: /home/jenkins
     state: directory
-    mode: '0700'
+    mode: "0700"
     owner: jenkins
     group: jenkins
 - name: Ensure the existence of Jenkins key
@@ -31,7 +31,7 @@
   ansible.posix.authorized_key:
     user: jenkins
     state: present
-    key: '{{ lookup(''file'', ''{{ jenkins_server_ssh_key }}'') }}'
+    key: "{{ lookup('file', '{{ jenkins_server_ssh_key }}') }}"
   when: agent_result.stat.exists
 - name: Sudo configuration
   become: true
@@ -45,14 +45,14 @@
   ansible.builtin.file:
     path: "/tmp/jenkins"
     state: directory
-    mode: '01777'
+    mode: "01777"
 - name: Create SSH key if enable_jenkins_agent_ssh is defined
   become: true
   community.crypto.openssh_keypair:
     owner: jenkins
     group: jenkins
-    mode: '0600'
+    mode: "0600"
     path: /home/jenkins/.ssh/id_ecdsa
-    type: 'ecdsa'
+    type: "ecdsa"
   when:
     - enable_jenkins_agent_ssh | bool

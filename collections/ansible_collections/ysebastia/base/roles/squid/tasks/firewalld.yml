@@ -2,7 +2,7 @@
 - name: Allow squid traffic on port {{ http_proxy_port }}
   become: true
   ansible.posix.firewalld:
-    port: '{{ http_proxy_port }}/tcp'
+    port: "{{ http_proxy_port }}/tcp"
     permanent: true
     immediate: true
     state: enabled

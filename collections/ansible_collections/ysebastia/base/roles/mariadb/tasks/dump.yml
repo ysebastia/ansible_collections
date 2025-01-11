@@ -2,23 +2,23 @@
 - name: Dump databases
   become: true
   community.mysql.mysql_db:
-    login_unix_socket: '{{ mariadb_socket_unix }}'
+    login_unix_socket: "{{ mariadb_socket_unix }}"
     login_user: root
     state: dump
-    name: '{{ item }}'
-    target: '/tmp/{{ item }}.sql.bz2'
-  loop: '{{ mariadb_db }}'
+    name: "{{ item }}"
+    target: "/tmp/{{ item }}.sql.bz2"
+  loop: "{{ mariadb_db }}"
 
 - name: Downloading backup to local computer
   ansible.builtin.fetch:
-    src: '/tmp/{{ item }}.sql.bz2'
-    dest: 'files/dump/{{ item }}.sql.bz2'
+    src: "/tmp/{{ item }}.sql.bz2"
+    dest: "files/dump/{{ item }}.sql.bz2"
     flat: true
-  loop: '{{ mariadb_db }}'
+  loop: "{{ mariadb_db }}"
 
 - name: Remove remote dump
   become: true
   ansible.builtin.file:
     state: absent
-    path: '/tmp/{{ item }}.sql.bz2'
-  loop: '{{ mariadb_db }}'
+    path: "/tmp/{{ item }}.sql.bz2"
+  loop: "{{ mariadb_db }}"

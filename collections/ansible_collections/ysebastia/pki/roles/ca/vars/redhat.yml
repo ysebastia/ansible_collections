@@ -1,4 +1,4 @@
 ---
 pki_prepare_private_group: root
-pki_prepare_private_mode: '0755'
+pki_prepare_private_mode: "0755"
 pki_path: /etc/pki/tls/

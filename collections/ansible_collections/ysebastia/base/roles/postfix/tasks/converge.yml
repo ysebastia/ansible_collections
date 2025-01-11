@@ -13,10 +13,10 @@
   become: true
   ansible.builtin.lineinfile:
     path: /etc/postfix/main.cf
-    line: '{{ item.name }} = {{ item.value }}'
+    line: "{{ item.name }} = {{ item.value }}"
     regex: ^{{ item.name }}
     state: present
-  with_items: '{{ postfix_conf_main }}'
+  with_items: "{{ postfix_conf_main }}"
   notify:
     - Restart postfix
 

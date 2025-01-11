@@ -14,12 +14,12 @@
   ansible.builtin.template:
     src: etc/squid/squid.conf.j2
     dest: /etc/squid/squid.conf
-    mode: '0644'
+    mode: "0644"
   notify:
     - Restart squid
 - name: Configure perms
   become: true
   ansible.builtin.file:
     path: /var/spool/squid
-    owner: '{{ squid_group }}'
-    group: '{{ squid_group }}'
+    owner: "{{ squid_group }}"
+    group: "{{ squid_group }}"

@@ -1,19 +1,19 @@
 ---
 ansible_action: converge
-backuppc_admins: ''
+backuppc_admins: ""
 backuppc_directory_backup: /var/lib/backuppc
 backuppc_directory_share: /usr/share/backuppc
-backuppc_domain_name: '{{ ansible_domain }}'
+backuppc_domain_name: "{{ ansible_domain }}"
 backuppc_httpd_vhost_directory: /etc/apache2/sites-enabled/
-backuppc_mailadmin: 'postmaster@{{ backuppc_domain_name }}'
+backuppc_mailadmin: "postmaster@{{ backuppc_domain_name }}"
 backuppc_old_save: []
 backuppc_owner: "{{ ansible_user | default('root') }}"
-backuppc_serverhost: '{{ inventory_hostname_short }}'
-backuppc_serverhost_fqdn: '{{ backuppc_serverhost }}.{{ backuppc_domain_name }}'
+backuppc_serverhost: "{{ inventory_hostname_short }}"
+backuppc_serverhost_fqdn: "{{ backuppc_serverhost }}.{{ backuppc_domain_name }}"
 backuppc_service_httpd: apache2
 backuppc_ssh_key_to_revoke: []
-backuppc_supported_os: ['debian']
-backuppc_url: 'http://{{ backuppc_serverhost }}.{{ backuppc_domain_name }}/BackupPC'
+backuppc_supported_os: ["debian"]
+backuppc_url: "http://{{ backuppc_serverhost }}.{{ backuppc_domain_name }}/BackupPC"
 enable_backuppc_server: false
 enable_service_apache: true
 enable_service_apache_ldap: true

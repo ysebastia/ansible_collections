@@ -14,7 +14,8 @@
 - name: Configure Gitlab-runner repository
   become: true
   ansible.builtin.apt_repository:
-    repo: deb [signed-by=/usr/share/keyrings/runner_gitlab-runner-archive-keyring.gpg] https://packages.gitlab.com/runner/gitlab-runner/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} main
+    repo: deb [signed-by=/usr/share/keyrings/runner_gitlab-runner-archive-keyring.gpg] https://packages.gitlab.com/runner/gitlab-runner/{{ ansible_distribution |
+      lower }}/ {{ ansible_distribution_release }} main
     filename: runner_gitlab-runner
     state: present
   environment:
@@ -31,7 +32,7 @@
   ansible.builtin.file:
     path: "/etc/systemd/system/gitlab-runner.service.d"
     state: directory
-    mode: '0755'
+    mode: "0755"
 - name: Create http-proxy.conf
   become: true
   ansible.builtin.template:
@@ -39,7 +40,7 @@
     dest: /etc/systemd/system/gitlab-runner.service.d/http-proxy.conf
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   notify:
     - Reload systemd
     - Restart gitlab-runner

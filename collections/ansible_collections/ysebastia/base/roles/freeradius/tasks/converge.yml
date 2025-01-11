@@ -24,7 +24,7 @@
     state: directory
     owner: "{{ freeradius_owner }}"
     group: "{{ freeradius_group }}"
-    mode: '0700'
+    mode: "0700"
 
 - name: Configure FREERADIUS
   become: true

@@ -2,4 +2,4 @@
 ansible_action: converge
 enable_gitlab_runner: false
 gitlab_https_proxy:
-gitlab_supported_os: ['debian']
+gitlab_supported_os: ["debian"]
