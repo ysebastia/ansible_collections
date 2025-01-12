@@ -27,3 +27,5 @@
       {{ ansible_distribution_release }} stable
     filename: docker-ce
     state: present
+  environment:
+    https_proxy: "{{ docker_ce_https_proxy | default('') }}"   
