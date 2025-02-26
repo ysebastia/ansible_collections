@@ -1,2 +1,2 @@
 ---
-molecule_version: "{{ my_molecule_version | default('25.1.0') }}"
+molecule_version: "{{ my_molecule_version | default('25.3.1') }}"
