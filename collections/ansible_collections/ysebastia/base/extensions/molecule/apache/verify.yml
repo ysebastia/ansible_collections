@@ -1,0 +1,10 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: "Verify apache"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.apache"
+      vars:
+        ansible_action: verify

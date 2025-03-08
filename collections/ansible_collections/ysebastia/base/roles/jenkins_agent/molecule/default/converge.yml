@@ -1,9 +1,0 @@
----
-- name: Converge
-  hosts: all
-  tasks:
-    - name: "Include agent"
-      ansible.builtin.include_role:
-        name: "jenkins_agent"
-      vars:
-        enable_jenkins_agent: true

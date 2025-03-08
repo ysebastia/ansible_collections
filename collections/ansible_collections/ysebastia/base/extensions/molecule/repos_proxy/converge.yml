@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include proxy"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.repos_proxy"
+      vars:
+        enable_repositories_proxy: true

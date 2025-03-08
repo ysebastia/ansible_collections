@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include codeready"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.repos_codeready"

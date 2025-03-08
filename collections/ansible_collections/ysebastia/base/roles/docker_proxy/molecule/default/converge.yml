@@ -1,9 +1,0 @@
----
-- name: Converge
-  hosts: all
-  tasks:
-    - name: "Include proxy"
-      ansible.builtin.include_role:
-        name: "docker_proxy"
-      vars:
-        enable_docker_proxy: true

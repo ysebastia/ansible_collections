@@ -1,0 +1,10 @@
+---
+- name: Configure CA
+  ansible.builtin.include_role:
+    name: ysebastia.base.pki_ca
+- name: Deploy CA certificate
+  ansible.builtin.include_role:
+    name: ysebastia.base.pki_deploy_ca
+- name: Sign server certificate
+  ansible.builtin.include_role:
+    name: ysebastia.base.pki_server

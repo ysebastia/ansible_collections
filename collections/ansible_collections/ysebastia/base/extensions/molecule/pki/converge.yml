@@ -1,0 +1,11 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include bootstrap"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.pki"
+      vars:
+        enable_pki_ca: true
+        enable_pki_deploy_ca: true
+        enable_pki_server: true

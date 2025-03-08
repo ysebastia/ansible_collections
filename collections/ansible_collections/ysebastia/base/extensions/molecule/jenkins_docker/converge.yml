@@ -1,0 +1,17 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include agent"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.jenkins_agent"
+      vars:
+        enable_jenkins_agent: true
+    - name: "Include docker"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.jenkins_docker"
+      vars:
+        enable_jenkins_docker: true
+        enable_docker_proxy: true
+        enable_repositories_docker_ce: true
+        docker_ce_https_proxy: "{{ ansible_env.HTTP_PROXY }}"

@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include squid"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.squid"
+      vars:
+        enable_service_squid: true
+        squid_dependencies: true

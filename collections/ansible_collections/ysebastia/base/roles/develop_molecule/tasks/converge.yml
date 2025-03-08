@@ -6,7 +6,7 @@
   ansible.builtin.pip:
     name:
       - "molecule=={{ molecule_version }}"
-      - molecule-plugins[vagrant]==23.7.0
+      - "molecule-plugins[vagrant]=={{ molecule_plugins_vagrant }}"
       - python-vagrant==1.0.0
       - rich
     virtualenv: "{{ python_venv_directory }}"

@@ -1,9 +1,0 @@
----
-- name: Converge
-  hosts: all
-  tasks:
-    - name: "Include manager"
-      ansible.builtin.include_role:
-        name: "kvm_manager"
-      vars:
-        enable_kvm_manager: true

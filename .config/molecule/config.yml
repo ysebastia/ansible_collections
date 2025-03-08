@@ -1,15 +1,17 @@
 ---
+prerun: false
 provisioner:
   name: ansible
   config_options:
     defaults:
       remote_tmp: /tmp
+      collections_path: ${ANSIBLE_COLLECTIONS_PATH}
   inventory:
     group_vars:
       all:
         ansible_user: ansible
   playbooks:
-    prepare: ../../../../../../../../.config/molecule/prepare.yml
+    prepare: ../../../../../../../.config/molecule/prepare.yml
 driver:
   name: docker
 platforms:

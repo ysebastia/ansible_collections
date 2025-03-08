@@ -1,0 +1,16 @@
+---
+- name: Cleanup
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Wait for connection
+      ansible.builtin.wait_for_connection:
+        timeout: 10
+      register: wait_for_instances
+      failed_when: false
+    - name: "Cleanup logwatch"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.logwatch"
+      vars:
+        ansible_action: cleanup
+      when: wait_for_instances.elapsed < 10

@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include python"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.develop_python"
+      vars:
+        enable_develop_python: true

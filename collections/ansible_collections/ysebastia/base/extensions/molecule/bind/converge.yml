@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include bind"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.bind"
+      vars:
+        enable_service_bind: true
+        bind_dependencies: true

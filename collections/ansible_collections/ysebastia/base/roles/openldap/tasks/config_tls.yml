@@ -13,11 +13,11 @@
 
 - name: Generate certificates server
   ansible.builtin.include_role:
-    name: ysebastia.pki.server
+    name: ysebastia.base.pki_server
 
 - name: Get internal CA
   ansible.builtin.include_role:
-    name: ysebastia.pki.deploy_ca
+    name: ysebastia.base.pki_deploy_ca
 
 - name: Create TLS configuration
   become: true

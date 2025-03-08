@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include epel"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.repos_epel"
+      vars:
+        enable_repositories_epel: true
+        epel_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
