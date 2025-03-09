@@ -1,5 +1,14 @@
 def ansiblelint(quality) {
-  sh 'find . -name requirements.yml -exec ansible-galaxy collection install -r {} --ignore-certs --force --collections-path "~/.ansible/collections" \\;'
+  sh 'mkdir -p "~/.ansible/collections"'
+  cache(caches: [
+    arbitraryFileCache(
+        path: "~/.ansible/collections",
+        includes: "**/*",
+        cacheValidityDecidingFile: "requirements.yml"
+    )
+  ]) {
+    sh 'find . -name requirements.yml -exec ansible-galaxy collection install -r {} --ignore-certs --collections-path "~/.ansible/collections" \\;'
+  }  
   sh 'ansible-galaxy collection list'
   sh 'touch ansible-lint.txt'
   sh 'ansible-lint -p | tee -a ansible-lint.txt'
@@ -40,6 +49,7 @@ pipeline {
     ansiColor('xterm')
   }
   environment {
+    ANSIBLE_COLLECTIONS_PATH = "~/.ansible/collections/:/usr/share/ansible/collections/:../../../../../../../collections/"
     DOCKER_HOST = 'tcp://172.17.0.1:2375'
     QUALITY_ANSIBLE = "3"
     QUALITY_SHELL = "2"
@@ -114,7 +124,16 @@ pipeline {
         }
       }
       steps {
-          sh 'find . -name requirements.yml -not -path "*/tests/*" -exec ansible-galaxy collection install -r {} --ignore-certs --force --collections-path "~/.ansible/collections" \\;'
+          sh 'mkdir -p "~/.ansible/collections"'
+          cache(caches: [
+            arbitraryFileCache(
+                path: "~/.ansible/collections",
+                includes: "**/*",
+                cacheValidityDecidingFile: "requirements.yml"
+            )
+          ]) {
+            sh 'find . -name requirements.yml -exec ansible-galaxy collection install -r {} --ignore-certs --collections-path "~/.ansible/collections" \\;'
+          }          
           sh 'find . -name requirements.txt -exec pip install --no-cache -r {} \\;'
           sh 'ansible-galaxy collection list'
           sh 'run_molecule.bash'
