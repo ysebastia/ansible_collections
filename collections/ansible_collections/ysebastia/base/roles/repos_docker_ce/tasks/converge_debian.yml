@@ -28,4 +28,4 @@
     filename: docker-ce
     state: present
   environment:
-    https_proxy: "{{ docker_ce_https_proxy | default('') }}"   
+    https_proxy: "{{ docker_ce_https_proxy | default('') }}"
