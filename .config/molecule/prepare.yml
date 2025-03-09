@@ -1,11 +1,13 @@
 ---
-- name: Proxy
-  ansible.builtin.import_playbook: ../../collections/ansible_collections/ysebastia/base/playbooks/repos_proxy.yml
-  vars:
-    repository_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
 - name: Prepare
   hosts: all
   tasks:
+    - name: Configure Proxy repository
+      ansible.builtin.include_role:
+        name: ysebastia.base.repos_proxy
+      vars:
+        enable_repositories_proxy: true
+        repository_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
     - name: Update RedHat family
       become: true
       ansible.builtin.dnf:
