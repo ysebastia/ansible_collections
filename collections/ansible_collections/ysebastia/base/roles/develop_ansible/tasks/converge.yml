@@ -7,7 +7,7 @@
     name:
       - "ansible-core=={{ ansible_core_version }}"
       - "ansible-lint=={{ ansible_lint_version }}"
-      - yamllint==1.35.1
+      - yamllint==1.36.1
     virtualenv: "{{ python_venv_directory }}"
   environment:
     https_proxy: "{{ ansible_env.HTTPS_PROXY | default(none) }}"
