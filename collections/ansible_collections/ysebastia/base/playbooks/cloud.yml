@@ -17,7 +17,7 @@
         name: ysebastia.base.cloud_flux
     - name: Install Tilt
       ansible.builtin.include_role:
-        name: ysebastia.base.cloud_tilt
+        name: ysebastia.base.tilt
     - name: Install Helm
       ansible.builtin.include_role:
         name: ysebastia.base.cloud_helm
