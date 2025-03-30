@@ -24,10 +24,10 @@ platforms:
     privileged: true
     stop_signal: "SIGRTMIN+3"
     capabilities:
+      - CAP_NET_BIND_SERVICE
+      - LINUX_IMMUTABLE
       - SYS_ADMIN
       - SYS_TIME
-      - LINUX_IMMUTABLE
-      - CAP_NET_BIND_SERVICE
     command: "/usr/sbin/init"
     tmpfs:
       - /tmp
@@ -44,10 +44,10 @@ platforms:
     privileged: true
     stop_signal: "SIGRTMIN+3"
     capabilities:
+      - CAP_NET_BIND_SERVICE
+      - LINUX_IMMUTABLE
       - SYS_ADMIN
       - SYS_TIME
-      - LINUX_IMMUTABLE
-      - CAP_NET_BIND_SERVICE
     command: "/usr/sbin/init"
     tmpfs:
       - /tmp
@@ -64,10 +64,10 @@ platforms:
     privileged: true
     stop_signal: "SIGRTMIN+3"
     capabilities:
+      - CAP_NET_BIND_SERVICE
+      - LINUX_IMMUTABLE
       - SYS_ADMIN
       - SYS_TIME
-      - LINUX_IMMUTABLE
-      - CAP_NET_BIND_SERVICE
     command: "/usr/sbin/init"
     tmpfs:
       - /tmp
