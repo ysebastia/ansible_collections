@@ -1,20 +1,41 @@
 ---
+- name: Ensure that packages are presents
+  become: true
+  ansible.builtin.package:
+    name:
+      - parted
+      - rsync
+    state: present
 - name: Part filesystems
   become: true
   community.general.parted:
     device: "{{ item.device }}"
     number: "1"
     state: present
-  with_items: "{{ filesystem }}"
+  loop: "{{ filesystem }}"
   when:
     - item.device | length > 0
+- name: Gather mount
+  ansible.builtin.setup:
+- name: Set mounted_path
+  ansible.builtin.set_fact:
+    mounted_path: "{{ (ansible_mounts | map(attribute='mount')) }}"
 - name: Format filesystems (use force_format_filesystem variable if needed)
   become: true
   community.general.filesystem:
     fstype: "{{ item.fstype }}"
     dev: "{{ item.dev }}"
     force: "{{ force_format_filesystem | default(false) }}"
-  with_items: "{{ filesystem }}"
+  when:
+    - item.path not in mounted_path
+  loop: "{{ filesystem }}"
+- name: Synchronize data if path is not mounted
+  ansible.builtin.include_tasks: synchronize.yml
+  loop: "{{ filesystem }}"
+  when:
+    - item.synchronize is defined
+    - item.synchronize == true
+    - item.path not in mounted_path
 - name: Mount filesystems
   become: true
   ansible.posix.mount:
@@ -22,4 +43,5 @@
     src: "{{ item.dev }}"
     fstype: "{{ item.fstype }}"
     state: mounted
-  with_items: "{{ filesystem }}"
+    opts: "{{ item.opts | default(omit) }}"
+  loop: "{{ filesystem }}"

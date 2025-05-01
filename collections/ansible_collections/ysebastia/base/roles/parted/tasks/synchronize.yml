@@ -1,0 +1,32 @@
+---
+- name: Mount filesystems
+  become: true
+  ansible.posix.mount:
+    path: "/mnt"
+    src: "{{ item.dev }}"
+    fstype: "{{ item.fstype }}"
+    state: mounted
+- name: Synchronize data
+  become: true
+  ansible.posix.synchronize:
+    src: "{{ item.path }}/"
+    dest: /mnt/
+    recursive: true
+    delete: true
+  delegate_to: "{{ inventory_hostname }}"
+- name: Umount filesystems
+  become: true
+  ansible.posix.mount:
+    path: "/mnt"
+    state: absent
+- name: Remove folder
+  become: true
+  ansible.builtin.file:
+    state: absent
+    path: "{{ item.path }}"
+- name: Create empty folder
+  become: true
+  ansible.builtin.file:
+    state: directory
+    path: "{{ item.path }}"
+    mode: "{{ item.mode }}"
