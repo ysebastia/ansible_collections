@@ -1,0 +1,8 @@
+---
+- name: Parted
+  hosts: "{{ ansible_limit |default('localhost') }}"
+  gather_facts: false
+  tasks:
+    - name: "Include parted"
+      ansible.builtin.include_role:
+        name: ysebastia.base.parted

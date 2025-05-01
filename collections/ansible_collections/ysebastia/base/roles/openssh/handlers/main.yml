@@ -5,7 +5,7 @@
     name: "{{ openssh_service }}"
     state: restarted
     enabled: true
-- name: Disable old cypher  # noqa no-changed-when
+- name: Disable old cypher # noqa no-changed-when
   become: true
   ansible.builtin.command: update-crypto-policies --set DEFAULT:SHA1:DISABLE
   notify: Restart sshd

@@ -34,7 +34,7 @@
   loop: "{{ filesystem }}"
   when:
     - item.synchronize is defined
-    - item.synchronize == true
+    - item.synchronize | bool
     - item.path not in mounted_path
 - name: Mount filesystems
   become: true
