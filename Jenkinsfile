@@ -61,7 +61,6 @@ pipeline {
         stage ('Cloc') {
           agent {
             docker {
-              label 'docker'
               image 'ysebastia/cloc:2.04'
             }
           }
@@ -73,7 +72,6 @@ pipeline {
         stage ('Ansible lint') {
           agent {
             docker {
-              label 'docker'
               image 'ysebastia/ansible-lint:25.4.0'
             }
           }
@@ -84,7 +82,6 @@ pipeline {
         stage ('checkov') {
           agent {
             docker {
-              label 'docker'
               image 'ysebastia/checkov:3.2.413'
             }
           }
@@ -95,7 +92,6 @@ pipeline {
         stage ('shellcheck') {
           agent {
             docker {
-              label 'docker'
               image 'ysebastia/shellcheck:0.10.0'
             }
           }
@@ -106,7 +102,6 @@ pipeline {
         stage ('yamllint') {
           agent {
             docker {
-              label 'docker'
               image 'ysebastia/yamllint:1.37.0'
             }
           }
