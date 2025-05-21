@@ -2,6 +2,6 @@
 become_for_kind: true
 cluster_name: kind
 enable_develop_kind: true
-kind_image: kindest/node:v1.29.1
-kind_version: v0.27.0
+kind_image: kindest/node:v1.33.1
+kind_version: v0.29.0
 kube_config: "/root/.kube/config"

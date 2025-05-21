@@ -53,7 +53,7 @@ enable_develop_kind: true
 #### Default value
 
 ```YAML
-kind_image: kindest/node:v1.29.1
+kind_image: kindest/node:v1.33.1
 ```
 
 ### kind_version
@@ -61,7 +61,7 @@ kind_image: kindest/node:v1.29.1
 #### Default value
 
 ```YAML
-kind_version: v0.27.0
+kind_version: v0.29.0
 ```
 
 ### kube_config
