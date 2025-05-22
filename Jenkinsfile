@@ -8,7 +8,7 @@ def ansiblelint(quality) {
     )
   ]) {
     sh 'find . -name requirements.yml -exec ansible-galaxy collection install -r {} --ignore-certs --collections-path "~/.ansible/collections" \\;'
-  }  
+  }
   sh 'ansible-galaxy collection list'
   sh 'touch ansible-lint.txt'
   sh 'ansible-lint -p | tee -a ansible-lint.txt'
@@ -20,7 +20,7 @@ def checkov() {
   sh 'checkov --soft-fail --directory . -o junitxml --output-file-path build/checkov --skip-download'
   recordIssues enabledForFailure: true, tools: [junitParser(id: 'checkov', name: 'Checkov', pattern: 'build/checkov/results_junitxml.xml')]
   archiveArtifacts artifacts: 'build/checkov/results_junitxml.xml', followSymlinks: false
-  sh 'rm build/checkov/results_junitxml.xml'    
+  sh 'rm build/checkov/results_junitxml.xml'
 }
 def cloc() {
   sh 'cloc --by-file --xml --fullpath --not-match-d="(build|vendor)" --out=cloc.xml ./'
@@ -128,12 +128,12 @@ pipeline {
             )
           ]) {
             sh 'find . -name requirements.yml -exec ansible-galaxy collection install -r {} --ignore-certs --collections-path "~/.ansible/collections" \\;'
-          }          
+          }
           sh 'find . -name requirements.txt -exec pip install --no-cache -r {} \\;'
           sh 'ansible-galaxy collection list'
           sh 'run_molecule.bash'
       }
-    }    
+    }
   }
   post {
     always {

@@ -2,7 +2,7 @@
 - name: Install packages by operating system
   ansible.builtin.include_tasks: "{{ lookup('ansible.builtin.first_found', params) }}"
   vars:
-    params: 
+    params:
       - "install_{{ ansible_facts.distribution | lower }}{{ ansible_facts.distribution_major_version | lower }}.yml"
       - "install_{{ ansible_facts.distribution | lower }}.yml"
       - "install_{{ ansible_facts.os_family | lower }}.yml"
