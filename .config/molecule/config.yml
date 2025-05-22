@@ -29,8 +29,11 @@ platforms:
     security_opts:
       - "label=disable"
     capabilities:
-      - MKNOD
-      - SYS_ADMIN
+      - CAP_MKNOD
+      - CAP_NET_ADMIN
+      - CAP_NET_BIND_SERVICE
+      - CAP_NET_RAW
+      - CAP_SYS_ADMIN
     command: "/usr/sbin/init"
     tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
     volumes:
@@ -46,8 +49,11 @@ platforms:
     security_opts:
       - "label=disable"
     capabilities:
-      - MKNOD
-      - SYS_ADMIN
+      - CAP_MKNOD
+      - CAP_NET_ADMIN
+      - CAP_NET_BIND_SERVICE
+      - CAP_NET_RAW
+      - CAP_SYS_ADMIN
     command: "/usr/sbin/init"
     tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
     volumes:
@@ -63,8 +69,11 @@ platforms:
     security_opts:
       - "label=disable"
     capabilities:
-      - MKNOD
-      - SYS_ADMIN
+      - CAP_MKNOD
+      - CAP_NET_ADMIN
+      - CAP_NET_BIND_SERVICE
+      - CAP_NET_RAW
+      - CAP_SYS_ADMIN
     command: "/usr/sbin/init"
     tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
     volumes:
@@ -80,8 +89,11 @@ platforms:
     security_opts:
       - "label=disable"
     capabilities:
-      - MKNOD
-      - SYS_ADMIN
+      - CAP_MKNOD
+      - CAP_NET_ADMIN
+      - CAP_NET_BIND_SERVICE
+      - CAP_NET_RAW
+      - CAP_SYS_ADMIN
     command: "/usr/sbin/init"
     tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
     volumes:
