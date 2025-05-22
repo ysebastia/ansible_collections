@@ -13,7 +13,7 @@ provisioner:
   playbooks:
     prepare: ../../../../../../../.config/molecule/prepare.yml
 driver:
-  name: docker
+  name: podman
 platforms:
   - name: "alma${CI_COMMIT_SHORT_SHA}"
     image: docker.io/ysebastia/molecule:alma-9.6
@@ -21,7 +21,6 @@ platforms:
     env:
       HTTPS_PROXY: "${https_proxy}"
       HTTP_PROXY: "${https_proxy}"
-    privileged: true
     stop_signal: "SIGRTMIN+3"
     capabilities:
       - CAP_NET_BIND_SERVICE
@@ -29,9 +28,7 @@ platforms:
       - SYS_ADMIN
       - SYS_TIME
     command: "/usr/sbin/init"
-    tmpfs:
-      - /tmp
-      - /run
+    tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     cgroupns_mode: host
@@ -41,7 +38,6 @@ platforms:
     env:
       HTTPS_PROXY: "${https_proxy}"
       HTTP_PROXY: "${https_proxy}"
-    privileged: true
     stop_signal: "SIGRTMIN+3"
     capabilities:
       - CAP_NET_BIND_SERVICE
@@ -49,9 +45,24 @@ platforms:
       - SYS_ADMIN
       - SYS_TIME
     command: "/usr/sbin/init"
-    tmpfs:
-      - /tmp
-      - /run
+    tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    cgroupns_mode: host
+  - name: "centos${CI_COMMIT_SHORT_SHA}"
+    image: docker.io/ysebastia/molecule:centos-stream10
+    pre_build_image: true
+    env:
+      HTTPS_PROXY: "${https_proxy}"
+      HTTP_PROXY: "${https_proxy}"
+    stop_signal: "SIGRTMIN+3"
+    capabilities:
+      - CAP_NET_BIND_SERVICE
+      - LINUX_IMMUTABLE
+      - SYS_ADMIN
+      - SYS_TIME
+    command: "/usr/sbin/init"
+    tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     cgroupns_mode: host
@@ -61,7 +72,6 @@ platforms:
     env:
       HTTPS_PROXY: "${https_proxy}"
       HTTP_PROXY: "${https_proxy}"
-    privileged: true
     stop_signal: "SIGRTMIN+3"
     capabilities:
       - CAP_NET_BIND_SERVICE
@@ -69,9 +79,7 @@ platforms:
       - SYS_ADMIN
       - SYS_TIME
     command: "/usr/sbin/init"
-    tmpfs:
-      - /tmp
-      - /run
+    tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     cgroupns_mode: host
@@ -81,7 +89,6 @@ platforms:
     env:
       HTTPS_PROXY: "${https_proxy}"
       HTTP_PROXY: "${https_proxy}"
-    privileged: true
     stop_signal: "SIGRTMIN+3"
     capabilities:
       - CAP_NET_BIND_SERVICE
@@ -89,9 +96,7 @@ platforms:
       - SYS_ADMIN
       - SYS_TIME
     command: "/usr/sbin/init"
-    tmpfs:
-      - /tmp
-      - /run
+    tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     cgroupns_mode: host
