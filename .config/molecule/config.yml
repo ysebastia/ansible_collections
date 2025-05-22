@@ -6,6 +6,10 @@ provisioner:
     defaults:
       remote_tmp: /tmp
       collections_path: ${ANSIBLE_COLLECTIONS_PATH}
+      interpreter_python: auto_silent
+      callback_whitelist: profile_tasks, timer, yaml
+    ssh_connection:
+      pipelining: false
   inventory:
     group_vars:
       all:
@@ -22,14 +26,11 @@ platforms:
       HTTPS_PROXY: "${https_proxy}"
       HTTP_PROXY: "${https_proxy}"
     stop_signal: "SIGRTMIN+3"
+    security_opts:
+      - "label=disable"
     capabilities:
-      - CAP_NET_ADMIN
-      - CAP_NET_BIND_SERVICE
-      - CAP_NET_RAW
-      - CAP_SYS_ADMIN
-      - LINUX_IMMUTABLE
+      - MKNOD
       - SYS_ADMIN
-      - SYS_TIME
     command: "/usr/sbin/init"
     tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
     volumes:
@@ -42,14 +43,11 @@ platforms:
       HTTPS_PROXY: "${https_proxy}"
       HTTP_PROXY: "${https_proxy}"
     stop_signal: "SIGRTMIN+3"
+    security_opts:
+      - "label=disable"
     capabilities:
-      - CAP_NET_ADMIN
-      - CAP_NET_BIND_SERVICE
-      - CAP_NET_RAW
-      - CAP_SYS_ADMIN
-      - LINUX_IMMUTABLE
+      - MKNOD
       - SYS_ADMIN
-      - SYS_TIME
     command: "/usr/sbin/init"
     tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
     volumes:
@@ -62,14 +60,11 @@ platforms:
       HTTPS_PROXY: "${https_proxy}"
       HTTP_PROXY: "${https_proxy}"
     stop_signal: "SIGRTMIN+3"
+    security_opts:
+      - "label=disable"
     capabilities:
-      - CAP_NET_ADMIN
-      - CAP_NET_BIND_SERVICE
-      - CAP_NET_RAW
-      - CAP_SYS_ADMIN
-      - LINUX_IMMUTABLE
+      - MKNOD
       - SYS_ADMIN
-      - SYS_TIME
     command: "/usr/sbin/init"
     tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
     volumes:
@@ -82,14 +77,11 @@ platforms:
       HTTPS_PROXY: "${https_proxy}"
       HTTP_PROXY: "${https_proxy}"
     stop_signal: "SIGRTMIN+3"
+    security_opts:
+      - "label=disable"
     capabilities:
-      - CAP_NET_ADMIN
-      - CAP_NET_BIND_SERVICE
-      - CAP_NET_RAW
-      - CAP_SYS_ADMIN
-      - LINUX_IMMUTABLE
+      - MKNOD
       - SYS_ADMIN
-      - SYS_TIME
     command: "/usr/sbin/init"
     tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
     volumes:
