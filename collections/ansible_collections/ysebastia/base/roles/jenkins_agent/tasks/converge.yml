@@ -13,6 +13,7 @@
     name: jenkins
     group: jenkins
     home: /home/jenkins
+    shell: /bin/bash
 - name: Permissions
   become: true
   ansible.builtin.file:
