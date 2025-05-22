@@ -115,7 +115,7 @@ pipeline {
       agent {
         docker {
           image 'docker.io/ysebastia/molecule:25.4.0-podman'
-          args '-v /var/run/docker.sock:/var/run/docker.sock --privileged -e NO_PROXY=$NO_PROXY -e http_proxy=$HTTP_PROXY -e https_proxy=$HTTPS_PROXY'
+          args '-v /var/run/docker.sock:/var/run/docker.sock --privileged -u podman -e NO_PROXY=$NO_PROXY -e http_proxy=$HTTP_PROXY -e https_proxy=$HTTPS_PROXY'
         }
       }
       steps {
