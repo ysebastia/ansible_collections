@@ -1,7 +1,7 @@
 ---
 - name: Ensure that Python packages are installed
   become: true
-  ansible.builtin.dnf:
+  ansible.builtin.package:
     name: "{{ develop_python_packages }}"
   notify:
     - Update python virtual environment
