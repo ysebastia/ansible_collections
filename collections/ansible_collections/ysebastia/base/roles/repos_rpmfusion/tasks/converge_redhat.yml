@@ -1,4 +1,8 @@
 ---
+- name: Ensure GPG2 is installed
+  become: true
+  ansible.builtin.package:
+    name: gnupg2
 - name: Import RPMFUSION GPG Key
   become: true
   ansible.builtin.rpm_key:
