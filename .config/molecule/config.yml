@@ -23,8 +23,8 @@ platforms:
     image: docker.io/ysebastia/molecule:alma-9.6
     pre_build_image: true
     env:
-      HTTPS_PROXY: "${https_proxy}"
-      HTTP_PROXY: "${https_proxy}"
+      HTTPS_PROXY: "${HTTPS_PROXY}"
+      HTTP_PROXY: "${HTTPS_PROXY}"
     stop_signal: "SIGRTMIN+3"
     security_opts:
       - "label=disable"
@@ -43,8 +43,8 @@ platforms:
     image: docker.io/ysebastia/molecule:centos-stream10
     pre_build_image: true
     env:
-      HTTPS_PROXY: "${https_proxy}"
-      HTTP_PROXY: "${https_proxy}"
+      HTTPS_PROXY: "${HTTPS_PROXY}"
+      HTTP_PROXY: "${HTTPS_PROXY}"
     stop_signal: "SIGRTMIN+3"
     security_opts:
       - "label=disable"
@@ -63,8 +63,8 @@ platforms:
     image: docker.io/ysebastia/molecule:debian-12.10
     pre_build_image: true
     env:
-      HTTPS_PROXY: "${https_proxy}"
-      HTTP_PROXY: "${https_proxy}"
+      HTTPS_PROXY: "${HTTPS_PROXY}"
+      HTTP_PROXY: "${HTTPS_PROXY}"
     stop_signal: "SIGRTMIN+3"
     security_opts:
       - "label=disable"
@@ -83,8 +83,8 @@ platforms:
     image: docker.io/ysebastia/molecule:ubuntu-noble
     pre_build_image: true
     env:
-      HTTPS_PROXY: "${https_proxy}"
-      HTTP_PROXY: "${https_proxy}"
+      HTTPS_PROXY: "${HTTPS_PROXY}"
+      HTTP_PROXY: "${HTTPS_PROXY}"
     stop_signal: "SIGRTMIN+3"
     security_opts:
       - "label=disable"
