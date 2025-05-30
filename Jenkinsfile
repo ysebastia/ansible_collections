@@ -112,26 +112,9 @@ pipeline {
       }
     }
     stage('Molecule') {
-      agent {
-        docker {
-          image 'docker.io/ysebastia/molecule:25.4.0-podman'
-          args '-v /var/run/docker.sock:/var/run/docker.sock --privileged -u podman -e NO_PROXY=$NO_PROXY -e http_proxy=$HTTP_PROXY -e https_proxy=$HTTPS_PROXY'
-        }
-      }
+      agent any
       steps {
-          sh 'mkdir -p "~/.ansible/collections"'
-          cache(caches: [
-            arbitraryFileCache(
-                path: "~/.ansible/collections",
-                includes: "**/*",
-                cacheValidityDecidingFile: "requirements.yml"
-            )
-          ]) {
-            sh 'find . -name requirements.yml -exec ansible-galaxy collection install -r {} --ignore-certs --collections-path "~/.ansible/collections" \\;'
-          }
-          sh 'find . -name requirements.txt -exec pip install --no-cache -r {} \\;'
-          sh 'ansible-galaxy collection list'
-          sh 'run_molecule.bash'
+          sh 'bash ./molecule.bash'
       }
     }
   }
