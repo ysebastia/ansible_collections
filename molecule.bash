@@ -8,7 +8,7 @@ python3 -m venv ~/.venv/ansible
 source ~/.venv/ansible/bin/activate
 pip install --upgrade pip
 pip install ansible-core==2.17.12
-pip install ansible-lint==25.4.0
+pip install ansible-lint==25.5.0
 pip install molecule==25.4.0
 pip install molecule-plugins[podman]==23.7.0
 mkdir -p "~/.ansible/collections"
