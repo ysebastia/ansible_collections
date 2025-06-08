@@ -10,3 +10,4 @@
     gpgcheck: "1"
     enabled: "1"
     priority: "1"
+    setype: system_conf_t
