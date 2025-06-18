@@ -9,7 +9,7 @@ source ~/.venv/ansible/bin/activate
 pip install --upgrade pip
 pip install ansible-core==2.17.12
 pip install ansible-lint==25.6.0
-pip install molecule==25.5.0
+pip install molecule==25.6.0
 pip install molecule-plugins[podman]==23.7.0
 mkdir -p "~/.ansible/collections"
 find . -name requirements.yml -exec ansible-galaxy collection install -r {} --ignore-certs --collections-path "~/.ansible/collections" \;
