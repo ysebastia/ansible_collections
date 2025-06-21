@@ -5,13 +5,3 @@
 - name: "Include Python"
   ansible.builtin.include_role:
     name: "develop_python"
-
-- name: Install Python
-  ansible.builtin.pip:
-    name:
-      - libvirt-python==11.4.0
-    virtualenv: "{{ python_venv_directory }}"
-  environment:
-    https_proxy: "{{ ansible_env.HTTPS_PROXY | default(none) }}"
-  notify:
-    - Install Vagrant plugins

@@ -1,3 +1,2 @@
 ---
 molecule_version: "{{ my_molecule_version | default('6.0.3') }}"
-molecule_plugins_vagrant: "{{ my_molecule_plugins_vagrant | default('23.6.0') }}"

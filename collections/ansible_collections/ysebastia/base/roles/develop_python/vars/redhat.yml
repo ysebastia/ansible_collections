@@ -5,5 +5,4 @@ develop_python_packages:
   - python3-setuptools-wheel
   - python3-virtualenv
   - python3.12
-  - python3.12-devel
 python_bin: "{{ my_python_bin | default('python') }}"
