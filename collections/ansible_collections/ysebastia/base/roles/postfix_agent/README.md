@@ -56,8 +56,6 @@ postfix_conf_main:
 postfix_loopback_only: true
 ```
 
-
-
 ## Dependencies
 
 None.

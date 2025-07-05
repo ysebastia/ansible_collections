@@ -153,7 +153,8 @@ backuppc_supported_os: [debian]
 #### Default value
 
 ```YAML
-backuppc_url: http://{{ backuppc_serverhost }}.{{ backuppc_domain_name }}/BackupPC
+backuppc_url: http://{{ backuppc_serverhost }}.{{ backuppc_domain_name 
+  }}/BackupPC
 ```
 
 ### enable_backuppc_server
@@ -179,8 +180,6 @@ enable_service_apache: true
 ```YAML
 enable_service_apache_ldap: true
 ```
-
-
 
 ## Dependencies
 

@@ -36,8 +36,6 @@ ansible_action: converge
 enable_develop_terraform: false
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.repos_hashicorp

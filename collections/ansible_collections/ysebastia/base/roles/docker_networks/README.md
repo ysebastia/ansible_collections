@@ -36,8 +36,6 @@ ansible_action: converge
 docker_networks: []
 ```
 
-
-
 ## Dependencies
 
 None.

@@ -8,7 +8,7 @@
       - "install_{{ ansible_facts.os_family | lower }}.yml"
       - "install.yml"
     paths:
-      - 'tasks'
+      - "tasks"
 
 - name: Create venv directory
   ansible.builtin.file:

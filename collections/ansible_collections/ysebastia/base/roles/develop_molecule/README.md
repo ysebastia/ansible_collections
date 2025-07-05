@@ -45,8 +45,6 @@ enable_develop_molecule: false
 python_venv_directory: ~/.venv/ansible/
 ```
 
-
-
 ## Dependencies
 
 None.

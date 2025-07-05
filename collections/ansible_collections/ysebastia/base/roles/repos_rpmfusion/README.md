@@ -45,8 +45,6 @@ enable_repositories_rpmfusion: false
 rpmfusion_supported_os: [redhat]
 ```
 
-
-
 ## Dependencies
 
 None.

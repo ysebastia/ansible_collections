@@ -54,8 +54,6 @@ http_proxy_port: 3128
 squid_supported_os: [debian]
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.firewalld

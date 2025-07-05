@@ -54,8 +54,6 @@ enable_jenkins_agent_ssh: false
 jenkins_server_ssh_key: '{{ inventory_dir }}/files/pubkeys/jenkins.pub'
 ```
 
-
-
 ## Dependencies
 
 None.

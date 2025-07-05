@@ -45,8 +45,6 @@ enable_develop_python: false
 python_venv_directory: ~/.venv/ansible/
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.repos_epel

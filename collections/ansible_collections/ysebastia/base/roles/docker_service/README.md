@@ -36,8 +36,6 @@ ansible_action: converge
 enable_docker_service: true
 ```
 
-
-
 ## Dependencies
 
 None.

@@ -92,8 +92,6 @@ backuppc_user: backuppc
 enable_backuppc_agent: false
 ```
 
-
-
 ## Dependencies
 
 None.

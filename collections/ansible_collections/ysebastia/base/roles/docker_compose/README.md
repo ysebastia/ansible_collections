@@ -72,8 +72,6 @@ docker_compose_templates: []
 docker_compose_working_directory: /etc/docker/compose/
 ```
 
-
-
 ## Dependencies
 
 None.

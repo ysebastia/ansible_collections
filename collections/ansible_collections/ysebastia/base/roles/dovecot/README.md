@@ -108,8 +108,6 @@ enable_service_dovecot_ldap: false
 enable_service_dovecot_syslog: false
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.firewalld

@@ -1,4 +1,4 @@
-# bootstrap
+# pki
 
 Bootstrap PKIcd
 
@@ -14,8 +14,6 @@ Bootstrap PKIcd
 ## Requirements
 
 - Minimum Ansible version: `2.1`
-
-
 
 
 ## Dependencies

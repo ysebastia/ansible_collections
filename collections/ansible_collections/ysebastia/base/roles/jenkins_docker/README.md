@@ -36,8 +36,6 @@ ansible_action: converge
 enable_jenkins_docker: false
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.repos_docker_ce

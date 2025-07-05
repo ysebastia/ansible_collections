@@ -36,8 +36,6 @@ ansible_action: converge
 enable_repositories_docker_ce: false
 ```
 
-
-
 ## Dependencies
 
 None.

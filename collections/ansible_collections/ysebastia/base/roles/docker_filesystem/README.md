@@ -54,8 +54,6 @@ filesystem_docker_size: 40g
 filesystem_host_device: []
 ```
 
-
-
 ## Dependencies
 
 None.

@@ -72,8 +72,6 @@ filesystem_qemu_images_size: 20g
 filesystem_qemu_save_size: 32g
 ```
 
-
-
 ## Dependencies
 
 None.

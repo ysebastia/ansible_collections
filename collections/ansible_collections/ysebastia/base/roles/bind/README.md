@@ -81,8 +81,6 @@ enable_service_bind: false
 network_dns_forwarders:
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.firewalld

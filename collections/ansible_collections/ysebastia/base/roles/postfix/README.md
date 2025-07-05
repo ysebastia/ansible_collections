@@ -179,8 +179,6 @@ postfix_virtual_transport: dovecot
 postfix_virtual_uid: vmail
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.firewalld

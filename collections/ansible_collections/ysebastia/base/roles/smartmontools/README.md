@@ -36,8 +36,6 @@ ansible_action: converge
 enable_base_smartmontools: false
 ```
 
-
-
 ## Dependencies
 
 None.

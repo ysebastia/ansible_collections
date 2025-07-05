@@ -1,4 +1,4 @@
-# deploy_ca
+# pki_deploy_ca
 
 Deploy CA certificate
 
@@ -80,8 +80,6 @@ pki_ca_name: ansible
 ```YAML
 pki_ca_owner: root
 ```
-
-
 
 ## Dependencies
 

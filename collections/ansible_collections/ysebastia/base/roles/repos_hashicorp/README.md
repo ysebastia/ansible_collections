@@ -36,8 +36,6 @@ ansible_action: converge
 enable_repositories_hashicorp: false
 ```
 
-
-
 ## Dependencies
 
 None.

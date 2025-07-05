@@ -45,8 +45,6 @@ enable_base_commands: true
 enable_base_commands_with_logwatch: true
 ```
 
-
-
 ## Dependencies
 
 None.

@@ -34,8 +34,6 @@ enable_kubectl: true
 kubectl_version: v1.32.0
 ```
 
-
-
 ## Dependencies
 
 None.

@@ -118,8 +118,6 @@ slapd_ssl_server_san:
   - DNS:{{ inventory_hostname }}
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.firewalld

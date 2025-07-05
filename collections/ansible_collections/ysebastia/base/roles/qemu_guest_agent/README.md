@@ -36,8 +36,6 @@ ansible_action: converge
 enable_base_qemu_guest_agent: false
 ```
 
-
-
 ## Dependencies
 
 None.

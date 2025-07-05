@@ -45,8 +45,6 @@ enable_develop_vagrant: false
 python_venv_directory: ~/.venv/ansible/
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.repos_hashicorp

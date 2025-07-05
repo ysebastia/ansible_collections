@@ -45,8 +45,6 @@ enable_base_tuned: true
 tuned_profile: balanced
 ```
 
-
-
 ## Dependencies
 
 None.

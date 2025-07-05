@@ -36,8 +36,6 @@ ansible_action: converge
 remote_access: false
 ```
 
-
-
 ## Dependencies
 
 None.

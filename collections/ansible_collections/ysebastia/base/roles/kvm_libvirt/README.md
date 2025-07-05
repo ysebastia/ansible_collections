@@ -45,8 +45,6 @@ enable_kvm_libvirt: false
 enable_kvm_libvirt_zone: true
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.repos_codeready

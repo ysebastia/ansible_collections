@@ -1,13 +1,13 @@
-# jenkins_docker
+# jenkins_podman
 
-Configure docker agent
+Configure podman agent
 
 ## Table of content
 
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
   - [ansible_action](#ansible_action)
-  - [enable_jenkins_docker](#enable_jenkins_docker)
+  - [enable_jenkins_podman](#enable_jenkins_podman)
 - [Dependencies](#dependencies)
 - [License](#license)
 - [Author](#author)
@@ -28,19 +28,17 @@ Configure docker agent
 ansible_action: converge
 ```
 
-### enable_jenkins_docker
+### enable_jenkins_podman
 
 #### Default value
 
 ```YAML
-enable_jenkins_docker: false
+enable_jenkins_podman: false
 ```
-
-
 
 ## Dependencies
 
-- ysebastia.base.repos_docker_ce
+None.
 
 ## License
 

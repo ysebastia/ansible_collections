@@ -72,8 +72,6 @@ kind_version: v0.29.0
 kube_config: /root/.kube/config
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.repos_docker_ce

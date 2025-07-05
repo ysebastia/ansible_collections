@@ -262,8 +262,6 @@ freeradius_ssl_server_host: ssl-cert-snakeoil
 freeradius_supported_os: [debian]
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.firewalld

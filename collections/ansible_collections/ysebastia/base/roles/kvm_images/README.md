@@ -81,8 +81,6 @@ kvm_images_to_delete: []
 kvm_images_url: []
 ```
 
-
-
 ## Dependencies
 
 None.

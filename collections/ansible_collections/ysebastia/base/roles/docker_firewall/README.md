@@ -27,8 +27,6 @@ Configure host firewall for docker
 docker_firewall: []
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.firewalld

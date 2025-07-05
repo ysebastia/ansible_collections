@@ -90,8 +90,6 @@ mariadb_supported_os: [debian]
 mariadb_user: []
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.firewalld

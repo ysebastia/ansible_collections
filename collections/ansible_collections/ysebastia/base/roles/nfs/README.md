@@ -45,8 +45,6 @@ enable_service_nfs: false
 nfs_supported_os: [debian]
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.firewalld

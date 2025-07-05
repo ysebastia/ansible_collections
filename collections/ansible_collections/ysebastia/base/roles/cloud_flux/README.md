@@ -35,8 +35,6 @@ flux_repo:
   https://github.com/fluxcd/flux2/releases/download/v2.5.1/flux_2.5.1_linux_amd64.tar.gz
 ```
 
-
-
 ## Dependencies
 
 None.

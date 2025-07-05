@@ -45,8 +45,6 @@ enable_kvm_group: false
 kvm_user_to_append:
 ```
 
-
-
 ## Dependencies
 
 None.

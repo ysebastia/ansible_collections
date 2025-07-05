@@ -63,8 +63,6 @@ clamav_syslog: false
 enable_base_clamav: false
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.repos_epel

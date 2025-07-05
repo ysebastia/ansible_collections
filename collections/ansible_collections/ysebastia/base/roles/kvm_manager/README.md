@@ -36,8 +36,6 @@ ansible_action: converge
 enable_kvm_manager: false
 ```
 
-
-
 ## Dependencies
 
 None.

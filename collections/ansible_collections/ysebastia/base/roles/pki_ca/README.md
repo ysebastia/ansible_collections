@@ -1,4 +1,4 @@
-# ca
+# pki_ca
 
 Configure CA
 
@@ -107,8 +107,6 @@ pki_ca_path: ~/pki/{{ pki_ca_name }}/
 ```YAML
 pki_ca_secret_passphrase: ansible
 ```
-
-
 
 ## Dependencies
 

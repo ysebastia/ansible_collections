@@ -45,8 +45,6 @@ enable_base_cron: true
 enable_base_cron_with_mail: true
 ```
 
-
-
 ## Dependencies
 
 None.

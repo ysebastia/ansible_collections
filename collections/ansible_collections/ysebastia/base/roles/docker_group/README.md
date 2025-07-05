@@ -45,8 +45,6 @@ docker_user_to_append:
 enable_docker_group: false
 ```
 
-
-
 ## Dependencies
 
 None.

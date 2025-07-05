@@ -45,8 +45,6 @@ codeready_supported_os: [redhat]
 enable_repositories_codeready: false
 ```
 
-
-
 ## Dependencies
 
 None.

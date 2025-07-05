@@ -45,8 +45,6 @@ enable_develop_ansible: false
 python_venv_directory: ~/.venv/ansible/
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.develop_python

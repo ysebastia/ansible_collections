@@ -54,8 +54,6 @@ gitlab_https_proxy:
 gitlab_supported_os: [debian]
 ```
 
-
-
 ## Dependencies
 
 None.

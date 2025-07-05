@@ -54,8 +54,6 @@ enable_docker_proxy: false
 enable_docker_service: false
 ```
 
-
-
 ## Dependencies
 
 None.

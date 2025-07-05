@@ -54,8 +54,6 @@ redhat_pass:
 redhat_user:
 ```
 
-
-
 ## Dependencies
 
 None.

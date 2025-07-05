@@ -41,7 +41,6 @@ openssh_service: sshd
 
 **_security_**
 
-
 ## Dependencies
 
 None.

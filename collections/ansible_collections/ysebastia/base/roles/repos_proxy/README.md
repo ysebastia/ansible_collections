@@ -36,8 +36,6 @@ ansible_action: converge
 enable_repositories_proxy: false
 ```
 
-
-
 ## Dependencies
 
 None.

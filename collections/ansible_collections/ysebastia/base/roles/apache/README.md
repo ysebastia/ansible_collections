@@ -63,8 +63,6 @@ enable_service_apache: false
 enable_service_apache_ldap: false
 ```
 
-
-
 ## Dependencies
 
 - ysebastia.base.firewalld

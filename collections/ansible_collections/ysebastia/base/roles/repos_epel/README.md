@@ -45,8 +45,6 @@ enable_repositories_epel: false
 epel_supported_os: [redhat]
 ```
 
-
-
 ## Dependencies
 
 None.

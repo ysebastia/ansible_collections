@@ -1,4 +1,4 @@
-# server
+# pki_server
 
 Sign server certificate
 
@@ -153,8 +153,6 @@ pki_server_private: '{{ pki_path }}private/'
 pki_server_san:
   - DNS:{{ inventory_hostname }}
 ```
-
-
 
 ## Dependencies
 

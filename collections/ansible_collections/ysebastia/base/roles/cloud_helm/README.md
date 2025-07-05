@@ -34,8 +34,6 @@ enable_helm: true
 helm_repo: https://get.helm.sh/helm-v3.18.0-linux-amd64.tar.gz
 ```
 
-
-
 ## Dependencies
 
 None.

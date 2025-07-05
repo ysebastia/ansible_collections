@@ -16,8 +16,6 @@ Bootstrap Develop
 - Minimum Ansible version: `2.1`
 
 
-
-
 ## Dependencies
 
 None.
