@@ -19,8 +19,8 @@ provisioner:
 driver:
   name: podman
 platforms:
-  - name: "alma${CI_COMMIT_SHORT_SHA}"
-    image: docker.io/ysebastia/molecule:alma-9.6
+  - name: "rhel9${CI_COMMIT_SHORT_SHA}"
+    image: docker.io/ysebastia/molecule:rhel-9.6
     pre_build_image: true
     env:
       HTTPS_PROXY: "${HTTPS_PROXY}"
@@ -39,8 +39,8 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     cgroupns_mode: host
-  - name: "centos${CI_COMMIT_SHORT_SHA}"
-    image: docker.io/ysebastia/molecule:centos-stream10
+  - name: "rhel10${CI_COMMIT_SHORT_SHA}"
+    image: docker.io/ysebastia/molecule:rhel10
     pre_build_image: true
     env:
       HTTPS_PROXY: "${HTTPS_PROXY}"
