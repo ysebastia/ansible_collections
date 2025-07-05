@@ -40,7 +40,7 @@ platforms:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     cgroupns_mode: host
   - name: "rhel10${CI_COMMIT_SHORT_SHA}"
-    image: docker.io/ysebastia/molecule:rhel10
+    image: docker.io/ysebastia/molecule:rhel-10.0
     pre_build_image: true
     env:
       HTTPS_PROXY: "${HTTPS_PROXY}"
