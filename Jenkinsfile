@@ -44,7 +44,7 @@ def yamllint(quality) {
 }
 
 pipeline {
-  agent any
+  agent {label 'docker'}
   options {
     ansiColor('xterm')
   }
@@ -61,6 +61,7 @@ pipeline {
         stage ('Cloc') {
           agent {
             docker {
+              label 'docker'
               image 'ysebastia/cloc:2.04'
             }
           }
@@ -72,6 +73,7 @@ pipeline {
         stage ('Ansible lint') {
           agent {
             docker {
+              label 'docker'
               image 'ysebastia/ansible-lint:25.6.1'
             }
           }
@@ -82,6 +84,7 @@ pipeline {
         stage ('checkov') {
           agent {
             docker {
+              label 'docker'
               image 'ysebastia/checkov:3.2.413'
             }
           }
@@ -92,6 +95,7 @@ pipeline {
         stage ('shellcheck') {
           agent {
             docker {
+              label 'docker'
               image 'ysebastia/shellcheck:0.10.0'
             }
           }
@@ -102,6 +106,7 @@ pipeline {
         stage ('yamllint') {
           agent {
             docker {
+              label 'docker'
               image 'ysebastia/yamllint:1.37.1'
             }
           }
@@ -112,7 +117,7 @@ pipeline {
       }
     }
     stage('Molecule') {
-      agent any
+      agent {label 'docker'}
       steps {
           sh 'bash ./molecule.bash'
       }
