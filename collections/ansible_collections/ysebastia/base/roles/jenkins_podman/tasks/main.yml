@@ -1,0 +1,12 @@
+---
+- name: Ensure packages are installed
+  become: true
+  ansible.builtin.package:
+    name:
+      - containers-storage
+      - fuse-overlayfs
+      - podman
+      - skopeo
+      - slirp4netns
+      - uidmap
+  when: enable_jenkins_podman | bool

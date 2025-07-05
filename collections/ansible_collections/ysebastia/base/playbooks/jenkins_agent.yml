@@ -9,3 +9,6 @@
     - name: Jenkins docker
       ansible.builtin.include_role:
         name: ysebastia.base.jenkins_docker
+    - name: Jenkins podman
+      ansible.builtin.include_role:
+        name: ysebastia.base.jenkins_podman
