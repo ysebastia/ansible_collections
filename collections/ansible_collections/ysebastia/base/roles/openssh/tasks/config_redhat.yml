@@ -1,9 +1,1 @@
 ---
-- name: Disable insecure cipher
-  become: true
-  ansible.builtin.copy:
-    dest: /etc/crypto-policies/policies/modules/DISABLE.pmod
-    content: |
-      mac@ssh = -HMAC-SHA1
-    mode: "0644"
-  notify: update-crypto-policies
