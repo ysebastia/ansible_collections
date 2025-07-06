@@ -8,8 +8,6 @@
         name: ysebastia.base.develop
       vars:
         enable_base_firewalld: false
-        enable_develop_ansible: true
-        enable_develop_molecule: true
         enable_develop_packer: true
         enable_develop_terraform: true
         enable_develop_vagrant: true

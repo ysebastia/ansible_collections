@@ -2,9 +2,6 @@
 - name: Python
   ansible.builtin.include_role:
     name: ysebastia.base.develop_python
-- name: Ansible
-  ansible.builtin.include_role:
-    name: ysebastia.base.develop_ansible
 - name: Vagrant
   ansible.builtin.include_role:
     name: ysebastia.base.develop_vagrant

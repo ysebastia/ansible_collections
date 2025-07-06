@@ -6,8 +6,6 @@
       ansible.builtin.include_role:
         name: "ysebastia.base.develop"
       vars:
-        enable_develop_ansible: true
-        enable_develop_molecule: true
         enable_develop_packer: true
         enable_develop_python: true
         enable_develop_vagrant: true
