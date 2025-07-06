@@ -117,7 +117,7 @@ pipeline {
       }
     }
     stage('Molecule') {
-      agent {label 'docker'}
+      agent {label 'rhel'}
       steps {
           sh 'bash ./molecule.bash'
       }
