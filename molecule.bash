@@ -4,7 +4,7 @@ NOCOLOR='\033[0m'
 GREEN='\033[0;32m'
 export DEFAULT_LOCAL_TMP=/tmp/jenkins/
 env
-python3 -m venv ~/.venv/ansible
+python3.12 -m venv ~/.venv/ansible
 source ~/.venv/ansible/bin/activate
 pip install --upgrade pip
 pip install ansible-core==2.17.12
