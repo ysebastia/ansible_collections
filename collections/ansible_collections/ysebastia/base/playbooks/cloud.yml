@@ -12,9 +12,6 @@
     - name: Install k9s
       ansible.builtin.include_role:
         name: ysebastia.base.k9s
-    - name: Install Flux
-      ansible.builtin.include_role:
-        name: ysebastia.base.cloud_flux
     - name: Install Tilt
       ansible.builtin.include_role:
         name: ysebastia.base.tilt
