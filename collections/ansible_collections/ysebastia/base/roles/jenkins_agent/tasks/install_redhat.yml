@@ -6,5 +6,5 @@
       - ant
       - git
       - make
-      - java-11-openjdk-headless
+      - java-17-openjdk-headless
       - wget
