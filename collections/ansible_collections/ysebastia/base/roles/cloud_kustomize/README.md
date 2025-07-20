@@ -32,7 +32,7 @@ enable_kustomize: true
 
 ```YAML
 kustomize_repo: 
-  https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.4.2/kustomize_v5.4.2_linux_amd64.tar.gz
+  https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.7.0/kustomize_v5.7.0_linux_amd64.tar.gz
 ```
 
 ## Dependencies
