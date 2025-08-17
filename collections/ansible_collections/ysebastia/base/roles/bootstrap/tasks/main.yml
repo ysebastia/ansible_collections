@@ -5,9 +5,6 @@
 - name: Configure CHRONY
   ansible.builtin.include_role:
     name: ysebastia.base.chrony
-- name: Configure CLAMAV
-  ansible.builtin.include_role:
-    name: ysebastia.base.clamav
 - name: Configure VIM
   ansible.builtin.include_role:
     name: ysebastia.base.vim

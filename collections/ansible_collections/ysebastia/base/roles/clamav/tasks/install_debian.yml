@@ -1,9 +1,0 @@
----
-- name: Ensure that CLAMAV packages are installed
-  become: true
-  ansible.builtin.apt:
-    name:
-      - clamav
-      - clamav-data
-      - clamav-freshclam
-      - clamav-daemon
