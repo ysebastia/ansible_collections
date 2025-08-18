@@ -27,6 +27,6 @@ find . -name molecule.yml -print0 |
         popd || exit 2
     done
 
-rm -rf ~/.venv/ansible
+rm -rf ~/.venv/ansible ~/.ansible/collections
 
 exit 0
