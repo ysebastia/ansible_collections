@@ -7,7 +7,7 @@ def ansiblelint(quality) {
         cacheValidityDecidingFile: "requirements.yml"
     )
   ]) {
-    sh 'find . -name requirements.yml -exec ansible-galaxy collection install -r {} --ignore-certs --collections-path "~/.ansible/collections" \\;'
+    sh 'find . -name requirements.yml -exec ansible-galaxy collection install --force -r {} --ignore-certs --collections-path "~/.ansible/collections" \\;'
   }
   sh 'ansible-galaxy collection list'
   sh 'touch ansible-lint.txt'

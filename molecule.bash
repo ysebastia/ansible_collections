@@ -12,7 +12,7 @@ pip install ansible-lint==25.8.1
 pip install molecule==25.7.0
 pip install molecule-plugins[podman]==25.8.12
 mkdir -p "~/.ansible/collections"
-find . -name requirements.yml -exec ansible-galaxy collection install -r {} --ignore-certs --collections-path "~/.ansible/collections" \;
+find . -name requirements.yml -exec ansible-galaxy collection install --force -r {} --ignore-certs --collections-path "~/.ansible/collections" \;
 find . -name requirements.txt -exec pip install --no-cache -r {} \;
 ansible-galaxy collection list
 
