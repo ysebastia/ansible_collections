@@ -1,5 +1,6 @@
 ---
 jenkins_podman_packages:
+  - container-selinux
   - fuse-overlayfs
   - podman
   - python3.12
