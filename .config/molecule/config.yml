@@ -79,26 +79,6 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     cgroupns_mode: host
-  - name: "ubuntu${CI_COMMIT_SHORT_SHA}"
-    image: docker.io/ysebastia/molecule:ubuntu-noble
-    pre_build_image: true
-    env:
-      HTTPS_PROXY: "${HTTPS_PROXY}"
-      HTTP_PROXY: "${HTTPS_PROXY}"
-    stop_signal: "SIGRTMIN+3"
-    security_opts:
-      - "label=disable"
-    capabilities:
-      - CAP_MKNOD
-      - CAP_NET_ADMIN
-      - CAP_NET_BIND_SERVICE
-      - CAP_NET_RAW
-      - CAP_SYS_ADMIN
-    command: "/usr/sbin/init"
-    tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    cgroupns_mode: host
 scenario:
   test_sequence:
     - dependency
