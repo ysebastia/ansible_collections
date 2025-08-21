@@ -7,6 +7,9 @@
     password: "{{ redhat_pass }}"
     auto_attach: true
     force_register: "{{ redhat_force_register | default(false) }}"
+    server_proxy_hostname: "{{ redhat_subscription_server_proxy_hostname | default(omit) }}"
+    server_proxy_port: "{{ redhat_subscription_server_proxy_port | default(omit) }}"
+    server_proxy_scheme: http
   when:
     - enable_repositories_redhat_subscription | bool
     - redhat_user is defined
