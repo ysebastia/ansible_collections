@@ -32,7 +32,7 @@
   ansible.posix.authorized_key:
     user: jenkins
     state: present
-    key: "{{ lookup('file', '{{ jenkins_server_ssh_key }}') }}"
+    key: "{{ lookup('file', jenkins_server_ssh_key) }}"
   when: agent_result.stat.exists
 - name: Sudo configuration
   become: true

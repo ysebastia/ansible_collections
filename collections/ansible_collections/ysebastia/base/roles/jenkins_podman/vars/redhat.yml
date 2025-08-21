@@ -1,0 +1,6 @@
+---
+jenkins_podman_packages:
+  - fuse-overlayfs
+  - podman
+  - skopeo
+  - slirp4netns

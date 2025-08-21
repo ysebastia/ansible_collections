@@ -1,12 +1,12 @@
 ---
-- name: Ensure packages are installed
-  become: true
-  ansible.builtin.package:
-    name:
-      - containers-storage
-      - fuse-overlayfs
-      - podman
-      - skopeo
-      - slirp4netns
-      - uidmap
-  when: enable_jenkins_podman | bool
+- name: Configure Jenkins agent when enable_jenkins_podman if defined
+  when:
+    - enable_jenkins_podman | bool
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Ensure packages are installed
+      become: true
+      ansible.builtin.package:
+        name: "{{ jenkins_podman_packages }}"

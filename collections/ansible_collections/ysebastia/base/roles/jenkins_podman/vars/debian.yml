@@ -1,0 +1,8 @@
+---
+jenkins_podman_packages:
+  - containers-storage
+  - fuse-overlayfs
+  - podman
+  - skopeo
+  - slirp4netns
+  - uidmap

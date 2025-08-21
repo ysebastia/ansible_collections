@@ -20,8 +20,6 @@
   ansible.builtin.file:
     path: /var/log/commands.log
     attr: -a
-  register: commands_attribute
-  changed_when: "'a' in commands_attribute.diff.before.attributes"
 - name: Commands configuration
   become: true
   ansible.builtin.copy:
