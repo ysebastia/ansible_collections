@@ -4,6 +4,6 @@ bind_group: bind
 bind_directory: /var/cache/bind
 bind_config_file: /etc/bind/named.conf
 bind_keysfile: /etc/bind/bind.keys
-bind_rfc2912: /etc/bind/named.conf.default-zones
+bind_rfc2912: /etc/bind/named.conf.root-hints
 bind_rndc_file: /etc/bind/rndc.key
 bind_rndc_owner: bind

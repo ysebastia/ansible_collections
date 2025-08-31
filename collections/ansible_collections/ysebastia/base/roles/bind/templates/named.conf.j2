@@ -12,7 +12,7 @@ options {
   allow-transfer 		{ localhost; none; };
   allow-recursion     { any; };
   recursion yes;
-  dnssec-validation yes;
+  dnssec-validation auto;
   bindkeys-file "{{ bind_keysfile }}";
   pid-file "/run/named/named.pid";
   session-keyfile "/run/named/session.key";
@@ -22,8 +22,6 @@ options {
   };
 {% endif %}
 };
-
-include "{{ bind_keysfile }}";
 
 controls {
   inet 127.0.0.1 port 953 allow { localhost; } keys { {{ bind_rndckey_name }}; };
