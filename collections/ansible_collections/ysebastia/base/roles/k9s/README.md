@@ -23,7 +23,7 @@ None.
 
 ```YAML
 k9s_repo: 
-  https://github.com/derailed/k9s/releases/download/v0.50.9/k9s_Linux_amd64.tar.gz
+  https://github.com/derailed/k9s/releases/download/v0.50.16/k9s_Linux_amd64.tar.gz
 ```
 
 ## Dependencies
