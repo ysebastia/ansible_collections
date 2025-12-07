@@ -10,7 +10,7 @@
       ansible.builtin.include_role:
         name: ysebastia.base.docker
       vars:
-        docker_user_to_append: "{{ ansible_user_id }}"
+        docker_user_to_append: "{{ ansible_facts.user_id }}"
         enable_docker_group: true
       when:
         - ansible_user is defined

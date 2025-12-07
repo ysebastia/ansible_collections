@@ -26,6 +26,6 @@
         name: ysebastia.base.kvm_group
       vars:
         enable_kvm_group: true
-        kvm_user_to_append: "{{ ansible_user_id }}"
+        kvm_user_to_append: "{{ ansible_facts.user_id }}"
       when:
         - ansible_user is defined
