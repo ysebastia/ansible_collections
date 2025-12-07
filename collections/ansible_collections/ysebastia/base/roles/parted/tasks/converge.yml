@@ -19,7 +19,7 @@
   ansible.builtin.setup:
 - name: Set mounted_path
   ansible.builtin.set_fact:
-    mounted_path: "{{ (ansible_mounts | map(attribute='mount')) }}"
+    mounted_path: "{{ (ansible_facts.mounts | map(attribute='mount')) }}"
 - name: Format filesystems (use force_format_filesystem variable if needed)
   become: true
   community.general.filesystem:
