@@ -6,4 +6,4 @@
       ansible.builtin.include_role:
         name: "ysebastia.base.k9s"
       vars:
-        k9s_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
+        k9s_https_proxy: "{{ ansible_facts.env.HTTP_PROXY }}"

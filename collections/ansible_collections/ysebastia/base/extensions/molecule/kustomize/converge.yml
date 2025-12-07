@@ -6,4 +6,4 @@
       ansible.builtin.include_role:
         name: "ysebastia.base.cloud_kustomize"
       vars:
-        kustomize_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
+        kustomize_https_proxy: "{{ ansible_facts.envts.env.HTTP_PROXY }}"

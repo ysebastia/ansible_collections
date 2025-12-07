@@ -6,4 +6,4 @@
       ansible.builtin.include_role:
         name: "ysebastia.base.repos_docker_ce"
       vars:
-        docker_ce_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
+        docker_ce_https_proxy: "{{ ansible_facts.env.HTTP_PROXY }}"

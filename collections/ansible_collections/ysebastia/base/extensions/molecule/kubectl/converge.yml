@@ -6,4 +6,4 @@
       ansible.builtin.include_role:
         name: "ysebastia.base.cloud_kubectl"
       vars:
-        kubectl_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
+        kubectl_https_proxy: "{{ ansible_facts.envts.env.HTTP_PROXY }}"

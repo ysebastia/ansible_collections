@@ -7,7 +7,7 @@
         name: "ysebastia.base.docker"
       vars:
         enable_repositories_docker_ce: true
-        docker_ce_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
+        docker_ce_https_proxy: "{{ ansible_facts.env.HTTP_PROXY }}"
     - name: "Include remote"
       ansible.builtin.include_role:
         name: "ysebastia.base.docker_remote"

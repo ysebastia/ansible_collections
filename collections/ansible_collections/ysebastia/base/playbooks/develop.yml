@@ -14,4 +14,4 @@
         enable_kvm_libvirt: true
         enable_repositories_epel: true
         enable_repositories_hashicorp: true
-        epel_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
+        epel_https_proxy: "{{ ansible_facts.env.HTTP_PROXY }}"

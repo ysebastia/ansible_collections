@@ -11,10 +11,10 @@
         enable_develop_vagrant: true
         enable_kvm_libvirt: true
         enable_repositories_hashicorp: true
-        hashicorp_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
-        helm_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
-        k9s_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
-        kind_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
-        kubectl_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
-        kustomize_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
-        tilt_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
+        hashicorp_https_proxy: "{{ ansible_facts.env.HTTP_PROXY }}"
+        helm_https_proxy: "{{ ansible_facts.env.HTTP_PROXY }}"
+        k9s_https_proxy: "{{ ansible_facts.env.HTTP_PROXY }}"
+        kind_https_proxy: "{{ ansible_facts.env.HTTP_PROXY }}"
+        kubectl_https_proxy: "{{ ansible_facts.env.HTTP_PROXY }}"
+        kustomize_https_proxy: "{{ ansible_facts.env.HTTP_PROXY }}"
+        tilt_https_proxy: "{{ ansible_facts.env.HTTP_PROXY }}"

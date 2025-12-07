@@ -6,5 +6,5 @@
       ansible.builtin.include_role:
         name: "ysebastia.base.gitlab_runner"
       vars:
-        gitlab_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
+        gitlab_https_proxy: "{{ ansible_facts.env.HTTP_PROXY }}"
         enable_gitlab_runner: true

@@ -7,7 +7,7 @@
         name: ysebastia.base.repos_proxy
       vars:
         enable_repositories_proxy: true
-        repository_https_proxy: "{{ ansible_env.HTTP_PROXY }}"
+        repository_https_proxy: "{{ ansible_facts.env.HTTP_PROXY }}"
     - name: Update RedHat family
       become: true
       ansible.builtin.dnf:
