@@ -15,7 +15,7 @@
   become: true
   ansible.builtin.apt_repository:
     repo: deb [signed-by=/usr/share/keyrings/runner_gitlab-runner-archive-keyring.gpg] https://packages.gitlab.com/runner/gitlab-runner/{{ ansible_distribution
-      | lower }}/ {{ ansible_distribution_release }} main
+      | lower }}/ {{ ansible_facts.distribution_release }} main
     filename: runner_gitlab-runner
     state: present
   environment:

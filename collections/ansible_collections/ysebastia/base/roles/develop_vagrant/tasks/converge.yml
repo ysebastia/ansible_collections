@@ -1,6 +1,6 @@
 ---
 - name: Install packages by operating system
-  ansible.builtin.include_tasks: "install_{{ ansible_distribution | lower }}.yml"
+  ansible.builtin.include_tasks: "install_{{ ansible_facts.distribution | lower }}.yml"
 
 - name: "Include Python"
   ansible.builtin.include_role:

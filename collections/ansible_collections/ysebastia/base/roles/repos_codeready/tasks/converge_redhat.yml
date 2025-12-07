@@ -3,6 +3,6 @@
   become: true
   community.general.rhsm_repository:
     name:
-      - "codeready-builder-for-rhel-{{ ansible_distribution_major_version }}-x86_64-rpms"
+      - "codeready-builder-for-rhel-{{ ansible_facts.distribution_major_version }}-x86_64-rpms"
   when:
-    - ansible_distribution == 'RedHat'
+    - ansible_facts.distribution == 'RedHat'

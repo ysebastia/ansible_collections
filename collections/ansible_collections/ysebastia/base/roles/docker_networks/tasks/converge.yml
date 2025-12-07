@@ -1,6 +1,6 @@
 ---
 - name: Include tasks
-  ansible.builtin.include_tasks: "config_{{ ansible_os_family | lower }}.yml"
+  ansible.builtin.include_tasks: "config_{{ ansible_facts.os_family | lower }}.yml"
 
 - name: Ensure DOCKER is restarted
   become: true

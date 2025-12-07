@@ -3,7 +3,7 @@
   ansible.builtin.include_tasks: "facts.yml"
 
 - name: Configure by operating system
-  ansible.builtin.include_tasks: "config_{{ ansible_os_family | lower }}.yml"
+  ansible.builtin.include_tasks: "config_{{ ansible_facts.os_family | lower }}.yml"
 
 - name: Configuration
   become: true

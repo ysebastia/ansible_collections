@@ -8,5 +8,5 @@
       ansible.builtin.include_tasks: "facts.yml"
 
     - name: Include tasks
-      ansible.builtin.include_tasks: "{{ ansible_action }}_{{ ansible_os_family | lower }}.yml"
-      when: ansible_os_family | lower in epel_supported_os
+      ansible.builtin.include_tasks: "{{ ansible_action }}_{{ ansible_facts.os_family | lower }}.yml"
+      when: ansible_facts.os_family | lower in epel_supported_os

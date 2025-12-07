@@ -9,4 +9,4 @@
 
     - name: Include tasks
       ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
-      when: ansible_os_family | lower in mariadb_supported_os
+      when: ansible_facts.os_family | lower in mariadb_supported_os

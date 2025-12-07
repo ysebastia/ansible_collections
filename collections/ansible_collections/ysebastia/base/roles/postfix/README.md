@@ -98,7 +98,7 @@ postfix_conf_main:
   - name: relayhost
     value:
   - name: myhostname
-    value: '{{ ansible_fqdn }}'
+    value: '{{ ansible_facts.fqdn }}'
   - name: append_dot_mydomain
     value: no
   - name: biff
@@ -106,7 +106,7 @@ postfix_conf_main:
   - name: mailbox_size_limit
     value: 0
   - name: myorigin
-    value: '{{ ansible_fqdn }}'
+    value: '{{ ansible_facts.fqdn }}'
   - name: inet_interfaces
     value: all
 ```
