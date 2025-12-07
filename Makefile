@@ -12,4 +12,4 @@ help: ## Afficher l'aide
 	@echo
 
 checkov: ## exécuter checkov dans une image docker
-	podman run --rm -t -v "${PWD}":/app:Z -w /app docker.io/ysebastia/checkov:3.2.451 checkov --directory . --soft-fail --skip-download --quiet --compact -o gitlab_sast
+	podman run --rm -t -v "${PWD}":/app:Z -w /app docker.io/ysebastia/checkov:3.2.495 checkov --directory . --soft-fail --skip-download --quiet --compact -o gitlab_sast
