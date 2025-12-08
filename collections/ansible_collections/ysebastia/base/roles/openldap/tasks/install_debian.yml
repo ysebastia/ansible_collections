@@ -1,7 +1,7 @@
 ---
 - name: Set Facts
   ansible.builtin.set_fact:
-    openldap_domain: "{{ domain_name | default(ansible_domain) }}"
+    openldap_domain: "{{ domain_name | default(ansible_facts.domain) }}"
     openldap_password: "{{ ldap_bind_pw | default('') }}"
   no_log: true
 

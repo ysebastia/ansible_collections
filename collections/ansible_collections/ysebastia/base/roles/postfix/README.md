@@ -126,7 +126,7 @@ postfix_conf_mainvirtual:
   - name: virtual_mailbox_base
     value: '{{ postfix_virtual_mailbox_base }}'
   - name: virtual_mailbox_domains
-    value: '{{ ansible_domain }}'
+    value: '{{ ansible_facts.domain }}'
   - name: virtual_uid_maps
     value: static:{{ postfix_virtual_uid }}
 ```

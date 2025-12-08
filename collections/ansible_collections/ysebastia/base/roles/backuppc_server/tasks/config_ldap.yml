@@ -1,10 +1,10 @@
 ---
 - name: Set Facts
   ansible.builtin.set_fact:
-    server_ldap_host: "{{ ldap_host | default('ldap' ~ ansible_domain ) }}"
+    server_ldap_host: "{{ ldap_host | default('ldap' ~ ansible_facts.domain ) }}"
     server_ldap_bind_dn: "{{ ldap_bind_dn | default('') }}"
     server_ldap_bind_pw: "{{ ldap_bind_pw | default('') }}"
-    server_ldap_base: "{{ ldap_base_people | default('dc=' ~ ( ansible_domain | split('.') | join('dc='))) }}"
+    server_ldap_base: "{{ ldap_base_people | default('dc=' ~ ( ansible_facts.domain | split('.') | join('dc='))) }}"
   no_log: true
 
 - name: Show LDAP configuration

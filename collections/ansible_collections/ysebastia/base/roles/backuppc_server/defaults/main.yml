@@ -3,7 +3,7 @@ ansible_action: converge
 backuppc_admins: ""
 backuppc_directory_backup: /var/lib/backuppc
 backuppc_directory_share: /usr/share/backuppc
-backuppc_domain_name: "{{ ansible_domain }}"
+backuppc_domain_name: "{{ ansible_facts.domain }}"
 backuppc_httpd_vhost_directory: /etc/apache2/sites-enabled/
 backuppc_mailadmin: "postmaster@{{ backuppc_domain_name }}"
 backuppc_old_save: []

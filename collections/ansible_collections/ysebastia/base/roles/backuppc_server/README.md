@@ -73,7 +73,7 @@ backuppc_directory_share: /usr/share/backuppc
 #### Default value
 
 ```YAML
-backuppc_domain_name: '{{ ansible_domain }}'
+backuppc_domain_name: '{{ ansible_facts.domain }}'
 ```
 
 ### backuppc_httpd_vhost_directory

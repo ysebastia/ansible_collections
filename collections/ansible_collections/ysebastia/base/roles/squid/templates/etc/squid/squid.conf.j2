@@ -33,7 +33,6 @@ acl browserAllow  browser yum/
 acl browserAllow  browser ansible-httpget
 acl browserAllow  browser curl
 acl srcLocalhost  src 127.0.0.1/32
-acl dstIpv6       dst ipv6
 acl urlManager    url_regex -i ^cache_object:// /squid-internal-mgr/
 acl portsSAFE     port 80          # http
 acl portsSAFE     port 443         # https
@@ -41,7 +40,6 @@ acl portsSAFE     port 873         # rsync
 acl protoFTP      proto ftp
 acl mtdPURGE      method PURGE
 
-http_access allow dstIpv6 !all
 http_access allow urlManager srcLocalhost
 http_access deny  urlManager
 http_access allow mtdPURGE srcLocalhost

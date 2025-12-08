@@ -116,7 +116,7 @@ protocol lda {
   auth_socket_path = /var/run/dovecot/auth-master
   hostname = {{ ansible_facts.fqdn }}
   mail_plugins = notify sieve trash quota
-  postmaster_address = postmaster@{{ ansible_domain }}
+  postmaster_address = postmaster@{{ ansible_facts.domain }}
 }
 protocol imap {
   imap_metadata = yes
