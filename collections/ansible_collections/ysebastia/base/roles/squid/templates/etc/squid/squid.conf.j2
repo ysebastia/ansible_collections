@@ -27,6 +27,7 @@ refresh_pattern ^gopher:        1440    0%      1440
 refresh_pattern .               0       20%     4320
 half_closed_clients off
 visible_hostname {{ inventory_hostname_short }}
+dns_v4_first on
 
 # ACCESS CONTROLS
 acl browserAllow  browser yum/
