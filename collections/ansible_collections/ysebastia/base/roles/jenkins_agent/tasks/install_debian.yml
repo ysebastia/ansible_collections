@@ -12,5 +12,6 @@
       - git
       - make
       - openjdk-17-jre-headless
+      - pipx
       - python3.11-venv
       - wget

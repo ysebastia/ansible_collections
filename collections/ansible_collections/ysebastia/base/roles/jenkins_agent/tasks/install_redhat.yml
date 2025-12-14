@@ -5,6 +5,7 @@
     name:
       - ant
       - git
-      - make
       - java-17-openjdk-headless
+      - make
+      - pipx
       - wget

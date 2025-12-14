@@ -3,17 +3,15 @@ set -e
 NOCOLOR='\033[0m'
 GREEN='\033[0;32m'
 export DEFAULT_LOCAL_TMP=/tmp/jenkins/
+export PIPX_DEFAULT_PYTHON=/usr/bin/python3.12
+export PATH=~/.local/bin:$PATH
 env
-python3.12 -m venv ~/.venv/ansible
-source ~/.venv/ansible/bin/activate
-pip install --upgrade pip
-pip install ansible-core==2.17.14
-pip install ansible-lint==25.12.1
-pip install molecule==25.12.0
-pip install molecule-plugins[podman]==25.8.12
+pipx install ansible-core==2.20.1
+pipx install ansible-lint==25.12.1
+pipx install molecule==25.12.0 
+pipx inject molecule molecule-plugins[podman]==25.8.12
 mkdir -p "~/.ansible/collections"
 find . -name requirements.yml -exec ansible-galaxy collection install --force -r {} --ignore-certs --collections-path "~/.ansible/collections" \;
-find . -name requirements.txt -exec pip install --no-cache -r {} \;
 ansible-galaxy collection list
 
 
@@ -27,6 +25,6 @@ find . -name molecule.yml -print0 |
         popd || exit 2
     done
 
-rm -rf ~/.venv/ansible ~/.ansible/collections
+rm -rf ~/.ansible/collections
 
 exit 0
