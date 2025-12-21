@@ -4,7 +4,7 @@ NOCOLOR='\033[0m'
 GREEN='\033[0;32m'
 export DEFAULT_LOCAL_TMP=/tmp/jenkins/
 export PIPX_DEFAULT_PYTHON=/usr/bin/python3.12
-export PATH=~/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 env
 pipx install ansible-core==2.20.1
 pipx install ansible-lint==25.12.1
