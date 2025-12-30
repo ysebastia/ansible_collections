@@ -2,7 +2,7 @@
 
 Bootstrap repositories
 
-## Table of content
+## Table of contents
 
 - [Requirements](#requirements)
 - [Dependencies](#dependencies)

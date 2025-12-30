@@ -2,7 +2,7 @@
 
 Configure Docker-CE repository
 
-## Table of content
+## Table of contents
 
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)

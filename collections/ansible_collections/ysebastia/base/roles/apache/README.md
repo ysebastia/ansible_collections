@@ -2,7 +2,7 @@
 
 Configure Apache
 
-## Table of content
+## Table of contents
 
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)

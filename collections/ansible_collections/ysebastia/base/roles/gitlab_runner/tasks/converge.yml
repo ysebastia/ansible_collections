@@ -14,8 +14,8 @@
 - name: Configure Gitlab-runner repository
   become: true
   ansible.builtin.apt_repository:
-    repo: deb [signed-by=/usr/share/keyrings/runner_gitlab-runner-archive-keyring.gpg] https://packages.gitlab.com/runner/gitlab-runner/{{ ansible_facts.distribution
-      | lower }}/ {{ ansible_facts.distribution_release }} main
+    repo: deb [signed-by=/usr/share/keyrings/runner_gitlab-runner-archive-keyring.gpg] https://packages.gitlab.com/runner/gitlab-runner/{{
+      ansible_facts.distribution | lower }}/ {{ ansible_facts.distribution_release }} main
     filename: runner_gitlab-runner
     state: present
   environment:
