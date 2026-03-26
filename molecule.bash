@@ -6,7 +6,7 @@ export DEFAULT_LOCAL_TMP=/tmp/jenkins/
 export PIPX_DEFAULT_PYTHON=/usr/bin/python3.12
 export PATH=$HOME/.local/bin:$PATH
 env
-pipx install ansible-core==2.20.1
+pipx install ansible-core==2.20.4
 pipx install ansible-lint==26.3.0
 pipx install molecule==25.12.0 
 pipx inject molecule molecule-plugins[podman]==25.8.12
