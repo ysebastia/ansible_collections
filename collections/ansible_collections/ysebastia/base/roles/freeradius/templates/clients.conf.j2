@@ -4,6 +4,7 @@ client {{ client.name }} {
         secret = {{ freeradius_secret }}
         shortname = {{ client.name }}
         require_message_authenticator = {{ client.authenticator }}
+        limit_proxy_state = true
 
 }
 {% endfor %}
