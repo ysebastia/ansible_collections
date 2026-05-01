@@ -1,8 +1,0 @@
----
-- name: Allow NFS traffic
-  become: true
-  ansible.posix.firewalld:
-    service: nfs
-    permanent: true
-    immediate: true
-    state: enabled
