@@ -4,20 +4,15 @@
   ansible.builtin.apt:
     name:
       - gpg
-- name: Add GPG
-  become: true
-  ansible.builtin.apt_key:
-    url: https://packages.gitlab.com/gpg.key
-    keyring: /usr/share/keyrings/runner_gitlab-runner-archive-keyring.gpg
-  environment:
-    https_proxy: "{{ gitlab_https_proxy | default('') }}"
 - name: Configure Gitlab-runner repository
   become: true
-  ansible.builtin.apt_repository:
-    repo: deb [signed-by=/usr/share/keyrings/runner_gitlab-runner-archive-keyring.gpg] https://packages.gitlab.com/runner/gitlab-runner/{{
-      ansible_facts.distribution | lower }}/ {{ ansible_facts.distribution_release }} main
-    filename: runner_gitlab-runner
-    state: present
+  deb822_repository:
+    name: gitlab-runner
+    types: deb
+    uris: https://packages.gitlab.com/runner/gitlab-runner/{{ ansible_facts.distribution | lower }}
+    suites: "{{ ansible_distribution_release }}"
+    components: main
+    signed_by: https://packages.gitlab.com/gpg.key
   environment:
     https_proxy: "{{ gitlab_https_proxy | default('') }}"
 - name: Install GITLAB-RUNNER
