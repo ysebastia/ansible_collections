@@ -10,7 +10,7 @@
     name: gitlab-runner
     types: deb
     uris: https://packages.gitlab.com/runner/gitlab-runner/{{ ansible_facts.distribution | lower }}
-    suites: "{{ ansible_distribution_release }}"
+    suites: "{{ ansible_facts.distribution | lower }}"
     components: main
     signed_by: https://packages.gitlab.com/gpg.key
   environment:
