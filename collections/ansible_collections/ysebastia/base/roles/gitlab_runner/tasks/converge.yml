@@ -10,9 +10,9 @@
     name: gitlab-runner
     types: deb
     uris: https://packages.gitlab.com/runner/gitlab-runner/{{ ansible_facts.distribution | lower }}
-    suites: "{{ ansible_facts.distribution | lower }}"
+    suites: "{{ ansible_facts.distribution_release | lower }}"
     components: main
-    signed_by: https://packages.gitlab.com/gpg.key
+    signed_by: https://packages.gitlab.com/gpgkey/gpg.key
   environment:
     https_proxy: "{{ gitlab_https_proxy | default('') }}"
 - name: Install GITLAB-RUNNER
