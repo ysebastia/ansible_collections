@@ -16,7 +16,7 @@
     group: "{{ backuppc_user }}"
   delegate_to: "{{ backuppc_serverhost }}"
   when:
-    - backuppc_user in getent_passwd.keys()
+    - backuppc_user in ansible_facts.getent_passwd.keys()
     - ansible_facts.getent_passwd[backuppc_user] != None
 - name: Create configuration for host
   become: true
@@ -26,7 +26,7 @@
     mode: "0644"
   delegate_to: "{{ backuppc_serverhost }}"
   when:
-    - backuppc_user in getent_passwd.keys()
+    - backuppc_user in ansible_facts.getent_passwd.keys()
     - ansible_facts.getent_passwd[backuppc_user] != None
 - name: Declare host in server configuration
   become: true
@@ -36,7 +36,7 @@
     line: "{{ inventory_hostname_short }} 0 {{ backuppc_owner }}"
   delegate_to: "{{ backuppc_serverhost }}"
   when:
-    - backuppc_user in getent_passwd.keys()
+    - backuppc_user in ansible_facts.getent_passwd.keys()
     - ansible_facts.getent_passwd[backuppc_user] != None
 - name: Check if SSH key of server exists
   ansible.builtin.stat:
