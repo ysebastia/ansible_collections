@@ -9,3 +9,4 @@
       - docker-compose-plugin
       - python3
       - python3-pip
+    update_cache: true
