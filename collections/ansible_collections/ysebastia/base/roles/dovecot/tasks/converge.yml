@@ -47,7 +47,6 @@
     mode: "0644"
   with_items:
     - /etc/dovecot/dovecot.conf
-    - /etc/dovecot/trash.conf
   notify:
     - Restart dovecot
 

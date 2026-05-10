@@ -1,54 +1,61 @@
 dovecot_config_version = 2.4.1
+dovecot_storage_version = 2.4.1
 auth_cache_size = 500 k
 auth_cache_ttl = 1 days
 auth_master_user_separator = *
 auth_mechanisms = plain login
-disable_plaintext_auth = no
 first_valid_uid = {{ dovecot_first_valid_uid | default('999') }}
 last_valid_uid = {{ dovecot_last_valid_uid | default('999') }}
-mail_attribute_dict = file:%h/Maildir/dovecot-attributes
 mail_gid = {{ dovecot_virtual_gid }}
-mail_plugins = notify
 mail_uid = {{ dovecot_virtual_uid }}
 managesieve_notify_capability = mailto
 managesieve_sieve_capability = fileinto reject envelope encoded-character vacation subaddress comparator-i;ascii-numeric relational regex imap4flags copy include variables body enotify environment mailbox date imapflags
 mbox_write_locks = fcntl
+quota_driver = maildir
+quota_name = User quota
+quota_storage_grace = 100 M
+quota_storage_size = 5G
+ssl_cipher_list = HIGH:+SSLv3:!SSLv2:!ADH:!RC4:!RC2:!MD5:!EXPORT:!ANON:!DES:!aNULL:!eNULL
+
 namespace inbox {
-  inbox = yes
-  location =
-  mailbox Drafts {
-    special_use = \Drafts
-  }
-  mailbox Junk {
-    special_use = \Junk
-  }
-  mailbox Sent {
-    special_use = \Sent
-  }
-  mailbox "Sent Messages" {
-    special_use = \Sent
+  mailbox Corbeille {
+    trash_priority = 1
   }
   mailbox Trash {
-    special_use = \Trash
+    trash_priority = 2
   }
-  prefix =
+  mailbox spam {
+    trash_priority = 3
+  }
+  mailbox Spam {
+    trash_priority = 4
+  }
 }
+sieve_script personal {
+  sieve_script_active_path = ~/.dovecot.sieve
+  sieve_script_driver = file
+  sieve_script_path = ~/sieve
+}
+sieve_script global_after {
+  sieve_script_driver = file
+  sieve_script_path = {{ dovecot_virtual_mailbox_base }}/globalsieverc
+  sieve_script_type = after
+}
+
 {% if enable_service_dovecot_ldap %}
-passdb {
-  args = /etc/dovecot/ldap.conf
-  driver = ldap
+ldap_auth_dn = {{ dovecot_ldap_bind_dn }}
+ldap_auth_dn_password = {{ dovecot_ldap_bind_pw }}
+ldap_base = {{ dovecot_ldap_base }}
+ldap_scope = onelevel
+ldap_uris = ldap://{{ dovecot_ldap_host }}
+passdb ldap {
+  passdb_fields {
+    password = %{ldap:userPassword}
+    user = %{ldap:uid}
+  }
+  passdb_ldap_filter = uid=%{user | lower}
 }
 {% endif %}
-plugin {
-  quota = maildir:User quota
-  quota_rule = *:storage=5G
-  quota_rule2 = Corbeille:storage=+100M
-  sieve = ~/.dovecot.sieve
-  sieve_after = {{ dovecot_virtual_mailbox_base }}/globalsieverc
-  sieve_dir = ~/sieve
-  sieve_extensions = +imapflags
-  trash = /etc/dovecot/trash.conf
-}
 protocols = imap sieve
 service auth-worker {
   unix_listener auth-worker {
@@ -77,16 +84,9 @@ service auth {
   }
   user = {{ dovecot_virtual_uid }}
 }
-service dict {
-  unix_listener dict {
-    group = {{ dovecot_virtual_gid }}
-    mode = 0600
-    user = {{ dovecot_virtual_uid }}
-  }
-}
 service imap-login {
   process_min_avail = 4
-  service_count = 0
+  restart_request_count = unlimited
   vsz_limit = 512 M
 }
 service stats {
@@ -104,26 +104,33 @@ service stats {
 {% if enable_service_dovecot_syslog %}
 syslog_facility = {{ dovecot_syslog_facility }}
 {% endif %}
+userdb prefetch {
+}
 {% if enable_service_dovecot_ldap %}
-userdb {
-  args = /etc/dovecot/ldap.conf
-  driver = ldap
+userdb ldap {
+  userdb_fields {
+    gid = {{ dovecot_virtual_gid }}
+    home = {{ dovecot_virtual_mailbox_base }}/%{user | lower}
+    mail = maildir:{{ dovecot_virtual_mailbox_base }}/%{user | lower}/Maildir
+    password = %{ldap:userPassword}
+    quota_storage_size = %{ldap:mailQuotaSize}K
+    uid = {{ dovecot_virtual_uid }}
+    user = %{ldap:uid}
+  }
+  userdb_ldap_filter = uid=%{user | lower}
+  userdb_ldap_iterate_fields {
+    user = %{ldap:uid}
+  }
+  userdb_ldap_iterate_filter = objectclass=*
 }
 {% endif %}
-userdb {
-  driver = prefetch
-}
 protocol lda {
-  auth_socket_path = /var/run/dovecot/auth-master
   hostname = {{ ansible_facts.fqdn }}
-  mail_plugins = notify sieve trash quota
+  mail_plugins = sieve trash quota
   postmaster_address = postmaster@{{ ansible_facts.domain }}
 }
 protocol imap {
   imap_metadata = yes
   mail_max_userip_connections = 50
-  mail_plugins = notify trash quota imap_quota
-}
-protocol sieve {
-  ssl_cipher_list = HIGH:+SSLv3:!SSLv2:!ADH:!RC4:!RC2:!MD5:!EXPORT:!ANON:!DES:!aNULL:!eNULL
+  mail_plugins = trash quota imap_quota
 }
