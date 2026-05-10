@@ -9,9 +9,6 @@
     - name: OPENLDAP
       ansible.builtin.include_role:
         name: ysebastia.base.openldap
-    - name: FREERADIUS
-      ansible.builtin.include_role:
-        name: ysebastia.base.freeradius
     - name: SQUID
       ansible.builtin.include_role:
         name: ysebastia.base.squid
