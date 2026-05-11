@@ -5,7 +5,7 @@
     name:
       - ant
       - git
-      - java-25-openjdk-headless
+      - java-21-openjdk-headless
       - make
       - pipx
       - wget
