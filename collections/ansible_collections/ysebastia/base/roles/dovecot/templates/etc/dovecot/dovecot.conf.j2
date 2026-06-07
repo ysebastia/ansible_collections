@@ -2,10 +2,14 @@ dovecot_config_version = 2.4.1
 dovecot_storage_version = 2.4.1
 auth_cache_size = 500 k
 auth_cache_ttl = 1 days
+auth_default_domain = {{ ansible_facts.domain }}
 auth_master_user_separator = *
+auth_allow_cleartext = yes
 auth_mechanisms = plain login
+auth_username_format = %{user | username | lower}
 first_valid_uid = {{ dovecot_first_valid_uid | default('999') }}
 last_valid_uid = {{ dovecot_last_valid_uid | default('999') }}
+mail_driver = maildir
 mail_gid = {{ dovecot_virtual_gid }}
 mail_uid = {{ dovecot_virtual_uid }}
 managesieve_notify_capability = mailto
@@ -15,9 +19,10 @@ quota_driver = maildir
 quota_name = User quota
 quota_storage_grace = 100 M
 quota_storage_size = 5G
-ssl_cipher_list = HIGH:+SSLv3:!SSLv2:!ADH:!RC4:!RC2:!MD5:!EXPORT:!ANON:!DES:!aNULL:!eNULL
+ssl = no
 
 namespace inbox {
+  inbox = yes
   mailbox Corbeille {
     trash_priority = 1
   }
@@ -50,7 +55,7 @@ ldap_scope = onelevel
 ldap_uris = ldap://{{ dovecot_ldap_host }}
 passdb ldap {
   passdb_fields {
-    password = %{ldap:userPassword}
+    password = %{ldap:userpassword}
     user = %{ldap:uid}
   }
   passdb_ldap_filter = uid=%{user | lower}
@@ -104,16 +109,13 @@ service stats {
 {% if enable_service_dovecot_syslog %}
 syslog_facility = {{ dovecot_syslog_facility }}
 {% endif %}
-userdb prefetch {
-}
 {% if enable_service_dovecot_ldap %}
 userdb ldap {
   userdb_fields {
     gid = {{ dovecot_virtual_gid }}
     home = {{ dovecot_virtual_mailbox_base }}/%{user | lower}
-    mail = maildir:{{ dovecot_virtual_mailbox_base }}/%{user | lower}/Maildir
-    password = %{ldap:userPassword}
-    quota_storage_size = %{ldap:mailQuotaSize}K
+    mail_path = {{ dovecot_virtual_mailbox_base }}/%{user | lower}/Maildir
+    password = %{ldap:userpassword}
     uid = {{ dovecot_virtual_uid }}
     user = %{ldap:uid}
   }
