@@ -8,7 +8,7 @@ export PATH=$HOME/.local/bin:$PATH
 env
 pipx install ansible-core==2.21.1
 pipx install ansible-lint==26.4.0
-pipx install molecule==25.12.0 
+pipx install molecule==26.4.0 
 pipx inject molecule molecule-plugins[podman]==25.8.12
 mkdir -p "~/.ansible/collections"
 find . -name requirements.yml -exec ansible-galaxy collection install --force -r {} --ignore-certs --collections-path "~/.ansible/collections" \;
