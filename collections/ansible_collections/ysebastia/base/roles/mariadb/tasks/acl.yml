@@ -1,7 +1,7 @@
 ---
 - name: Ensure that MYSQL users exists from mariadb_user list
   become: true
-  ansible.mysqlql_user:
+  ansible.mysql.mysql_user:
     login_unix_socket: "{{ mariadb_socket_unix }}"
     login_user: root
     name: "{{ item.0.name }}"
