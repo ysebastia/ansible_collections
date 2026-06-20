@@ -1,7 +1,7 @@
 ---
 - name: Dump databases
   become: true
-  community.mysql.mysql_db:
+  ansible.mysql.mysql_db:
     login_unix_socket: "{{ mariadb_socket_unix }}"
     login_user: root
     state: dump

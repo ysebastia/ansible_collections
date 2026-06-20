@@ -39,7 +39,7 @@
 
 - name: Set administrators accounts
   become: true
-  community.mysql.mysql_user:
+  ansible.mysql.mysql_user:
     login_unix_socket: "{{ mariadb_socket_unix }}"
     login_user: root
     name: "{{ item.user }}"
