@@ -9,7 +9,7 @@ env
 pipx install ansible-core==2.21.2
 pipx install ansible-lint==26.4.0
 pipx install molecule==26.4.0 
-pipx inject molecule molecule-plugins[podman]==25.8.12
+pipx inject molecule molecule-plugins[podman]==26.7.8
 mkdir -p "~/.ansible/collections"
 find . -name requirements.yml -exec ansible-galaxy collection install --force -r {} --ignore-certs --collections-path "~/.ansible/collections" \;
 ansible-galaxy collection list
