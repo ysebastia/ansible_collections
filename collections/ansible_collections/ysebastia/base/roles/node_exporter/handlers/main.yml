@@ -1,0 +1,7 @@
+---
+- name: Restart node_exporter
+  become: true
+  ansible.builtin.service:
+    name: "{{ node_exporter_service }}"
+    state: restarted
+    enabled: true
