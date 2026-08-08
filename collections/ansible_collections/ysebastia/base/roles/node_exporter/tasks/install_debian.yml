@@ -1,5 +1,11 @@
 ---
-- name: Ensure prometheus-node-exporter is installed
+- name: Ensure prometheus-node-exporter is installed (without ipmitool/openipmi, no BMC on this fleet)
   become: true
   ansible.builtin.apt:
-    name: prometheus-node-exporter
+    install_recommends: false
+    name:
+      - prometheus-node-exporter
+      - prometheus-node-exporter-collectors
+      - jq
+      - nvme-cli
+      - smartmontools
