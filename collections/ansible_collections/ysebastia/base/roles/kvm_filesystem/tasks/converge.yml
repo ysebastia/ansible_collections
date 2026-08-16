@@ -26,15 +26,13 @@
   when:
     - filesystem_host_device is defined
     - item.vg | length > 0
-- name: Create LV for libvirt if filesystem_host_lvm is defined
+- name: Create LV for libvirt images/qemu-save if filesystem_host_lvm is defined
   become: true
   community.general.lvol:
     vg: "{{ filesystem_host_lvm }}"
     lv: "{{ item.lv }}"
     size: "{{ item.size }}"
   with_items:
-    - lv: backup
-      size: "{{ filesystem_qemu_backup_size }}"
     - lv: images
       size: "{{ filesystem_qemu_images_size }}"
     - lv: qemu-save
@@ -42,16 +40,23 @@
   when:
     - filesystem_host_lvm is defined
     - item.size != "0"
-- name: Make filesystem if filesystem_host_lvm is defined
+- name: Create LV for libvirt backup if filesystem_backup_device is not defined
+  become: true
+  community.general.lvol:
+    vg: "{{ filesystem_host_lvm }}"
+    lv: backup
+    size: "{{ filesystem_qemu_backup_size }}"
+  when:
+    - filesystem_host_lvm is defined
+    - filesystem_qemu_backup_size != "0"
+    - filesystem_backup_device | length == 0
+- name: Make filesystem for libvirt images/qemu-save if filesystem_host_lvm is defined
   become: true
   community.general.filesystem:
     fstype: "{{ item.fstype }}"
     dev: "{{ item.dev }}"
     force: false
   with_items:
-    - dev: "/dev/{{ filesystem_host_lvm }}/backup"
-      size: "{{ filesystem_qemu_backup_size }}"
-      fstype: xfs
     - dev: "/dev/{{ filesystem_host_lvm }}/images"
       size: "{{ filesystem_qemu_images_size }}"
       fstype: xfs
@@ -61,7 +66,25 @@
   when:
     - filesystem_host_lvm is defined
     - item.size != "0"
-- name: Mount filesystem if filesystem_host_lvm is defined
+- name: Make filesystem for libvirt backup LV if filesystem_backup_device is not defined
+  become: true
+  community.general.filesystem:
+    fstype: xfs
+    dev: "/dev/{{ filesystem_host_lvm }}/backup"
+    force: false
+  when:
+    - filesystem_host_lvm is defined
+    - filesystem_qemu_backup_size != "0"
+    - filesystem_backup_device | length == 0
+- name: Make filesystem on dedicated backup device if filesystem_backup_device is defined
+  become: true
+  community.general.filesystem:
+    fstype: "{{ filesystem_backup_device_fstype }}"
+    dev: "{{ filesystem_backup_device }}"
+    force: false
+  when:
+    - filesystem_backup_device | length > 0
+- name: Mount filesystem for libvirt images/qemu-save if filesystem_host_lvm is defined
   become: true
   ansible.posix.mount:
     path: "{{ item.path }}"
@@ -69,10 +92,6 @@
     fstype: "{{ item.fstype }}"
     state: mounted
   with_items:
-    - dev: "/dev/mapper/{{ filesystem_host_lvm }}-backup"
-      size: "{{ filesystem_qemu_backup_size }}"
-      path: /var/lib/libvirt/backup
-      fstype: xfs
     - dev: "/dev/mapper/{{ filesystem_host_lvm }}-images"
       size: "{{ filesystem_qemu_images_size }}"
       path: /var/lib/libvirt/images
@@ -84,3 +103,23 @@
   when:
     - filesystem_host_lvm is defined
     - item.size != "0"
+- name: Mount filesystem for libvirt backup LV if filesystem_backup_device is not defined
+  become: true
+  ansible.posix.mount:
+    path: /var/lib/libvirt/backup
+    src: "/dev/mapper/{{ filesystem_host_lvm }}-backup"
+    fstype: xfs
+    state: mounted
+  when:
+    - filesystem_host_lvm is defined
+    - filesystem_qemu_backup_size != "0"
+    - filesystem_backup_device | length == 0
+- name: Mount dedicated backup device if filesystem_backup_device is defined
+  become: true
+  ansible.posix.mount:
+    path: /var/lib/libvirt/backup
+    src: "{{ filesystem_backup_device }}"
+    fstype: "{{ filesystem_backup_device_fstype }}"
+    state: mounted
+  when:
+    - filesystem_backup_device | length > 0
