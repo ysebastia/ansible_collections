@@ -12,9 +12,6 @@
     - name: SQUID
       ansible.builtin.include_role:
         name: ysebastia.base.squid
-    - name: MARIADB
-      ansible.builtin.include_role:
-        name: ysebastia.base.mariadb
     - name: DOVECOT
       ansible.builtin.include_role:
         name: ysebastia.base.dovecot

@@ -10,5 +10,3 @@ collections:
     version: 13.2.0
   - name: community.libvirt
     version: 2.3.0
-  - name: ansible.mysql
-    version: 5.0.1
