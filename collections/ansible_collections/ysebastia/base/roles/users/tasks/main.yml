@@ -1,0 +1,6 @@
+---
+- name: Configure users if enable_base_users is defined
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when:
+    - enable_base_users | bool
+    - ansible_action in ['converge']

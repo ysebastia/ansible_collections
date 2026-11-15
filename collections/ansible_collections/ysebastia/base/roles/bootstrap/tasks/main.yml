@@ -23,6 +23,9 @@
 - name: Configure TUNED
   ansible.builtin.include_role:
     name: ysebastia.base.tuned
+- name: Configure USERS
+  ansible.builtin.include_role:
+    name: ysebastia.base.users
 - name: Configure OPENSSH
   ansible.builtin.include_role:
     name: ysebastia.base.openssh
