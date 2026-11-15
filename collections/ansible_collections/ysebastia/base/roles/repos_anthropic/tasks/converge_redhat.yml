@@ -1,0 +1,20 @@
+---
+- name: Import Anthropic signing key
+  become: true
+  ansible.builtin.rpm_key:
+    key: "{{ anthropic_key_url }}"
+    fingerprint: "{{ anthropic_key_fingerprint }}"
+    state: present
+  environment:
+    https_proxy: "{{ anthropic_https_proxy | default('') }}"
+- name: Configure Anthropic repository
+  become: true
+  ansible.builtin.yum_repository:
+    name: anthropic
+    description: "Claude Code ({{ anthropic_channel }})"
+    file: anthropic
+    baseurl: "https://downloads.claude.ai/claude-code/rpm/{{ anthropic_channel }}"
+    gpgkey: "{{ anthropic_key_url }}"
+    gpgcheck: true
+    enabled: true
+    setype: system_conf_t

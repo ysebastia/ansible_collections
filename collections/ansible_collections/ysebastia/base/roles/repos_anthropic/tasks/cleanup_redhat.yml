@@ -1,0 +1,12 @@
+---
+- name: Remove Anthropic repository
+  become: true
+  ansible.builtin.yum_repository:
+    name: anthropic
+    file: anthropic
+    state: absent
+- name: Remove Anthropic signing key
+  become: true
+  ansible.builtin.rpm_key:
+    key: "{{ anthropic_key_fingerprint }}"
+    state: absent

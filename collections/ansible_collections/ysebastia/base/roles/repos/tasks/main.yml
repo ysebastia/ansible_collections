@@ -20,3 +20,6 @@
 - name: Configure HASHICORP repository
   ansible.builtin.include_role:
     name: ysebastia.base.repos_hashicorp
+- name: Configure ANTHROPIC repository
+  ansible.builtin.include_role:
+    name: ysebastia.base.repos_anthropic
