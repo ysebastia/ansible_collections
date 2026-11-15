@@ -1,0 +1,6 @@
+---
+- name: Configure SSH client if enable_base_ssh_client is defined
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when:
+    - enable_base_ssh_client | bool
+    - ansible_action in ['converge']

@@ -1,0 +1,19 @@
+---
+ansible_action: converge
+enable_base_ssh_client: true
+# Per-user ~/.ssh/config host blocks; nothing is done when empty.
+#   ssh_client_users:
+#     - name: jdoe
+#       hosts:
+#         - host: sandbox                 # Host alias
+#           hostname: sandbox.example.org
+#           user: jdoe-agent
+#           identity_file: ~/.ssh/id_ed25519_jdoe-agent
+#           options:                      # extra or overriding directives
+#             ServerAliveInterval: 60
+#           state: present                # absent removes the block
+ssh_client_users: []
+# Directives added to every host block, overridable per host with options.
+ssh_client_default_options:
+  IdentitiesOnly: "yes"
+  ForwardAgent: "no"
