@@ -1,0 +1,33 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    git_repositories_users:
+      - name: molecule-git
+        git_config:
+          user.name: Molecule Test
+          user.email: molecule@example.org
+        credentials:
+          - url: https://git.example.org
+            username: molecule
+            password: "not/a real:token"
+        repositories:
+          - repo: https://github.com/ysebastia/pfConf2Matrix.git
+            dest: git/pfConf2Matrix
+            version: main
+          - repo: https://github.com/ysebastia/pfConf2Matrix.git
+            dest: git/override
+            git_config:
+              user.email: override@example.org
+  tasks:
+    - name: Install acl (become_user without pipelining in molecule)
+      become: true
+      ansible.builtin.package:
+        name: acl
+    - name: Create test user
+      become: true
+      ansible.builtin.user:
+        name: molecule-git
+    - name: "Include git_repositories"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.git_repositories"

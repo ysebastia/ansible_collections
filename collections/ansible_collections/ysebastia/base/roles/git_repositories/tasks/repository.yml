@@ -1,0 +1,18 @@
+---
+- name: Configure repository {{ git_repositories_repository.dest }}
+  become: true
+  become_user: "{{ git_repositories_user.name }}"
+  community.general.git_config:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+    scope: local
+    repo: "{{ git_repositories_home }}/{{ git_repositories_repository.dest }}"
+  environment:
+    HOME: "{{ git_repositories_home }}"
+  loop: >-
+    {{ ({'credential.helper': 'store'} if git_repositories_has_credentials | bool else {})
+       | combine(git_repositories_user.git_config | default({}),
+                 git_repositories_repository.git_config | default({}))
+       | dict2items }}
+  loop_control:
+    label: "{{ item.key }}"

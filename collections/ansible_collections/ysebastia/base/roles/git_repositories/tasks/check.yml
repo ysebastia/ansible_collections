@@ -1,0 +1,36 @@
+---
+- name: Resolve user home
+  ansible.builtin.include_tasks: home.yml
+
+- name: Inspect repositories
+  become: true
+  become_user: "{{ git_repositories_user.name }}"
+  ansible.builtin.shell: |
+    set -euo pipefail
+    cd "{{ git_repositories_home }}/{{ item.dest }}" || { echo "MISSING"; exit 0; }
+    git status --porcelain | sed 's/^/uncommitted: /'
+    git log --branches --not --remotes --format='unpushed: %h %s'
+    git stash list | sed 's/^/stash: /'
+  args:
+    executable: /bin/bash
+  environment:
+    HOME: "{{ git_repositories_home }}"
+  loop: "{{ git_repositories_user.repositories | default([]) }}"
+  loop_control:
+    label: "{{ item.dest }}"
+  register: git_repositories_state
+  changed_when: false
+
+- name: Fail on work that a reinstallation would lose
+  ansible.builtin.assert:
+    that:
+      - git_repositories_dirty | length == 0
+    fail_msg: "Work would be lost:\n{{ git_repositories_dirty | to_nice_yaml }}"
+    success_msg: "{{ git_repositories_user.name }}: nothing to lose"
+  vars:
+    git_repositories_dirty: >-
+      {{ git_repositories_state.results
+         | selectattr('stdout', 'search', '^(uncommitted|unpushed|stash): ', multiline=true)
+         | map(attribute='item.dest') | zip(git_repositories_state.results
+         | selectattr('stdout', 'search', '^(uncommitted|unpushed|stash): ', multiline=true)
+         | map(attribute='stdout_lines')) | community.general.dict }}
