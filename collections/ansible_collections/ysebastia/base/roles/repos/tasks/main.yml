@@ -23,3 +23,6 @@
 - name: Configure ANTHROPIC repository
   ansible.builtin.include_role:
     name: ysebastia.base.repos_anthropic
+- name: Configure MICROSOFT repository
+  ansible.builtin.include_role:
+    name: ysebastia.base.repos_microsoft

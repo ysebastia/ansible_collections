@@ -1,0 +1,11 @@
+---
+- name: Remove Visual Studio Code repository
+  become: true
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/vscode.sources
+    state: absent
+- name: Remove Microsoft signing key
+  become: true
+  ansible.builtin.file:
+    path: /etc/apt/keyrings/microsoft.asc
+    state: absent

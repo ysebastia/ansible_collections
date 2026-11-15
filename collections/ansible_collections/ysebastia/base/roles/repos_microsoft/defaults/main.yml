@@ -1,0 +1,6 @@
+---
+ansible_action: converge
+enable_repositories_microsoft: false
+# Microsoft (Release signing) <gpgsecurity@microsoft.com>, signs packages.microsoft.com
+microsoft_key_url: https://packages.microsoft.com/keys/microsoft.asc
+microsoft_key_fingerprint: BC528686B50D79E339D3721CEB3E94ADBE1229CF
