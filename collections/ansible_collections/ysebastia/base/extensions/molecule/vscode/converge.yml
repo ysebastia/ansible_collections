@@ -1,0 +1,47 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include microsoft"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.repos_microsoft"
+      vars:
+        enable_repositories_microsoft: true
+        microsoft_https_proxy: "{{ ansible_facts.env.HTTP_PROXY }}"
+    - name: Install acl (become_user without pipelining in molecule)
+      become: true
+      ansible.builtin.package:
+        name: acl
+    - name: Create test user
+      become: true
+      ansible.builtin.user:
+        name: molecule-user
+    - name: Create settings directory
+      become: true
+      ansible.builtin.file:
+        path: /home/molecule-user/.config/Code/User
+        state: directory
+        owner: molecule-user
+        mode: "0700"
+    - name: Existing user settings
+      become: true
+      ansible.builtin.copy:
+        dest: /home/molecule-user/.config/Code/User/settings.json
+        content: '{"editor.fontSize": 14, "telemetry.telemetryLevel": "all"}'
+        owner: molecule-user
+        mode: "0600"
+        force: false
+    # Extensions are downloaded from the marketplace: none in the test.
+    - name: "Include vscode"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.vscode"
+      vars:
+        enable_base_vscode: true
+        vscode_extensions: []
+        vscode_users:
+          - name: molecule-user
+            launchers:
+              - id: sandbox-remote
+                name: Sandbox (remote)
+                host: sandbox
+                workspace: /home/molecule-agent/sandbox.code-workspace
