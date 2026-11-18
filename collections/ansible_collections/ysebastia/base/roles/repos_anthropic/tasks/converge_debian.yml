@@ -11,6 +11,9 @@
     suffix: .asc
   register: anthropic_key_tmp
   changed_when: false
+  # The key is fetched and checked in a temporary file, also in check mode,
+  # so that --check verifies the fingerprint and diffs the installed key.
+  check_mode: false
 - name: Download Anthropic signing key
   ansible.builtin.get_url:
     url: "{{ anthropic_key_url }}"
@@ -20,6 +23,7 @@
   environment:
     https_proxy: "{{ anthropic_https_proxy | default('') }}"
   changed_when: false
+  check_mode: false
 - name: Read signing key fingerprint
   ansible.builtin.command:
     argv:
@@ -29,6 +33,7 @@
       - "{{ anthropic_key_tmp.path }}"
   register: anthropic_key_colons
   changed_when: false
+  check_mode: false
 # The key is only installed once its fingerprint is verified.
 - name: Verify signing key fingerprint
   ansible.builtin.assert:
@@ -59,6 +64,7 @@
     path: "{{ anthropic_key_tmp.path }}"
     state: absent
   changed_when: false
+  check_mode: false
 - name: Configure Anthropic repository
   become: true
   ansible.builtin.deb822_repository:
