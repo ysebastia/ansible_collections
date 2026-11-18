@@ -44,3 +44,9 @@
 - name: Configure SMARTMOONTOOLS
   ansible.builtin.include_role:
     name: ysebastia.base.smartmontools
+- name: Configure MDADM
+  ansible.builtin.include_role:
+    name: ysebastia.base.mdadm
+- name: Configure UNATTENDED-UPGRADES
+  ansible.builtin.include_role:
+    name: ysebastia.base.unattended_upgrades
