@@ -1,4 +1,14 @@
 ---
+- name: Gather facts if ansible_facts.os_family is undefined
+  ansible.builtin.setup:
+    gather_subset:
+      - "!all"
+      - distribution
+      - distribution_major_version
+      - os_family
+  when:
+    - ansible_facts.os_family is undefined or ansible_facts.distribution_major_version is undefined
+
 - name: Install packages by operating system
   ansible.builtin.include_tasks: "install_{{ ansible_facts.os_family | lower }}.yml"
 
@@ -6,17 +16,33 @@
   when: enable_base_firewalld | bool
   ansible.builtin.include_tasks: firewalld.yml
 
+- name: Configure modular daemons
+  ansible.builtin.include_tasks: daemons_modular.yml
+  when: kvm_libvirt_modular_daemons | bool
+
 - name: Ensure libvirtd is enabled at boot
   become: true
   ansible.builtin.service:
     name: libvirtd
     enabled: true
+  when: not (kvm_libvirt_modular_daemons | bool)
 
 - name: Ensure libvirt-guests is enabled at boot
   become: true
   ansible.builtin.service:
     name: libvirt-guests
     enabled: true
+
+# Never restart libvirt-guests here: stopping it shuts down every guest.
+# The file is read by libvirt-guests.sh when it runs, so no restart is needed.
+- name: Configure libvirt-guests
+  become: true
+  ansible.builtin.template:
+    src: libvirt-guests.j2
+    dest: "{{ '/etc/default/libvirt-guests' if ansible_facts.os_family == 'Debian' else '/etc/sysconfig/libvirt-guests' }}"
+    owner: root
+    group: root
+    mode: "0644"
 
 - name: Define LVM pool if libvirt_guest_lvm is defined
   become: true

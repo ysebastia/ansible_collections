@@ -1,0 +1,61 @@
+---
+# Sockets first: a listening libvirtd.socket would start libvirtd again.
+# Stopping libvirtd does not stop the running guests.
+- name: Disable monolithic libvirtd
+  become: true
+  ansible.builtin.systemd_service:
+    name: "{{ item }}"
+    enabled: false
+    state: stopped
+  loop:
+    - libvirtd.socket
+    - libvirtd-ro.socket
+    - libvirtd-admin.socket
+    - libvirtd.service
+
+- name: Ensure modular daemon sockets are enabled and listening
+  become: true
+  ansible.builtin.systemd_service:
+    name: "{{ item }}.socket"
+    enabled: true
+    state: started
+  loop: "{{ kvm_libvirt_modular_sockets }}"
+
+- name: Ensure virtqemud is enabled at boot (guest autostart)
+  become: true
+  ansible.builtin.systemd_service:
+    name: virtqemud.service
+    enabled: true
+
+- name: Create virtqemud drop-in directory
+  become: true
+  ansible.builtin.file:
+    path: /etc/systemd/system/virtqemud.service.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  when: kvm_libvirt_wait_network_online | bool
+
+- name: Start virtqemud after network-online.target
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/virtqemud.service.d/10-network-online.conf
+    content: |
+      # Ansible managed
+      [Unit]
+      Wants=network-online.target
+      After=network-online.target
+    owner: root
+    group: root
+    mode: "0644"
+  when: kvm_libvirt_wait_network_online | bool
+  notify: Reload systemd
+
+- name: Remove virtqemud network-online drop-in
+  become: true
+  ansible.builtin.file:
+    path: /etc/systemd/system/virtqemud.service.d/10-network-online.conf
+    state: absent
+  when: not (kvm_libvirt_wait_network_online | bool)
+  notify: Reload systemd
