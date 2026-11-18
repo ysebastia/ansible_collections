@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include mdadm"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.mdadm"
+      vars:
+        enable_base_mdadm: true

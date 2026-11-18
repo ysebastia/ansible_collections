@@ -1,0 +1,14 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Read mdadm.conf
+      become: true
+      ansible.builtin.slurp:
+        src: "{{ '/etc/mdadm/mdadm.conf' if ansible_facts.os_family == 'Debian' else '/etc/mdadm.conf' }}"
+      register: mdadm_conf
+    - name: Check MAILADDR and absence of devices=
+      ansible.builtin.assert:
+        that:
+          - "'MAILADDR root' in (mdadm_conf.content | b64decode)"
+          - "'devices=' not in (mdadm_conf.content | b64decode)"

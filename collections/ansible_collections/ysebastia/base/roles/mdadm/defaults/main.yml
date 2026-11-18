@@ -1,0 +1,7 @@
+---
+ansible_action: converge
+enable_base_mdadm: false
+# Recipient of mdmonitor alerts (MAILADDR); root is aliased to the admin mailbox.
+mdadm_mailaddr: root
+# AUTO line of mdadm.conf (value written by Anaconda on RHEL).
+mdadm_auto: "+imsm +1.x -all"
