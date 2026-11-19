@@ -1,0 +1,8 @@
+---
+ansible_action: converge
+enable_repositories_anthropic: false
+# Release channel: stable (about one week old, skips major regressions) or latest
+anthropic_channel: stable
+# Claude Code release signing key (security@anthropic.com)
+anthropic_key_url: https://downloads.claude.ai/keys/claude-code.asc
+anthropic_key_fingerprint: 31DDDE24DDFAB679F42D7BD2BAA929FF1A7ECACE

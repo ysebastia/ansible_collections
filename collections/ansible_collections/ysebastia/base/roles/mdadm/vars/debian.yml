@@ -1,0 +1,6 @@
+---
+mdadm_conf_path: /etc/mdadm/mdadm.conf
+mdadm_units:
+  - mdmonitor.service
+  - mdcheck_start.timer
+  - mdcheck_continue.timer

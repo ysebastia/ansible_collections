@@ -8,6 +8,8 @@ Configure filesystem for libvirt
 - [Default Variables](#default-variables)
   - [ansible_action](#ansible_action)
   - [enable_kvm_filesystem](#enable_kvm_filesystem)
+  - [filesystem_backup_device](#filesystem_backup_device)
+  - [filesystem_backup_device_fstype](#filesystem_backup_device_fstype)
   - [filesystem_host_device](#filesystem_host_device)
   - [filesystem_qemu_backup_size](#filesystem_qemu_backup_size)
   - [filesystem_qemu_images_size](#filesystem_qemu_images_size)
@@ -38,6 +40,22 @@ ansible_action: converge
 
 ```YAML
 enable_kvm_filesystem: true
+```
+
+### filesystem_backup_device
+
+#### Default value
+
+```YAML
+filesystem_backup_device: ''
+```
+
+### filesystem_backup_device_fstype
+
+#### Default value
+
+```YAML
+filesystem_backup_device_fstype: xfs
 ```
 
 ### filesystem_host_device

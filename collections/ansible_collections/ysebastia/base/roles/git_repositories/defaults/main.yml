@@ -1,0 +1,24 @@
+---
+# converge: configure and clone; check: fail on uncommitted, unpushed or stashed work
+ansible_action: converge
+enable_base_git_repositories: true
+# Per-user git setup and repositories; nothing is done when empty.
+#   git_repositories_users:
+#     - name: jdoe
+#       git_config:                       # default git config --local of every repository
+#         user.name: John Doe
+#         user.email: jdoe@example.org
+#       credentials:                      # ~/.git-credentials, exclusive; the store
+#                                         # helper is set per repository, not globally
+#         - url: https://github.com
+#           username: jdoe
+#           password: "{{ vault_github_token }}"
+#       repositories:
+#         - repo: https://github.com/jdoe/project.git
+#           dest: git/project             # relative to the user's home
+#           version: main                 # branch checked out at clone time
+#           git_config:                   # overrides the user's git_config, per key
+#             user.email: jdoe@users.noreply.github.com
+# Nothing is written to ~/.gitconfig: the configuration is local to each clone and
+# applied on every run. An existing clone is never updated (no pull, no reset).
+git_repositories_users: []

@@ -1,0 +1,25 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Check effective configuration on Debian
+      when: ansible_facts.os_family == "Debian"
+      block:
+        - name: Dump effective APT configuration
+          ansible.builtin.command: apt-config dump Unattended-Upgrade
+          register: uu_config
+          changed_when: false
+        - name: Check that only security origins are allowed
+          ansible.builtin.assert:
+            that:
+              - uu_config.stdout is search('label=Debian-Security')
+              - uu_config.stdout is not search('label=Debian";')
+              - uu_config.stdout is search('Unattended-Upgrade::Mail "root"')
+        - name: Dump periodic configuration
+          ansible.builtin.command: apt-config dump APT::Periodic
+          register: periodic_config
+          changed_when: false
+        - name: Check periodic runs
+          ansible.builtin.assert:
+            that:
+              - periodic_config.stdout is search('APT::Periodic::Unattended-Upgrade "1"')

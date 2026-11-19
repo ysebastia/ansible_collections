@@ -15,11 +15,15 @@
     group: root
     mode: "0644"
   when: not commands_log.stat.exists
-- name: Append to commands.log
+# logrotate renames commands.log every week: an append-only (+a) file cannot
+# be renamed, so the attribute is removed when present. The file module
+# reports "-a" as a change on every run, hence the condition on stat.
+- name: Remove append-only attribute from commands.log
   become: true
   ansible.builtin.file:
     path: /var/log/commands.log
-    attr: -a
+    attributes: -a
+  when: "'append' in (commands_log.stat.attributes | default([]))"
 - name: Commands configuration
   become: true
   ansible.builtin.copy:

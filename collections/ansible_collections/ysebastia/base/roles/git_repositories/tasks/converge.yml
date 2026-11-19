@@ -1,0 +1,62 @@
+---
+- name: Resolve user home
+  ansible.builtin.include_tasks: home.yml
+
+- name: Write git credentials
+  become: true
+  ansible.builtin.copy:
+    dest: "{{ git_repositories_home }}/.git-credentials"
+    content: |
+      {% for item in git_repositories_user.credentials %}
+      {% set url = item.url | urlsplit %}
+      {% set username = item.username | urlencode | replace('/', '%2F') %}
+      {% set password = item.password | urlencode | replace('/', '%2F') %}
+      {{ url.scheme }}://{{ username }}:{{ password }}@{{ url.netloc }}{{ url.path }}
+      {% endfor %}
+    owner: "{{ git_repositories_user.name }}"
+    group: "{{ git_repositories_gid }}"
+    mode: "0600"
+  when: git_repositories_user.credentials | default([]) | length > 0
+  no_log: true
+
+- name: Create parent directories
+  become: true
+  ansible.builtin.file:
+    path: "{{ git_repositories_home }}/{{ item.dest | dirname }}"
+    state: directory
+    owner: "{{ git_repositories_user.name }}"
+    group: "{{ git_repositories_gid }}"
+    mode: "0750"
+  loop: "{{ git_repositories_user.repositories | default([]) }}"
+  loop_control:
+    label: "{{ item.dest }}"
+  when: item.dest | dirname | length > 0
+
+# The credential helper is passed through the environment for the clone only,
+# then stored in each repository's local configuration (no ~/.gitconfig).
+- name: Clone repositories
+  become: true
+  become_user: "{{ git_repositories_user.name }}"
+  ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    dest: "{{ git_repositories_home }}/{{ item.dest }}"
+    version: "{{ item.version | default(omit) }}"
+    clone: true
+    update: false
+  environment:
+    HOME: "{{ git_repositories_home }}"
+    GIT_CONFIG_COUNT: "{{ '1' if git_repositories_has_credentials | bool else '0' }}"
+    GIT_CONFIG_KEY_0: credential.helper
+    GIT_CONFIG_VALUE_0: store
+  loop: "{{ git_repositories_user.repositories | default([]) }}"
+  loop_control:
+    label: "{{ item.dest }}"
+
+# Applied on every run (repository .git/config only, working tree untouched),
+# so an identity change in the inventory reaches existing clones.
+- name: Configure repositories
+  ansible.builtin.include_tasks: repository.yml
+  loop: "{{ git_repositories_user.repositories | default([]) }}"
+  loop_control:
+    loop_var: git_repositories_repository
+    label: "{{ git_repositories_repository.dest }}"

@@ -1,0 +1,72 @@
+---
+- name: Manage accounts
+  become: true
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    comment: "{{ item.comment | default(omit) }}"
+    shell: "{{ item.shell | default('/bin/bash') }}"
+    groups: "{{ item.groups | default(omit) }}"
+    append: "{{ true if item.groups is defined else omit }}"
+    create_home: true
+    state: "{{ item.state | default('present') }}"
+  loop: "{{ users_accounts }}"
+  loop_control:
+    label: "{{ item.name }}"
+  register: users_result
+
+- name: Set home directory mode
+  become: true
+  ansible.builtin.file:
+    path: "{{ item.home }}"
+    state: directory
+    mode: "{{ item.item.home_mode | default('0700') }}"
+  loop: "{{ users_result.results | selectattr('home', 'defined') }}"
+  loop_control:
+    label: "{{ item.item.name }}"
+
+- name: Manage authorized keys
+  become: true
+  ansible.posix.authorized_key:
+    user: "{{ item.name }}"
+    key: "{{ item.authorized_keys | join('\n') }}"
+    exclusive: true
+    state: present
+  loop: "{{ users_accounts }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.state | default('present') == 'present'
+    - item.authorized_keys | default([]) | length > 0
+
+- name: Enable linger
+  become: true
+  ansible.builtin.command: "loginctl enable-linger {{ item.name }}"
+  args:
+    creates: "/var/lib/systemd/linger/{{ item.name }}"
+  loop: "{{ users_accounts }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.state | default('present') == 'present'
+    - item.linger is defined
+    - item.linger | bool
+
+- name: Disable linger
+  become: true
+  ansible.builtin.command: "loginctl disable-linger {{ item.name }}"
+  args:
+    removes: "/var/lib/systemd/linger/{{ item.name }}"
+  loop: "{{ users_accounts }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.linger is defined
+    - not item.linger | bool
+
+- name: Restrict su to a group
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/pam.d/su
+    regexp: '^#?\s*auth\s+required\s+pam_wheel\.so'
+    line: "auth       required   pam_wheel.so group={{ users_su_group }}"
+  when: users_su_group | length > 0

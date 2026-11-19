@@ -1,0 +1,12 @@
+---
+- name: Remove Visual Studio Code repository
+  become: true
+  ansible.builtin.yum_repository:
+    name: code
+    file: vscode
+    state: absent
+- name: Remove Microsoft signing key
+  become: true
+  ansible.builtin.rpm_key:
+    key: "{{ microsoft_key_fingerprint }}"
+    state: absent

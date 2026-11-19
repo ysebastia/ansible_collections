@@ -1,0 +1,7 @@
+---
+- name: Configure SSH client per user
+  ansible.builtin.include_tasks: user.yml
+  loop: "{{ ssh_client_users }}"
+  loop_control:
+    loop_var: ssh_client_user
+    label: "{{ ssh_client_user.name }}"

@@ -1,0 +1,8 @@
+---
+- name: Allow node_exporter traffic on port 9100/tcp
+  become: true
+  ansible.posix.firewalld:
+    port: "9100/tcp"
+    permanent: true
+    immediate: true
+    state: enabled

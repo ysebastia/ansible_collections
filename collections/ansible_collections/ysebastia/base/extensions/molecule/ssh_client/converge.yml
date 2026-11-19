@@ -1,0 +1,38 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Create test user
+      become: true
+      ansible.builtin.user:
+        name: molecule-user
+    - name: Create SSH directory
+      become: true
+      ansible.builtin.file:
+        path: /home/molecule-user/.ssh
+        state: directory
+        owner: molecule-user
+        mode: "0700"
+    - name: Existing config with a catch-all block
+      become: true
+      ansible.builtin.copy:
+        dest: /home/molecule-user/.ssh/config
+        content: "Host *\n    ForwardAgent yes\n"
+        owner: molecule-user
+        mode: "0600"
+        force: false
+    - name: "Include ssh_client"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.ssh_client"
+      vars:
+        ssh_client_users:
+          - name: molecule-user
+            hosts:
+              - host: sandbox
+                hostname: sandbox.example.org
+                user: molecule-agent
+                identity_file: ~/.ssh/id_ed25519_molecule-agent
+                options:
+                  ServerAliveInterval: 60
+              - host: minimal
+                hostname: minimal.example.org

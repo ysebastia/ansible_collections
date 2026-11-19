@@ -6,10 +6,10 @@ export DEFAULT_LOCAL_TMP=/tmp/jenkins/
 export PIPX_DEFAULT_PYTHON=/usr/bin/python3.12
 export PATH=$HOME/.local/bin:$PATH
 env
-pipx install ansible-core==2.20.4
-pipx install ansible-lint==26.3.0
-pipx install molecule==25.12.0 
-pipx inject molecule molecule-plugins[podman]==25.8.12
+pipx install ansible-core==2.21.2
+pipx install ansible-lint==26.6.0
+pipx install molecule==26.4.0 
+pipx inject molecule molecule-plugins[podman]==26.7.8
 mkdir -p "~/.ansible/collections"
 find . -name requirements.yml -exec ansible-galaxy collection install --force -r {} --ignore-certs --collections-path "~/.ansible/collections" \;
 ansible-galaxy collection list

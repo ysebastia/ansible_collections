@@ -20,12 +20,12 @@
 - name: Set mounted_path
   ansible.builtin.set_fact:
     mounted_path: "{{ (ansible_facts.mounts | map(attribute='mount')) }}"
-- name: Format filesystems (use force_format_filesystem variable if needed)
+- name: Format filesystems (use force_format_filesystem variable, overridable per entry with item.force_format)
   become: true
   community.general.filesystem:
     fstype: "{{ item.fstype }}"
     dev: "{{ item.dev }}"
-    force: "{{ force_format_filesystem | default(false) }}"
+    force: "{{ item.force_format | default(force_format_filesystem | default(false)) }}"
   when:
     - item.path not in mounted_path
   loop: "{{ filesystem }}"

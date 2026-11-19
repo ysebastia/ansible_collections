@@ -1,0 +1,20 @@
+---
+- name: Manage git repositories if enable_base_git_repositories is defined
+  when:
+    - enable_base_git_repositories | bool
+    - ansible_action in ['converge', 'check']
+    - git_repositories_users | length > 0
+  block:
+    - name: Ensure git is installed
+      become: true
+      ansible.builtin.package:
+        name: git
+        state: present
+      when: ansible_action == 'converge'
+
+    - name: Include per-user tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+      loop: "{{ git_repositories_users }}"
+      loop_control:
+        loop_var: git_repositories_user
+        label: "{{ git_repositories_user.name }}"

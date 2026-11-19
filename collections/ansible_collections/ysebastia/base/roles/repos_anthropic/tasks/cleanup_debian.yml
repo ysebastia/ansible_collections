@@ -1,0 +1,11 @@
+---
+- name: Remove Anthropic repository
+  become: true
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/anthropic.sources
+    state: absent
+- name: Remove Anthropic signing key
+  become: true
+  ansible.builtin.file:
+    path: /etc/apt/keyrings/anthropic.asc
+    state: absent

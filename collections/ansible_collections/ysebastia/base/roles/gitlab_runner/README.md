@@ -56,7 +56,7 @@ gitlab_supported_os: [debian]
 
 ## Dependencies
 
-None.
+- ysebastia.base.repos_docker_ce
 
 ## License
 

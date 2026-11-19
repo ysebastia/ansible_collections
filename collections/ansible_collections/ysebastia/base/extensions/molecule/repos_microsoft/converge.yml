@@ -1,0 +1,15 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include microsoft"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.repos_microsoft"
+      vars:
+        enable_repositories_microsoft: true
+        microsoft_https_proxy: "{{ ansible_facts.env.HTTP_PROXY }}"
+    - name: "Install Visual Studio Code from the repository"
+      become: true
+      ansible.builtin.package:
+        name: code
+        update_cache: true
