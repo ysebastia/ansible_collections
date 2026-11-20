@@ -1,0 +1,9 @@
+---
+# fstrim.timer (util-linux) trims every mounted filesystem weekly; it is a
+# no-op on disks without discard support (HDD, non-discard dm-crypt).
+- name: Ensure fstrim.timer is enabled
+  become: true
+  ansible.builtin.systemd_service:
+    name: fstrim.timer
+    state: started
+    enabled: true

@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include fstrim"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.fstrim"
+      vars:
+        enable_base_fstrim: true
