@@ -1,5 +1,5 @@
 ---
-- name: Configure SMARTMOONTOOLS if enable_base_smartmontools is defined
+- name: Configure SMARTMONTOOLS if enable_base_smartmontools is defined
   ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
   when:
     - enable_base_smartmontools | bool

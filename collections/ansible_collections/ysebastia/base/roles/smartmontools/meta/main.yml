@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Yannick Sebastia
-  description: Configure Smartmontools
+  description: Configure smartd disk monitoring and self-tests
   license: GPL-3.0-only
   min_ansible_version: "2.1"
   namespace: ysebastia

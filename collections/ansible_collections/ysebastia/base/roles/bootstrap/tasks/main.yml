@@ -41,9 +41,12 @@
 - name: Configure COMMANDS
   ansible.builtin.include_role:
     name: ysebastia.base.commands
-- name: Configure SMARTMOONTOOLS
+- name: Configure SMARTMONTOOLS
   ansible.builtin.include_role:
     name: ysebastia.base.smartmontools
+- name: Configure FSTRIM
+  ansible.builtin.include_role:
+    name: ysebastia.base.fstrim
 - name: Configure MDADM
   ansible.builtin.include_role:
     name: ysebastia.base.mdadm

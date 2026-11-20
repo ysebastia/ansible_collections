@@ -1,3 +1,13 @@
 ---
 ansible_action: converge
 enable_base_smartmontools: false
+# DEVICESCAN options: all SMART checks (-a), automatic offline tests (-o on),
+# attribute autosave (-S on), skip polling of spun-down disks (-n standby,
+# scheduled self-tests still run), temperature change/warning/critical (-W).
+smartmontools_options: "-a -o on -S on -n standby,10,q -W 4,45,55"
+# Self-test schedule (-s): short test daily at 02:00, long test Saturday at 03:00.
+smartmontools_schedule: "(S/../.././02|L/../../6/03)"
+# Recipient of smartd warnings; root is aliased to the admin mailbox.
+smartmontools_mailto: root
+# Send a test mail per disk at each smartd start, to validate the alert chain.
+smartmontools_mail_test: false

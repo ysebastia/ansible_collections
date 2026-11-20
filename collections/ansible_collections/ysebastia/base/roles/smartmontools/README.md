@@ -1,6 +1,6 @@
 # smartmontools
 
-Configure Smartmontools
+Configure smartd disk monitoring and self-tests
 
 ## Table of contents
 
@@ -8,6 +8,10 @@ Configure Smartmontools
 - [Default Variables](#default-variables)
   - [ansible_action](#ansible_action)
   - [enable_base_smartmontools](#enable_base_smartmontools)
+  - [smartmontools_mail_test](#smartmontools_mail_test)
+  - [smartmontools_mailto](#smartmontools_mailto)
+  - [smartmontools_options](#smartmontools_options)
+  - [smartmontools_schedule](#smartmontools_schedule)
 - [Dependencies](#dependencies)
 - [License](#license)
 - [Author](#author)
@@ -34,6 +38,38 @@ ansible_action: converge
 
 ```YAML
 enable_base_smartmontools: false
+```
+
+### smartmontools_mail_test
+
+#### Default value
+
+```YAML
+smartmontools_mail_test: false
+```
+
+### smartmontools_mailto
+
+#### Default value
+
+```YAML
+smartmontools_mailto: root
+```
+
+### smartmontools_options
+
+#### Default value
+
+```YAML
+smartmontools_options: -a -o on -S on -n standby,10,q -W 4,45,55
+```
+
+### smartmontools_schedule
+
+#### Default value
+
+```YAML
+smartmontools_schedule: (S/../.././02|L/../../6/03)
 ```
 
 ## Dependencies
