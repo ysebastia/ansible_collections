@@ -61,7 +61,7 @@ smartmontools_mailto: root
 #### Default value
 
 ```YAML
-smartmontools_options: -a -o on -S on -n standby,10,q -W 4,45,55
+smartmontools_options: -a -o on -S on -n standby,10,q -W 4,50,60
 ```
 
 ### smartmontools_schedule
