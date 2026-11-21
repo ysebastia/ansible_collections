@@ -14,9 +14,16 @@
       - lvm
     state: present
   with_items: "{{ filesystem_host_device }}"
+  register: kvm_filesystem_parted
   when:
     - filesystem_host_device is defined
     - item.device | length > 0
+# udev creates the /dev/disk/by-id/...-part1 links asynchronously after parted.
+- name: Wait for udev to create the new partition links # noqa no-handler
+  become: true
+  ansible.builtin.command: udevadm settle
+  changed_when: false
+  when: kvm_filesystem_parted is changed
 - name: Create LVM group if filesystem_host_device is defined
   become: true
   community.general.lvg:
@@ -26,6 +33,8 @@
   when:
     - filesystem_host_device is defined
     - item.vg | length > 0
+    # In check mode a partition only planned by parted does not exist yet.
+    - not (ansible_check_mode and item.device in (kvm_filesystem_parted.results | default([]) | selectattr('changed') | map(attribute='item.device')))
 - name: Create LV for libvirt images/qemu-save if filesystem_host_lvm is defined
   become: true
   community.general.lvol:
