@@ -8,6 +8,7 @@ Configure BackupPC agent
 - [Default Variables](#default-variables)
   - [ansible_action](#ansible_action)
   - [backuppc_directory_backup](#backuppc_directory_backup)
+  - [backuppc_exclude](#backuppc_exclude)
   - [backuppc_linux](#backuppc_linux)
   - [backuppc_owner](#backuppc_owner)
   - [backuppc_serverhost](#backuppc_serverhost)
@@ -40,6 +41,14 @@ ansible_action: converge
 
 ```YAML
 backuppc_directory_backup: /var/lib/backuppc
+```
+
+### backuppc_exclude
+
+#### Default value
+
+```YAML
+backuppc_exclude: {}
 ```
 
 ### backuppc_linux

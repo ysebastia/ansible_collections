@@ -5,6 +5,17 @@ $Conf{RsyncShareName} = [
 {% endif %}
 
 ];
+{% if backuppc_exclude | length > 0 %}
+$Conf{BackupFilesExclude} = {
+{% for share, paths in backuppc_exclude.items() %}
+  '{{ share }}' => [
+{% for path in paths %}
+    '{{ path }}'{{ "," if not loop.last else "" }}
+{% endfor %}
+  ]{{ "," if not loop.last else "" }}
+{% endfor %}
+};
+{% endif %}
 $Conf{ClientNameAlias} = [
   '{{ inventory_hostname_short }}'
 ];
