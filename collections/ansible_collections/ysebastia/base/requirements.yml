@@ -10,3 +10,6 @@ collections:
     version: 13.2.0
   - name: community.libvirt
     version: 2.3.0
+  # Driver podman de molecule-plugins (tests seulement, aucun role ne l'utilise)
+  - name: containers.podman
+    version: 1.21.2
