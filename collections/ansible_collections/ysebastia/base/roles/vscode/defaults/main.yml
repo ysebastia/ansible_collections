@@ -1,0 +1,34 @@
+---
+ansible_action: converge
+enable_base_vscode: false
+vscode_package: code
+# Extensions shared by the local editor and remote hosts.
+vscode_common_extensions:
+  - anthropic.claude-code
+  - redhat.ansible
+  - redhat.vscode-yaml
+  - streetsidesoftware.code-spell-checker
+  - streetsidesoftware.code-spell-checker-french
+# Installed locally for every user listed in vscode_users.
+vscode_extensions: "{{ ['ms-vscode-remote.remote-ssh'] + vscode_common_extensions }}"
+# Installed by Remote - SSH on each remote host at connection
+# (written to remote.SSH.defaultExtensions).
+vscode_remote_extensions: "{{ vscode_common_extensions }}"
+# Merged into each user's settings.json (other keys are kept).
+vscode_settings:
+  telemetry.telemetryLevel: "off"
+  remote.SSH.enableAgentForwarding: false
+  cSpell.language: "en,fr"
+  # Hide and disable built-in GitHub Copilot features (chat, inline suggestions)
+  chat.disableAIFeatures: true
+# Users to configure; nothing is done for users not listed.
+# Settings and extensions require the user account to exist.
+# SSH host entries are managed by ysebastia.base.ssh_client.
+#   vscode_users:
+#     - name: jdoe
+#       launchers:                     # application menu entries (Remote SSH)
+#         - id: sandbox-remote         # desktop file name
+#           name: Sandbox (remote)
+#           host: sandbox              # Host alias from ~/.ssh/config
+#           workspace: /home/jdoe-agent/sandbox.code-workspace
+vscode_users: []

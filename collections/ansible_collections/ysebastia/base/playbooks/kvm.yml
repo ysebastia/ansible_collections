@@ -18,6 +18,9 @@
     - name: Images
       ansible.builtin.include_role:
         name: ysebastia.base.kvm_images
+    - name: Scripts
+      ansible.builtin.include_role:
+        name: ysebastia.base.kvm_scripts
     - name: Manager
       ansible.builtin.include_role:
         name: ysebastia.base.kvm_manager

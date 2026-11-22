@@ -1,0 +1,48 @@
+---
+- name: Gather facts if ansible_facts.os_family is undefined
+  ansible.builtin.setup:
+    gather_subset:
+      - "!all"
+      - os_family
+  when:
+    - ansible_facts.os_family is undefined
+
+- name: Load distro-specific variables
+  ansible.builtin.include_vars: "{{ ansible_facts.os_family | lower }}.yml"
+
+- name: Ensure MDADM is installed
+  become: true
+  ansible.builtin.package:
+    name: mdadm
+
+# ARRAY lines identify arrays by UUID only: no devices= (disk names change
+# between boots) and no device list (--verbose is not used).
+- name: Scan RAID arrays
+  become: true
+  ansible.builtin.command: mdadm --detail --scan
+  register: mdadm_scan
+  changed_when: false
+  check_mode: false
+
+- name: Configure mdadm.conf
+  become: true
+  ansible.builtin.template:
+    src: mdadm.conf.j2
+    dest: "{{ mdadm_conf_path }}"
+    owner: root
+    group: root
+    mode: "0644"
+    backup: true
+  notify:
+    - Restart mdmonitor
+    - Update initramfs
+
+# mdmonitor exits when no array exists: only manage it when arrays are found.
+- name: Ensure RAID monitoring and checks are enabled
+  become: true
+  ansible.builtin.systemd_service:
+    name: "{{ item }}"
+    enabled: true
+    state: started
+  loop: "{{ mdadm_units }}"
+  when: mdadm_scan.stdout_lines | length > 0

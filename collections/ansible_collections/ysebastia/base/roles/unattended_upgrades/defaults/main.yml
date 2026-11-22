@@ -1,0 +1,14 @@
+---
+ansible_action: converge
+enable_base_unattended_upgrades: false
+# Origins upgraded automatically; default: Debian security updates only.
+# ${distro_codename} is expanded by unattended-upgrades, not by Ansible.
+unattended_upgrades_origins:
+  - "origin=Debian,codename=${distro_codename}-security,label=Debian-Security"
+  - "origin=Debian,codename=${distro_codename},label=Debian-Security"
+# Report recipient and policy (always, only-on-error, on-change).
+unattended_upgrades_mail: root
+unattended_upgrades_mail_report: on-change
+unattended_upgrades_remove_unused_dependencies: false
+unattended_upgrades_automatic_reboot: false
+unattended_upgrades_automatic_reboot_time: "04:00"

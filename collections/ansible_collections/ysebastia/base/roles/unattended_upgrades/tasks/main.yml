@@ -1,0 +1,6 @@
+---
+- name: Configure UNATTENDED-UPGRADES if enable_base_unattended_upgrades is defined
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when:
+    - enable_base_unattended_upgrades | bool
+    - ansible_action in ['converge', 'cleanup']

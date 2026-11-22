@@ -9,3 +9,7 @@ backuppc_user: backuppc
 backuppc_linux:
   - /etc
   - /root
+# Per-share rsync exclusions ($Conf{BackupFilesExclude}): keys are share names
+# (entries of backuppc_linux/backuppc_path), values are patterns relative to the
+# share root, e.g. {"/opt/nfs/nextcloud": ["/appdata_*/preview"]}.
+backuppc_exclude: {}

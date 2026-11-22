@@ -1,0 +1,16 @@
+---
+ansible_action: converge
+enable_base_users: true
+# Local accounts managed per inventory; nothing is done when empty.
+#   users_accounts:
+#     - name: jdoe
+#       comment: John Doe
+#       shell: /bin/bash        # default: /bin/bash
+#       groups: []              # supplementary groups, appended
+#       home_mode: "0700"       # default: 0700
+#       authorized_keys: []     # exclusive: unlisted keys are removed
+#       linger: true            # true enables, false disables, unset leaves as is
+#       state: present          # absent removes the account (home is kept)
+users_accounts: []
+# Restrict su to members of this group (pam_wheel). Empty: /etc/pam.d/su untouched.
+users_su_group: ""

@@ -1,0 +1,35 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Read libvirt-guests configuration
+      become: true
+      ansible.builtin.slurp:
+        src: "{{ '/etc/default/libvirt-guests' if ansible_facts.os_family == 'Debian' else '/etc/sysconfig/libvirt-guests' }}"
+      register: guests_conf
+    - name: Check libvirt-guests configuration
+      ansible.builtin.assert:
+        that:
+          - "'ON_SHUTDOWN=shutdown' in (guests_conf.content | b64decode)"
+    - name: Check modular daemons on EL
+      when: ansible_facts.os_family == "RedHat"
+      block:
+        - name: Read virtqemud unit
+          become: true
+          ansible.builtin.systemd_service:
+            name: virtqemud.service
+          register: virtqemud_unit
+        - name: Read libvirtd unit
+          become: true
+          ansible.builtin.systemd_service:
+            name: libvirtd.service
+          register: libvirtd_unit
+        - name: Gather package facts
+          ansible.builtin.package_facts:
+        - name: Check virtqemud waits for the network, libvirtd is disabled, bridge-utils is absent
+          ansible.builtin.assert:
+            that:
+              - virtqemud_unit.status.After is search('network-online.target')
+              - virtqemud_unit.status.Wants is search('network-online.target')
+              - libvirtd_unit.status.UnitFileState == 'disabled'
+              - "'bridge-utils' not in ansible_facts.packages"

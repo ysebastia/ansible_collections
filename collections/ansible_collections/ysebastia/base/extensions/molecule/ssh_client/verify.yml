@@ -1,0 +1,17 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Resolve effective client configuration
+      become: true
+      ansible.builtin.command: ssh -G -F /home/molecule-user/.ssh/config sandbox
+      register: ssh_client_effective
+      changed_when: false
+    - name: Check effective values
+      ansible.builtin.assert:
+        that:
+          - "'user molecule-agent' in ssh_client_effective.stdout_lines"
+          - "'hostname sandbox.example.org' in ssh_client_effective.stdout_lines"
+          - "'forwardagent no' in ssh_client_effective.stdout_lines"
+          - "'identitiesonly yes' in ssh_client_effective.stdout_lines"
+          - "'serveraliveinterval 60' in ssh_client_effective.stdout_lines"

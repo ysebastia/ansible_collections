@@ -1,0 +1,78 @@
+---
+- name: Verify
+  hosts: all
+  vars:
+    git_repositories_users:
+      - name: molecule-git
+        repositories:
+          - repo: https://github.com/ysebastia/pfConf2Matrix.git
+            dest: git/pfConf2Matrix
+  tasks:
+    - name: Read state
+      become: true
+      ansible.builtin.shell: |
+        set -eu
+        stat -c '%a %U' /home/molecule-git/.git-credentials
+        cat /home/molecule-git/.git-credentials
+        su - molecule-git -c 'git -C git/pfConf2Matrix config --local --get user.email'
+        su - molecule-git -c 'git -C git/pfConf2Matrix config --local --get credential.helper'
+        su - molecule-git -c 'git -C git/pfConf2Matrix rev-parse --abbrev-ref HEAD'
+        test -e /home/molecule-git/.gitconfig && echo gitconfig-present || echo no-gitconfig
+        su - molecule-git -c 'git -C git/override config --local --get user.email'
+        su - molecule-git -c 'git -C git/override config --local --get user.name'
+      register: git_state
+      changed_when: false
+    - name: Check state
+      ansible.builtin.assert:
+        that:
+          - git_state.stdout_lines[0] == '600 molecule-git'
+          - git_state.stdout_lines[1] == 'https://molecule:not%2Fa%20real%3Atoken@git.example.org'
+          - git_state.stdout_lines[2] == 'molecule@example.org'
+          - git_state.stdout_lines[3] == 'store'
+          - git_state.stdout_lines[4] == 'main'
+          - git_state.stdout_lines[5] == 'no-gitconfig'
+          - git_state.stdout_lines[6] == 'override@example.org'
+          - git_state.stdout_lines[7] == 'Molecule Test'
+
+    - name: Check passes on a clean clone
+      ansible.builtin.include_role:
+        name: ysebastia.base.git_repositories
+      vars:
+        ansible_action: check
+
+    - name: Add uncommitted work
+      become: true
+      ansible.builtin.copy:
+        dest: /home/molecule-git/git/pfConf2Matrix/work-in-progress.txt
+        content: "do not lose me\n"
+        owner: molecule-git
+        mode: "0644"
+
+    - name: Converge again must not touch existing work
+      ansible.builtin.include_role:
+        name: ysebastia.base.git_repositories
+      vars:
+        ansible_action: converge
+
+    - name: Work is still there
+      become: true
+      ansible.builtin.stat:
+        path: /home/molecule-git/git/pfConf2Matrix/work-in-progress.txt
+      register: git_wip
+      failed_when: not git_wip.stat.exists
+
+    - name: Check must fail on uncommitted work
+      block:
+        - name: Run check
+          ansible.builtin.include_role:
+            name: ysebastia.base.git_repositories
+          vars:
+            ansible_action: check
+        - name: Check did not fail
+          ansible.builtin.fail:
+            msg: check should have failed
+      rescue:
+        - name: Check failed as expected
+          ansible.builtin.assert:
+            that:
+              - "'work-in-progress.txt' in ansible_failed_result.msg | string"

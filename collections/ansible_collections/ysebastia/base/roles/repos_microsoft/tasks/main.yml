@@ -1,0 +1,11 @@
+---
+- name: Configure MICROSOFT repository if enable_repositories_microsoft is enable
+  when:
+    - enable_repositories_microsoft | bool
+    - ansible_action in ['converge', 'cleanup']
+  block:
+    - name: Facts
+      ansible.builtin.include_tasks: "facts.yml"
+
+    - name: Include tasks
+      ansible.builtin.include_tasks: "{{ ansible_action }}_{{ ansible_facts.os_family | lower }}.yml"

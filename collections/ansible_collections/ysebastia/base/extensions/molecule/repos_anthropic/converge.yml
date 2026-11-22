@@ -1,0 +1,15 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include anthropic"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.repos_anthropic"
+      vars:
+        enable_repositories_anthropic: true
+        anthropic_https_proxy: "{{ ansible_facts.env.HTTP_PROXY }}"
+    - name: "Install Claude Code from the repository"
+      become: true
+      ansible.builtin.package:
+        name: claude-code
+        update_cache: true

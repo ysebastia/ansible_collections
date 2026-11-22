@@ -1,0 +1,129 @@
+---
+- name: Get user account
+  ansible.builtin.getent:
+    database: passwd
+    key: "{{ vscode_user.name }}"
+
+- name: Set user home and group
+  ansible.builtin.set_fact:
+    vscode_home: "{{ ansible_facts.getent_passwd[vscode_user.name][4] }}"
+    vscode_gid: "{{ ansible_facts.getent_passwd[vscode_user.name][2] }}"
+
+- name: Create settings directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ vscode_home }}/{{ item }}"
+    state: directory
+    owner: "{{ vscode_user.name }}"
+    group: "{{ vscode_gid }}"
+    mode: "0700"
+  loop:
+    - .config
+    - .config/Code
+    - .config/Code/User
+
+- name: Read current settings
+  become: true
+  ansible.builtin.slurp:
+    src: "{{ vscode_home }}/.config/Code/User/settings.json"
+  register: vscode_settings_current
+  failed_when: false
+
+# settings.json may contain comments (JSONC): refuse to rewrite it in that case.
+- name: Parse current settings
+  block:
+    - name: Load current settings
+      ansible.builtin.set_fact:
+        vscode_settings_user: >-
+          {{ (vscode_settings_current.content | b64decode | from_json)
+          if vscode_settings_current.content is defined else {} }}
+  rescue:
+    - name: Unparsable settings.json
+      ansible.builtin.fail:
+        msg: >-
+          {{ vscode_home }}/.config/Code/User/settings.json is not plain JSON
+          (comments?): remove comments or set the keys by hand.
+
+# Written only when a value differs: VS Code appends keys in its own order,
+# rewriting for key order alone would report a change on every run.
+- name: Write settings
+  become: true
+  ansible.builtin.copy:
+    content: "{{ vscode_settings_merged | to_nice_json(indent=4, sort_keys=false) }}\n"
+    dest: "{{ vscode_home }}/.config/Code/User/settings.json"
+    owner: "{{ vscode_user.name }}"
+    group: "{{ vscode_gid }}"
+    mode: "0600"
+  vars:
+    vscode_settings_merged: >-
+      {{ vscode_settings_user | combine(vscode_settings,
+         {'remote.SSH.defaultExtensions': vscode_remote_extensions}) }}
+  when: vscode_settings_merged != vscode_settings_user or vscode_settings_current.content is not defined
+
+# Owner and mode are still enforced when the content is left untouched.
+- name: Settings file permissions
+  become: true
+  ansible.builtin.file:
+    path: "{{ vscode_home }}/.config/Code/User/settings.json"
+    owner: "{{ vscode_user.name }}"
+    group: "{{ vscode_gid }}"
+    mode: "0600"
+  when: not ansible_check_mode or vscode_settings_current.content is defined
+
+- name: List installed extensions
+  become: true
+  become_user: "{{ vscode_user.name }}"
+  ansible.builtin.command: code --list-extensions
+  environment:
+    HOME: "{{ vscode_home }}"
+  register: vscode_extensions_installed
+  changed_when: false
+
+- name: Install extensions
+  become: true
+  become_user: "{{ vscode_user.name }}"
+  ansible.builtin.command:
+    argv:
+      - code
+      - --install-extension
+      - "{{ item }}"
+  environment:
+    HOME: "{{ vscode_home }}"
+  loop: "{{ vscode_extensions }}"
+  when: item | lower not in (vscode_extensions_installed.stdout_lines | map('lower'))
+  changed_when: true
+
+- name: Create applications directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ vscode_home }}/{{ item }}"
+    state: directory
+    owner: "{{ vscode_user.name }}"
+    group: "{{ vscode_gid }}"
+    mode: "0755"
+  loop:
+    - .local
+    - .local/share
+    - .local/share/applications
+  when: vscode_user.launchers | default([]) | length > 0
+
+- name: Create Remote SSH launchers
+  become: true
+  ansible.builtin.copy:
+    dest: "{{ vscode_home }}/.local/share/applications/{{ item.id }}.desktop"
+    content: |
+      [Desktop Entry]
+      Type=Application
+      Name={{ item.name }}
+      Comment=Visual Studio Code ({{ item.host }}, Remote SSH)
+      Exec=code --remote ssh-remote+{{ item.host }} {{ item.workspace }}
+      Icon=vscode
+      Terminal=false
+      Categories=Development;IDE;
+      StartupWMClass=Code
+    owner: "{{ vscode_user.name }}"
+    group: "{{ vscode_gid }}"
+    mode: "0644"
+  loop: "{{ vscode_user.launchers | default([]) }}"
+  loop_control:
+    label: "{{ item.id }}"

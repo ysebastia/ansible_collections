@@ -3,7 +3,6 @@
   become: true
   ansible.builtin.dnf:
     name:
-      - bridge-utils
       - guestfs-tools
       - libguestfs
       - libvirt
@@ -13,3 +12,10 @@
       - python3-lxml
       - qemu-kvm
       - virt-install
+
+- name: Ensure that unused LIBVIRT packages are absent
+  become: true
+  ansible.builtin.dnf:
+    name: "{{ kvm_libvirt_packages_absent }}"
+    state: absent
+  when: kvm_libvirt_packages_absent | length > 0

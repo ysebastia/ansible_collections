@@ -1,0 +1,6 @@
+---
+- name: Configure MDADM if enable_base_mdadm is defined
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when:
+    - enable_base_mdadm | bool
+    - ansible_action in ['converge', 'cleanup']

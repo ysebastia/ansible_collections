@@ -1,0 +1,29 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Read settings
+      become: true
+      ansible.builtin.slurp:
+        src: /home/molecule-user/.config/Code/User/settings.json
+      register: vscode_settings_file
+    - name: Check settings are merged
+      vars:
+        vscode_settings_result: "{{ vscode_settings_file.content | b64decode | from_json }}"
+      ansible.builtin.assert:
+        that:
+          - vscode_settings_result['editor.fontSize'] == 14
+          - vscode_settings_result['telemetry.telemetryLevel'] == 'off'
+          - vscode_settings_result['chat.disableAIFeatures']
+          - "'redhat.ansible' in vscode_settings_result['remote.SSH.defaultExtensions']"
+          # Existing key order is kept (no alphabetical sort)
+          - (vscode_settings_file.content | b64decode).startswith('{\n    "editor.fontSize"')
+    - name: Read launcher
+      become: true
+      ansible.builtin.slurp:
+        src: /home/molecule-user/.local/share/applications/sandbox-remote.desktop
+      register: vscode_launcher
+    - name: Check launcher
+      ansible.builtin.assert:
+        that:
+          - "'Exec=code --remote ssh-remote+sandbox /home/molecule-agent/sandbox.code-workspace' in (vscode_launcher.content | b64decode)"

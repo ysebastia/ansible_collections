@@ -1,0 +1,2 @@
+# {{ ansible_managed }}
+DEVICESCAN {{ smartmontools_options }} -s {{ smartmontools_schedule }} -m {{ smartmontools_mailto }} -M exec /usr/libexec/smartmontools/smartdnotify{{ ' -M test' if smartmontools_mail_test | bool else '' }}

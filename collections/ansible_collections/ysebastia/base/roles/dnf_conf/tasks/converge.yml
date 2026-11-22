@@ -1,0 +1,9 @@
+---
+- name: Set installonly_limit in dnf.conf
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/dnf/dnf.conf
+    regexp: ^installonly_limit\s*=
+    line: installonly_limit={{ dnf_conf_installonly_limit }}
+    insertafter: ^\[main\]
+    backup: true

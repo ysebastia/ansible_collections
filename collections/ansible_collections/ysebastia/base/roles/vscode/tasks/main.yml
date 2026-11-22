@@ -1,0 +1,6 @@
+---
+- name: Configure Visual Studio Code if enable_base_vscode is defined
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when:
+    - enable_base_vscode | bool
+    - ansible_action in ['converge']

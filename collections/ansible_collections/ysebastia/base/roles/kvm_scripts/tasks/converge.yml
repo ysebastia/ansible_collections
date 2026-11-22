@@ -1,0 +1,19 @@
+---
+- name: Ensure destination directory is present
+  become: true
+  ansible.builtin.file:
+    path: "{{ kvm_scripts_directory }}"
+    state: directory
+    owner: "{{ kvm_scripts_owner }}"
+    group: "{{ kvm_scripts_group }}"
+    mode: "0755"
+
+- name: Deploy scripts
+  become: true
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ kvm_scripts_directory }}/{{ item }}"
+    owner: "{{ kvm_scripts_owner }}"
+    group: "{{ kvm_scripts_group }}"
+    mode: "{{ kvm_scripts_mode }}"
+  loop: "{{ kvm_scripts_files }}"

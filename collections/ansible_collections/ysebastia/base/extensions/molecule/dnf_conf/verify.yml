@@ -1,0 +1,16 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Check dnf.conf on RedHat
+      when: ansible_facts.os_family == "RedHat"
+      block:
+        - name: Read dnf.conf
+          ansible.builtin.slurp:
+            src: /etc/dnf/dnf.conf
+          register: dnf_conf_file
+        - name: Check installonly_limit is 2 and set once
+          ansible.builtin.assert:
+            that:
+              - (dnf_conf_file.content | b64decode | regex_findall('(?m)^installonly_limit=2$') | length) == 1
+              - (dnf_conf_file.content | b64decode | regex_findall('(?m)^installonly_limit') | length) == 1

@@ -1,0 +1,6 @@
+---
+- name: Deploy KVM scripts if enable_kvm_scripts is defined
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when:
+    - enable_kvm_scripts | bool
+    - ansible_action in ['converge', 'cleanup']

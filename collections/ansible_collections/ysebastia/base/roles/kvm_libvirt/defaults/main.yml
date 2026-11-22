@@ -2,3 +2,30 @@
 ansible_action: converge
 enable_kvm_libvirt: false
 enable_kvm_libvirt_zone: true
+# Use the modular daemons (virtqemud, virtnetworkd...) instead of the
+# monolithic libvirtd, deprecated since RHEL 9. Default: EL >= 9.
+kvm_libvirt_modular_daemons: "{{ ansible_facts.os_family == 'RedHat' and ansible_facts.distribution_major_version | int >= 9 }}"
+# Sockets enabled with the modular daemons (RHEL defaults).
+kvm_libvirt_modular_sockets:
+  - virtqemud
+  - virtnetworkd
+  - virtstoraged
+  - virtnodedevd
+  - virtsecretd
+  - virtinterfaced
+  - virtnwfilterd
+  - virtproxyd
+# Start virtqemud, which autostarts the guests, after network-online.target,
+# so guests attached to NetworkManager bridges do not fail to start at boot.
+kvm_libvirt_wait_network_online: true
+# Packages removed on EL (bridge-utils: brctl is unused, NetworkManager manages the bridges).
+kvm_libvirt_packages_absent:
+  - bridge-utils
+# libvirt-guests behaviour (/etc/sysconfig/libvirt-guests or /etc/default/libvirt-guests).
+# ignore: the autostart flag of each guest decides what starts at boot.
+kvm_libvirt_guests_on_boot: ignore
+# shutdown: no managed save, so no RAM-sized save area is needed.
+kvm_libvirt_guests_on_shutdown: shutdown
+# Seconds; with parallel shutdown, the timeout applies to all guests at once.
+kvm_libvirt_guests_shutdown_timeout: 300
+kvm_libvirt_guests_parallel_shutdown: 4

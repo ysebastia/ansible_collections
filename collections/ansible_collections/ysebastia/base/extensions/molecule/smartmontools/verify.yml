@@ -1,0 +1,17 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Check smartd.conf on Red Hat
+      when: ansible_facts.os_family == "RedHat"
+      block:
+        - name: Read smartd.conf
+          become: true
+          ansible.builtin.slurp:
+            src: /etc/smartmontools/smartd.conf
+          register: smartd_conf
+        - name: Check self-test schedule and mail recipient
+          ansible.builtin.assert:
+            that:
+              - "'-s (S/../.././02|L/../../6/03)' in (smartd_conf.content | b64decode)"
+              - "'-m root' in (smartd_conf.content | b64decode)"

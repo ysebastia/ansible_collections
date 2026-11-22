@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+MAILADDR {{ mdadm_mailaddr }}
+AUTO {{ mdadm_auto }}
+{% for line in mdadm_scan.stdout_lines %}
+{{ line }}
+{% endfor %}

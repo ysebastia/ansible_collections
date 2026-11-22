@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include unattended_upgrades"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.unattended_upgrades"
+      vars:
+        enable_base_unattended_upgrades: true

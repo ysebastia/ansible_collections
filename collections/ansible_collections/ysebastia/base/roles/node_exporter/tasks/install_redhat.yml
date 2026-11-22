@@ -1,0 +1,5 @@
+---
+- name: Ensure node_exporter is installed
+  become: true
+  ansible.builtin.dnf:
+    name: node_exporter

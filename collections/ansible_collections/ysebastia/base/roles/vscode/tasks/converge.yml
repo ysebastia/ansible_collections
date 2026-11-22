@@ -1,0 +1,16 @@
+---
+# Requires the Microsoft repository (ysebastia.base.repos_microsoft).
+- name: Install Visual Studio Code
+  become: true
+  ansible.builtin.package:
+    name: "{{ vscode_package }}"
+    state: present
+    # The repository may have just been added: apt does not refresh by itself.
+    update_cache: "{{ ansible_facts.os_family == 'Debian' }}"
+
+- name: Configure Visual Studio Code per user
+  ansible.builtin.include_tasks: user.yml
+  loop: "{{ vscode_users }}"
+  loop_control:
+    loop_var: vscode_user
+    label: "{{ vscode_user.name }}"

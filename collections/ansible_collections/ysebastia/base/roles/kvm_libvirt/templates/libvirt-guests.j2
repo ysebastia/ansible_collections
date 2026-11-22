@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+# Read by libvirt-guests.sh at host boot and shutdown.
+ON_BOOT={{ kvm_libvirt_guests_on_boot }}
+ON_SHUTDOWN={{ kvm_libvirt_guests_on_shutdown }}
+SHUTDOWN_TIMEOUT={{ kvm_libvirt_guests_shutdown_timeout }}
+PARALLEL_SHUTDOWN={{ kvm_libvirt_guests_parallel_shutdown }}

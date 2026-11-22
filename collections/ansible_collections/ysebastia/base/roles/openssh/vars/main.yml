@@ -1,0 +1,14 @@
+---
+# Role baseline, merged with openssh_config_overrides (inventory wins).
+openssh_config_base:
+  AllowTcpForwarding: "no"
+  ChallengeResponseAuthentication: "no"
+  Ciphers: "aes256-ctr,aes192-ctr,aes128-ctr"
+  GSSAPIAuthentication: "no"
+  ListenAddress: "0.0.0.0"
+  PasswordAuthentication: "{{ openssh_password_authentification }}"
+  PermitUserEnvironment: "no"
+  PrintLastLog: "yes"
+  StrictModes: "yes"
+  UseDNS: "no"
+  X11Forwarding: "no"

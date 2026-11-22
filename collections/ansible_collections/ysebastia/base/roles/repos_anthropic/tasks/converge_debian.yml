@@ -1,0 +1,76 @@
+---
+- name: Ensure GPG and python3-debian (deb822_repository) are installed
+  become: true
+  ansible.builtin.apt:
+    name:
+      - gpg
+      - python3-debian
+- name: Create temporary file for the signing key
+  ansible.builtin.tempfile:
+    state: file
+    suffix: .asc
+  register: anthropic_key_tmp
+  changed_when: false
+  # The key is fetched and checked in a temporary file, also in check mode,
+  # so that --check verifies the fingerprint and diffs the installed key.
+  check_mode: false
+- name: Download Anthropic signing key
+  ansible.builtin.get_url:
+    url: "{{ anthropic_key_url }}"
+    dest: "{{ anthropic_key_tmp.path }}"
+    force: true
+    mode: "0644"
+  environment:
+    https_proxy: "{{ anthropic_https_proxy | default('') }}"
+  changed_when: false
+  check_mode: false
+- name: Read signing key fingerprint
+  ansible.builtin.command:
+    argv:
+      - gpg
+      - --show-keys
+      - --with-colons
+      - "{{ anthropic_key_tmp.path }}"
+  register: anthropic_key_colons
+  changed_when: false
+  check_mode: false
+# The key is only installed once its fingerprint is verified.
+- name: Verify signing key fingerprint
+  ansible.builtin.assert:
+    that:
+      - anthropic_key_fingerprints == [anthropic_key_fingerprint]
+    fail_msg: "Unexpected Anthropic key fingerprint: {{ anthropic_key_fingerprints }}"
+  vars:
+    anthropic_key_fingerprints: >-
+      {{ anthropic_key_colons.stdout_lines | select('match', '^fpr:') | map('split', ':')
+      | map(attribute=9) | list | unique }}
+- name: Create keyrings directory
+  become: true
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+- name: Install Anthropic signing key
+  become: true
+  ansible.builtin.copy:
+    src: "{{ anthropic_key_tmp.path }}"
+    dest: /etc/apt/keyrings/anthropic.asc
+    remote_src: true
+    owner: root
+    group: root
+    mode: "0644"
+- name: Remove temporary signing key
+  ansible.builtin.file:
+    path: "{{ anthropic_key_tmp.path }}"
+    state: absent
+  changed_when: false
+  check_mode: false
+- name: Configure Anthropic repository
+  become: true
+  ansible.builtin.deb822_repository:
+    name: anthropic
+    types: deb
+    uris: "https://downloads.claude.ai/claude-code/apt/{{ anthropic_channel }}"
+    suites: "{{ anthropic_channel }}"
+    components: main
+    signed_by: /etc/apt/keyrings/anthropic.asc

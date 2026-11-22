@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include smartmontools"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.smartmontools"
+      vars:
+        enable_base_smartmontools: true

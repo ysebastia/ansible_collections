@@ -1,0 +1,20 @@
+---
+- name: Import Microsoft signing key
+  become: true
+  ansible.builtin.rpm_key:
+    key: "{{ microsoft_key_url }}"
+    fingerprint: "{{ microsoft_key_fingerprint }}"
+    state: present
+  environment:
+    https_proxy: "{{ microsoft_https_proxy | default('') }}"
+- name: Configure Visual Studio Code repository
+  become: true
+  ansible.builtin.yum_repository:
+    name: code
+    description: Visual Studio Code
+    file: vscode
+    baseurl: https://packages.microsoft.com/yumrepos/vscode
+    gpgkey: "{{ microsoft_key_url }}"
+    gpgcheck: true
+    enabled: true
+    setype: system_conf_t

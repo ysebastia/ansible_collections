@@ -1,0 +1,16 @@
+---
+- name: Restart mdmonitor
+  become: true
+  ansible.builtin.systemd_service:
+    name: mdmonitor.service
+    state: restarted
+  when: mdadm_scan.stdout_lines | length > 0
+
+# Debian copies mdadm.conf into the initramfs; RHEL assembles non-root
+# arrays from the real root, so no rebuild is needed there.
+- name: Update initramfs # noqa no-changed-when
+  become: true
+  ansible.builtin.command:
+    cmd: update-initramfs -u
+    removes: /usr/sbin/update-initramfs # skipped when initramfs-tools is absent
+  when: ansible_facts.os_family == "Debian"
