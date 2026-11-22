@@ -20,7 +20,7 @@ driver:
   name: podman
 platforms:
   - name: "rhel9${CI_COMMIT_SHORT_SHA}"
-    image: docker.io/ysebastia/molecule:rhel-9.7
+    image: docker.io/ysebastia/molecule:rhel-9.9
     pre_build_image: true
     env:
       HTTPS_PROXY: "${HTTPS_PROXY}"
@@ -44,7 +44,7 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
   - name: "rhel10${CI_COMMIT_SHORT_SHA}"
-    image: docker.io/ysebastia/molecule:rhel-10.1
+    image: docker.io/ysebastia/molecule:rhel-10.3
     pre_build_image: true
     env:
       HTTPS_PROXY: "${HTTPS_PROXY}"
@@ -68,7 +68,7 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
   - name: "debian${CI_COMMIT_SHORT_SHA}"
-    image: docker.io/ysebastia/molecule:debian-13.2
+    image: docker.io/ysebastia/molecule:debian-13.7
     pre_build_image: true
     env:
       HTTPS_PROXY: "${HTTPS_PROXY}"
