@@ -1,0 +1,7 @@
+---
+- name: Configure DNF if enable_base_dnf_conf is defined
+  ansible.builtin.include_tasks: "{{ ansible_action }}.yml"
+  when:
+    - enable_base_dnf_conf | bool
+    - ansible_action in ['converge', 'cleanup']
+    - ansible_facts.os_family == "RedHat"

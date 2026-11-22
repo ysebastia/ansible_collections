@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include dnf_conf"
+      ansible.builtin.include_role:
+        name: "ysebastia.base.dnf_conf"
+      vars:
+        enable_base_dnf_conf: true

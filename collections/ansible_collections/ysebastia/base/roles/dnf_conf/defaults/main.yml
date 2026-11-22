@@ -1,0 +1,7 @@
+---
+ansible_action: converge
+enable_base_dnf_conf: false
+# Number of kernels (and other installonly packages) kept by dnf.
+# 2 = the running kernel plus one fallback; dnf removes older ones on each
+# kernel update, so /boot never needs a manual `dnf remove --oldinstallonly`.
+dnf_conf_installonly_limit: 2

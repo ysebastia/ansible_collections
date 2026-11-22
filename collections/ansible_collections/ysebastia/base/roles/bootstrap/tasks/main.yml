@@ -47,6 +47,9 @@
 - name: Configure FSTRIM
   ansible.builtin.include_role:
     name: ysebastia.base.fstrim
+- name: Configure DNF
+  ansible.builtin.include_role:
+    name: ysebastia.base.dnf_conf
 - name: Configure MDADM
   ansible.builtin.include_role:
     name: ysebastia.base.mdadm
